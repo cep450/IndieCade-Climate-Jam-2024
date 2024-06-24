@@ -1,10 +1,12 @@
 using Godot;
 using System;
 
-public partial class Clock : Node
+public partial class Meters : Node
 {
 	
-	final float secondsPerTick = 1f;
+	int emissions;
+	int support;
+	
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

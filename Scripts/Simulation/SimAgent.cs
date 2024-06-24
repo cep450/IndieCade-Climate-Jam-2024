@@ -1,10 +1,11 @@
 using Godot;
 using System;
 
-public partial class Clock : Node
+public partial class SimAgent : Node
 {
-	
-	final float secondsPerTick = 1f;
+	public float happiness;
+	// destination 
+	// points to current tile it's on 
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
