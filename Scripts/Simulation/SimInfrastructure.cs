@@ -1,11 +1,14 @@
 using Godot;
 using System;
 
-public partial class SimAgent : Node
+public partial class SimInfrastructure : Node
 {
-	public float happiness;
-	// destination 
-	// points to current tile it's on 
+	
+	public int costToBuild;
+	public int costToDestroy;
+	
+	// connections 
+	// safety value 
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
