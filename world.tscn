@@ -7,6 +7,9 @@
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_1dv0u")
 cell_size = Vector3(1, 0.25, 1)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
 data = {
-"cells": PackedInt32Array(0, 65534, 0, 0, 65532, 2, 2, 65533, 1, 2, 65530, 3)
+"cells": PackedInt32Array(0, 65534, 0, 0, 65532, 2, 2, 65533, 1, 2, 65530, 3, 65535, 65530, 4, 65534, 65527, 5)
 }
