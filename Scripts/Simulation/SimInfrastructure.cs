@@ -1,22 +1,15 @@
 using Godot;
 using System;
 
-public partial class SimInfrastructure : Node
+public partial class SimInfrastructure
 {
-	
-	public int costToBuild;
-	public int costToDestroy;
-	
-	// connections 
-	// safety value 
-	
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+	/*
+	 * A single piece of infrastructure in the simulation.
+	 */
+	
+	SimInfrastructureType type;
+
+	//TODO where to model capacity? since this would probably store how many of a thing are on that tile 
+	
 }

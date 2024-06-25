@@ -3,6 +3,9 @@ using System;
 
 public partial class Meters : Node
 {
+	/* 
+	 *	Keeps track of global values.
+	 */
 	
 	int emissions;
 	int support;
