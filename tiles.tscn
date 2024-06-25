@@ -1,26 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://drxjt03qah5lp"]
+[gd_scene load_steps=3 format=3 uid="uid://drxjt03qah5lp"]
 
-[ext_resource type="ArrayMesh" uid="uid://c576cwxhtxw5i" path="res://Models/Tile_1Meter.obj" id="1_67spp"]
-[ext_resource type="ArrayMesh" uid="uid://nlcdhbec8rkh" path="res://Models/Tile_2Meter.obj" id="2_snc4g"]
-[ext_resource type="ArrayMesh" uid="uid://ka05dxtlwjgq" path="res://Models/Tile_1Meter-2.obj" id="3_ig7iw"]
-[ext_resource type="ArrayMesh" uid="uid://yqxn8ckx7nh1" path="res://Models/Tile_2Meter-2.obj" id="4_ypaky"]
-[ext_resource type="PackedScene" uid="uid://bo4w6a7nlua4x" path="res://Models/Tile_1Meter-3.glb" id="5_siq30"]
-[ext_resource type="PackedScene" uid="uid://dompb38o2a6n3" path="res://Models/Tile_2Meter-3.glb" id="6_r3hox"]
+[ext_resource type="PackedScene" uid="uid://dutr0cnhknbv3" path="res://Models/Tile_1Meter.glb" id="1_yeuwq"]
+[ext_resource type="PackedScene" uid="uid://ce0253eoia6wx" path="res://Models/Tile_2Meter.glb" id="2_a4bbd"]
 
 [node name="Tiles" type="Node3D"]
 
-[node name="Tile1Meter" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_67spp")
+[node name="Tile_1Meter" parent="." instance=ExtResource("1_yeuwq")]
 
-[node name="Tile2Meter" type="MeshInstance3D" parent="."]
-mesh = ExtResource("2_snc4g")
-
-[node name="Tile1Meter-2" type="MeshInstance3D" parent="."]
-mesh = ExtResource("3_ig7iw")
-
-[node name="Tile2Meter-2" type="MeshInstance3D" parent="."]
-mesh = ExtResource("4_ypaky")
-
-[node name="Tile_1Meter-3" parent="." instance=ExtResource("5_siq30")]
-
-[node name="Tile_2Meter-3" parent="." instance=ExtResource("6_r3hox")]
+[node name="Tile_2Meter" parent="." instance=ExtResource("2_a4bbd")]
