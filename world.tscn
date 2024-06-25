@@ -1,15 +1,14 @@
 [gd_scene load_steps=2 format=3 uid="uid://bfttri8g4op5h"]
 
-[ext_resource type="MeshLibrary" uid="uid://d08lge06gq5bn" path="res://tiles.tres" id="1_1dv0u"]
+[ext_resource type="MeshLibrary" uid="uid://bvsjqkpafyo7s" path="res://tiles.tres" id="1_1dv0u"]
 
 [node name="World" type="Node3D"]
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_1dv0u")
-cell_size = Vector3(1, 1, 1)
-cell_center_x = false
+cell_size = Vector3(1, 0.4, 1)
 cell_center_y = false
-cell_center_z = false
 data = {
-"cells": PackedInt32Array(65535, 65535, 0, 65535, 65533, 0, 1, 65534, 1, 1, 65531, 1)
+"cells": PackedInt32Array(2, 1, 1441793, 3, 1, 1441793, 65539, 1, 0)
 }
+metadata/_editor_floor_ = Vector3(0, 1, 0)

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://drxjt03qah5lp"]
 
-[ext_resource type="PackedScene" uid="uid://dutr0cnhknbv3" path="res://Models/Tile_1Meter.glb" id="1_yeuwq"]
-[ext_resource type="PackedScene" uid="uid://ce0253eoia6wx" path="res://Models/Tile_2Meter.glb" id="2_a4bbd"]
+[ext_resource type="PackedScene" uid="uid://c54urx23tj6u8" path="res://Models/Tile_1MeterBuilding.glb" id="3_8oqqa"]
+[ext_resource type="PackedScene" uid="uid://kqiswx0uq7f5" path="res://Models/Tile_1MeterCube.glb" id="4_yuq6t"]
 
 [node name="Tiles" type="Node3D"]
 
-[node name="Tile_1Meter" parent="." instance=ExtResource("1_yeuwq")]
+[node name="Tile_1MeterBuilding" parent="." instance=ExtResource("3_8oqqa")]
 
-[node name="Tile_2Meter" parent="." instance=ExtResource("2_a4bbd")]
+[node name="Tile_1MeterCube" parent="." instance=ExtResource("4_yuq6t")]
