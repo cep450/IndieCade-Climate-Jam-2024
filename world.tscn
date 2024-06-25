@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfttri8g4op5h"]
+
+[ext_resource type="MeshLibrary" uid="uid://b18r8x8f52us8" path="res://tiles.tres" id="1_1dv0u"]
+
+[node name="World" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_1dv0u")
+cell_size = Vector3(1, 0.25, 1)
+data = {
+"cells": PackedInt32Array(0, 65534, 0, 0, 65532, 2, 2, 65533, 1, 2, 65530, 3)
+}

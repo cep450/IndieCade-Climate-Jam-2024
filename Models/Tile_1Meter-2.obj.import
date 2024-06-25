@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ka05dxtlwjgq"
+path="res://.godot/imported/Tile_1Meter-2.obj-8960116c0ac8fe5eee67833780d6cca1.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Tile_1Meter-2.obj-8960116c0ac8fe5eee67833780d6cca1.mesh"]
+
+source_file="res://Models/Tile_1Meter-2.obj"
+dest_files=["res://.godot/imported/Tile_1Meter-2.obj-8960116c0ac8fe5eee67833780d6cca1.mesh", "res://.godot/imported/Tile_1Meter-2.obj-8960116c0ac8fe5eee67833780d6cca1.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
