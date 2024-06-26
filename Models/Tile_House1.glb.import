@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c54urx23tj6u8"
-path="res://.godot/imported/Tile_1MeterBuilding.glb-6bf3f269acd26a58a898126276044fce.scn"
+uid="uid://cofcylqh4mve7"
+path="res://.godot/imported/Tile_House1.glb-09727f6eebaf62cbcdb3c9b27a037762.scn"
 
 [deps]
 
-source_file="res://Models/Tile_1MeterBuilding.glb"
-dest_files=["res://.godot/imported/Tile_1MeterBuilding.glb-6bf3f269acd26a58a898126276044fce.scn"]
+source_file="res://Models/Tile_House1.glb"
+dest_files=["res://.godot/imported/Tile_House1.glb-09727f6eebaf62cbcdb3c9b27a037762.scn"]
 
 [params]
 

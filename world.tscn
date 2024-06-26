@@ -1,14 +1,14 @@
 [gd_scene load_steps=2 format=3 uid="uid://bfttri8g4op5h"]
 
-[ext_resource type="MeshLibrary" uid="uid://bvsjqkpafyo7s" path="res://tiles.tres" id="1_1dv0u"]
+[ext_resource type="MeshLibrary" uid="uid://sj2wuis0363h" path="res://Tiles.tres" id="1_0tx8y"]
 
 [node name="World" type="Node3D"]
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("1_1dv0u")
+mesh_library = ExtResource("1_0tx8y")
 cell_size = Vector3(1, 0.4, 1)
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(2, 1, 1441793, 3, 1, 1441793, 65539, 1, 0)
+"cells": PackedInt32Array(1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 2, 1, 1441797, 1, 1, 1441797, 3, 1, 1441797, 4, 1, 1441797, 65537, 0, 2, 65538, 0, 2, 65540, 0, 1, 65539, 0, 1, 65540, 1, 1048579, 65538, 1, 1048579, 6, 1, 1048581, 7, 2, 5, 7, 3, 5, 7, 4, 5, 5, 0, 0, 5, 65535, 0, 4, 65535, 0, 3, 65535, 0, 2, 65535, 0, 1, 65535, 0, 6, 0, 0, 6, 65535, 0, 5, 1, 0)
 }
-metadata/_editor_floor_ = Vector3(0, 1, 0)
+metadata/_editor_floor_ = Vector3(0, 0, 0)

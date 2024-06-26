@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://kqiswx0uq7f5"
-path="res://.godot/imported/Tile_1MeterCube.glb-e94f559060eef018fba05352730fc245.scn"
+uid="uid://dojauur1wkog"
+path="res://.godot/imported/Tile_Road2.glb-6fb8b24c89fa3b4bf0c62f945a85e303.scn"
 
 [deps]
 
-source_file="res://Models/Tile_1MeterCube.glb"
-dest_files=["res://.godot/imported/Tile_1MeterCube.glb-e94f559060eef018fba05352730fc245.scn"]
+source_file="res://Models/Tile_Road2.glb"
+dest_files=["res://.godot/imported/Tile_Road2.glb-6fb8b24c89fa3b4bf0c62f945a85e303.scn"]
 
 [params]
 
