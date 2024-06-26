@@ -1,19 +1,15 @@
 using Godot;
 using System;
 
-public partial class SimAgent : Node
+public class SimAgent
 {
 	public float happiness;
-	// destination 
-	// points to current tile it's on 
-	
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    SimTile currentTile; // location 
+	SimTile destination;
+	SimPath path = null;
+
+	SimWeights values; // how much this agent weighs various factors when pathfinding
+
+
 }

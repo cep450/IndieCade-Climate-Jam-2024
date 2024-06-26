@@ -1,15 +1,20 @@
 using Godot;
 using System;
 
-public partial class SimEdge : Node
-{
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+public class SimEdge {
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+	/* 
+	 * A connection agents and vehicles can travel on between 2 tiles.
+	 * Infrastruture can add these.
+	 */
+
+	 //TODO split up between type and instance 
+
+    // types of vehicles that can travel along this connection e.g. a road could support both cars and buses, a bus lane only supports buses
+    List<Sim.TransitType> canTravel;
+
+    //TODO where to calculate weights? since they could come from a lot of factors- the speed of the vehicle, the infrastructure on the tile contributing to safety...
+	// do tiles have edges or do tiles have infrastructure which has edges?
+
+
 }
