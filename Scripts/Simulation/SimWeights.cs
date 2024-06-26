@@ -3,6 +3,8 @@ using System;
 
 public class SimWeights {
 
+    
+
     // associate each index with a name for what it represents 
     public enum Weight {
         TIME = 0,

@@ -16,6 +16,8 @@ public class Sim {
     }
 
     SimGrid grid;
-    Meters meters;
+    SimEmissionsMeter emissionsMeter;
+    SimSupportPool supportPool;
+    List<SimAgent> agents;
 
 }

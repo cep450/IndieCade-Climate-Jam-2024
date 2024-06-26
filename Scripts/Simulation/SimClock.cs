@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Clock : Node
+public partial class SimClock : Node
 {
 	
 	final float secondsPerTick = 1f;
