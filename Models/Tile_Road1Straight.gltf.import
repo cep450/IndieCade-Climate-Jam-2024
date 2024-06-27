@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bt80p35agjyj4"
-path="res://.godot/imported/Tile_Road1Straight.glb-b7e08952c371c2d3676f8244cb9ed62e.scn"
+uid="uid://c0kktjcg8jjfg"
+path="res://.godot/imported/Tile_Road1Straight.gltf-97add11cd5034c124a3572a356b14f7e.scn"
 
 [deps]
 
-source_file="res://Models/Tile_Road1Straight.glb"
-dest_files=["res://.godot/imported/Tile_Road1Straight.glb-b7e08952c371c2d3676f8244cb9ed62e.scn"]
+source_file="res://Models/Tile_Road1Straight.gltf"
+dest_files=["res://.godot/imported/Tile_Road1Straight.gltf-97add11cd5034c124a3572a356b14f7e.scn"]
 
 [params]
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://kbah0kix22sd"
-path="res://.godot/imported/Tile_Road2Intersection.glb-e284b91e69e3d88f2317fe8f4c623400.scn"
+uid="uid://d116q1s4r0ngc"
+path="res://.godot/imported/Tile_Road1Curve.gltf-dd17426757f5a59fa22e1676d11cbdbf.scn"
 
 [deps]
 
-source_file="res://Models/Tile_Road2Intersection.glb"
-dest_files=["res://.godot/imported/Tile_Road2Intersection.glb-e284b91e69e3d88f2317fe8f4c623400.scn"]
+source_file="res://Models/Tile_Road1Curve.gltf"
+dest_files=["res://.godot/imported/Tile_Road1Curve.gltf-dd17426757f5a59fa22e1676d11cbdbf.scn"]
 
 [params]
 
