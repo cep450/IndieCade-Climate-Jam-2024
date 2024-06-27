@@ -9,12 +9,21 @@ public class SimEmissionsMeter
 	 */
 	
 	int emissions;
-	const int emissionsCap;
+	const int emissionsCap = 100; //Placeholder value
 
 	//for use by vehicles and anything we want to count towards emissions 
-	public void AddEmissions(float amount) {
-
-		//TODO if emissions surpass a threshold, end the game with a loss 
-    }
-
+	public void AddEmissions(int amount) {
+		if (amount > 0) {
+			emissions += amount;
+		}
+		if (emissions > emissionsCap) {
+			//TODO: add game loss here
+		}
+		
+	}
+	
+	public int GetEmissions() {
+		return emissions;
+	}
+	
 }

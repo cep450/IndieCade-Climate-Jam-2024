@@ -4,7 +4,7 @@ using System;
 public partial class SimClock : Node
 {
 	
-	final float secondsPerTick = 1f;
+	const float secondsPerTick = 1f;
 
 	double counter = 0f;
 	

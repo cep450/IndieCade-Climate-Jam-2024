@@ -5,7 +5,7 @@ public class SimAgent
 {
 	public float happiness;
 
-    SimTile currentTile; // location 
+	SimTile currentTile; // location 
 	SimTile destination;
 	SimPath path = null;
 
