@@ -3,16 +3,16 @@ using System;
 
 public class SimTile {
 
-    /*
-     * A single tile in the simulation.
-     */
+	/*
+	 * A single tile in the simulation.
+	 */
 
-    Vector2Int coordinates;
+	Vector2Int coordinates;
 
-    List<SimEdge> edges; //TODO are these stored here or in infrastructure?
-    List<SimInfrastructure> infrastructure;
+	//List<SimEdge> edges; //TODO are these stored here or in infrastructure?
+	//List<SimInfrastructure> infrastructure;
 
-    
+	
 
 
 }

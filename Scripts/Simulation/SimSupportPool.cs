@@ -10,7 +10,7 @@ public partial class SimSupportPool : Node
 	
 	int support;            // authoritative 
 
-    float globalHappiness;  // this one isn't authoritative, only a convenient value to get for the ui-- each agent knows their own happiness and updates it accordingly
+	float globalHappiness;  // this one isn't authoritative, only a convenient value to get for the ui-- each agent knows their own happiness and updates it accordingly
 	
 	
 	// Called when the node enters the scene tree for the first time.
@@ -31,7 +31,7 @@ public partial class SimSupportPool : Node
 
 	// returns true if the player has enough support to be able to spnd this amount of support-- can use for validation
 	public bool HaveEnoughSupport(float amount) {
-
+		return false;
 	}
 
 	// subtract this amount of support 

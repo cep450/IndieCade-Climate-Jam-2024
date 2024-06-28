@@ -9,7 +9,7 @@ public partial class SimInfrastructureType : Node
 
 	SimWeights weights; // includes stuff like speed, safety 
 
-    public bool canTransfer = false; // can a transit type switch to a different transit type?
+	public bool canTransfer = false; // can a transit type switch to a different transit type?
 	
 	// connections 
 	// safety value 

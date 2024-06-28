@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://us6n2vt8kwhw"]
+
+[ext_resource type="Script" path="res://Scripts/view.gd" id="1_gejl3"]
+[ext_resource type="Script" path="res://Scenes/camera3D.gd" id="2_a2s3e"]
+[ext_resource type="Environment" uid="uid://ccufda2p8xb10" path="res://Resources/environment.tres" id="2_o416c"]
+
+[node name="View" type="Node3D"]
+script = ExtResource("1_gejl3")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.755888, 0.654701, 0, -0.654701, 0.755888, -1.90571, 2.95144, 3.20244)
+environment = ExtResource("2_o416c")
+script = ExtResource("2_a2s3e")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+omni_range = 4096.0
