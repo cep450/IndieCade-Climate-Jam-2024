@@ -19,7 +19,7 @@ public partial class SimVehicle : Node
 	{
 		VehicleType = vehicleType;
 		CurrentPosition = startPosition;
-		IsInUse = true;
+		IsInUse = false;
 		Emissions = vehicleType.Emissions;
 	}
 

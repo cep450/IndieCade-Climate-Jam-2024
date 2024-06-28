@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckg4ecsxspxtq"]
+
+[ext_resource type="Script" path="res://Scenes/tile.gd" id="1_l32i0"]
+[ext_resource type="Material" uid="uid://mrkot8b31ap2" path="res://Resources/yellow_mat.tres" id="2_5854q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ogoi4"]
+material = ExtResource("2_5854q")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ap0kq"]
+
+[node name="TestShape" type="StaticBody3D"]
+script = ExtResource("1_l32i0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.093, 0)
+mesh = SubResource("BoxMesh_ogoi4")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09664, 0)
+shape = SubResource("BoxShape3D_ap0kq")
