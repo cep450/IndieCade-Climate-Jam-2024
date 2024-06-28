@@ -14,7 +14,7 @@ func _ready():
 	data.append([TileType.HOUSE,TileType.ROAD,TileType.PARK])
 	data.append([TileType.PARK,TileType.ROAD,TileType.PARK])
 	data.append([TileType.PARK,TileType.ROAD,TileType.WORK])
-	var pos = Vector3(0,0,0)
+	var pos = Vector3(-10,0,-10)
 	for i in 10:
 		for j in 10: 
 			var instance = tile.instantiate()
