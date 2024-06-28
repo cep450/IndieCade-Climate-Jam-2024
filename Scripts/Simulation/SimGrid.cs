@@ -9,8 +9,9 @@ public partial class SimGrid : Node
 	 */
 
 	public SimTile[][] grid;
-	private int width = 10; // Set your grid width
-	private int height = 10; // Set your grid height
+	[Export] private int width = 10; // Set your grid width
+	[Export] private int height = 10; // Set your grid height
+	private Node gridHeader;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -27,8 +28,10 @@ public partial class SimGrid : Node
 			for (int y = 0; y < height; y++)
 			{
 				Vector2 position = new Vector2(x, y);
-				grid[x][y] = new SimTile(position, 1); // Initialize each tile with a position and capacity
-				AddChild(grid[x][y]); // Add each tile as a child node (optional)
+				
+				SimTile tile = new SimTile(position, 1); // Initialize each tile with a position and capacity
+				grid[x][y] = tile;
+				AddChild(tile); // Add each tile as a child node (optional)
 			}
 		}
 	}

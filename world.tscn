@@ -1,0 +1,66 @@
+[gd_scene load_steps=11 format=3 uid="uid://bfttri8g4op5h"]
+
+[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://tiles.tres" id="1_0tx8y"]
+[ext_resource type="Script" path="res://world.gd" id="1_1nhq0"]
+[ext_resource type="Script" path="res://Scripts/Simulation/SimGrid.cs" id="2_8wip7"]
+[ext_resource type="Script" path="res://Scripts/Simulation/SimPath.cs" id="4_v3sn1"]
+[ext_resource type="Script" path="res://Scripts/Simulation/SimClock.cs" id="5_87ybm"]
+[ext_resource type="Script" path="res://Scripts/Simulation/Sim.cs" id="6_34i5k"]
+[ext_resource type="Script" path="res://Scripts/Simulation/SimSupportPool.cs" id="8_eix1p"]
+[ext_resource type="Script" path="res://Scripts/Simulation/SimEmissionsMeter.cs" id="9_66nix"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1s4d7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_p2aqb"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_1nhq0")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.228855, 0.276742, -0.933295, -0.0135126, 0.95955, 0.281214, 0.973367, -0.0517458, 0.223337, -3.70459, 2.20471, 3.78568)
+fov = 73.7358
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
+transform = Transform3D(0.885309, 0.129289, -0.446668, -0.132264, 0.990908, 0.0246697, 0.445796, 0.0372376, 0.89436, -3.29826, 1.64911, 0.325932)
+light_color = Color(0.910225, 0.969702, 1, 1)
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+mesh_library = ExtResource("1_0tx8y")
+cell_size = Vector3(1, 0.4, 1)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 0, 0, 0, 1, 0, 65535, 0, 0, 65535, 1, 0, 1, 1, 0, 1, 0, 0, 65536, 1, 2, 131071, 1, 2, 65535, 2, 1441798, 0, 2, 1441799, 1, 2, 1441798, 0, 3, 655366, 0, 4, 1048581, 65534, 2, 1048582, 65535, 4, 1048582, 65534, 4, 4, 0, 5, 6, 1, 4, 1441798, 0, 6, 655370, 0, 7, 655370, 0, 8, 655371, 0, 9, 655370, 65535, 8, 1048586, 65534, 8, 1048585, 65534, 7, 10, 65533, 8, 1441802, 65534, 9, 655370, 0, 10, 1048584, 1, 10, 1048586, 65535, 9, 1048576, 65535, 10, 1048576, 65535, 7, 1048576, 65535, 6, 1048576, 65535, 5, 1048576, 65534, 6, 10, 65534, 5, 6, 1, 9, 0, 1, 8, 0, 1, 7, 0, 1, 6, 0, 1, 5, 0, 2, 9, 0, 2, 8, 0, 2, 7, 0, 2, 6, 0, 2, 5, 0, 3, 5, 0, 3, 6, 0, 3, 7, 0, 3, 8, 0, 3, 9, 0, 65537, 9, 1, 65538, 9, 1, 65539, 9, 1, 65537, 8, 1441793, 65537, 7, 1441793, 65537, 6, 1441793, 65536, 5, 655363, 65537, 4, 1048579, 65536, 3, 655363, 65537, 2, 1048579, 131071, 2, 1048579, 131070, 5, 3, 65537, 1, 2)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Agent" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 2.5)
+
+[node name="Vehicle" type="MeshInstance3D" parent="Agent"]
+transform = Transform3D(0.34, 0, 0, 0, 0.095, 0, 0, 0, 0.18, 0, -0.09, 0)
+mesh = SubResource("BoxMesh_1s4d7")
+
+[node name="Mesh" type="MeshInstance3D" parent="Agent"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_p2aqb")
+
+[node name="Sim" type="Node" parent="."]
+script = ExtResource("6_34i5k")
+
+[node name="SimClock" type="Node" parent="Sim"]
+script = ExtResource("5_87ybm")
+
+[node name="SimPath" type="Node" parent="Sim"]
+script = ExtResource("4_v3sn1")
+
+[node name="SimGrid" type="Node" parent="Sim"]
+script = ExtResource("2_8wip7")
+width = 11
+height = 7
+
+[node name="SimSupportPool" type="Node" parent="Sim"]
+script = ExtResource("8_eix1p")
+
+[node name="SimEmissionsMeter" type="Node" parent="Sim"]
+script = ExtResource("9_66nix")
