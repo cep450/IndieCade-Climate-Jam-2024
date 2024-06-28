@@ -30,8 +30,7 @@ public partial class SimSupportPool : Node
 
 
 	// returns true if the player has enough support to be able to spnd this amount of support-- can use for validation
-	public bool HaveEnoughSupport(float amount) {
-		return false;
+
 	public bool HaveEnoughSupport(int amount) {
 		return (amount <= support) ? true : false;
 

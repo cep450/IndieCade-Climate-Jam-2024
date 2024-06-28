@@ -1,6 +1,27 @@
 [gd_scene load_steps=2 format=3 uid="uid://ge1rdby4fhec"]
 
-[ext_resource type="Script" path="res://Scripts/Simulation/Meters.cs" id="1_ngteb"]
+[sub_resource type="CSharpScript" id="CSharpScript_cbt6g"]
+script/source = "using Godot;
+using System;
+
+public partial class Meters : Node
+{
+	
+	int emissions;
+	int support;
+	
+	
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+}
+"
 
 [node name="Simulation" type="Node"]
-script = ExtResource("1_ngteb")
+script = SubResource("CSharpScript_cbt6g")

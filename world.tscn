@@ -56,8 +56,6 @@ script = ExtResource("4_v3sn1")
 
 [node name="SimGrid" type="Node" parent="Sim"]
 script = ExtResource("2_8wip7")
-width = 11
-height = 7
 
 [node name="SimSupportPool" type="Node" parent="Sim"]
 script = ExtResource("8_eix1p")
