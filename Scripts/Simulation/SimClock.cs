@@ -3,23 +3,17 @@ using System;
 
 public partial class SimClock : Node
 {
-	
-	const float secondsPerTick = 1f;
+	private float _currentTime;
+	private float _timeStep = 1.0f;
 
-	double counter = 0f;
-	
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+	public void UpdateTime(float delta)
 	{
+		_currentTime += delta * _timeStep;
+		// Handle turn-based logic here
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	public float GetCurrentTime()
 	{
-		counter += delta;
-		//TODO determine if we need to call the next tick, and account for if the last tick has completed (so we don't skip ticks if we're lagging)
+		return _currentTime;
 	}
-
-	// use godot signals to send signals to objects that a tick has happened 
-
 }
