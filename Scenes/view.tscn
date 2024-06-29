@@ -1,34 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://us6n2vt8kwhw"]
 
+[ext_resource type="Script" path="res://Scripts/View/view.gd" id="1_k5je3"]
 [ext_resource type="Environment" uid="uid://ccufda2p8xb10" path="res://Resources/environment.tres" id="2_o416c"]
-
-[sub_resource type="GDScript" id="GDScript_xa4ch"]
-script/source = "extends Node3D
-
-var data = []
-var tile = preload(\"res://Scenes/tile.tscn\")
-enum  TileType
-{
-	HOUSE,
-	WORK,
-	ROAD,
-	PARK,
-}
-
-func _ready():
-	data.append([TileType.HOUSE,TileType.ROAD,TileType.PARK])
-	data.append([TileType.PARK,TileType.ROAD,TileType.PARK])
-	data.append([TileType.PARK,TileType.ROAD,TileType.WORK])
-	var pos = Vector3(-10,0,-10)
-	for i in 10:
-		for j in 10: 
-			var instance = tile.instantiate()
-			add_child(instance)
-			instance.position = pos
-			pos.x += 2
-		pos.z += 2
-		pos.x -= 20
-"
 
 [sub_resource type="GDScript" id="GDScript_hkqrf"]
 script/source = "extends Camera3D
@@ -79,18 +52,21 @@ albedo_color = Color(0.25098, 0.698039, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3jdih"]
 material = SubResource("StandardMaterial3D_ohh6k")
-size = Vector2(25, 25)
+size = Vector2(50, 25)
 
 [node name="View" type="Node3D"]
-script = SubResource("GDScript_xa4ch")
+script = ExtResource("1_k5je3")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -1.90571, 2.95144, 3.20244)
 environment = ExtResource("2_o416c")
 script = SubResource("GDScript_hkqrf")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-omni_range = 4096.0
-
 [node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3548, 0, 0)
 mesh = SubResource("PlaneMesh_3jdih")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1426, 12.6158, -23.4911)
+light_energy = 10.0
+omni_range = 1000.0

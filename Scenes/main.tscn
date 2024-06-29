@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://np5mfw37dy44"]
+[gd_scene load_steps=5 format=3 uid="uid://np5mfw37dy44"]
 
 [ext_resource type="PackedScene" uid="uid://csswthorupplo" path="res://Scenes/ui.tscn" id="1_70wsr"]
 [ext_resource type="PackedScene" uid="uid://ge1rdby4fhec" path="res://Scenes/simulation.tscn" id="2_6q545"]
 [ext_resource type="PackedScene" uid="uid://us6n2vt8kwhw" path="res://Scenes/view.tscn" id="3_hdemr"]
+[ext_resource type="PackedScene" uid="uid://bfttri8g4op5h" path="res://Scenes/world.tscn" id="3_x8n2n"]
 
 [node name="Main" type="Node"]
 
@@ -14,3 +15,6 @@ unique_name_in_owner = true
 
 [node name="View" parent="." instance=ExtResource("3_hdemr")]
 unique_name_in_owner = true
+
+[node name="World" parent="." instance=ExtResource("3_x8n2n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.9906, 0, -5.05948)
