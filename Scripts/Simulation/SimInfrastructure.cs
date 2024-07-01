@@ -9,7 +9,7 @@ public partial class SimInfrastructure : Node
 	 * A single piece of infrastructure in the simulation.
 	 */
 
-	public enum InfrastructureType { Road, Sidewalk, BikeLane, BusLane, Rail }
+	public enum InfrastructureType { House, Work, Road, Sidewalk, BikeLane, BusLane, Rail }
 
 	public InfrastructureType Type { get; private set; }
 	public float BaseWeight { get; private set; }
@@ -24,5 +24,6 @@ public partial class SimInfrastructure : Node
 	{
 		return BaseWeight;
 	}
+
 }
 
