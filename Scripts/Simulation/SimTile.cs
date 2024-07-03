@@ -13,11 +13,20 @@ public partial class SimTile : Node
 	//List<SimEdge> edges; //TODO are these stored here or in infrastructure?
 	//List<SimInfrastructure> infrastructure;
 
+	
+
    */
+
+	//TODO remove these following restructure 
+	public SimInfrastructure Infrastructure { get; private set; }
+	public List<SimEdge> Edges { get; private set; }
+
+
+	public List<SimInfrastructure> infrastructure;	// infrastructure currently on this tile
+
 	public Vector2 Position { get; private set; }
 	public int Capacity { get; private set; }
-	public List<SimEdge> Edges { get; private set; }
-	public SimInfrastructure Infrastructure { get; private set; }
+	
 	public int gCost;
 	public int hCost;
 	public SimTile parent;
