@@ -4,6 +4,10 @@ using System;
 public partial class SimClock : Node
 {
 
+	/*
+	 *	Keep track of simulation clock. Allows for pausing and changing timescale. Controls when simulation ticks happen.
+	 */
+
 	private float _currentTime;
 	private float _timeStep = 1.0f;
 
@@ -11,11 +15,17 @@ public partial class SimClock : Node
 	private bool paused = false;
 
 
-	public void UpdateTime(float delta)
+	public override void _Process(double delta)
 	{
-		_currentTime += delta * _timeStep;
-		// Handle turn-based logic here
+
+		if(!paused) {
+			//_currentTime += delta * _timeStep; //TODO
+		}
+		
+
 	}
+
+
 
 	public float GetCurrentTime()
 	{
