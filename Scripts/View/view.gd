@@ -2,24 +2,21 @@ extends Node3D
 
 var data = []
 var tile = preload("res://Scenes/tile.tscn")
-enum  TileType
-{
-	HOUSE,
-	WORK,
-	ROAD,
-	PARK,
-}
+
+# The data here is a substitute for Simulation
 
 func _ready():
-	data.append([TileType.HOUSE,TileType.ROAD,TileType.PARK])
-	data.append([TileType.PARK,TileType.ROAD,TileType.PARK])
-	data.append([TileType.PARK,TileType.ROAD,TileType.WORK])
 	var pos = Vector3(-10,0,-10)
 	for i in 10:
 		for j in 10: 
 			var instance = tile.instantiate()
 			add_child(instance)
+			instance.initialize(0,0)
 			instance.position = pos
-			pos.x += 2
-		pos.z += 2
-		pos.x -= 20
+			if (j % 2 == 0):
+				instance.test_init("Road")
+			else:
+				instance.test_init("House")
+			pos.x += 1
+		pos.z += 1
+		pos.x -= 10

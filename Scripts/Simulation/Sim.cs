@@ -52,8 +52,15 @@ public partial class Sim : Node
 		}
 
 		emissionsMeter.UpdateEmissions(agents, (float)delta);
-
 	}
+	
+	/*
+	public InfrastructureType GetType(int x, int y)
+	{
+		//return grid[x][y].Infrastructure.
+	}
+	*/
+	
 	/*
 		public void MakeInfrastructureChange(Vector2 tilePosition, SimInfrastructure.InfrastructureType newInfrastructure)
 		{
