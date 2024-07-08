@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://shcji6mkcat1" path="res://Models/Tile_Road1Tjunction.gltf" id="6_njy40"]
 [ext_resource type="PackedScene" uid="uid://ifj00b3x7tvf" path="res://Models/Tile_Road2Straight.gltf" id="7_jvrvy"]
 [ext_resource type="PackedScene" uid="uid://tx6brx3f41r8" path="res://Models/Tile_Road2Tjunction.gltf" id="8_grexu"]
-[ext_resource type="PackedScene" uid="uid://c5dx1eduxfcgp" path="res://Models/Tile_Building_Generic01.gltf" id="9_j2q1k"]
+[ext_resource type="PackedScene" uid="uid://cqued0a2imuqg" path="res://Models/Tile_Building_Generic01.gltf" id="9_j2q1k"]
 
 [node name="Tiles" type="Node3D"]
 
