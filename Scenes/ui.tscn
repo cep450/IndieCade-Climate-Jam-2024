@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://csswthorupplo"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="1_meoay"]
+[ext_resource type="Script" path="res://Scripts/UI/ProgressBar.gd" id="2_u0y7y"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_meoay")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1149.0
+offset_top = 9.0
+offset_right = -1109.0
+offset_bottom = 49.0
+grow_horizontal = 0
+
+[node name="EmissionsMeter" type="ProgressBar" parent="Control"]
+layout_mode = 1
+offset_left = 1083.0
+offset_top = 24.0
+offset_right = 1136.0
+offset_bottom = 579.0
+fill_mode = 3
+show_percentage = false
+script = ExtResource("2_u0y7y")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1021.0
+offset_top = 404.0
+offset_right = 1209.0
+offset_bottom = 459.0
+rotation = -1.57079
+theme_override_font_sizes/font_size = 40
+text = "Emissions"

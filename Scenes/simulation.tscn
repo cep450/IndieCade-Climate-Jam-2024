@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ge1rdby4fhec"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/Meters.cs" id="1_ngteb"]
+
+[node name="Simulation" type="Node"]
+script = ExtResource("1_ngteb")

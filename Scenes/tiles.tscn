@@ -1,0 +1,28 @@
+[gd_scene load_steps=9 format=3 uid="uid://drxjt03qah5lp"]
+
+[ext_resource type="PackedScene" uid="uid://d2gvrb770nub" path="res://Models/Tile_Road2Curve.gltf" id="1_ulpor"]
+[ext_resource type="PackedScene" uid="uid://ot76rqh7dg5d" path="res://Models/Tile_Road2Intersection.gltf" id="2_h5ppf"]
+[ext_resource type="PackedScene" uid="uid://d116q1s4r0ngc" path="res://Models/Tile_Road1Curve.gltf" id="3_hxyvw"]
+[ext_resource type="PackedScene" uid="uid://coerrd5nlh6d8" path="res://Models/Tile_Road1Intersection.gltf" id="4_s8v3w"]
+[ext_resource type="PackedScene" uid="uid://c0kktjcg8jjfg" path="res://Models/Tile_Road1Straight.gltf" id="5_5ay7g"]
+[ext_resource type="PackedScene" uid="uid://shcji6mkcat1" path="res://Models/Tile_Road1Tjunction.gltf" id="6_njy40"]
+[ext_resource type="PackedScene" uid="uid://ifj00b3x7tvf" path="res://Models/Tile_Road2Straight.gltf" id="7_jvrvy"]
+[ext_resource type="PackedScene" uid="uid://tx6brx3f41r8" path="res://Models/Tile_Road2Tjunction.gltf" id="8_grexu"]
+
+[node name="Tiles" type="Node3D"]
+
+[node name="Tile_Road2Curve" parent="." instance=ExtResource("1_ulpor")]
+
+[node name="Tile_Road2Intersection" parent="." instance=ExtResource("2_h5ppf")]
+
+[node name="Tile_Road1Curve" parent="." instance=ExtResource("3_hxyvw")]
+
+[node name="Tile_Road1Intersection" parent="." instance=ExtResource("4_s8v3w")]
+
+[node name="Tile_Road1Straight" parent="." instance=ExtResource("5_5ay7g")]
+
+[node name="Tile_Road1Tjunction" parent="." instance=ExtResource("6_njy40")]
+
+[node name="Tile_Road2Straight" parent="." instance=ExtResource("7_jvrvy")]
+
+[node name="Tile_Road2Tjunction" parent="." instance=ExtResource("8_grexu")]
