@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bobohlbc3clua"]
+
+[node name="LightingTest" type="Node3D"]
