@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://drxjt03qah5lp"]
+[gd_scene load_steps=13 format=3 uid="uid://drxjt03qah5lp"]
 
 [ext_resource type="PackedScene" uid="uid://d2gvrb770nub" path="res://Models/Tile_Road2Curve.gltf" id="1_ulpor"]
 [ext_resource type="PackedScene" uid="uid://ot76rqh7dg5d" path="res://Models/Tile_Road2Intersection.gltf" id="2_h5ppf"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://tx6brx3f41r8" path="res://Models/Tile_Road2Tjunction.gltf" id="8_grexu"]
 [ext_resource type="PackedScene" uid="uid://cqued0a2imuqg" path="res://Models/Tile_Building_Generic01.gltf" id="9_j2q1k"]
 [ext_resource type="PackedScene" uid="uid://bqbepmhqy6wdu" path="res://Models/Tile_Building_Generic02.gltf" id="10_ccxl6"]
+[ext_resource type="PackedScene" uid="uid://cug1sydw1as6a" path="res://Models/Tile_Base_Concrete.gltf" id="11_2yote"]
+[ext_resource type="PackedScene" uid="uid://bxacd2i7bf178" path="res://Models/Tile_Base_Grass.gltf" id="12_exmom"]
 
 [node name="Tiles" type="Node3D"]
 
@@ -32,3 +34,7 @@
 [node name="Tile_Building_Generic01" parent="." instance=ExtResource("9_j2q1k")]
 
 [node name="Tile_Building_Generic02" parent="." instance=ExtResource("10_ccxl6")]
+
+[node name="Tile_Base_Concrete" parent="." instance=ExtResource("11_2yote")]
+
+[node name="Tile_Base_Grass" parent="." instance=ExtResource("12_exmom")]
