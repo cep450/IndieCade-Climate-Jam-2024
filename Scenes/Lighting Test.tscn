@@ -5,24 +5,24 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v34cj"]
 shader = ExtResource("2_tf5mf")
-shader_parameter/color_top = Color(0.541003, 0.860296, 0.919563, 1)
+shader_parameter/color_top = Color(0.801809, 0.799632, 0.802874, 1)
 shader_parameter/color_horizon = Color(0.741212, 0.722504, 0.894866, 1)
 shader_parameter/color_bottom = Color(0.92546, 0.758498, 0.632511, 1)
 shader_parameter/exponent_factor_top = 1.0
 shader_parameter/exponent_factor_bottom = 1.0
 shader_parameter/intensity_amp = 1.0
 
-[sub_resource type="Sky" id="Sky_nvtng"]
+[sub_resource type="Sky" id="Sky_qia2f"]
 sky_material = SubResource("ShaderMaterial_v34cj")
 
 [sub_resource type="Environment" id="Environment_s0aai"]
 background_mode = 2
 background_color = Color(0.526072, 0.775419, 0.910391, 1)
 background_energy_multiplier = 1.1
-sky = SubResource("Sky_nvtng")
+sky = SubResource("Sky_qia2f")
 ambient_light_source = 2
-ambient_light_color = Color(0.203338, 0.213442, 0.260765, 1)
-ambient_light_energy = 5.81
+ambient_light_color = Color(0.259043, 0.280712, 0.264457, 1)
+ambient_light_energy = 5.89
 tonemap_white = 4.87
 glow_intensity = 2.99
 fog_light_energy = 0.66
@@ -46,3 +46,17 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_s0aai")
 camera_attributes = SubResource("CameraAttributesPractical_8lxf7")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, -4.90588, 0.666946, 7.4984)
+light_color = Color(1, 1, 0.65098, 1)
+light_energy = 8.002
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 1.357
+light_specular = 0.285
+shadow_enabled = true
+shadow_transmittance_bias = -0.595
+shadow_blur = 1.185
+spot_range = 0.577298
+spot_angle = 68.68
+spot_angle_attenuation = 1.46409
