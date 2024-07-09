@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmh1wyvk20mkw"]
-
-[ext_resource type="PackedScene" uid="uid://cofcylqh4mve7" path="res://Models/Tile_House1.glb" id="1_qaqrg"]
-
-[node name="TileHouse" type="Node3D"]
-
-[node name="Tile_House1" parent="." instance=ExtResource("1_qaqrg")]

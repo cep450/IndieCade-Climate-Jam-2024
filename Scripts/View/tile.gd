@@ -1,41 +1,64 @@
-extends StaticBody3D
+extends Node3D
 
-
-var road = preload("res://Scenes/Tiles/tile_road_1_straight.tscn")
-var base = preload("res://Models/Tile_Base.glb")
-var house = preload("res://Scenes/Tiles/tile_house_1.tscn")
-var work = preload("res://Models/Tile_Building1.glb")
+# Public Variables
+signal tile_clicked_signal(x: int, y: int)
+var x: int
+var y: int
 
 # Private Variables
+var UI = "/root/Main/UI"
+
+# Block Scenes
+var road = preload("res://Scenes/Tiles/road.tscn")
+var base = preload("res://Scenes/Tiles/base.tscn")
+var house = preload("res://Scenes/Tiles/house.tscn")
+var work = preload("res://Models/Tile_Building1.glb")
+
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")
-var grid
 var isYellow: bool
+
+var grid
 
 func _ready() -> void:
 	isYellow = false
 
 func test_init(type: String):
 	var instance
+	# Setup base or road.
 	if type == "Road":
 		instance = road.instantiate()
-	if type == "House":
-		instance = house.instantiate()
-	add_child(instance)
-	instance.name = "ObjectInstance"
-	if type != "Road":
+		add_child(instance)
+		instance.name = "ObjectInstance"
+	else:
 		instance = base.instantiate()
 		add_child(instance)
+		
+	#If not road put object ontop of base.
+	if type == "House":
+		instance = house.instantiate()
+		add_child(instance)
+	instance.name = "ObjectInstance"
 
-func initialize(_x: int, _y: int) -> void:
+func initialize(local_x: int, local_y: int) -> void:
 	# Access grid and get info from there or maybe call directly from Sim.cs?
 	#grid = $"../../Simulation/SimGrid"
-	pass
+	x = local_x
+	y = local_y
+	get_parent().tile_clicked.connect(_on_tile_clicked)
+	
 		
 func select() -> void:
-	# Change the material to yellow_mat when selected
-	if isYellow:
-		$ObjectInstance.get_child(0).material_overlay = null
+	get_parent().tile_clicked.emit(x,y)
+
+func _on_tile_clicked(local_x: int, local_y: int):
+	if x == local_x && y == local_y:
+		# Change the material to yellow_mat when selected
+		if !isYellow:
+			$ObjectInstance.get_child(0).material_overlay = highlight_mat
+			isYellow = true
+		else:
+			$ObjectInstance.get_child(0).material_overlay = null
+			isYellow = false
 	else:
-		$ObjectInstance.get_child(0).material_overlay = highlight_mat
-	#$MeshInstance3D.mesh.surface_set_material(0, mat)
-	isYellow = !isYellow
+		$ObjectInstance.get_child(0).material_overlay = null
+		isYellow = false

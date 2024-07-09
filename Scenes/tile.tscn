@@ -1,22 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b0aypj1hd1fcg"]
+[gd_scene load_steps=2 format=3 uid="uid://b0aypj1hd1fcg"]
 
 [ext_resource type="Script" path="res://Scripts/View/tile.gd" id="1_l32i0"]
-[ext_resource type="Material" uid="uid://mrkot8b31ap2" path="res://Resources/highlight_mat_overlay.tres" id="2_mq7cp"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_ogoi4"]
-material = ExtResource("2_mq7cp")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ap0kq"]
-
-[node name="ViewTile" type="StaticBody3D"]
+[node name="ViewTile" type="Node3D"]
 script = ExtResource("1_l32i0")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
-visible = false
-mesh = SubResource("BoxMesh_ogoi4")
-skeleton = NodePath("")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
-shape = SubResource("BoxShape3D_ap0kq")

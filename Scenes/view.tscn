@@ -9,6 +9,9 @@ script/source = "extends Camera3D
 const PAN_SPEED = 1;
 const ZOOM_SPEED = 20;
 
+func _ready():
+	pass
+
 func _input(event):
 	if event is InputEventMouseMotion && Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		position.x -= event.relative.x * PAN_SPEED * get_process_delta_time()
@@ -41,7 +44,7 @@ func get_selection():
 	ray_query.to = end
 	var result = worldspace.intersect_ray(ray_query)
 	if !result.is_empty():
-		var tile = result.collider
+		var tile = result.collider.get_parent()
 		if tile.has_method(\"select\"):
 			tile.select()
 		
