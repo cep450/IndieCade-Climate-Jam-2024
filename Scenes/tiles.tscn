@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://drxjt03qah5lp"]
+[gd_scene load_steps=20 format=3 uid="uid://drxjt03qah5lp"]
 
 [ext_resource type="PackedScene" uid="uid://d2gvrb770nub" path="res://Models/Tile_Road2Curve.gltf" id="1_ulpor"]
 [ext_resource type="PackedScene" uid="uid://ot76rqh7dg5d" path="res://Models/Tile_Road2Intersection.gltf" id="2_h5ppf"]
@@ -13,6 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://cug1sydw1as6a" path="res://Models/Tile_Base_Concrete.gltf" id="11_2yote"]
 [ext_resource type="PackedScene" uid="uid://bxacd2i7bf178" path="res://Models/Tile_Base_Grass.gltf" id="12_exmom"]
 [ext_resource type="PackedScene" uid="uid://c7xsqmmisiqs0" path="res://Models/Tile_Road_1to2Straight.gltf" id="13_pkp1y"]
+[ext_resource type="PackedScene" uid="uid://um878a44gkuy" path="res://Models/Tile_Road1_StraightCrosswalk.gltf" id="14_7r2kj"]
+[ext_resource type="PackedScene" uid="uid://c30iskk0wno0f" path="res://Models/Tile_Road1_StraightDoubleCrosswalk.gltf" id="15_q7kl5"]
+[ext_resource type="PackedScene" uid="uid://jwoow7aq26vu" path="res://Models/Tile_Road2_StraightCrosswalk.gltf" id="16_hm6ng"]
+[ext_resource type="PackedScene" uid="uid://026ctdwgaops" path="res://Models/Tile_Road2_StraightDoubleCrosswalk.gltf" id="17_w3wgn"]
+[ext_resource type="PackedScene" uid="uid://b3erdc1t5f3bn" path="res://Models/Tile_Road_1to2StraightCrosswalk.gltf" id="18_2du5g"]
+[ext_resource type="PackedScene" uid="uid://cfjyxhg5wbauo" path="res://Models/Tile_Road_1to2StraightDoubleCrosswalk.gltf" id="19_3nmds"]
 
 [node name="Tiles" type="Node3D"]
 
@@ -41,3 +47,15 @@
 [node name="Tile_Base_Grass" parent="." instance=ExtResource("12_exmom")]
 
 [node name="Tile_Road_1to2Straight" parent="." instance=ExtResource("13_pkp1y")]
+
+[node name="Tile_Road1_StraightCrosswalk" parent="." instance=ExtResource("14_7r2kj")]
+
+[node name="Tile_Road1_StraightDoubleCrosswalk" parent="." instance=ExtResource("15_q7kl5")]
+
+[node name="Tile_Road2_StraightCrosswalk" parent="." instance=ExtResource("16_hm6ng")]
+
+[node name="Tile_Road2_StraightDoubleCrosswalk" parent="." instance=ExtResource("17_w3wgn")]
+
+[node name="Tile_Road_1to2StraightCrosswalk" parent="." instance=ExtResource("18_2du5g")]
+
+[node name="Tile_Road_1to2StraightDoubleCrosswalk" parent="." instance=ExtResource("19_3nmds")]
