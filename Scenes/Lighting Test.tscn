@@ -5,8 +5,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v34cj"]
 shader = ExtResource("2_tf5mf")
-shader_parameter/color_top = Color(0.510687, 0.862922, 0.943282, 1)
-shader_parameter/color_horizon = Color(0.712384, 0.748896, 0.806981, 1)
+shader_parameter/color_top = Color(0.541003, 0.860296, 0.919563, 1)
+shader_parameter/color_horizon = Color(0.741212, 0.722504, 0.894866, 1)
 shader_parameter/color_bottom = Color(0.92546, 0.758498, 0.632511, 1)
 shader_parameter/exponent_factor_top = 1.0
 shader_parameter/exponent_factor_bottom = 1.0
