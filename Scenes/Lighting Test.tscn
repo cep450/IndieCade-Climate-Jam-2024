@@ -1,11 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv4lghkjwpqp4"]
+[gd_scene load_steps=7 format=3 uid="uid://bv4lghkjwpqp4"]
 
 [ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/tiles.tres" id="1_3i70r"]
+[ext_resource type="Shader" path="res://Shaders/Gradientsky.gdshader" id="2_tf5mf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v34cj"]
+shader = ExtResource("2_tf5mf")
+shader_parameter/color_top = Color(0.510687, 0.862922, 0.943282, 1)
+shader_parameter/color_horizon = Color(0.712384, 0.748896, 0.806981, 1)
+shader_parameter/color_bottom = Color(0.92546, 0.758498, 0.632511, 1)
+shader_parameter/exponent_factor_top = 1.0
+shader_parameter/exponent_factor_bottom = 1.0
+shader_parameter/intensity_amp = 1.0
+
+[sub_resource type="Sky" id="Sky_nvtng"]
+sky_material = SubResource("ShaderMaterial_v34cj")
 
 [sub_resource type="Environment" id="Environment_s0aai"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.526072, 0.775419, 0.910391, 1)
 background_energy_multiplier = 1.1
+sky = SubResource("Sky_nvtng")
 ambient_light_source = 2
 ambient_light_color = Color(0.203338, 0.213442, 0.260765, 1)
 ambient_light_energy = 5.81
