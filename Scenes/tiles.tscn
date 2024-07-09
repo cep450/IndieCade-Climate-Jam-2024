@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://drxjt03qah5lp"]
+[gd_scene load_steps=21 format=3 uid="uid://drxjt03qah5lp"]
 
 [ext_resource type="PackedScene" uid="uid://d2gvrb770nub" path="res://Models/Tile_Road2Curve.gltf" id="1_ulpor"]
 [ext_resource type="PackedScene" uid="uid://ot76rqh7dg5d" path="res://Models/Tile_Road2Intersection.gltf" id="2_h5ppf"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://026ctdwgaops" path="res://Models/Tile_Road2_StraightDoubleCrosswalk.gltf" id="17_w3wgn"]
 [ext_resource type="PackedScene" uid="uid://b3erdc1t5f3bn" path="res://Models/Tile_Road_1to2StraightCrosswalk.gltf" id="18_2du5g"]
 [ext_resource type="PackedScene" uid="uid://cfjyxhg5wbauo" path="res://Models/Tile_Road_1to2StraightDoubleCrosswalk.gltf" id="19_3nmds"]
+[ext_resource type="PackedScene" uid="uid://bdnlcgpi04b2i" path="res://Models/Tile_Road_1to2StraightCrosswalk2.gltf" id="20_bv5dg"]
 
 [node name="Tiles" type="Node3D"]
 
@@ -59,3 +60,5 @@
 [node name="Tile_Road_1to2StraightCrosswalk" parent="." instance=ExtResource("18_2du5g")]
 
 [node name="Tile_Road_1to2StraightDoubleCrosswalk" parent="." instance=ExtResource("19_3nmds")]
+
+[node name="Tile_Road_1to2StraightCrosswalk2" parent="." instance=ExtResource("20_bv5dg")]
