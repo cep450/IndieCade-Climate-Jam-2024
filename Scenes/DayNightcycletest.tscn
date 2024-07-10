@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://hhc66lync4qp"]
 
-[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/tiles.tres" id="1_xny6q"]
+[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://tiles.tres" id="1_xny6q"]
 [ext_resource type="Shader" path="res://Shaders/Gradientsky.gdshader" id="2_jemf5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8k5wb"]
