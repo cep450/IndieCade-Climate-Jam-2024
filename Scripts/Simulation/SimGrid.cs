@@ -32,8 +32,8 @@ public partial class SimGrid : Node
 				AddChild(grid[x][y]); // Add each tile as a child node (optional)
 				
 				// For testing, make each tile a road.
-				SimInfrastructure infra = new SimInfrastructure(InfrastructureType.Road, 1.0f);
-				grid[x][y].SetInfrastructure(infra);
+				//SimInfrastructure infra = new SimInfrastructure(InfrastructureType.Road, 1.0f);
+				//grid[x][y].SetInfrastructure(infra);
 			}
 		}
 	}
