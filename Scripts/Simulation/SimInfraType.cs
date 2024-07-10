@@ -2,15 +2,22 @@ using Godot;
 using System;
 
 [GlobalClass]
-public partial class SimInfrastructureType : Node
+public partial class SimInfraType : Resource
 {
 
 	/*
 	 *	Information about a type of tile that many instances of this type will share. e.g. information about "bike lanes"
 	 */
+	public enum InfraType
+	{
+		House,
+		Road,
+		Building
+	}
 
-	public int costToBuild;
-	public int costToDestroy;
+	[Export] public InfraType type;
+	[Export] public int costToBuild;
+	[Export] public int costToDestroy;
 
 	SimWeights weights; // includes stuff like speed, safety 
 

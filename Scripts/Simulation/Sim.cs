@@ -17,11 +17,13 @@ public partial class Sim : Node
 		CAR = 2
 	}
 
-	private SimGrid grid;
+	public SimGrid grid;
 	private SimEmissionsMeter emissionsMeter;
 	private SimSupportPool supportPool;
 	private List<SimAgent> agents;
-	private SimClock clock;
+	public SimClock clock;
+
+
 
 	public override void _Ready()
 	{
@@ -43,17 +45,36 @@ public partial class Sim : Node
 
 	}
 
-	public override void _Process(double delta)
-	{
-		clock.UpdateTime((float)delta);
+	// Simulation logic tick. 
+	// Enforce execution order. 
+	// The clock calls this when the game is running. 
+	public void SimulationTick() {
+
 		foreach (var agent in agents)
 		{
 			agent.UpdateAgent();
 		}
 
-		emissionsMeter.UpdateEmissions(agents, (float)delta);
+		//emissionsMeter.UpdateEmissions(agents, (float)delta); //TODO
 
 	}
+
+	// Visual tick. (Separate from simulation logic tick.) 
+	public void VisualTick() {
+		//TODO we should talk about if we want to implement this, how, and for what purposes exactly 
+	}
+
+
+
+
+
+	/*
+	public InfrastructureType GetType(int x, int y)
+	{
+		//return grid[x][y].Infrastructure.
+	}
+	*/
+	
 	/*
 		public void MakeInfrastructureChange(Vector2 tilePosition, SimInfrastructure.InfrastructureType newInfrastructure)
 		{
