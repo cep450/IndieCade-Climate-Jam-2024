@@ -1,12 +1,14 @@
 using Godot;
 using System;
 
-public partial class SimInfrastructureType : Node
+public partial class SimInfrastructureType : Resource
 {
 
 	/*
 	 *	Information about a type of tile that many instances of this type will share. e.g. information about "bike lanes"
 	 */
+
+	 //TODO make this a Resource in Godot
 
 	public int costToBuild;
 	public int costToDestroy;

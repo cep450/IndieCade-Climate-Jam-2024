@@ -17,6 +17,8 @@ public partial class Sim : Node
 		CAR = 2
 	}
 
+	public static Sim Instance { get; private set; }
+
 	public SimGrid grid;
 	private SimEmissionsMeter emissionsMeter;
 	private SimSupportPool supportPool;
@@ -27,6 +29,7 @@ public partial class Sim : Node
 
 	public override void _Ready()
 	{
+		Instance = this;
 		grid = GetNode<SimGrid>("SimGrid");
 		emissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
 		supportPool = GetNode<SimSupportPool>("SimSupportPool");
