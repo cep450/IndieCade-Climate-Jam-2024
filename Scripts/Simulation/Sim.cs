@@ -26,6 +26,14 @@ public partial class Sim : Node
 	public SimClock clock;
 
 
+	// shortcuts 
+	public SimTile GetTile(int x, int y) {
+		return Instance.grid.GetTile(x, y);
+	}
+	public List<SimInfra> GetInfra(int tileX, int tileY) {
+		return Instance.grid.GetTile(tileX, tileY).Infra;
+	}
+
 
 	public override void _Ready()
 	{
@@ -58,7 +66,7 @@ public partial class Sim : Node
 			agent.UpdateAgent();
 		}
 
-		//emissionsMeter.UpdateEmissions(agents, (float)delta); //TODO
+		emissionsMeter.UpdateEmissions(agents);
 
 	}
 
@@ -66,8 +74,6 @@ public partial class Sim : Node
 	public void VisualTick() {
 		//TODO we should talk about if we want to implement this, how, and for what purposes exactly 
 	}
-
-
 
 
 
