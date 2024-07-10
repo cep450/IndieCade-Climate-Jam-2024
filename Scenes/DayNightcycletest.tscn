@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://hhc66lync4qp"]
 
-[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://tiles.tres" id="1_xny6q"]
+[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/updatedtiles.tres" id="1_tj74h"]
 [ext_resource type="Shader" path="res://Shaders/Gradientsky.gdshader" id="2_jemf5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8k5wb"]
@@ -268,7 +268,7 @@ _data = {
 [node name="DayNightcycletest" type="Node3D"]
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("1_xny6q")
+mesh_library = ExtResource("1_tj74h")
 cell_size = Vector3(1, 0.4, 1)
 cell_center_y = false
 data = {
