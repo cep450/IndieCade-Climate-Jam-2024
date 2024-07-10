@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class SimInfrastructureType : Resource
+public partial class SimInfraType : Resource
 {
 
 	/*

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using static SimInfrastructure;
+using static SimInfra;
 
 public partial class Sim : Node
 {
@@ -72,7 +72,7 @@ public partial class Sim : Node
 
 
 	/*
-		public void MakeInfrastructureChange(Vector2 tilePosition, SimInfrastructure.InfrastructureType newInfrastructure)
+		public void MakeInfraChange(Vector2 tilePosition, SimInfra.InfraType newInfra)
 		{
 			//Identify the Target Tile: Determine which tile or set of tiles will be affected by the infrastructure change.
 			//Determine the New Infrastructure: Identify what type of infrastructure will be added or modified (e.g., road, bike lane).
@@ -88,10 +88,10 @@ public partial class Sim : Node
 			}
 
 			// Create new infrastructure
-			SimInfrastructure newInfra = new SimInfrastructure(newInfrastructure, GetBaseWeightForInfrastructure(newInfrastructure));
+			SimInfra newInfra = new SimInfra(newInfra, GetBaseWeightForInfra(newInfra));
 
 			// Set the new infrastructure on the tile
-			tile.SetInfrastructure(newInfra);
+			tile.SetInfra(newInfra);
 
 			// Update the edges connected to this tile
 			foreach (SimEdge edge in tile.Edges)
@@ -110,23 +110,23 @@ public partial class Sim : Node
 				agent.RecalculatePath();
 			}
 
-			GD.Print("Infrastructure updated at position: " + tilePosition);
+			GD.Print("Infrastrcture updated at position: " + tilePosition);
 		}
 
-		private float GetBaseWeightForInfrastructure(SimInfrastructure.InfrastructureType infrastructureType)
+		private float GetBaseWeightForInfra(SimInfra.InfraType infraType)
 		{
-			// Define base weights for different types of infrastructure
-			switch (infrastructureType)
+			// Define base weights for different types of infra
+			switch (infraType)
 			{
-				case SimInfrastructure.InfrastructureType.Road:
+				case SimInfra.InfraType.Road:
 					return 10.0f;
-				case SimInfrastructure.InfrastructureType.BikeLane:
+				case SimInfra.InfraType.BikeLane:
 					return 5.0f;
-				case SimInfrastructure.InfrastructureType.Sidewalk:
+				case SimInfra.InfraType.Sidewalk:
 					return 3.0f;
-				case SimInfrastructure.InfrastructureType.BusLane:
+				case SimInfra.InfraType.BusLane:
 					return 7.0f;
-				case SimInfrastructure.InfrastructureType.Rail:
+				case SimInfra.InfraType.Rail:
 					return 2.0f;
 				default:
 					return 10.0f;

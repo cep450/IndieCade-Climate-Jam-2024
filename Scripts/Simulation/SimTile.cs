@@ -10,19 +10,19 @@ public partial class SimTile : Node
 	/*
 	Vector2Int coordinates;
 
-	//List<SimEdge> edges; //TODO are these stored here or in infrastructure?
-	//List<SimInfrastructure> infrastructure;
+	//List<SimEdge> edges; //TODO are these stored here or in infra?
+	//List<SimInfra> infra;
 
 	
 
    */
 
 	//TODO remove these following restructure 
-	public SimInfrastructure Infrastructure { get; private set; }
+	public SimInfra Infra { get; private set; }
 	public List<SimEdge> Edges { get; private set; }
 
 
-	public List<SimInfrastructure> infrastructure;	// infrastructure currently on this tile
+	public List<SimInfra> infra;	// infra currently on this tile
 
 	public Vector2 Position { get; private set; }
 	public int Capacity { get; private set; }
@@ -42,9 +42,9 @@ public partial class SimTile : Node
 		Edges = new List<SimEdge>();
 	}
 
-	public void SetInfrastructure(SimInfrastructure infrastructure)
+	public void SetInfra(SimInfra infra)
 	{
-		Infrastructure = infrastructure;
+		Infra = infra;
 	}
 
 	public void AddEdge(SimEdge edge)
