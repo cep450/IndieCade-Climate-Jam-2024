@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://hhc66lync4qp"]
+[gd_scene load_steps=15 format=3 uid="uid://hhc66lync4qp"]
 
 [ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/tiles.tres" id="1_xny6q"]
 [ext_resource type="Shader" path="res://Shaders/Gradientsky.gdshader" id="2_jemf5"]
-[ext_resource type="PackedScene" uid="uid://cqued0a2imuqg" path="res://Models/Tile_Building_Generic01.gltf" id="3_a418m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8k5wb"]
 shader = ExtResource("2_jemf5")
@@ -370,6 +369,3 @@ current = true
 size = 12.952
 near = 0.084
 far = 181.88
-
-[node name="Tile_Building_Generic01" parent="." instance=ExtResource("3_a418m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.734831, 1.35776, 5.08783)
