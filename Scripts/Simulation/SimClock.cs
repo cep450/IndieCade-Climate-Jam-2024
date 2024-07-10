@@ -12,7 +12,7 @@ public partial class SimClock : Node
 	private double _secondsPerTick = 1.0; //how much real time passes per simulation tick
 	private double[] _timeScales = {1.0, 2.0, 3.0}; 	// for speeding up or slowing the game 
 	private int _timeScaleIndex = 0;
-	private bool _paused = true;
+	private bool _paused = false;
 	private int _ticksElapsed;
 
 	public int Tick { get => _ticksElapsed; private set{} }
@@ -23,10 +23,13 @@ public partial class SimClock : Node
 		if(!_paused) {
 			_timeCounter += delta * _timeScales[_timeScaleIndex];
 			if(_timeCounter >= _secondsPerTick) {
-				Sim.Instance.SimulationTick();
-				Sim.Instance.VisualTick();
 				_timeCounter = _timeCounter - _secondsPerTick;
 				_ticksElapsed++;
+
+				Sim.Instance.SimulationTick();
+				Sim.Instance.VisualTick();
+				
+				GD.Print("tick");
 			}
 		}
 

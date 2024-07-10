@@ -65,7 +65,7 @@ public partial class SimGrid : Node
 
 				if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height)
 				{
-					if (grid[checkX][checkY].Infra.Type == type) 
+					if (grid[checkX][checkY].Infra[0].Type == type) //TODO (!!!) refactor this to support multiple types of infrastructure on a single tile.
 					{
 						neighbours.Add(grid[checkX][checkY]);
 					}
