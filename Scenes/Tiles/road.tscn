@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dyb4nxk3v3alg"]
 
-[ext_resource type="ArrayMesh" uid="uid://cgua7t8ofa2l0" path="res://Resources/TileResources/Road2Straight.tres" id="1_y3ftm"]
+[ext_resource type="ArrayMesh" uid="uid://cgua7t8ofa2l0" path="res://Resources/TileMeshes/Road2Straight.tres" id="1_qp0xw"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kyu76"]
 points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0, 0.499995, -0.5, 0.4, -0.5, 0.499995, 0, -0.5, -0.5, 0.4, 0.499995, 0.499995, 0, 0.499995, 0.499995, 0.4, -0.5, 0.499995, 0.4, 0.499995)
@@ -8,7 +8,7 @@ points = PackedVector3Array(-0.5, 0, -0.5, -0.5, 0, 0.499995, -0.5, 0.4, -0.5, 0
 [node name="Road" type="StaticBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_y3ftm")
+mesh = ExtResource("1_qp0xw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_kyu76")

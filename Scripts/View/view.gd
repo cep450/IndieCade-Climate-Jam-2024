@@ -1,7 +1,7 @@
 extends Node3D
 
 var data = []
-var tile = preload("res://Scenes/tile.tscn")
+var tile = preload("res://Scenes/view_tile.tscn")
 signal tile_clicked(x: int, y: int)
 
 # The data here is a substitute for Simulation
@@ -13,7 +13,7 @@ func _ready():
 			add_child(instance)
 			instance.initialize(x,y)
 			instance.position = pos
-			if (y % 2 == 0):
+			if (y % 2 != 0):
 				instance.test_init("Road")
 			else:
 				instance.test_init("House")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlf5e40f2111q"]
 
-[ext_resource type="ArrayMesh" uid="uid://bnxqidnrsf4ts" path="res://Resources/TileResources/base.tres" id="1_rr54g"]
+[ext_resource type="ArrayMesh" uid="uid://bnxqidnrsf4ts" path="res://Resources/TileMeshes/base.tres" id="1_e4qtj"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7v1f0"]
 points = PackedVector3Array(0.496312, 0.4, 0.496312, -0.488496, 0, -0.488496, -0.488496, 0, 0.488496, -0.496312, 0.4, -0.496312, 0.488496, 0, -0.488496, -0.496312, 0.4, 0.496312, 0.496312, 0.4, -0.496312, 0.488496, 0, 0.488496)
@@ -8,7 +8,7 @@ points = PackedVector3Array(0.496312, 0.4, 0.496312, -0.488496, 0, -0.488496, -0
 [node name="Base" type="StaticBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = ExtResource("1_rr54g")
+mesh = ExtResource("1_e4qtj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_7v1f0")
