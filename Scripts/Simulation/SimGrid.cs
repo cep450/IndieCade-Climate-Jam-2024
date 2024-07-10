@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using static SimInfrastructure;
+using System.Collections.Generic;
 
 public partial class SimGrid : Node
 {
@@ -51,5 +51,33 @@ public partial class SimGrid : Node
 			return null;
 		}
 		return grid[x][y];
+	}
+
+	public List<SimTile> GetNeighbours(SimTile tileToCheck, SimInfrastructure.InfrastructureType type)
+	{
+		List<SimTile> neighbours = new List<SimTile>();
+
+		//search in 3x3 around the tile to check
+		for (int x = -1; x <= 1; x++)
+		{
+			for (int y = -1; y <= 1; y++)
+			{
+				if (x == 0 && y == 0) //skip current tile
+					continue;
+				
+				int checkX = tileToCheck.gridX + x;
+				int checkY = tileToCheck.gridY + y;
+
+				if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height)
+				{
+					if (grid[checkX][checkY].Infrastructure.Type == type) 
+					{
+						neighbours.Add(grid[checkX][checkY]);
+					}
+				}
+
+			}
+		}
+		return neighbours;
 	}
 }

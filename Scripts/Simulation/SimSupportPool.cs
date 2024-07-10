@@ -30,14 +30,26 @@ public partial class SimSupportPool : Node
 
 
 	// returns true if the player has enough support to be able to spnd this amount of support-- can use for validation
-	public bool HaveEnoughSupport(float amount) {
-		return false;
+
+	public bool HaveEnoughSupport(int amount) {
+		return (amount <= support) ? true : false;
+
 	}
 
 	// subtract this amount of support 
-	public void SpendSupport(float amount) {
-
+	public void SpendSupport(int amount) {
+		if (HaveEnoughSupport(amount)) {
+			support -= amount;
+		} else {
+			GD.Print("Not Enough Support!"); //replace in future with UI
+		}
 	}
-
+	//if we ever want to set/get the raw value
+	public void SetSupport(int amount) {
+		support = amount;
+	}
+	public int GetSupport() {
+		return support;
+	}
 
 }

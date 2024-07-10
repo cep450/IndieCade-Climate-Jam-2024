@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://baeg2jchit3st"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ru30x"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_n8gg5"]
+
+[node name="Agent" type="Node3D"]
+
+[node name="Vehicle" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.34, 0, 0, 0, 0.095, 0, 0, 0, 0.18, 0, 0.41, 0)
+mesh = SubResource("BoxMesh_ru30x")
+skeleton = NodePath("")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.5, 0)
+mesh = SubResource("CapsuleMesh_n8gg5")
+skeleton = NodePath("")

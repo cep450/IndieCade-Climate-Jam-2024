@@ -13,11 +13,27 @@ public partial class SimTile : Node
 	//List<SimEdge> edges; //TODO are these stored here or in infrastructure?
 	//List<SimInfrastructure> infrastructure;
 
+	
+
    */
+
+	//TODO remove these following restructure 
+	public SimInfrastructure Infrastructure { get; private set; }
+	public List<SimEdge> Edges { get; private set; }
+
+
+	public List<SimInfrastructure> infrastructure;	// infrastructure currently on this tile
+
 	public Vector2 Position { get; private set; }
 	public int Capacity { get; private set; }
-	public List<SimEdge> Edges { get; private set; }
-	public SimInfrastructure Infrastructure { get; private set; }
+	
+	public int gCost;
+	public int hCost;
+	public SimTile parent;
+
+	//each tile knows what index it is on the SimGrid
+	public int gridX;
+	public int gridY;
 
 	public SimTile(Vector2 position, int capacity)
 	{
@@ -34,5 +50,10 @@ public partial class SimTile : Node
 	public void AddEdge(SimEdge edge)
 	{
 		Edges.Add(edge);
+	}
+
+	public int fCost() 
+	{
+		return gCost + hCost;
 	}
 }
