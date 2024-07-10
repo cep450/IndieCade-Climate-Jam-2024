@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckg4ecsxspxtq"]
+[gd_scene load_steps=5 format=3 uid="uid://b0aypj1hd1fcg"]
 
-[ext_resource type="Script" path="res://Scenes/tile.gd" id="1_l32i0"]
+[ext_resource type="Script" path="res://Scripts/View/tile.gd" id="1_l32i0"]
 [ext_resource type="Material" uid="uid://mrkot8b31ap2" path="res://Resources/yellow_mat.tres" id="2_5854q"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ogoi4"]
