@@ -53,7 +53,7 @@ public partial class SimGrid : Node
 		return grid[x][y];
 	}
 
-	public List<SimTile> GetNeighbours(SimTile tileToCheck, SimInfrastructure.InfrastructureType type)
+	public List<SimTile> GetNeighbours(SimTile tileToCheck, SimInfra.InfraType type)
 	{
 		List<SimTile> neighbours = new List<SimTile>();
 
@@ -70,7 +70,7 @@ public partial class SimGrid : Node
 
 				if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height)
 				{
-					if (grid[checkX][checkY].Infrastructure.Type == type) 
+					if (grid[checkX][checkY].Infra[0].Type == type) //TODO (!!!) refactor this to support multiple types of infrastructure on a single tile.
 					{
 						neighbours.Add(grid[checkX][checkY]);
 					}

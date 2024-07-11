@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class SimVehicleType : Node
+public partial class SimVehicleType : Resource
 {
 
 	/*

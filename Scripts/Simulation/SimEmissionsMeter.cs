@@ -59,7 +59,7 @@ public partial class SimEmissionsMeter : Node
 		//how does this interact with the time ticking system?
 	}
 
-	public void UpdateEmissions(List<SimAgent> activeAgents, float delta)
+	public void UpdateEmissions(List<SimAgent> activeAgents)
 	{
 		float totalEmissions = 0;
 
@@ -67,7 +67,7 @@ public partial class SimEmissionsMeter : Node
 		{
 			if (agent.Vehicle.IsInUse)
 			{
-				totalEmissions += agent.Vehicle.Emissions * delta;
+				totalEmissions += agent.Vehicle.Emissions;
 			}
 		}
 

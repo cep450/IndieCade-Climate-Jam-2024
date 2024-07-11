@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbwli37pmewjn"]
+
+[ext_resource type="ArrayMesh" uid="uid://bjxro24xtg73t" path="res://Resources/TileMeshes/Lightpost.tres" id="1_806fd"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y6db1"]
+points = PackedVector3Array(-0.461339, 0.124621, 0.0138532, -0.488023, -0.00431007, -0.012823, -0.46578, -0.00431007, -0.012823, -0.488023, 0.271323, -0.012823, -0.394665, 0.271323, -0.012823, -0.394665, 0.271323, 0.0138532, -0.488023, 0.271323, 0.0138532, -0.46578, -0.013223, 0.00940366, -0.483563, -0.013223, 0.00940366, -0.394665, 0.24464, -0.012823, -0.394665, 0.24464, 0.0138532, -0.488023, 0.120165, 0.0138532, -0.46578, -0.013223, -0.00837611, -0.482904, -0.011, -0.00823719, -0.46578, 0.120165, 0.0138532)
+
+[node name="Lightpost" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_806fd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_y6db1")
