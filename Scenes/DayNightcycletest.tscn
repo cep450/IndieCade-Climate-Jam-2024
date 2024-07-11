@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://hhc66lync4qp"]
+[gd_scene load_steps=16 format=3 uid="uid://b8brmcliia5f7"]
 
-[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/updatedtiles.tres" id="1_tj74h"]
+[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/updatedtiles.tres" id="1_kvi32"]
 [ext_resource type="Shader" path="res://Shaders/Gradientsky.gdshader" id="2_jemf5"]
+[ext_resource type="PackedScene" uid="uid://byjd6kcwaa7bc" path="res://Scenes/Tiles/BuildingGeneric02.tscn" id="3_axddo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8k5wb"]
 shader = ExtResource("2_jemf5")
@@ -269,7 +270,7 @@ _data = {
 [node name="DayNightcycletest" type="Node3D"]
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("1_tj74h")
+mesh_library = ExtResource("1_kvi32")
 cell_size = Vector3(1, 0.4, 1)
 cell_center_y = false
 data = {
@@ -287,7 +288,7 @@ libraries = {
 autoplay = "sky"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 12, 5)
+transform = Transform3D(1, 0, 0, 0, -1, 2.53518e-06, 0, -2.53518e-06, -1, 0, 12, 5)
 light_color = Color(0.472736, 0.550669, 0.598309, 1)
 shadow_enabled = true
 
@@ -370,3 +371,6 @@ current = true
 size = 12.952
 near = 0.084
 far = 181.88
+
+[node name="StaticBody3D" parent="." instance=ExtResource("3_axddo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.908236, 0.816833, 7.69506)
