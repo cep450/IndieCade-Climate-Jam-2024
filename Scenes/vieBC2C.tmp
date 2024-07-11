@@ -21,7 +21,6 @@ script = ExtResource("3_rja75")
 PAN_SPEED = 10.0
 ZOOM_SPEED = 20.0
 ROTATION_SPEED = 10.0
-MIN_CAM_Y_POS = 1.0
 
 [node name="World" type="Node3D" parent="."]
 script = ExtResource("1_k5je3")

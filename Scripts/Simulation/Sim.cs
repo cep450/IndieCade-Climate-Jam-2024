@@ -33,6 +33,9 @@ public partial class Sim : Node
 	public List<SimInfra> GetInfra(int tileX, int tileY) {
 		return Instance.grid.GetTile(tileX, tileY).Infra;
 	}
+	
+	//test func
+	public void SayHi() { GD.Print("hi"); }
 
 
 	public override void _Ready()

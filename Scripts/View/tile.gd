@@ -11,7 +11,7 @@ var UI = "/root/Main/UI"
 # Block Scenes
 var road = preload("res://Scenes/Tiles/road.tscn")
 var base = preload("res://Scenes/Tiles/base.tscn")
-var house = preload("res://Scenes/Tiles/building.tscn")
+var house = preload("res://Scenes/Tiles/BuildingGeneric01.tscn")
 var work = preload("res://Models/Tile_Building1.glb")
 
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")

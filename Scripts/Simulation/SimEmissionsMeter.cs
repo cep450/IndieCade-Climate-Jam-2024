@@ -9,10 +9,11 @@ public partial class SimEmissionsMeter : Node
 	 */
 
 	private float emissions;
-	private const float emissionsCap = 100; //example number
+	private const float emissionsCap = 100000; //example number
 
 	//for use by vehicles and anything we want to count towards emissions 
 	//Singleton instance
+	
 
 	private static SimEmissionsMeter instance = null;
 	public static SimEmissionsMeter Instance
@@ -27,6 +28,9 @@ public partial class SimEmissionsMeter : Node
 		}
 	}
 	private SimEmissionsMeter() { }
+
+	public float GetEmissions() { return emissions; }
+	public float GetEmissionsCap() { return emissionsCap; }
 
 	public void AddEmissions(float amount)
 	{
