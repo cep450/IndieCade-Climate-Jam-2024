@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://drxjt03qah5lp"]
+[gd_scene load_steps=25 format=3 uid="uid://drxjt03qah5lp"]
 
 [ext_resource type="PackedScene" uid="uid://d2gvrb770nub" path="res://Models/Tile_Road2Curve.gltf" id="1_ulpor"]
 [ext_resource type="PackedScene" uid="uid://ot76rqh7dg5d" path="res://Models/Tile_Road2Intersection.gltf" id="2_h5ppf"]
@@ -20,6 +20,10 @@
 [ext_resource type="PackedScene" uid="uid://b3erdc1t5f3bn" path="res://Models/Tile_Road_1to2StraightCrosswalk.gltf" id="18_2du5g"]
 [ext_resource type="PackedScene" uid="uid://cfjyxhg5wbauo" path="res://Models/Tile_Road_1to2StraightDoubleCrosswalk.gltf" id="19_3nmds"]
 [ext_resource type="PackedScene" uid="uid://bdnlcgpi04b2i" path="res://Models/Tile_Road_1to2StraightCrosswalk2.gltf" id="20_bv5dg"]
+[ext_resource type="PackedScene" uid="uid://cv65mn382y56a" path="res://Models/Tile_Sidewalk_Curve.gltf" id="21_bi625"]
+[ext_resource type="PackedScene" uid="uid://8tf3cwcunknk" path="res://Models/Tile_Sidewalk_Intersection.gltf" id="22_80hn2"]
+[ext_resource type="PackedScene" uid="uid://c5mmhjny6r51h" path="res://Models/Tile_Sidewalk_Straight.gltf" id="23_mp7kx"]
+[ext_resource type="PackedScene" uid="uid://dauuad8s82o02" path="res://Models/Tile_Sidewalk_Tjunction.gltf" id="24_ym7gq"]
 
 [node name="Tiles" type="Node3D"]
 
@@ -62,3 +66,11 @@
 [node name="Tile_Road_1to2StraightDoubleCrosswalk" parent="." instance=ExtResource("19_3nmds")]
 
 [node name="Tile_Road_1to2StraightCrosswalk2" parent="." instance=ExtResource("20_bv5dg")]
+
+[node name="Tile_Sidewalk_Curve" parent="." instance=ExtResource("21_bi625")]
+
+[node name="Tile_Sidewalk_Intersection" parent="." instance=ExtResource("22_80hn2")]
+
+[node name="Tile_Sidewalk_Straight" parent="." instance=ExtResource("23_mp7kx")]
+
+[node name="Tile_Sidewalk_Tjunction" parent="." instance=ExtResource("24_ym7gq")]
