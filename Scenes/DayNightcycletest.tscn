@@ -1,14 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8brmcliia5f7"]
+[gd_scene load_steps=13 format=3 uid="uid://b8brmcliia5f7"]
 
 [ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/updatedtiles.tres" id="1_kvi32"]
 [ext_resource type="Shader" path="res://Shaders/Gradientsky.gdshader" id="2_jemf5"]
 [ext_resource type="PackedScene" uid="uid://byjd6kcwaa7bc" path="res://Scenes/Tiles/BuildingGeneric02.tscn" id="3_axddo"]
+[ext_resource type="PackedScene" uid="uid://b581x30uj5spc" path="res://Scenes/Tiles/BuildingGeneric01.tscn" id="4_x1aww"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8k5wb"]
 shader = ExtResource("2_jemf5")
-shader_parameter/color_top = Color(0.516066, 0.866902, 0.910857, 1)
-shader_parameter/color_horizon = Color(0.453268, 0.809909, 0.868071, 1)
-shader_parameter/color_bottom = Color(0.512121, 0.867228, 0.865644, 1)
+shader_parameter/color_top = Color(0.468372, 0.66374, 0.841674, 1)
+shader_parameter/color_horizon = Color(0.497943, 0.640141, 0.828098, 1)
+shader_parameter/color_bottom = Color(0.778114, 0.555192, 0.370227, 1)
 shader_parameter/exponent_factor_top = 1.0
 shader_parameter/exponent_factor_bottom = 1.0
 shader_parameter/intensity_amp = 1.0
@@ -22,7 +23,7 @@ background_color = Color(0.526072, 0.775419, 0.910391, 1)
 background_energy_multiplier = 1.1
 sky = SubResource("Sky_swvwi")
 ambient_light_source = 2
-ambient_light_color = Color(0.727072, 0.727726, 0.74108, 1)
+ambient_light_color = Color(0.72549, 0.729412, 0.741176, 1)
 ambient_light_energy = 1.26
 reflected_light_source = 2
 tonemap_white = 4.87
@@ -31,203 +32,6 @@ fog_light_energy = 0.66
 fog_density = 0.0
 fog_sky_affect = 0.175
 volumetric_fog_density = 0.1553
-
-[sub_resource type="Animation" id="Animation_3ejir"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:environment:sky:sky_material:shader_parameter/color_top")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.516066, 0.866902, 0.910857, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:environment:sky:sky_material:shader_parameter/color_horizon")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.453268, 0.809909, 0.868071, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:environment:sky:sky_material:shader_parameter/color_bottom")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.512121, 0.867228, 0.865644, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:environment:ambient_light_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.727072, 0.727726, 0.74108, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_yvqe5"]
-resource_name = "sky"
-length = 60.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:environment:sky:sky_material:shader_parameter/color_top")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1.1, 2.3, 23.5, 29.1, 30, 59.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.468372, 0.66374, 0.841674, 1), Color(0.516066, 0.866902, 0.910857, 1), Color(0.340357, 0.73457, 0.781389, 1), Color(0.93402, 0.752139, 0.76735, 1), Color(0.165633, 0.304087, 0.477962, 1), Color(0.165633, 0.304087, 0.477962, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:environment:sky:sky_material:shader_parameter/color_horizon")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1.1, 2.3, 18.3, 29.1, 30, 59.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.497943, 0.640141, 0.828098, 1), Color(0.453268, 0.809909, 0.868071, 1), Color(0.343739, 0.708864, 0.763596, 1), Color(0.870155, 0.619401, 0.525683, 1), Color(0.329932, 0.448012, 0.698539, 1), Color(0.214128, 0.310743, 0.519248, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:environment:sky:sky_material:shader_parameter/color_bottom")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(1.1, 2.3, 18.3, 29.1, 30, 59.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.778114, 0.555192, 0.370227, 1), Color(0.462745, 0.721569, 0.815686, 1), Color(0.397543, 0.609268, 0.75176, 1), Color(0.498039, 0.639216, 0.827451, 1), Color(0.23382, 0.385876, 0.517585, 1), Color(0.145415, 0.255848, 0.351161, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:environment:ambient_light_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(1.1, 2.3, 30, 59.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.72549, 0.729412, 0.741176, 1), Color(0.727072, 0.727726, 0.74108, 1), Color(0.489443, 0.559478, 0.835595, 1), Color(0.361506, 0.429911, 0.731114, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_23sxw"]
-_data = {
-"RESET": SubResource("Animation_3ejir"),
-"sky": SubResource("Animation_yvqe5")
-}
-
-[sub_resource type="Animation" id="Animation_k2unt"]
-length = 60.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 30),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-3.14159, 0, 0), Vector3(-1.5708, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:light_energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 30, 60),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [1.0, 0.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:light_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.472736, 0.550669, 0.598309, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_yc5en"]
-resource_name = "SunRotate"
-length = 60.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 30, 60),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-3.14159, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:light_energy")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 32, 60),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [1.0, 0.0, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:light_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 32, 55.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(0.472736, 0.550669, 0.598309, 1), Color(0.380431, 0.403931, 0.752193, 1), Color(0.215991, 0.276777, 0.568416, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5afyb"]
-_data = {
-"RESET": SubResource("Animation_k2unt"),
-"SunRotate": SubResource("Animation_yc5en")
-}
 
 [sub_resource type="Animation" id="Animation_wvtxq"]
 resource_name = "DayNightLightingLamp"
@@ -267,6 +71,100 @@ _data = {
 "RESET": SubResource("Animation_k00ex")
 }
 
+[sub_resource type="Animation" id="Animation_tye7x"]
+resource_name = "full scene"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30, 60),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-3.14159, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 32, 60),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DirectionalLight3D:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 32, 55.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.472736, 0.550669, 0.598309, 1), Color(0.380431, 0.403931, 0.752193, 1), Color(0.215991, 0.276777, 0.568416, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:sky:sky_material:shader_parameter/color_top")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.3, 23.5, 29.1, 30, 59.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.468372, 0.66374, 0.841674, 1), Color(0.516066, 0.866902, 0.910857, 1), Color(0.340357, 0.73457, 0.781389, 1), Color(0.93402, 0.752139, 0.76735, 1), Color(0.165633, 0.304087, 0.477962, 1), Color(0.165633, 0.304087, 0.477962, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WorldEnvironment:environment:sky:sky_material:shader_parameter/color_horizon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.3, 18.3, 29.1, 30, 59.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.497943, 0.640141, 0.828098, 1), Color(0.453268, 0.809909, 0.868071, 1), Color(0.343739, 0.708864, 0.763596, 1), Color(0.870155, 0.619401, 0.525683, 1), Color(0.329932, 0.448012, 0.698539, 1), Color(0.214128, 0.310743, 0.519248, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("WorldEnvironment:environment:sky:sky_material:shader_parameter/color_bottom")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.3, 18.3, 29.1, 30, 59.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.778114, 0.555192, 0.370227, 1), Color(0.462745, 0.721569, 0.815686, 1), Color(0.397543, 0.609268, 0.75176, 1), Color(0.498039, 0.639216, 0.827451, 1), Color(0.23382, 0.385876, 0.517585, 1), Color(0.145415, 0.255848, 0.351161, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WorldEnvironment:environment:ambient_light_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.3, 30, 59.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.72549, 0.729412, 0.741176, 1), Color(0.727072, 0.727726, 0.74108, 1), Color(0.489443, 0.559478, 0.835595, 1), Color(0.361506, 0.429911, 0.731114, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mel8x"]
+_data = {
+"full scene": SubResource("Animation_tye7x")
+}
+
 [node name="DayNightcycletest" type="Node3D"]
 
 [node name="GridMap" type="GridMap" parent="."]
@@ -274,29 +172,17 @@ mesh_library = ExtResource("1_kvi32")
 cell_size = Vector3(1, 0.4, 1)
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(0, 0, 0, 0, 1, 0, 65535, 0, 0, 65535, 1, 0, 1, 1, 0, 1, 0, 0, 65536, 1, 2, 65537, 1, 2, 131071, 1, 2, 65535, 2, 1441798, 0, 2, 1441799, 1, 2, 1441798, 0, 3, 655366, 0, 4, 1048581, 65534, 2, 1048582, 65535, 4, 1048582, 65534, 4, 4, 0, 5, 6, 1, 4, 1441798, 0, 6, 655370, 0, 7, 655370, 0, 8, 655371, 0, 9, 655370, 65535, 8, 1048586, 65534, 8, 1048585, 65534, 7, 10, 65533, 8, 1441802, 65534, 9, 655370, 0, 10, 1048584, 1, 10, 1048586, 65535, 9, 1048576, 65535, 10, 1048576, 65535, 7, 1048576, 65535, 6, 1048576, 65535, 5, 1048576, 65534, 6, 10, 65534, 5, 6, 1, 9, 0, 1, 8, 0, 1, 7, 0, 1, 6, 0, 1, 5, 0, 2, 9, 0, 2, 8, 0, 2, 7, 0, 2, 6, 0, 2, 5, 0, 3, 5, 0, 3, 6, 0, 3, 7, 0, 3, 8, 0, 3, 9, 0, 65537, 9, 12, 65538, 9, 2, 65539, 9, 13, 65537, 8, 1441804, 65537, 7, 1441805, 65537, 6, 1441805, 65536, 5, 655363, 65537, 4, 1048579, 65536, 3, 655363, 65537, 2, 1048579, 131071, 2, 1048579, 131070, 5, 3, 65535, 3, 0, 65534, 3, 0, 1, 3, 0, 65534, 1, 0, 65534, 0, 0, 2, 0, 0, 2, 1, 0, 2, 3, 0, 65533, 7, 0, 65533, 6, 0, 65533, 5, 0, 65533, 4, 0, 65533, 3, 0, 65533, 9, 0, 65533, 10, 0, 65535, 11, 0, 0, 11, 0, 1, 11, 0, 2, 11, 0, 3, 11, 0, 2, 10, 1441802, 3, 10, 1441802, 65534, 10, 655370, 65533, 2, 1048582, 2, 2, 1048582, 2, 4, 1048582, 3, 4, 655364, 3, 2, 1441796, 3, 3, 7, 4, 3, 1441798, 65532, 8, 1441802, 65531, 8, 11, 65531, 7, 655370, 65531, 6, 655370, 65531, 5, 655370, 65531, 4, 655370, 65531, 3, 6, 65531, 9, 655370, 65531, 10, 655370, 65532, 7, 655360, 65532, 6, 655360, 65532, 5, 655360, 65532, 4, 655360, 65532, 3, 655360, 65532, 9, 655360, 65532, 10, 655360, 65532, 2, 1048582, 65531, 2, 1048581, 65531, 1, 6, 65530, 2, 1441798, 65530, 3, 1441792, 65530, 4, 1441792, 65530, 5, 1441792, 65530, 6, 1441792, 65530, 7, 1441792, 65530, 8, 1441792, 65530, 9, 1441792, 65530, 10, 1441792, 65533, 11, 1441792, 65532, 11, 1441792, 65530, 11, 1441792, 65533, 1, 1441792, 65532, 1, 1441792, 65532, 0, 1441792, 65533, 0, 1441792, 65530, 1, 1441792, 65530, 0, 1441792, 65534, 11, 655370, 65531, 11, 655370, 65531, 0, 655366, 131070, 1, 2, 131069, 1, 2, 131068, 1, 2, 131068, 3, 655362, 131069, 3, 655372, 131071, 3, 12, 65537, 3, 1441804, 65538, 3, 655373, 65537, 5, 1441794, 65538, 5, 655362, 65539, 5, 655362, 131067, 10, 3, 131067, 7, 3, 131067, 5, 3, 131068, 7, 1441804, 131068, 6, 1441805, 131068, 5, 1441804, 131069, 9, 655372, 131068, 9, 655372, 131068, 10, 1441794, 131068, 11, 1441804, 131069, 10, 1048588, 131069, 11, 1048589, 131069, 7, 1048588, 131069, 6, 1048578, 131069, 5, 1048588, 131069, 4, 1048588, 131071, 5, 1048588, 65538, 8, 1048588, 65538, 7, 655372, 65538, 6, 655372, 65539, 6, 1441804, 65539, 7, 1441805, 65539, 8, 1441804, 65536, 11, 655362, 65537, 11, 655372, 65538, 11, 655372, 65539, 11, 655372, 3, 0, 655360, 3, 1, 655360, 4, 1, 655360, 4, 0, 655360, 4, 2, 655360, 4, 4, 655360, 4, 5, 655360, 4, 6, 655360, 4, 7, 655360, 4, 8, 655360, 4, 9, 655360, 4, 11, 655360, 4, 10, 1048586, 65540, 9, 12, 65540, 4, 1441805, 65540, 6, 1048589, 65540, 7, 1048588, 65540, 8, 1048588, 65540, 5, 655372, 131071, 10, 1441804, 131071, 11, 1441804, 131071, 9, 1441794, 65538, 1, 2, 65539, 1, 2, 65540, 2, 1441794, 131068, 4, 1441794, 131070, 3, 655362, 131066, 1, 1048578, 131066, 0, 1048578, 131068, 0, 1441794, 131067, 3, 3, 131067, 1, 3, 131068, 2, 1048579, 131071, 6, 1441794, 131071, 7, 1048578, 131069, 0, 655362, 131070, 0, 655362, 131071, 0, 655362, 65536, 0, 655362, 65537, 0, 655362, 65538, 0, 655362, 65539, 0, 655362, 65540, 0, 655362, 65540, 1, 1048578, 131066, 3, 1048578)
+"cells": PackedInt32Array(0, 0, 0, 0, 1, 0, 65535, 0, 0, 65535, 1, 0, 1, 1, 0, 1, 0, 0, 65536, 1, 2, 65537, 1, 2, 131071, 1, 2, 65535, 2, 1441798, 0, 2, 1441799, 1, 2, 1441798, 0, 3, 655366, 0, 4, 1048581, 65534, 2, 1048582, 65535, 4, 1048582, 65534, 4, 4, 0, 5, 6, 1, 4, 1441798, 0, 6, 655370, 0, 7, 655370, 0, 8, 655371, 0, 9, 655370, 65535, 8, 1048586, 65534, 8, 1048585, 65534, 7, 10, 65533, 8, 1441802, 65534, 9, 655370, 0, 10, 1048584, 1, 10, 1048586, 65535, 9, 1048576, 65535, 10, 1048576, 65535, 7, 1048576, 65535, 6, 1048576, 65535, 5, 1048576, 65534, 6, 10, 65534, 5, 6, 1, 9, 0, 1, 8, 0, 1, 7, 0, 1, 6, 0, 1, 5, 0, 2, 9, 0, 2, 8, 0, 2, 7, 0, 2, 6, 0, 2, 5, 0, 3, 5, 0, 3, 6, 0, 3, 7, 0, 3, 8, 0, 3, 9, 0, 65537, 9, 12, 65538, 9, 2, 65539, 9, 13, 65537, 8, 1441804, 65537, 7, 1441805, 65537, 6, 1441805, 65536, 5, 655363, 65537, 4, 1048579, 65536, 3, 655363, 65537, 2, 1048579, 131071, 2, 1048579, 131070, 5, 3, 65535, 3, 0, 65534, 3, 0, 1, 3, 0, 65534, 1, 0, 65534, 0, 0, 2, 0, 0, 2, 1, 0, 2, 3, 0, 65533, 7, 0, 65533, 6, 0, 65533, 5, 0, 65533, 4, 0, 65533, 3, 0, 65533, 9, 0, 65533, 10, 0, 65535, 11, 0, 0, 11, 0, 1, 11, 0, 2, 11, 0, 3, 11, 0, 2, 10, 1441802, 3, 10, 1441802, 65534, 10, 655370, 65533, 2, 1048582, 2, 2, 1048582, 2, 4, 1048582, 3, 4, 655364, 3, 2, 1441796, 3, 3, 7, 4, 3, 1441798, 65532, 8, 1441802, 65531, 8, 11, 65531, 7, 655370, 65531, 6, 655370, 65531, 5, 655370, 65531, 4, 655370, 65531, 3, 6, 65531, 9, 655370, 65531, 10, 655370, 65532, 7, 655360, 65532, 6, 655360, 65532, 5, 655360, 65532, 4, 655360, 65532, 3, 655360, 65532, 9, 655360, 65532, 10, 655360, 65532, 2, 1048582, 65531, 2, 1048581, 65531, 1, 6, 65530, 2, 1441798, 65530, 3, 1441792, 65530, 4, 1441792, 65530, 5, 1441792, 65530, 6, 1441792, 65530, 7, 1441792, 65530, 8, 1441792, 65530, 9, 1441792, 65530, 10, 1441792, 65533, 11, 1441792, 65532, 11, 1441792, 65530, 11, 1441792, 65533, 1, 1441792, 65532, 1, 1441792, 65532, 0, 1441792, 65533, 0, 1441792, 65530, 1, 1441792, 65530, 0, 1441792, 65534, 11, 655370, 65531, 11, 655370, 65531, 0, 655366, 131070, 1, 2, 131069, 1, 2, 131068, 1, 2, 131068, 3, 655362, 131069, 3, 655372, 131071, 3, 12, 65537, 3, 1441804, 65538, 3, 655373, 65537, 5, 1441794, 65538, 5, 655362, 65539, 5, 655362, 131067, 10, 3, 131067, 7, 3, 131067, 5, 3, 131068, 7, 1441804, 131068, 6, 1441805, 131068, 5, 1441804, 131069, 9, 655372, 131068, 9, 655372, 131068, 10, 1441794, 131068, 11, 1441804, 131069, 10, 1048588, 131069, 11, 1048589, 131069, 7, 1048588, 131069, 6, 1048578, 131069, 5, 1048588, 131069, 4, 1048588, 131071, 5, 1048588, 65538, 8, 1048588, 65538, 7, 655372, 65538, 6, 655372, 65539, 6, 1441804, 65539, 7, 1441805, 65539, 8, 1441804, 65536, 11, 655362, 65537, 11, 655372, 65538, 11, 655372, 65539, 11, 655372, 3, 0, 655360, 3, 1, 655360, 4, 1, 655360, 4, 0, 655360, 4, 2, 655360, 4, 4, 655360, 4, 5, 655360, 4, 6, 655360, 4, 7, 655360, 4, 8, 655360, 4, 9, 655360, 4, 11, 655360, 4, 10, 1048586, 65540, 9, 12, 65540, 4, 1441805, 65540, 6, 1048589, 65540, 7, 1048588, 65540, 8, 1048588, 65540, 5, 655372, 131071, 10, 1441804, 131071, 11, 1441804, 131071, 9, 1441794, 65538, 1, 2, 65539, 1, 2, 65540, 2, 1441794, 131068, 4, 1441794, 131070, 3, 655362, 131066, 1, 1048578, 131066, 0, 1048578, 131068, 0, 1441794, 131067, 3, 3, 131067, 1, 3, 131068, 2, 1048579, 131071, 6, 1441794, 131071, 7, 12, 131069, 0, 655362, 131070, 0, 655362, 131071, 0, 655362, 65536, 0, 655362, 65537, 0, 655362, 65538, 0, 655362, 65539, 0, 655362, 65540, 0, 655362, 65540, 1, 1048578, 131066, 3, 1048578, 131071, 13, 12)
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_4liks")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WorldEnvironment"]
-libraries = {
-"": SubResource("AnimationLibrary_23sxw")
-}
-autoplay = "sky"
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1, 2.53518e-06, 0, -2.53518e-06, -1, 0, 12, 5)
 light_color = Color(0.472736, 0.550669, 0.598309, 1)
 shadow_enabled = true
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DirectionalLight3D"]
-libraries = {
-"": SubResource("AnimationLibrary_5afyb")
-}
-autoplay = "SunRotate"
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, -4.90588, 0.666946, 10.5175)
@@ -372,5 +258,14 @@ size = 12.952
 near = 0.084
 far = 181.88
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mel8x")
+}
+autoplay = "full scene"
+
 [node name="StaticBody3D" parent="." instance=ExtResource("3_axddo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.908236, 0.816833, 7.69506)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57677, 0, 13.6149)
+
+[node name="BuildingGeneric01" parent="." instance=ExtResource("4_x1aww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.27199, 0, 13.6149)

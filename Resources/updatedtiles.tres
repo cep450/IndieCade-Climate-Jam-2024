@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=82 format=3 uid="uid://b2mn2p18f8rsj"]
+[gd_resource type="MeshLibrary" load_steps=73 format=3 uid="uid://b2mn2p18f8rsj"]
 
 [ext_resource type="ArrayMesh" uid="uid://dq4m8gj3qx711" path="res://Resources/TileMeshes/Road1Straight.tres" id="1_os5df"]
 [ext_resource type="Texture2D" uid="uid://bpbvdsw5h56mo" path="res://Models/RoadsTexture.png" id="1_rb25x"]
@@ -7,18 +7,9 @@
 [ext_resource type="ArrayMesh" uid="uid://d13kiyepr0nw6" path="res://Resources/TileMeshes/BuildingGeneric02.tres" id="2_gvn20"]
 [ext_resource type="ArrayMesh" uid="uid://xx6so4p7dg4c" path="res://Resources/TileMeshes/grass.tres" id="4_yshd6"]
 [ext_resource type="ArrayMesh" uid="uid://cjt2sep2turx0" path="res://Resources/TileMeshes/Concrete.tres" id="5_m5mk6"]
-[ext_resource type="ArrayMesh" uid="uid://cd0ff2tncprpu" path="res://Resources/TileMeshes/Road1to2Straight.tres" id="7_q6e7r"]
 [ext_resource type="ArrayMesh" uid="uid://bjxro24xtg73t" path="res://Resources/TileMeshes/Lightpost.tres" id="8_grexs"]
 [ext_resource type="ArrayMesh" uid="uid://byjkm25xbpk5y" path="res://Resources/TileMeshes/Road1StraightCrosswalk.tres" id="8_xkwfo"]
 [ext_resource type="ArrayMesh" uid="uid://cg6wv2wdtn4f0" path="res://Resources/TileMeshes/Road1StraightDoubleCrosswalk.tres" id="9_x480n"]
-[ext_resource type="ArrayMesh" uid="uid://dini6dl22lobf" path="res://Resources/TileMeshes/Road2StraightCrosswalk.tres" id="10_xnlpw"]
-[ext_resource type="ArrayMesh" uid="uid://r6evow0i5ewj" path="res://Resources/TileMeshes/Road2StraightDoubleCrosswalk.tres" id="11_mftoq"]
-[ext_resource type="ArrayMesh" uid="uid://n1mysrijgaj2" path="res://Resources/TileMeshes/Road1to2StraightCrosswalk.tres" id="12_31und"]
-[ext_resource type="ArrayMesh" uid="uid://d3ns7u8kfs703" path="res://Resources/TileMeshes/Road1to2StraightDoubleCrosswalk.tres" id="13_nw2mh"]
-[ext_resource type="ArrayMesh" uid="uid://b83f6ihbbwjfc" path="res://Resources/TileMeshes/Road1to2StraightCrosswalk2.tres" id="14_8qul7"]
-[ext_resource type="ArrayMesh" uid="uid://dnknkhfgvaclx" path="res://Resources/TileMeshes/Road2Curve.tres" id="16_51181"]
-[ext_resource type="ArrayMesh" uid="uid://gdggub56mdmn" path="res://Resources/TileMeshes/Road2Tjunction.tres" id="17_gq35o"]
-[ext_resource type="ArrayMesh" uid="uid://cyxqh5jgge8x2" path="res://Resources/TileMeshes/Road2Intersection.tres" id="17_vwwht"]
 [ext_resource type="ArrayMesh" uid="uid://81h4knaandb1" path="res://Resources/TileMeshes/Road1Curve.tres" id="18_mue1w"]
 [ext_resource type="ArrayMesh" uid="uid://mvnof6wcfo50" path="res://Resources/TileMeshes/Road1Intersection.tres" id="19_mm34p"]
 
@@ -476,14 +467,12 @@ item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 
 item/3/navigation_layers = 1
 item/3/preview = SubResource("ImageTexture_w4wku")
 item/4/name = "Road2Curve"
-item/4/mesh = ExtResource("16_51181")
 item/4/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/4/shapes = []
 item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/4/navigation_layers = 1
 item/4/preview = SubResource("ImageTexture_ssxb6")
 item/5/name = "Road2Intersection"
-item/5/mesh = ExtResource("17_vwwht")
 item/5/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/5/shapes = []
 item/5/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -497,7 +486,6 @@ item/6/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 
 item/6/navigation_layers = 1
 item/6/preview = SubResource("ImageTexture_viepn")
 item/7/name = "Road2Tjunction"
-item/7/mesh = ExtResource("17_gq35o")
 item/7/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/7/shapes = []
 item/7/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -560,7 +548,6 @@ item/15/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0,
 item/15/navigation_layers = 1
 item/15/preview = SubResource("ImageTexture_p2x6e")
 item/16/name = "Road1to2Straight"
-item/16/mesh = ExtResource("7_q6e7r")
 item/16/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/16/shapes = []
 item/16/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -581,35 +568,30 @@ item/18/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0,
 item/18/navigation_layers = 1
 item/18/preview = SubResource("ImageTexture_tmeu3")
 item/19/name = "Road2StraightCrosswalk"
-item/19/mesh = ExtResource("10_xnlpw")
 item/19/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/19/shapes = []
 item/19/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/19/navigation_layers = 1
 item/19/preview = SubResource("ImageTexture_x4prm")
 item/20/name = "Road2StraightDoubleCrosswalk"
-item/20/mesh = ExtResource("11_mftoq")
 item/20/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/20/shapes = []
 item/20/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/20/navigation_layers = 1
 item/20/preview = SubResource("ImageTexture_tdeof")
 item/21/name = "Road1to2StraightCrosswalk"
-item/21/mesh = ExtResource("12_31und")
 item/21/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/21/shapes = []
 item/21/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/21/navigation_layers = 1
 item/21/preview = SubResource("ImageTexture_4p5w4")
 item/22/name = "Road1to2StraightDoubleCrosswalk"
-item/22/mesh = ExtResource("13_nw2mh")
 item/22/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/22/shapes = []
 item/22/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/22/navigation_layers = 1
 item/22/preview = SubResource("ImageTexture_0o8hb")
 item/23/name = "Road1to2StraightCrosswalk2"
-item/23/mesh = ExtResource("14_8qul7")
 item/23/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/23/shapes = []
 item/23/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
