@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://drxjt03qah5lp"]
+[gd_scene load_steps=28 format=3 uid="uid://drxjt03qah5lp"]
 
 [ext_resource type="PackedScene" uid="uid://d2gvrb770nub" path="res://Models/Tile_Road2Curve.gltf" id="1_ulpor"]
 [ext_resource type="PackedScene" uid="uid://ot76rqh7dg5d" path="res://Models/Tile_Road2Intersection.gltf" id="2_h5ppf"]
@@ -24,6 +24,9 @@
 [ext_resource type="PackedScene" uid="uid://8tf3cwcunknk" path="res://Models/Tile_Sidewalk_Intersection.gltf" id="22_80hn2"]
 [ext_resource type="PackedScene" uid="uid://c5mmhjny6r51h" path="res://Models/Tile_Sidewalk_Straight.gltf" id="23_mp7kx"]
 [ext_resource type="PackedScene" uid="uid://dauuad8s82o02" path="res://Models/Tile_Sidewalk_Tjunction.gltf" id="24_ym7gq"]
+[ext_resource type="PackedScene" uid="uid://3dgw1c368okg" path="res://Models/Tile_Lightpost_Large.gltf" id="25_wgr15"]
+[ext_resource type="PackedScene" uid="uid://w5cs4iwv872a" path="res://Models/Tile_Lightpost_Larger.gltf" id="26_6pm5v"]
+[ext_resource type="PackedScene" uid="uid://cfg6rn06dn5rs" path="res://Models/Tile_Lightpost_Small.gltf" id="27_mlg55"]
 
 [node name="Tiles" type="Node3D"]
 
@@ -74,3 +77,9 @@
 [node name="Tile_Sidewalk_Straight" parent="." instance=ExtResource("23_mp7kx")]
 
 [node name="Tile_Sidewalk_Tjunction" parent="." instance=ExtResource("24_ym7gq")]
+
+[node name="Tile_Lightpost_Large" parent="." instance=ExtResource("25_wgr15")]
+
+[node name="Tile_Lightpost_Larger" parent="." instance=ExtResource("26_6pm5v")]
+
+[node name="Tile_Lightpost_Small" parent="." instance=ExtResource("27_mlg55")]
