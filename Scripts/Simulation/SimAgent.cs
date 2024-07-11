@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public partial class SimAgent : Node
 {
 	private float happiness; //would every agent have a happiness value?
-	private Vector2 currentPosition;
-	private Vector2 targetPosition;
+	public Vector2 currentPosition;
+	public Vector2 targetPosition;
 	private SimPath pathFinder;
 
 	public SimVehicle Vehicle { get; private set; }
@@ -37,6 +37,7 @@ public partial class SimAgent : Node
 	{
 		int gridSize = 10; //example number 
 		targetPosition = new Vector2(GD.RandRange(0, gridSize), GD.RandRange(0, gridSize));
+		Vehicle.SetTarget(targetPosition);
 	}
 }
 

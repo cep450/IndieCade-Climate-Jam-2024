@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://cg5jjhr8j4r7s"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_1s4ox"]
+
+[resource]
+script = ExtResource("1_1s4ox")
+type = 0
+costToBuild = 4
+costToDestroy = 5

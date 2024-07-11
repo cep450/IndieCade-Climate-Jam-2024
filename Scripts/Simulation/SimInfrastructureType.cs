@@ -1,8 +1,13 @@
 using Godot;
 using System;
 
+[GlobalClass]
 public partial class SimInfrastructureType : Node
 {
+
+	/*
+	 *	Information about a type of tile that many instances of this type will share. e.g. information about "bike lanes"
+	 */
 
 	public int costToBuild;
 	public int costToDestroy;
