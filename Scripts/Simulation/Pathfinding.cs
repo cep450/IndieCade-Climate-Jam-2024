@@ -10,7 +10,7 @@ public partial class Pathfinding : Node
     {
         grid = GetNode<SimGrid>("SimGrid");
     }
-    void FindPath(SimTile startTile, SimTile targetTile, SimInfrastructure.InfrastructureType type)
+    void FindPath(SimTile startTile, SimTile targetTile, SimInfra.InfraType type)
     {
         List<SimTile> openSet = new List<SimTile>();
         HashSet<SimTile> closedSet = new HashSet<SimTile>();
