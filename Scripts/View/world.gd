@@ -6,7 +6,7 @@ signal tile_clicked(x: int, y: int)
 
 # The data here is a substitute for Simulation
 func _ready():
-	var pos = Vector3(-10,0,-10)
+	var pos = Vector3(-4.5,0,-4.5)
 	for x in 10:
 		for y in 10: 
 			var instance = tile.instantiate()
