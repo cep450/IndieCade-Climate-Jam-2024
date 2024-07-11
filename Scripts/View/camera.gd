@@ -24,6 +24,7 @@ func _input(event):
 			position.z -= move_vector.x * ZOOM_SPEED * get_process_delta_time()
 	
 	if event is InputEventMouseMotion && Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		$"../World".rotate_y(event.relative.x * get_process_delta_time())
 		pass
 		# Code to pane via move.
 		#position.x -= event.relative.x * PAN_SPEED * get_process_delta_time()
