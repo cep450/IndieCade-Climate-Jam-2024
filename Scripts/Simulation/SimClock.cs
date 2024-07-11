@@ -28,8 +28,6 @@ public partial class SimClock : Node
 
 				Sim.Instance.SimulationTick();
 				Sim.Instance.VisualTick();
-				
-				GD.Print("tick");
 			}
 		}
 

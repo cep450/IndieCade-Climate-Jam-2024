@@ -9,6 +9,15 @@ public partial class Sim : Node
 	 * 
 	 */
 
+	// game state 
+	public enum GameState {
+		TUTORIAL,	// the game has not begun yet
+		GAMEPLAY,	// the game is currently running, but the clock/simulation might be paused
+		END_LOSS,	// end state
+		END_WIN		// end state 
+	}
+	public GameState gameState = GameState.GAMEPLAY;
+
 	// used to determine what can use what types of connections 
 	public enum TransitType
 	{
@@ -146,4 +155,30 @@ public partial class Sim : Node
 			}
 		}
 		*/
+
+
+
+		// endings 
+		public void GameOverEmissions() {
+			GameOver();
+			GD.Print("Game Over: Emissions cap reached!");
+			gameState = GameState.END_LOSS;
+		}
+
+		public void GameOverSupport() {
+			GameOver();
+			GD.Print("Game Over: Support lost, you were removed from office!");
+			gameState = GameState.END_LOSS;
+		}
+
+		public void GameOverSuccess() {
+			GameOver();
+			GD.Print("Game Over: You Win!");
+			gameState = GameState.END_WIN;
+		}
+
+		// things that need to happen in all game overs 
+		private void GameOver() {
+			clock.Pause();
+		}
 }
