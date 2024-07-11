@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0aypj1hd1fcg"]
+
+[ext_resource type="Script" path="res://Scripts/View/tile.gd" id="1_ems77"]
+
+[node name="ViewTile" type="Node3D"]
+script = ExtResource("1_ems77")

@@ -26,9 +26,14 @@ public partial class SimGrid : Node
 		{
 			grid[x] = new SimTile[height];
 			for (int y = 0; y < height; y++)
-			{				Vector2 position = new Vector2(x, y);
+			{				
+				Vector2 position = new Vector2(x, y);
 				grid[x][y] = new SimTile(position, 1); // Initialize each tile with a position and capacity
 				AddChild(grid[x][y]); // Add each tile as a child node (optional)
+				
+				// For testing, make each tile a road.
+				//SimInfrastructure infra = new SimInfrastructure(InfrastructureType.Road, 1.0f);
+				//grid[x][y].SetInfrastructure(infra);
 			}
 		}
 	}

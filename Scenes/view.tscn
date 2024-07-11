@@ -1,96 +1,33 @@
 [gd_scene load_steps=6 format=3 uid="uid://us6n2vt8kwhw"]
 
+[ext_resource type="Script" path="res://Scripts/View/world.gd" id="1_k5je3"]
 [ext_resource type="Environment" uid="uid://ccufda2p8xb10" path="res://Resources/environment.tres" id="2_o416c"]
-
-[sub_resource type="GDScript" id="GDScript_xa4ch"]
-script/source = "extends Node3D
-
-var data = []
-var tile = preload(\"res://Scenes/tile.tscn\")
-enum  TileType
-{
-	HOUSE,
-	WORK,
-	ROAD,
-	PARK,
-}
-
-func _ready():
-	data.append([TileType.HOUSE,TileType.ROAD,TileType.PARK])
-	data.append([TileType.PARK,TileType.ROAD,TileType.PARK])
-	data.append([TileType.PARK,TileType.ROAD,TileType.WORK])
-	var pos = Vector3(-10,0,-10)
-	for i in 10:
-		for j in 10: 
-			var instance = tile.instantiate()
-			add_child(instance)
-			instance.position = pos
-			pos.x += 2
-		pos.z += 2
-		pos.x -= 20
-"
-
-[sub_resource type="GDScript" id="GDScript_hkqrf"]
-script/source = "extends Camera3D
-
-const PAN_SPEED = 1;
-const ZOOM_SPEED = 20;
-
-func _input(event):
-	if event is InputEventMouseMotion && Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		position.x -= event.relative.x * PAN_SPEED * get_process_delta_time()
-		position.z -= event.relative.y * PAN_SPEED * get_process_delta_time()
-	# Handle zoom.
-	if event is InputEventMouseButton:
-		# Check for scroll wheel.
-		var direction = 0
-		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			# Zoom in
-			direction = 1
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			# Zoom out
-			direction = -1
-		if direction != 0:	
-			var cam_forward = -transform.basis.z.normalized()
-			position -= direction * ZOOM_SPEED * cam_forward * event.get_factor() * get_process_delta_time()
-		# Check for selection
-		if event.button_index == MOUSE_BUTTON_LEFT && event.pressed:
-			get_selection()
-			
-func get_selection():
-	var worldspace = get_world_3d().direct_space_state
-	var mouse_pos = get_viewport().get_mouse_position()
-	var ray_length = 1000
-	var start = project_ray_origin(mouse_pos)
-	var end = start + project_ray_normal(mouse_pos) * ray_length
-	var ray_query = PhysicsRayQueryParameters3D.new()
-	ray_query.from = start
-	ray_query.to = end
-	var result = worldspace.intersect_ray(ray_query)
-	if !result.is_empty():
-		var tile = result.collider
-		if tile.has_method(\"select\"):
-			tile.select()
-		
-"
+[ext_resource type="Script" path="res://Scripts/View/camera.gd" id="3_rja75"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohh6k"]
-albedo_color = Color(0.25098, 0.698039, 0, 1)
+albedo_color = Color(0.0468326, 0.195618, 2.40654e-08, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3jdih"]
 material = SubResource("StandardMaterial3D_ohh6k")
-size = Vector2(25, 25)
+size = Vector2(10, 10)
 
 [node name="View" type="Node3D"]
-script = SubResource("GDScript_xa4ch")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -1.90571, 2.95144, 3.20244)
 environment = ExtResource("2_o416c")
-script = SubResource("GDScript_hkqrf")
+script = ExtResource("3_rja75")
+PAN_SPEED = 10.0
+ZOOM_SPEED = 20.0
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-omni_range = 4096.0
+[node name="World" type="Node3D" parent="."]
+script = ExtResource("1_k5je3")
 
-[node name="Floor" type="MeshInstance3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1426, 12.6158, -23.4911)
+light_energy = 10.0
+omni_range = 1000.0
+
+[node name="Floor" type="MeshInstance3D" parent="World"]
 mesh = SubResource("PlaneMesh_3jdih")
+skeleton = NodePath("../..")
