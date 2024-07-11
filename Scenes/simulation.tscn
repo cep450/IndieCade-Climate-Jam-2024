@@ -1,6 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://ge1rdby4fhec"]
+[gd_scene load_steps=7 format=3 uid="uid://ge1rdby4fhec"]
 
-[ext_resource type="Script" path="res://Scripts/Simulation/Meters.cs" id="1_ngteb"]
+[ext_resource type="Script" path="res://Scripts/Simulation/Sim.cs" id="1_5coum"]
+[ext_resource type="Script" path="res://Scripts/Simulation/SimGrid.cs" id="2_cga8w"]
+[ext_resource type="Script" path="res://Scripts/Simulation/SimClock.cs" id="2_ktf65"]
+[ext_resource type="Script" path="res://Scripts/Simulation/SimEmissionsMeter.cs" id="3_37uug"]
+[ext_resource type="Script" path="res://Scripts/Simulation/SimPath.cs" id="3_cknvj"]
+[ext_resource type="Script" path="res://Scripts/Simulation/SimSupportPool.cs" id="5_56x5v"]
 
-[node name="Simulation" type="Node"]
-script = ExtResource("1_ngteb")
+[node name="Sim" type="Node"]
+script = ExtResource("1_5coum")
+
+[node name="SimClock" type="Node" parent="."]
+script = ExtResource("2_ktf65")
+
+[node name="SimPath" type="Node" parent="."]
+script = ExtResource("3_cknvj")
+
+[node name="SimGrid" type="Node" parent="."]
+script = ExtResource("2_cga8w")
+
+[node name="SimSupportPool" type="Node" parent="."]
+script = ExtResource("5_56x5v")
+
+[node name="SimEmissionsMeter" type="Node" parent="."]
+script = ExtResource("3_37uug")
