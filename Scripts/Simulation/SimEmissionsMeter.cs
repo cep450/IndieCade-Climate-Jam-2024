@@ -9,7 +9,7 @@ public partial class SimEmissionsMeter : Node
 	 */
 
 	private float emissions;
-	private const float emissionsCap = 100; //example number
+	private const float emissionsCap = 10000; //TODO tune this 
 
 	//for use by vehicles and anything we want to count towards emissions 
 	//Singleton instance
@@ -47,19 +47,13 @@ public partial class SimEmissionsMeter : Node
 
 	private void CheckEmissionsLevel()
 	{
-		if (emissions >= emissionsCap)
+		if (emissions >= emissionsCap && Sim.Instance.gameState == Sim.GameState.GAMEPLAY)
 		{
-			//TODO end the game with a loss
-			TriggerGameOver();
+			Sim.Instance.GameOverEmissions();
 		}
 	}
-	private void TriggerGameOver()
-	{
-		GD.Print("Game Over: Emissions cap reached!");
-		//how does this interact with the time ticking system?
-	}
 
-	public void UpdateEmissions(List<SimAgent> activeAgents, float delta)
+	public void UpdateEmissions(List<SimAgent> activeAgents)
 	{
 		float totalEmissions = 0;
 
@@ -67,7 +61,7 @@ public partial class SimEmissionsMeter : Node
 		{
 			if (agent.Vehicle.IsInUse)
 			{
-				totalEmissions += agent.Vehicle.Emissions * delta;
+				totalEmissions += agent.Vehicle.Emissions;
 			}
 		}
 
