@@ -61,7 +61,7 @@ public partial class SimEdge : Node
 
 	public float GetSafetyFactor()
 	{
-		// Example safety factor, could be influenced by infrastructure, accidents, etc.
+		// Example safety factor, could be influenced by infra, accidents, etc.
 		return 1.0f;
 	}
 }
