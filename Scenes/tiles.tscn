@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://drxjt03qah5lp"]
+[gd_scene load_steps=32 format=3 uid="uid://drxjt03qah5lp"]
 
 [ext_resource type="PackedScene" uid="uid://d2gvrb770nub" path="res://Models/Tile_Road2Curve.gltf" id="1_ulpor"]
 [ext_resource type="PackedScene" uid="uid://ot76rqh7dg5d" path="res://Models/Tile_Road2Intersection.gltf" id="2_h5ppf"]
@@ -27,6 +27,10 @@
 [ext_resource type="PackedScene" uid="uid://3dgw1c368okg" path="res://Models/Tile_Lightpost_Large.gltf" id="25_wgr15"]
 [ext_resource type="PackedScene" uid="uid://w5cs4iwv872a" path="res://Models/Tile_Lightpost_Larger.gltf" id="26_6pm5v"]
 [ext_resource type="PackedScene" uid="uid://cfg6rn06dn5rs" path="res://Models/Tile_Lightpost_Small.gltf" id="27_mlg55"]
+[ext_resource type="PackedScene" uid="uid://brwlhgmy6q1vw" path="res://Models/Tile_Bikelane_Curve.gltf" id="28_ao0m7"]
+[ext_resource type="PackedScene" uid="uid://bk53tfke7865b" path="res://Models/Tile_Bikelane_Intersection.gltf" id="29_16pap"]
+[ext_resource type="PackedScene" uid="uid://cbwg1bmio5bdq" path="res://Models/Tile_Bikelane_Straight.gltf" id="30_xufi1"]
+[ext_resource type="PackedScene" uid="uid://dwbj41acogml5" path="res://Models/Tile_Bikelane_Tjunction.gltf" id="31_t58lj"]
 
 [node name="Tiles" type="Node3D"]
 
@@ -83,3 +87,11 @@
 [node name="Tile_Lightpost_Larger" parent="." instance=ExtResource("26_6pm5v")]
 
 [node name="Tile_Lightpost_Small" parent="." instance=ExtResource("27_mlg55")]
+
+[node name="Tile_Bikelane_Curve" parent="." instance=ExtResource("28_ao0m7")]
+
+[node name="Tile_Bikelane_Intersection" parent="." instance=ExtResource("29_16pap")]
+
+[node name="Tile_Bikelane_Straight" parent="." instance=ExtResource("30_xufi1")]
+
+[node name="Tile_Bikelane_Tjunction" parent="." instance=ExtResource("31_t58lj")]
