@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsh10lnrhplqm"]
+
+[ext_resource type="PackedScene" uid="uid://ywjl0wh8esdf" path="res://Models/Car/Car_Driving_Yellow.glb" id="1_qjhpo"]
+
+[node name="Car_Driving_Yellow" instance=ExtResource("1_qjhpo")]
+
+[node name="Skeleton3D" parent="Car_Rig/DeformationSystem" index="0"]
+bones/9/rotation = Quaternion(0.676993, 0.204157, -0.676993, 0.204157)
+bones/13/rotation = Quaternion(0.568018, -0.421136, -0.568018, -0.421136)
+
+[node name="Skeleton3D" parent="Car_Rig/MotionSystem/FKSystem/FKOffsetRoot_M/FKExtraRoot_M/FKRoot_M/Armature_001" index="0"]
+bones/7/position = Vector3(2.44464e-07, -6.28354e-08, 0)
+bones/7/rotation = Quaternion(0, 9.86076e-32, -7.45058e-09, 1)
+bones/7/scale = Vector3(1, 1, 1)
+bones/11/position = Vector3(5.2716e-07, 7.74865e-07, 7.18646e-08)
+bones/11/rotation = Quaternion(2.48809e-15, -1.02141e-14, -5.58794e-09, 1)
+bones/11/scale = Vector3(1, 1, 1)
+bones/16/position = Vector3(1.20699e-06, -2.98023e-07, 2.38419e-07)
+bones/16/rotation = Quaternion(3.30872e-24, -6.20385e-25, -3.72529e-09, 1)
+bones/26/position = Vector3(1.34509e-09, 2.38419e-07, -5.47063e-08)
+bones/26/rotation = Quaternion(1.57772e-30, 1.77636e-15, -1.88079e-37, 1)
+bones/26/scale = Vector3(1, 1, 1)
+bones/27/rotation = Quaternion(-0.268492, 2.2117e-11, -1.16562e-08, 0.963282)
+bones/32/position = Vector3(1.08201e-08, 2.38419e-07, 8.98968e-07)
+bones/32/rotation = Quaternion(1.57772e-30, 1.77636e-15, -1.88079e-37, 1)
+bones/32/scale = Vector3(1, 1, 1)
+bones/33/rotation = Quaternion(0.26217, -1.95165e-11, 1.15312e-08, 0.965022)
+bones/38/position = Vector3(-1.34509e-09, -2.38419e-07, 5.47063e-08)
+bones/38/rotation = Quaternion(-2.61547e-37, 1.77636e-15, 1.52814e-37, 1)
+bones/38/scale = Vector3(1, 1, 1)
+bones/39/rotation = Quaternion(-0.139243, -3.44736e-11, -6.32234e-09, 0.990258)
+bones/44/position = Vector3(-1.08201e-08, -2.38419e-07, -8.98968e-07)
+bones/44/rotation = Quaternion(-2.61547e-37, 1.77636e-15, 1.52814e-37, 1)
+bones/44/scale = Vector3(1, 1, 1)
+bones/45/rotation = Quaternion(0.079587, 1.58971e-11, 3.26677e-09, 0.996828)
+
+[node name="AnimationPlayer" parent="." index="2"]
+root_motion_track = NodePath("Car_Rig/MotionSystem/FKSystem/FKOffsetRoot_M/FKExtraRoot_M/FKRoot_M/Armature_001/Skeleton3D:FKXRoot_M")
+autoplay = "Armature_001|Take 001|BaseLayer"
