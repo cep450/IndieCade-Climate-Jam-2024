@@ -13,7 +13,7 @@ func initialize(param_type):
 		Global.InfraType.BUILDING:
 			text = "building"
 
-func _pressed():
+func _on_pressed():
 	#add infra of the appropriate type
 	pass
 	
