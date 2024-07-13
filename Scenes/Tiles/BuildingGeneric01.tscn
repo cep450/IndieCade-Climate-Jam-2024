@@ -1,6 +1,44 @@
-[gd_scene load_steps=3 format=3 uid="uid://btpka4lgb1v80"]
+[gd_scene load_steps=6 format=3 uid="uid://b581x30uj5spc"]
 
 [ext_resource type="ArrayMesh" uid="uid://ckdn5m0lb788m" path="res://Resources/TileMeshes/BuildingGeneric01.tres" id="1_ggvmb"]
+
+[sub_resource type="Animation" id="Animation_b8cyh"]
+resource_name = "BuildingGeneric01Lights"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:surface_2/material:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 28, 30.1, 60),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_abfok"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:surface_2/material:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ef56g"]
+_data = {
+"BuildingGeneric01Lights": SubResource("Animation_b8cyh"),
+"RESET": SubResource("Animation_abfok")
+}
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_csvs6"]
 points = PackedVector3Array(0.0275237, 1.22987, -0.18089, 0.388949, 0.000424642, -0.349181, 0.432495, 1.10843, 0.400111, -0.383119, 0.0141627, 0.347586, 0.380299, 0.0139284, 0.347654, 0.441857, 1.11918, -0.402477, -0.386077, 0.00954583, -0.343976, -0.435351, 1.10827, 0.400076, -0.444713, 1.11902, -0.402441, -0.437355, 1.22987, -0.18089, 0.0275237, 1.22987, -0.374586, -0.416062, 1.19958, -0.356137, -0.0104857, 0.0333158, -0.348213)
@@ -9,6 +47,12 @@ points = PackedVector3Array(0.0275237, 1.22987, -0.18089, 0.388949, 0.000424642,
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_ggvmb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
+libraries = {
+"": SubResource("AnimationLibrary_ef56g")
+}
+autoplay = "BuildingGeneric01Lights"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_csvs6")

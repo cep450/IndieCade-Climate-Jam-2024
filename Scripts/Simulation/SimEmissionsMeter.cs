@@ -51,16 +51,10 @@ public partial class SimEmissionsMeter : Node
 
 	private void CheckEmissionsLevel()
 	{
-		if (emissions >= emissionsCap)
+		if (emissions >= emissionsCap && Sim.Instance.gameState == Sim.GameState.GAMEPLAY)
 		{
-			//TODO end the game with a loss
-			TriggerGameOver();
+			Sim.Instance.GameOverEmissions();
 		}
-	}
-	private void TriggerGameOver()
-	{
-		GD.Print("Game Over: Emissions cap reached!");
-		//how does this interact with the time ticking system?
 	}
 
 	public void UpdateEmissions(List<SimAgent> activeAgents)
