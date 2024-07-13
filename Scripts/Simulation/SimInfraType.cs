@@ -14,7 +14,6 @@ public partial class SimInfraType : Resource
 [System.Flags]
 	public enum InfraType
 	{
-		NONE = 0x00,
 		HOUSE = 0x01,
 		WORK = 0x02,
 		ROAD = 0x04,
@@ -37,7 +36,13 @@ public partial class SimInfraType : Resource
     // ...ect
 	}
 
-	public static readonly InfraType [] types = {}; //TODO put the resources we're using in here, in oder so the indices match with the enum values
+	public static readonly SimInfraType [] types = {}; //TODO put the resources we're using in here, in oder so the indices match with the enum values
+
+	//TODO better way to do this?
+	public static SimInfraType TypeFromEnum(InfraType enumType) {
+		int index = (int)Math.Log2((double)((int)enumType));
+		return types[index];
+	}
 
 	[Export] public InfraType type;
 	[Export] public SimVehicleType.TransportMode transportModes; // what transport modes can use this infrastructure
