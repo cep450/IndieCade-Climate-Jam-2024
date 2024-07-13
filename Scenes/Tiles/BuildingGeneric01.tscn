@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b581x30uj5spc"]
 
-[ext_resource type="ArrayMesh" uid="uid://csvuv727gy517" path="res://Resources/TileMeshes/BuildingGeneric01.tres" id="1_ggvmb"]
+[ext_resource type="ArrayMesh" uid="uid://ckdn5m0lb788m" path="res://Resources/TileMeshes/BuildingGeneric01.tres" id="1_ggvmb"]
 
 [sub_resource type="Animation" id="Animation_b8cyh"]
 resource_name = "BuildingGeneric01Lights"

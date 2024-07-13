@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://csswthorupplo"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="1_meoay"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_qst1p"]
+size = Vector2(100, 100)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_navqh"]
+size = Vector2(100, 100)
+
+[node name="UI" type="Control" node_paths=PackedStringArray("progress_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_meoay")
+progress_bar = NodePath("EmissionsMeter/TextureProgressBar")
+
+[node name="EmissionsMeter" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1149.0
+offset_top = 9.0
+offset_right = -1109.0
+offset_bottom = 49.0
+grow_horizontal = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="EmissionsMeter"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 507.0
+offset_right = 135.0
+offset_bottom = 625.0
+fill_mode = 5
+texture_under = SubResource("PlaceholderTexture2D_qst1p")
+texture_progress = SubResource("PlaceholderTexture2D_navqh")
+
+[node name="Label" type="Label" parent="EmissionsMeter"]
+layout_mode = 0
+offset_left = 1045.0
+offset_top = 404.0
+offset_right = 1233.0
+offset_bottom = 459.0
+rotation = -1.57079
+theme_override_font_sizes/font_size = 40
+text = "Emissions"
+
+[node name="BuildButtons" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 101.0
+offset_top = 586.0
+offset_right = 404.0
+offset_bottom = 632.0
+
+[node name="SpeedController" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 404.0
+offset_top = 586.0
+offset_right = 762.0
+offset_bottom = 632.0

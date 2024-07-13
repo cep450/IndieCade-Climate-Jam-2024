@@ -39,10 +39,21 @@ public partial class Sim : Node
 	public SimTile GetTile(int x, int y) {
 		return Instance.grid.GetTile(x, y);
 	}
-	public List<SimInfra> GetInfra(int tileX, int tileY) {
-		return Instance.grid.GetTile(tileX, tileY).Infra;
-	}
 
+	public Godot.Collections.Array GetInfra(int tileX, int tileY) {
+		// Convert List<SimInfra> to Godot.Collections.Array
+		Godot.Collections.Array array = new Godot.Collections.Array();
+		//List<SimInfra> InfraList = Instance.grid.GetTile(tileX, tileY).Infra;
+		//for (int i = 0; i < InfraList.Count; i++)
+		//{
+			//array.Add(InfraList[i]);
+		//}
+		return array;
+	}
+	
+	
+	//test func
+	public void SayHi() { GD.Print("hi"); }
 
 	public override void _Ready()
 	{
@@ -55,7 +66,7 @@ public partial class Sim : Node
 
 		for (int i = 0; i < 10; i++)
 		{
-			var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.CAR, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
+			var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.Car, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
 			var vehicle = new SimVehicle(vehicleType, new Vector2(0, 0));
 			SimAgent agent = new SimAgent(vehicle);
 			agents.Add(agent);
@@ -87,6 +98,13 @@ public partial class Sim : Node
 
 
 
+	/*
+	public InfrastructureType GetType(int x, int y)
+	{
+		//return grid[x][y].Infrastructure.
+	}
+	*/
+	
 	/*
 		public void MakeInfraChange(Vector2 tilePosition, SimInfra.InfraType newInfra)
 		{

@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using static infra_type;
 
 public partial class SimGrid : Node
 {
@@ -28,11 +29,11 @@ public partial class SimGrid : Node
 			for (int y = 0; y < height; y++)
 			{				
 				Vector2 position = new Vector2(x, y);
-				grid[x][y] = new SimTile(position); // Initialize each tile with a position
+				grid[x][y] = new SimTile(position, 1); // Initialize each tile with a position and capacity
 				AddChild(grid[x][y]); // Add each tile as a child node (optional)
 				
 				// For testing, make each tile a road.
-				//SimInfrastructure infra = new SimInfrastructure(InfrastructureType.Road, 1.0f);
+				//SimInfra infra = new SimInfrastructure(, 1.0f);
 				//grid[x][y].SetInfrastructure(infra);
 			}
 		}
@@ -53,8 +54,7 @@ public partial class SimGrid : Node
 		return grid[x][y];
 	}
 
-//TODO it's probably more efficient to calculate connections when infrastructure is added/removed and save the connections.
-	public List<SimTile> GetNeighboursOfType(SimTile tileToCheck, SimInfraType.InfraType type)
+	public List<SimTile> GetNeighbours(SimTile tileToCheck, SimInfra.InfraType type)
 	{
 		List<SimTile> neighbours = new List<SimTile>();
 
@@ -71,7 +71,7 @@ public partial class SimGrid : Node
 
 				if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height)
 				{
-					if (grid[checkX][checkY].Infra[0].Type.type == type)
+					if (grid[checkX][checkY].Infra[0].Type == type) //TODO (!!!) refactor this to support multiple types of infrastructure on a single tile.
 					{
 						neighbours.Add(grid[checkX][checkY]);
 					}

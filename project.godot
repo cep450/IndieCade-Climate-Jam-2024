@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0.0379285, 0.168149, 0.105155, 1)
 config/icon="res://icon.svg"
 
+[autoload]
+
+InfraType="*res://Scenes/infra_type.tscn"
+
 [dotnet]
 
 project/assembly_name="ClimateGame"
