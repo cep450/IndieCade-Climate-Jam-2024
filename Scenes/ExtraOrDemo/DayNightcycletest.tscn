@@ -1,16 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8brmcliia5f7"]
+[gd_scene load_steps=12 format=3 uid="uid://b8brmcliia5f7"]
 
 [ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://tiles.tres" id="1_tj74h"]
 [ext_resource type="Shader" path="res://Shaders/Gradientsky.gdshader" id="2_jemf5"]
+[ext_resource type="Script" path="res://Scripts/View/camera.gd" id="3_7oyk1"]
 [ext_resource type="PackedScene" uid="uid://byjd6kcwaa7bc" path="res://Scenes/Tiles/BuildingGeneric02.tscn" id="3_axddo"]
 [ext_resource type="PackedScene" uid="uid://b581x30uj5spc" path="res://Scenes/Tiles/BuildingGeneric01.tscn" id="4_x1aww"]
 [ext_resource type="PackedScene" uid="uid://bbwli37pmewjn" path="res://Scenes/Tiles/Lightpost.tscn" id="5_ycgy7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8k5wb"]
 shader = ExtResource("2_jemf5")
-shader_parameter/color_top = Color(0.165633, 0.304087, 0.477962, 1)
-shader_parameter/color_horizon = Color(0.288103, 0.39843, 0.633778, 1)
-shader_parameter/color_bottom = Color(0.201888, 0.338909, 0.457472, 1)
+shader_parameter/color_top = Color(0.266545, 0.42397, 0.599198, 1)
+shader_parameter/color_horizon = Color(0.308732, 0.420541, 0.622197, 1)
+shader_parameter/color_bottom = Color(0.356313, 0.355628, 0.357516, 1)
 shader_parameter/exponent_factor_top = 1.0
 shader_parameter/exponent_factor_bottom = 1.0
 shader_parameter/intensity_amp = 1.0
@@ -24,7 +25,7 @@ background_color = Color(0.526072, 0.775419, 0.910391, 1)
 background_energy_multiplier = 1.1
 sky = SubResource("Sky_07t6l")
 ambient_light_source = 2
-ambient_light_color = Color(0.443232, 0.512678, 0.797856, 1)
+ambient_light_color = Color(0.482833, 0.529744, 0.734468, 1)
 ambient_light_energy = 1.26
 reflected_light_source = 2
 tonemap_white = 4.87
@@ -143,13 +144,18 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 environment = SubResource("Environment_4liks")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 5)
-light_color = Color(0.317787, 0.355491, 0.682183, 1)
-light_energy = 0.0
+transform = Transform3D(1, 0, 0, 0, -1, 2.53518e-06, 0, -2.53518e-06, -1, 0, 12, 5)
+light_color = Color(0.472736, 0.550669, 0.598309, 1)
 shadow_enabled = true
 shadow_bias = 0.5
 shadow_opacity = 0.7
 shadow_blur = 2.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h7aen")
+}
+autoplay = "DayNight"
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.707107, 0.43825, -0.554921, 0, 0.784776, 0.619779, 0.707107, -0.43825, 0.554921, -5, 6, 10)
@@ -158,12 +164,7 @@ current = true
 size = 12.952
 near = 0.084
 far = 181.88
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_h7aen")
-}
-autoplay = "DayNight"
+script = ExtResource("3_7oyk1")
 
 [node name="StaticBody3D" parent="." instance=ExtResource("3_axddo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.9896)
