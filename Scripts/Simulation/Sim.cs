@@ -66,7 +66,7 @@ public partial class Sim : Node
 
 		for (int i = 0; i < 10; i++)
 		{
-			var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.Car, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
+			var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.CAR, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
 			var vehicle = new SimVehicle(vehicleType, new Vector2(0, 0));
 			SimAgent agent = new SimAgent(vehicle);
 			agents.Add(agent);
@@ -96,13 +96,6 @@ public partial class Sim : Node
 
 
 
-	/*
-	public InfrastructureType GetType(int x, int y)
-	{
-		//return grid[x][y].Infrastructure.
-	}
-	*/
-	
 	/*
 		public void MakeInfraChange(Vector2 tilePosition, SimInfra.InfraType newInfra)
 		{
