@@ -20,6 +20,9 @@ public partial class SimEmissionsMeter : Node
 	public float EmissionRate { get => emissionsLastTick; private set {} }
 	public float Emissions { get => emissions; private set {} }
 
+	public float GetEmissions() { return emissions; }
+	public float GetEmissionsCap() { return emissionsCap; }
+
 	//Singleton instance
 	private static SimEmissionsMeter instance = null;
 	public static SimEmissionsMeter Instance
@@ -42,9 +45,6 @@ public partial class SimEmissionsMeter : Node
 		emissionsLastTick = emissionsThisTick;
 		emissionsThisTick = 0;
 	}
-
-	public float GetEmissions() { return emissions; }
-	public float GetEmissionsCap() { return emissionsCap; }
 
 	public void AddEmissions(float amount)
 	{
