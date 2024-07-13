@@ -9,10 +9,10 @@ var y: int
 var UI = "/root/Main/UI"
 
 # Block Scenes
-var road = preload("res://Scenes/Tiles/road.tscn")
-var base = preload("res://Scenes/Tiles/base.tscn")
+var road = preload("res://Scenes/Tiles/Road1Straight.tscn")
 var house = preload("res://Scenes/Tiles/BuildingGeneric01.tscn")
-var work = preload("res://Models/Tile_Building1.glb")
+var base = preload("res://Scenes/Tiles/base.tscn")
+var blank = preload("res://Scenes/Tiles/Blank.tscn")
 
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")
 var isYellow: bool = false
@@ -29,6 +29,9 @@ func test_init(type: String):
 		instance = road.instantiate()
 		add_child(instance)
 		instance.name = "ObjectInstance"
+	elif type == "Blank":
+		instance = blank.instantiate()
+		add_child(instance)
 	else:
 		instance = base.instantiate()
 		add_child(instance)
@@ -44,13 +47,13 @@ func initialize(local_x: int, local_y: int) -> void:
 	#grid = $"../../Simulation/SimGrid"
 	x = local_x
 	y = local_y
-	get_parent().tile_clicked.connect(_on_tile_clicked)
+	get_parent().tile_clicked.connect(on_tile_clicked)
 	
 		
 func select() -> void:
 	get_parent().tile_clicked.emit(x,y)
 
-func _on_tile_clicked(local_x: int, local_y: int):
+func on_tile_clicked(local_x: int, local_y: int):
 	if x == local_x && y == local_y:
 		# Change the material to yellow_mat when selected
 		if !isYellow:
@@ -62,3 +65,7 @@ func _on_tile_clicked(local_x: int, local_y: int):
 	else:
 		$ObjectInstance.get_child(0).material_overlay = null
 		isYellow = false
+
+func update_visuals():
+	print("visuals updated")
+	pass

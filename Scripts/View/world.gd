@@ -17,10 +17,11 @@ func _ready():
 			add_child(instance)
 			instance.initialize(x,y)
 			instance.position = pos
-			if (y % 2 != 0):
-				instance.test_init("Road")
-			else:
-				instance.test_init("House")
+			instance.test_init("Blank")
+			#if (y % 2 != 0):
+				#instance.test_init("Road")
+			#else:
+				#instance.test_init("House")
 			pos.x += 1
 		pos.z += 1
 		pos.x -= 10

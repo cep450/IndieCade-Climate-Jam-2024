@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-InfraType="*res://Scenes/infra_type.tscn"
+Global="*res://Scenes/global.tscn"
 
 [dotnet]
 

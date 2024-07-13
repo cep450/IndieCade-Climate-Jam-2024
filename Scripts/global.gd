@@ -1,8 +1,10 @@
 extends Node
 
-enum {
+var inDevMode: bool = true
+
+enum InfraType {
 	HOUSE,
-	SIDEWALK,
+	ROAD,
 	BUILDING,
 }
 

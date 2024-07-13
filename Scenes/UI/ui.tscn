@@ -54,7 +54,7 @@ text = "Emissions"
 layout_mode = 2
 offset_left = 101.0
 offset_top = 586.0
-offset_right = 404.0
+offset_right = 1057.0
 offset_bottom = 632.0
 
 [node name="SpeedController" type="HBoxContainer" parent="."]

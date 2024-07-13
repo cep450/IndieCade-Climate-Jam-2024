@@ -51,7 +51,6 @@ public partial class Sim : Node
 		return array;
 	}
 	
-	
 	//test func
 	public void SayHi() { GD.Print("hi"); }
 

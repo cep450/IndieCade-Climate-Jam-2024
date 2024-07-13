@@ -22,15 +22,16 @@ func _ready():
 func _process(_delta):
 	progress_bar.value += emissions_meter.GetEmissions()
 	
-func on_tile_clicked(x: int, y: int):
+func on_tile_clicked(_x: int, _y: int):
 	# Follow in the footsteps of Anikin and delete all the children
 	for child in $BuildButtons.get_children():
 		child.queue_free()
 	# Temp func to add test ones
-	for i in 3:
+	var types = [Global.InfraType.ROAD, Global.InfraType.HOUSE, Global.InfraType.BUILDING]
+	for type in types:
 		var instance = button.instantiate()
 		$BuildButtons.add_child(instance)
-		instance.initialize(str(x) + str(y))
+		instance.initialize(type)
 	return
 	#var tiles = sim.GetInfra(x,y)
 	#for tile in tiles:
