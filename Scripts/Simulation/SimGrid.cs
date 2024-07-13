@@ -28,7 +28,7 @@ public partial class SimGrid : Node
 			for (int y = 0; y < height; y++)
 			{				
 				Vector2 position = new Vector2(x, y);
-				grid[x][y] = new SimTile(position, 1); // Initialize each tile with a position and capacity
+				grid[x][y] = new SimTile(position); // Initialize each tile with a position
 				AddChild(grid[x][y]); // Add each tile as a child node (optional)
 				
 				// For testing, make each tile a road.
@@ -53,7 +53,8 @@ public partial class SimGrid : Node
 		return grid[x][y];
 	}
 
-	public List<SimTile> GetNeighbours(SimTile tileToCheck, SimInfra.InfraType type)
+//TODO it's probably more efficient to calculate connections when infrastructure is added/removed and save the connections.
+	public List<SimTile> GetNeighboursOfType(SimTile tileToCheck, SimInfraType.InfraType type)
 	{
 		List<SimTile> neighbours = new List<SimTile>();
 
@@ -70,7 +71,7 @@ public partial class SimGrid : Node
 
 				if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height)
 				{
-					if (grid[checkX][checkY].Infra[0].Type == type) //TODO (!!!) refactor this to support multiple types of infrastructure on a single tile.
+					if (grid[checkX][checkY].Infra[0].Type.type == type)
 					{
 						neighbours.Add(grid[checkX][checkY]);
 					}

@@ -22,7 +22,7 @@ public partial class SimPath : Node
 			for (int y = 0; y < _gridSize; y++)
 			{
 				Vector2 position = new Vector2(x, y);
-				SimTile tile = new SimTile(position, 1); // Assuming capacity of 1 for simplicity
+				SimTile tile = new SimTile(position);
 				_grid[position] = tile;
 			}
 		}
