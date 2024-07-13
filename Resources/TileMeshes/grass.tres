@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=3 format=3 uid="uid://xx6so4p7dg4c"]
+[gd_resource type="ArrayMesh" load_steps=3 format=3 uid="uid://kr340ev2e0pt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1uk1a"]
 resource_name = "GrassMat"

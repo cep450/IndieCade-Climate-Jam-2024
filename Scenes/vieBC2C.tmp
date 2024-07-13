@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://us6n2vt8kwhw"]
+
+[ext_resource type="Script" path="res://Scripts/View/world.gd" id="1_k5je3"]
+[ext_resource type="Environment" uid="uid://ccufda2p8xb10" path="res://Resources/environment.tres" id="2_o416c"]
+[ext_resource type="Script" path="res://Scripts/View/camera.gd" id="3_rja75"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohh6k"]
+albedo_color = Color(0.0468326, 0.195618, 2.40654e-08, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3jdih"]
+material = SubResource("StandardMaterial3D_ohh6k")
+size = Vector2(10, 10)
+
+[node name="View" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0.302535, 4.79208, 3.27902)
+environment = ExtResource("2_o416c")
+size = 10.0
+script = ExtResource("3_rja75")
+PAN_SPEED = 10.0
+ZOOM_SPEED = 20.0
+ROTATION_SPEED = 10.0
+
+[node name="World" type="Node3D" parent="."]
+script = ExtResource("1_k5je3")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -18.1426, 12.6158, -23.4911)
+light_energy = 10.0
+omni_range = 1000.0
+
+[node name="Floor" type="MeshInstance3D" parent="World"]
+mesh = SubResource("PlaneMesh_3jdih")
+skeleton = NodePath("../..")

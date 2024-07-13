@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://byjd6kcwaa7bc"]
 
-[ext_resource type="ArrayMesh" uid="uid://d13kiyepr0nw6" path="res://Resources/TileMeshes/BuildingGeneric02.tres" id="1_wq754"]
+[ext_resource type="ArrayMesh" uid="uid://worpbixwiv1w" path="res://Resources/TileMeshes/BuildingGeneric02.tres" id="1_wq754"]
 
 [sub_resource type="Animation" id="Animation_qkg4c"]
 resource_name = "new_animation"

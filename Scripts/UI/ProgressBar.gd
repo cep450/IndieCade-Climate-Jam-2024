@@ -1,5 +1,8 @@
 extends ProgressBar
 
+@export var root: Control
+
 func _ready():
-	max_value = 300#get_parent().get_node("%Simulation").getMaxEmissions()
+	max_value = root.get_node("../Simulation").SayHi()
 	value = 100
+

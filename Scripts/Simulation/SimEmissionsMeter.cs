@@ -43,6 +43,8 @@ public partial class SimEmissionsMeter : Node
 		emissionsThisTick = 0;
 	}
 
+	public float GetEmissions() { return emissions; }
+	public float GetEmissionsCap() { return emissionsCap; }
 
 	public void AddEmissions(float amount)
 	{

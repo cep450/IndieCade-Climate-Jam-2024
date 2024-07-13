@@ -21,19 +21,18 @@ public partial class SimInfraType : Resource
 		SIDEWALK = 0x10,
 		STREETLAMP = 0x20,
 		CROSSWALK = 0x40
-
-    // add new tags here
-    //BUSLANE = 0x80,
-    //RAIL = 0x100,
-    //J = 0x200,
-    //K = 0x400,
-    //L = 0x800,
-    //M = 0x1000,
-    //N = 0x2000,
-    //O = 0x4000,
-    //P = 0x8000,
-    //Q = 0x10000
-    // ...ect
+	// add new tags here
+	//BUSLANE = 0x80,
+	//RAIL = 0x100,
+	//J = 0x200,
+	//K = 0x400,
+	//L = 0x800,
+	//M = 0x1000,
+	//N = 0x2000,
+	//O = 0x4000,
+	//P = 0x8000,
+	//Q = 0x10000
+	// ...ect
 	}
 
 	public static readonly SimInfraType [] types = {}; //TODO put the resources we're using in here, in oder so the indices match with the enum values
