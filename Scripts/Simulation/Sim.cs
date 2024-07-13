@@ -17,14 +17,6 @@ public partial class Sim : Node
 		END_WIN		// end state 
 	}
 
-	// used to determine what can use what types of connections 
-	public enum TransitType
-	{
-		PEDESTRIAN = 0,
-		BICYCLE = 1,
-		CAR = 2
-	}
-
 	public static Sim Instance { get; private set; }
 
 	public SimGrid grid;
@@ -75,7 +67,7 @@ public partial class Sim : Node
 		{
 			var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.CAR, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
 			var vehicle = new SimVehicle(vehicleType, new Vector2(0, 0));
-			SimAgent agent = new SimAgent(vehicle);
+			SimAgent agent = new SimAgent(0.3f, new Vector2Int(0,0)); //TODO randomize starting position to start in homes
 			agents.Add(agent);
 			AddChild(agent);
 		}
@@ -91,7 +83,7 @@ public partial class Sim : Node
 
 		foreach (var agent in agents)
 		{
-			agent.UpdateAgent();
+			agent.Tick();
 		}
 
 		EmissionsMeter.UpdateEmissions(agents);

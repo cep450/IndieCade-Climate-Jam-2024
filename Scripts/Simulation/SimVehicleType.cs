@@ -16,7 +16,6 @@ public partial class SimVehicleType : Resource
 [System.Flags]
 	public enum TransportMode
 	{
-		NONE = 0x00,
 		PEDESTRIAN = 0x01,	// by foot. walk on sidewalks and other paths
 		CAR = 0x02,			// single occupancy road vehicles. drive on roads, use parking lots
 		BIKE = 0x04,		// single occupancy cycling/scooter/ect options. drive on bike lanes, use bike racks 

@@ -6,14 +6,26 @@ public partial class Pathfinding : Node
 {
 	SimGrid grid;
 
+	//TODO for now we're just having agents move between sources (like houses) and destinations (like workplaces), but we might want to do this differently to account for more types of places. 
+	// maybe do it mini metro style where they just pick a random type?
+
 	public override void _Ready() 
 	{
 		grid = GetNode<SimGrid>("SimGrid");
 	}
 
+	// Find the least weighted path to a tile of the destination type.
+	// Constitutes both finding a path and determining which tile to travel to next. 
+	public void FindNearestDestination(SimInfraType.DestinationType type) {
+		//TODO
+	}
+
 	//TODO rework this so agents don't use a single type of infrastructure to find a path- let them transfer between them
 	void FindPath(SimTile startTile, SimTile targetTile, SimInfraType.InfraType type)
 	{
+
+		GD.Print("called FindPath");
+
 		List<SimTile> openSet = new List<SimTile>();
 		HashSet<SimTile> closedSet = new HashSet<SimTile>();
 		openSet.Add(startTile);
@@ -65,6 +77,7 @@ public partial class Pathfinding : Node
 
 	void RetracePath(SimTile startTile, SimTile endTile)
 	{
+
 		List<SimTile> path = new List<SimTile>();
 		SimTile currentTile = endTile;
 

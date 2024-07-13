@@ -8,10 +8,17 @@ public partial class SimGrid : Node
 	/* 
 	 * A 2-dimensional grid of tiles.
 	 */
-
-	public SimTile[][] grid;
+	
 	private int width = 10; // Set your grid width
 	private int height = 10; // Set your grid height
+
+	public int Width { get => width; private set {}}
+	public int Height { get => height; private set {}}
+
+	public SimTile[][] grid;
+	
+	//TODO for choosing destinations maybe we do all the pathfinding during that choice, where we aren't pathfinding to a particular tile but instead pathfinding until we find a particular type
+	//public SimInfraType.DestinationType destinationGrid; // parallel grid just storing destination types for pathfinding 
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -36,11 +43,6 @@ public partial class SimGrid : Node
 				//grid[x][y].SetInfrastructure(infra);
 			}
 		}
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
 	}
 
 	public SimTile GetTile(int x, int y)

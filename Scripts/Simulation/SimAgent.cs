@@ -13,44 +13,58 @@ public partial class SimAgent : Node
 	bool canDrive;
 
 	private float happiness; //would every agent have a happiness value?
-	public Vector2 currentPosition;
-	public Vector2 targetPosition;
-	private SimPath pathFinder;
-
 	public SimVehicle Vehicle { get; private set; }
 
-	public SimAgent(SimVehicle vehicle)
-	{
-		Vehicle = vehicle;
-	}
+	// smooth in-world positions for moving tile to tile
+	public Vector2 currentPosition;
+	public Vector2 targetPosition;
 
-	public override void _Ready()
+	// coordinate position on grid for moving destination to destination 
+	public Vector2Int currentCoordinates;
+	public Vector2Int targetCoordinates;
+
+	private SimPath pathFinder;
+
+	private SimInfraType.DestinationType lastDestinationType;
+
+	// Randomize properties for this agent when it first spawns. does it have access to a car? how does it weight different factors?
+	public SimAgent(float _nonDriverProbability, Vector2Int coordinates)
 	{
+		//TODO generate driver yes/no 
+		currentCoordinates = coordinates;
 		pathFinder = GetNode<SimPath>("../SimPath"); //get a reference to the pathfinder
-		Generate();
 		SetRandomTarget();
 	}
 
-	// Randomize properties for this agent when it first spawns. does it have access to a car? how does it weight different factors?
-	public void Generate() {
-		//TODO set canDrive based on nonDriverProbability 
-	}
-
+	// every game tick. update position smoothly
 	public override void _Process(double delta)
-	{
-		UpdateAgent();
-	}
-
-	public void UpdateAgent()
 	{
 		Vehicle._Process(GetProcessDeltaTime());
 	}
 
+	// every simulation tick.
+	public void Tick() {
+		Vehicle.Tick();
+
+		//TODO check if arrived at destination 
+		// TODO if so, 
+			// generate support based on the route 
+			//ChooseDestinationType() and ChooseTarget() 
+	}
+
+	//TODO we'll be replacing this with ChooseTarget()
 	private void SetRandomTarget()
 	{
-		int gridSize = 10; //example number 
-		targetPosition = new Vector2(GD.RandRange(0, gridSize), GD.RandRange(0, gridSize));
+		targetPosition = new Vector2(GD.RandRange(0, Sim.Instance.grid.Width), GD.RandRange(0, Sim.Instance.grid.Height));
 		Vehicle.SetTarget(targetPosition);
+	}
+
+	void ChooseDestinationType() {
+
+	}
+
+	void ChooseTarget() {
+
 	}
 }
 
