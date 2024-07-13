@@ -1,6 +1,6 @@
 extends Node
 
-enum {
+enum Type {
 	HOUSE,
 	SIDEWALK,
 	BUILDING,

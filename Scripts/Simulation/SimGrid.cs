@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using static infra_type;
 
 public partial class SimGrid : Node
 {
