@@ -29,10 +29,10 @@ public partial class Sim : Node
 	public static Sim Instance { get; private set; }
 
 	public SimGrid grid;
-	private SimEmissionsMeter emissionsMeter;
-	private SimSupportPool supportPool;
+	public SimEmissionsMeter EmissionsMeter { get; private set; }
+	public SimSupportPool SupportPool { get; private set; }
 	private List<SimAgent> agents;
-	public SimClock clock;
+	public SimClock Clock { get; private set; }
 
 
 	// shortcuts 
@@ -48,10 +48,10 @@ public partial class Sim : Node
 	{
 		Instance = this;
 		grid = GetNode<SimGrid>("SimGrid");
-		emissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
-		supportPool = GetNode<SimSupportPool>("SimSupportPool");
+		EmissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
+		SupportPool = GetNode<SimSupportPool>("SimSupportPool");
 		agents = new List<SimAgent>();
-		clock = GetNode<SimClock>("SimClock");
+		Clock = GetNode<SimClock>("SimClock");
 
 		for (int i = 0; i < 10; i++)
 		{
@@ -61,7 +61,6 @@ public partial class Sim : Node
 			agents.Add(agent);
 			AddChild(agent);
 		}
-
 
 	}
 
@@ -75,7 +74,9 @@ public partial class Sim : Node
 			agent.UpdateAgent();
 		}
 
-		emissionsMeter.UpdateEmissions(agents);
+		EmissionsMeter.UpdateEmissions(agents);
+
+		EmissionsMeter.EndTick();
 
 	}
 
@@ -172,6 +173,6 @@ public partial class Sim : Node
 
 		// things that need to happen in all game overs 
 		private void GameOver() {
-			clock.Pause();
+			Clock.Pause();
 		}
 }

@@ -51,11 +51,19 @@ public partial class SimTile : Node
 	}
 
 	//TODO what do we want to pass in here? an index in the list? a type? an instance? maybe overrides for all of these. one that takes a mask could even add/remove multiple at once.
-	public void RemoveInfra(SimInfraType type) {
+	public bool RemoveInfra(SimInfraType type) {
 		
-		//TODO check if this tile has this infrastrcture 
+		//check if this tile has this infrastrcture 
+		if(!HasInfraType(type.type)) {
+			//tile does not have the infrastructure 
+			return false;
+		}
 
 		//TODO validate that we can afford to remove this 
+		if(!CanAffordToDestroyInfra(type)) {
+			// cannot afford to remove this
+			return false;
+		}
 
 		// since we know the tile has it, remove from the mask 
 		InfraTypesMask ^= type.type;
@@ -63,18 +71,30 @@ public partial class SimTile : Node
 		//TODO remove from list 
 		//TODO update any connections 
 		//TODO update/remove it visually 
+
+		return true;
 	}
 
 	// can this infrastructure to be added to this tile, given the infrastructure it already has?
 	public bool CanAddInfraType(SimInfraType type) {
-		//TODO
-		return true;
+
+		// ex. types mask 0101
+		// compatibility mask 0001: incompatible 
+		// compat mask 1000: compatible
+
+		return (InfraTypesMask & type.incompatibilityMask) != 0;
+	}
+
+	public bool HasInfraType(SimInfraType.InfraType type) {
+		return (InfraTypesMask & type) != 0;
 	}
 
 	// does the player have enough currency to buy this infrastructure?
 	public bool CanAffordToAddInfra(SimInfraType type) {
-		//TODO 
-		return true;
+		return Sim.Instance.SupportPool.HaveEnoughSupport(type.costToBuild);
+	}
+	public bool CanAffordToDestroyInfra(SimInfraType type) {
+		return Sim.Instance.SupportPool.HaveEnoughSupport(type.costToDestroy);
 	}
 
 	public void AddEdge(SimEdge edge)

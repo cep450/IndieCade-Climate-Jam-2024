@@ -52,4 +52,6 @@ public partial class SimInfraType : Resource
 	[Export] public int costToBuild;
 	[Export] public int costToDestroy;
 
+	[Export] public InfraType incompatibilityMask; //1 = incompatible, 0 = compatible
+
 }
