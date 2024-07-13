@@ -1,0 +1,183 @@
+[gd_scene load_steps=12 format=3 uid="uid://b7nklxcsqhvid"]
+
+[ext_resource type="Texture2D" uid="uid://62v1bsk4wofe" path="res://Assets/Tutorial/Menu/BG/Tutorial-Menu_BLANK.png" id="1_4qvgk"]
+[ext_resource type="Texture2D" uid="uid://b1kvucqw8ds5d" path="res://Assets/Tutorial/Menu/Navigation Buttons/Return_Navigation.png" id="2_20alr"]
+[ext_resource type="Texture2D" uid="uid://do5xbntgega5e" path="res://Assets/Tutorial/Menu/Navigation Buttons/Overview_Navigation.png" id="3_hlx1n"]
+[ext_resource type="Texture2D" uid="uid://ivjhatlja2iu" path="res://Assets/Tutorial/Menu/Navigation Buttons/Controls_Navigation.png" id="4_03a3y"]
+[ext_resource type="Texture2D" uid="uid://bdkf7nldtg237" path="res://Assets/Tutorial/Menu/BG/Tutorial-Menu-Controls_BLANK.png" id="5_l2rms"]
+[ext_resource type="Texture2D" uid="uid://4ijp3bifg5tb" path="res://Assets/Tutorial/Menu/BG/Tutorial-Overview_BLANK.png" id="6_37x1q"]
+[ext_resource type="Texture2D" uid="uid://dhwgjmhplgh3g" path="res://Assets/Tutorial/Menu/Navigation Buttons/Controls_RArrow.png" id="6_acpls"]
+[ext_resource type="Texture2D" uid="uid://r5r321m8g3xe" path="res://Assets/Tutorial/Menu/Images/O_P1_IMG.png" id="7_2ju6c"]
+[ext_resource type="Texture2D" uid="uid://go0ryb8wxrbv" path="res://Assets/Tutorial/Menu/Navigation Buttons/Controls_LArrow.png" id="7_pj0p5"]
+[ext_resource type="Texture2D" uid="uid://bs4sbwnfg4037" path="res://Assets/Tutorial/Menu/Navigation Buttons/Overview_LArrow.png" id="8_nhkdt"]
+[ext_resource type="Texture2D" uid="uid://dcadhpgjlm3wn" path="res://Assets/Tutorial/Menu/Navigation Buttons/Overview_RArrow.png" id="9_11seg"]
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tutorial front" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial front"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial front"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.608041, 0.61819)
+texture = ExtResource("1_4qvgk")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Tutorial front"]
+
+[node name="Button" type="Button" parent="Tutorial front"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 17.0
+offset_right = 354.0
+offset_bottom = 125.0
+scale = Vector2(0.652683, 0.566698)
+icon = ExtResource("2_20alr")
+flat = true
+
+[node name="Button2" type="Button" parent="Tutorial front"]
+offset_left = 386.0
+offset_top = 453.0
+offset_right = 800.0
+offset_bottom = 562.0
+scale = Vector2(0.652683, 0.566698)
+icon = ExtResource("3_hlx1n")
+flat = true
+
+[node name="Button3" type="Button" parent="Tutorial front"]
+offset_left = 384.0
+offset_top = 363.0
+offset_right = 798.0
+offset_bottom = 472.0
+scale = Vector2(0.652683, 0.566698)
+icon = ExtResource("4_03a3y")
+flat = true
+
+[node name="Controls" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Controls"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Controls"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.608041, 0.61819)
+texture = ExtResource("5_l2rms")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Controls"]
+
+[node name="Button" type="Button" parent="Controls"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 17.0
+offset_right = 354.0
+offset_bottom = 125.0
+scale = Vector2(0.652683, 0.566698)
+icon = ExtResource("2_20alr")
+flat = true
+
+[node name="Button2" type="Button" parent="Controls"]
+offset_left = 472.0
+offset_top = 534.0
+offset_right = 549.0
+offset_bottom = 643.0
+scale = Vector2(0.652683, 0.566698)
+icon = ExtResource("6_acpls")
+flat = true
+
+[node name="Button4" type="Button" parent="Controls"]
+offset_left = 366.0
+offset_top = 533.0
+offset_right = 443.0
+offset_bottom = 642.0
+scale = Vector2(0.652683, 0.566698)
+icon = ExtResource("7_pj0p5")
+flat = true
+
+[node name="Overview" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Overview"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Overview"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.608041, 0.61819)
+texture = ExtResource("6_37x1q")
+
+[node name="TextureRect" type="TextureRect" parent="Overview/TextureRect"]
+offset_left = 577.0
+offset_top = 354.0
+offset_right = 1361.0
+offset_bottom = 985.0
+scale = Vector2(0.608041, 0.61819)
+texture = ExtResource("7_2ju6c")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Overview"]
+
+[node name="Button" type="Button" parent="Overview"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 17.0
+offset_right = 354.0
+offset_bottom = 125.0
+scale = Vector2(0.652683, 0.566698)
+icon = ExtResource("2_20alr")
+flat = true
+
+[node name="Button2" type="Button" parent="Overview"]
+offset_left = 354.0
+offset_top = 536.0
+offset_right = 438.0
+offset_bottom = 645.0
+scale = Vector2(0.652683, 0.566698)
+icon = ExtResource("8_nhkdt")
+flat = true
+
+[node name="Button4" type="Button" parent="Overview"]
+offset_left = 474.0
+offset_top = 536.0
+offset_right = 558.0
+offset_bottom = 645.0
+scale = Vector2(0.652683, 0.566698)
+icon = ExtResource("9_11seg")
+flat = true
