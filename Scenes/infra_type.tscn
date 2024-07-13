@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://bhixs3wudgjvb"]
+[gd_scene load_steps=3 format=3 uid="uid://kqm6p4sr3c4o"]
 
 [ext_resource type="Script" path="res://Scripts/infra_type.gd" id="1_0sv2k"]
 [ext_resource type="Resource" uid="uid://cg5jjhr8j4r7s" path="res://Resources/InfraTypes/house.tres" id="2_etsxy"]

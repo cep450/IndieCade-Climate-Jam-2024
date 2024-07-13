@@ -17,15 +17,15 @@ public partial class Pathfinding : Node
 		List<SimTile> openSet = new List<SimTile>();
 		HashSet<SimTile> closedSet = new HashSet<SimTile>();
 		openSet.Add(startTile);
-    public override void _Ready() 
-    {
-        grid = GetNode<SimGrid>("SimGrid");
-    }
-    void FindPath(SimTile startTile, SimTile targetTile, SimInfra.InfraType type)
-    {
-        List<SimTile> openSet = new List<SimTile>();
-        HashSet<SimTile> closedSet = new HashSet<SimTile>();
-        openSet.Add(startTile);
+	public override void _Ready() 
+	{
+		grid = GetNode<SimGrid>("SimGrid");
+	}
+	void FindPath(SimTile startTile, SimTile targetTile, SimInfra.InfraType type)
+	{
+		List<SimTile> openSet = new List<SimTile>();
+		HashSet<SimTile> closedSet = new HashSet<SimTile>();
+		openSet.Add(startTile);
 
 		while (openSet.Count > 0) 
 		{
