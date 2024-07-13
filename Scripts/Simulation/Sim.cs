@@ -30,13 +30,21 @@ public partial class Sim : Node
 	public SimTile GetTile(int x, int y) {
 		return Instance.grid.GetTile(x, y);
 	}
-	public List<SimInfra> GetInfra(int tileX, int tileY) {
-		return Instance.grid.GetTile(tileX, tileY).Infra;
+
+	public Godot.Collections.Array GetInfra(int tileX, int tileY) {
+		// Convert List<SimInfra> to Godot.Collections.Array
+		Godot.Collections.Array array = new Godot.Collections.Array();
+		//List<SimInfra> InfraList = Instance.grid.GetTile(tileX, tileY).Infra;
+		//for (int i = 0; i < InfraList.Count; i++)
+		//{
+			//array.Add(InfraList[i]);
+		//}
+		return array;
 	}
+	
 	
 	//test func
 	public void SayHi() { GD.Print("hi"); }
-
 
 	public override void _Ready()
 	{
@@ -55,7 +63,6 @@ public partial class Sim : Node
 			agents.Add(agent);
 			AddChild(agent);
 		}
-
 
 	}
 

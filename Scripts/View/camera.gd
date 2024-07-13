@@ -8,7 +8,6 @@ extends Camera3D
 
 
 func _input(event):
-	
 	# WASD to Pan
 	if event is InputEventKey:
 		if event.pressed:
