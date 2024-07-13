@@ -13,8 +13,13 @@ config_version=5
 config/name="Carbonbusters"
 run/main_scene="res://Scenes/main.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
-boot_splash/bg_color=Color(0.0379285, 0.168149, 0.105155, 1)
+boot_splash/bg_color=Color(0.133196, 0.133196, 0.133196, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://Scenes/global.tscn"
 
 [dotnet]
 
