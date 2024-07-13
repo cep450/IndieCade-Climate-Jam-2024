@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7nklxcsqhvid"]
+
+[ext_resource type="Texture2D" uid="uid://62v1bsk4wofe" path="res://Assets/Tutorial/Menu/BG/Tutorial-Menu_BLANK.png" id="1_2fkv3"]
+
+[node name="ControlsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tutorial front" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Tutorial front"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial front"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_2fkv3")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
