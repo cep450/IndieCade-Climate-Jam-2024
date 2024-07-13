@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgot4326v75gn"]
+
+[ext_resource type="ArrayMesh" uid="uid://mvnof6wcfo50" path="res://Resources/TileMeshes/Road1Intersection.tres" id="1_svtjn"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p75ic"]
+points = PackedVector3Array(0.496312, 0.4, 0.496312, -0.488496, 2.77556e-17, -0.488496, -0.488496, 2.77556e-17, 0.488496, -0.496312, 0.4, -0.496312, 0.488496, 2.77556e-17, -0.488496, -0.496312, 0.4, 0.496312, 0.496312, 0.4, -0.496312, 0.488496, 2.77556e-17, 0.488496)
+
+[node name="Road1Intersection" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_svtjn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_p75ic")

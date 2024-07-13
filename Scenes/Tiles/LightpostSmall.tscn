@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://upuuhwb1a5cx"]
+
+[ext_resource type="ArrayMesh" uid="uid://cs844cowav1yq" path="res://Resources/TileMeshes/LightpostSmall.tres" id="1_tpsmp"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0xhje"]
+points = PackedVector3Array(-0.485652, -0.00972538, -0.0131, -0.489397, -0.0207067, 0.014566, -0.484965, 0.249296, -0.0075655, -0.394253, 0.24706, -0.00977921, -0.484965, 0.24706, 0.00792205, -0.467265, -0.0207067, 0.014566, -0.394253, 0.24706, 0.0101386, -0.467265, -0.0207067, -0.0142066, -0.489397, 0.00589952, -0.0142066, -0.469047, 0.262677, -0.00526926, -0.392022, 0.24706, -0.0075655, -0.414164, 0.251504, 0.0101386, -0.399283, 0.260538, -0.00527175, -0.489397, 0.00369165, 0.014566, -0.414164, 0.251504, -0.00977921, -0.392022, 0.24706, 0.00792205, -0.394253, 0.251504, 0.0101386, -0.467265, 0.00589952, -0.0142066, -0.467265, 0.00369165, 0.014566, -0.4081, 0.262353, -0.00525671, -0.394253, 0.251504, -0.00977921, -0.47741, 0.259132, -0.00521642, -0.392022, 0.251504, -0.0075655, -0.475386, 0.251571, 0.00527815, -0.392022, 0.251504, 0.00792205, -0.489397, 0.00589952, 0.0123523)
+
+[node name="LightpostSmall" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_tpsmp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_0xhje")

@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://cci5cewdr1gfp"]
+
+[node name="LightpostLarge" type="StaticBody3D"]

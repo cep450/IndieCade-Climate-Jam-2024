@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://rlibvpsxc5dk"]
+
+[ext_resource type="ArrayMesh" uid="uid://cd3xt1x3wf6d7" path="res://Resources/TileMeshes/LightpostLarger.tres" id="1_ltcj4"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vigrm"]
+points = PackedVector3Array(-0.389035, 0.318276, -0.0100148, -0.495304, -0.00499715, -0.024, -0.500897, -0.0228968, 0.0291397, -0.489695, 0.323883, 0.0123576, -0.495291, 0.307098, -0.0156051, -0.46173, -0.0228968, 0.0291397, -0.46173, -0.0228968, -0.0267968, -0.389035, 0.307098, 0.0123576, -0.389035, 0.307098, -0.0156051, -0.500897, 0.0106738, -0.0267968, -0.405821, 0.335097, 0.0123576, -0.500897, 0.0106738, 0.0291397, -0.477095, 0.327575, -0.00954473, -0.39463, 0.318276, -0.0156051, -0.478505, 0.335097, 0.0123576, -0.46173, 0.0106738, 0.0291397, -0.489695, 0.318276, -0.0156051, -0.46173, 0.0106738, -0.0267968, -0.407293, 0.328366, -0.00959414, -0.389035, 0.318276, 0.0123576, -0.500897, 0.0162806, -0.021201, -0.500897, 0.0162806, 0.0235438, -0.389035, 0.312705, -0.0156051)
+
+[node name="LightpostLarger" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ltcj4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_vigrm")

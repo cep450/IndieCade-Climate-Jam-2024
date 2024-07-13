@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjfkpjbi4jhdj"]
+
+[ext_resource type="ArrayMesh" uid="uid://eamvglxubqr3" path="res://Resources/TileMeshes/SidewalkStraight.tres" id="1_2nq6j"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y51wf"]
+points = PackedVector3Array(-0.487936, 0.374867, -0.507937, 0.480317, 0.406606, 0.507937, 0.480317, 0.374867, 0.507937, 0.480317, 0.406606, -0.507937, -0.487936, 0.406606, 0.507937, -0.487936, 0.374867, 0.507937, 0.480317, 0.374867, -0.507937, -0.487936, 0.406606, -0.507937)
+
+[node name="SidewalkStraight" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_2nq6j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_y51wf")

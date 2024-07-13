@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://27rmywx45nfa"]
+
+[ext_resource type="ArrayMesh" uid="uid://kfukmrc0av1k" path="res://Resources/TileMeshes/BikelaneStraight.tres" id="1_1fevl"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kub6s"]
+points = PackedVector3Array(-0.339846, 0.386646, -0.503846, 0.337077, 0.386646, 0.503846, 0.337077, 0.386646, -0.503846, -0.339846, 0.386646, 0.503846)
+
+[node name="BikelaneStraight" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_1fevl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_kub6s")
