@@ -2,9 +2,12 @@ extends Camera3D
 
 @export var PAN_SPEED: float
 @export var ZOOM_SPEED: float
+@export var ROTATION_SPEED: float
+## Used to prevent camera from getting to close to scene.
+@export var MIN_CAM_Y_POS: float
+
 
 func _input(event):
-	
 	# WASD to Pan
 	if event is InputEventKey:
 		if event.pressed:
@@ -24,9 +27,8 @@ func _input(event):
 			position.z -= move_vector.x * ZOOM_SPEED * get_process_delta_time()
 	
 	if event is InputEventMouseMotion && Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		$"../World".rotate_y(event.relative.x * get_process_delta_time())
-		pass
-		# Code to pane via move.
+		$"../World".rotate_y(event.relative.x * ROTATION_SPEED * get_process_delta_time() / 10.0)
+		# Code for panning vai mouse move
 		#position.x -= event.relative.x * PAN_SPEED * get_process_delta_time()
 		#position.z -= event.relative.y * PAN_SPEED * get_process_delta_time()
 		
@@ -36,13 +38,14 @@ func _input(event):
 		var direction = 0
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
 			# Zoom in
-			direction = 1
+			if (position.y > MIN_CAM_Y_POS):
+				direction = 1
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			# Zoom out
 			direction = -1
 		if direction != 0:	
 			var cam_forward = -transform.basis.z.normalized()
-			position -= direction * ZOOM_SPEED * cam_forward * event.get_factor() * get_process_delta_time()
+			position += direction * ZOOM_SPEED * cam_forward * event.get_factor() * get_process_delta_time()
 	
 		# Check for selection
 		if event.button_index == MOUSE_BUTTON_LEFT && event.pressed:

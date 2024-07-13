@@ -13,7 +13,7 @@ public partial class SimVehicle : Node
 	public Vector2 TargetPosition { get; private set; }
 	public bool IsInUse { get; private set; }
 
-	public float Emissions { get; private set; }
+	public float Emissions { get => VehicleType.Emissions; private set {} }
 
 	public SimVehicle(SimVehicleType vehicleType, Vector2 startPosition)
 	{
@@ -33,11 +33,14 @@ public partial class SimVehicle : Node
 		if (IsInUse)
 		{
 			UpdateVehiclePosition((float)delta);
-			SimEmissionsMeter.Instance.AddEmissions(Emissions * (float)delta);
-
 		}
 	}
 
+	public void Tick() {
+		if(IsInUse) {
+			SimEmissionsMeter.Instance.AddEmissions(Emissions);
+		}
+	}
 
 	public void UpdateVehiclePosition(float delta)
 	{

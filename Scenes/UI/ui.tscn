@@ -1,0 +1,83 @@
+[gd_scene load_steps=4 format=3 uid="uid://csswthorupplo"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="1_meoay"]
+[ext_resource type="Texture2D" uid="uid://umsji8qst4u6" path="res://Assets/Gameplay/Meters/Emissions/EMeter_Blank2_200x200.png" id="2_asuck"]
+[ext_resource type="Texture2D" uid="uid://cyxn8ardfqubi" path="res://Assets/Gameplay/Meters/Emissions/EMeter_Load_100%.png" id="3_5oxgu"]
+
+[node name="UI" type="Control" node_paths=PackedStringArray("progress_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_meoay")
+progress_bar = NodePath("EmissionsMeter/TextureProgressBar")
+
+[node name="EmissionsMeter" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1138.0
+offset_top = -1.0
+offset_right = -1098.0
+offset_bottom = 39.0
+grow_horizontal = 0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="EmissionsMeter"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 510.0
+offset_right = 229.0
+offset_bottom = 741.0
+scale = Vector2(0.56, 0.56)
+value = 100.0
+fill_mode = 5
+texture_under = ExtResource("2_asuck")
+texture_progress = ExtResource("3_5oxgu")
+texture_progress_offset = Vector2(15, 14)
+tint_under = Color(1, 1, 1, 0.745098)
+
+[node name="Percentage" type="Label" parent="EmissionsMeter"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 560.0
+offset_right = 104.0
+offset_bottom = 615.0
+theme_override_font_sizes/font_size = 30
+text = "50%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Emissions" type="Label" parent="EmissionsMeter"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 544.0
+offset_right = 91.0
+offset_bottom = 561.0
+theme_override_font_sizes/font_size = 12
+text = "Emissions"
+
+[node name="BuildButtons" type="HBoxContainer" parent="."]
+layout_mode = 2
+offset_left = 101.0
+offset_top = 586.0
+offset_right = 1057.0
+offset_bottom = 632.0
+
+[node name="SpeedController" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 404.0
+offset_top = 586.0
+offset_right = 762.0
+offset_bottom = 632.0
+
+[node name="SaveButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Save
+
+"
