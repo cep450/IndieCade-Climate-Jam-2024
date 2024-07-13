@@ -40,6 +40,7 @@ texture_progress_offset = Vector2(15, 14)
 tint_under = Color(1, 1, 1, 0.745098)
 
 [node name="Percentage" type="Label" parent="EmissionsMeter"]
+layout_mode = 0
 offset_left = 24.0
 offset_top = 560.0
 offset_right = 104.0
@@ -72,7 +73,8 @@ offset_top = 586.0
 offset_right = 762.0
 offset_bottom = 632.0
 
-[node name="Button" type="Button" parent="."]
+[node name="SaveButton" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
