@@ -21,7 +21,7 @@ func _ready():
 
 func _process(_delta):
 	progress_bar.value += 100
-	var percent = int(50 * progress_bar.value/progress_bar.max_value)
+	var percent = int(100 * progress_bar.value/progress_bar.max_value)
 	$EmissionsMeter/Percentage.text = str(percent) + "%"
 	#progress_bar.value += emissions_meter.GetEmissions()
 	
