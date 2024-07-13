@@ -10,9 +10,7 @@ public partial class Pathfinding : Node
     {
         grid = GetNode<SimGrid>("SimGrid");
     }
-
-	//TODO rework this so agents don't use a single type of infrastructure to find a path- let them transfer between them
-    void FindPath(SimTile startTile, SimTile targetTile, SimInfraType.InfraType type)
+    void FindPath(SimTile startTile, SimTile targetTile, SimInfra.InfraType type)
     {
         List<SimTile> openSet = new List<SimTile>();
         HashSet<SimTile> closedSet = new HashSet<SimTile>();
@@ -40,7 +38,7 @@ public partial class Pathfinding : Node
                 return;
             }
 
-            foreach (SimTile neighbour in grid.GetNeighboursOfType(currentTile, type))
+            foreach (SimTile neighbour in grid.GetNeighbours(currentTile, type))
             {
                 if (closedSet.Contains(neighbour)) //ignore closed neighbours
                 {
