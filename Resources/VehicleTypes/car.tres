@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SimVehicleType" load_steps=2 format=3 uid="uid://dcoj7t4fono74"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/SimVehicleType.cs" id="1_rrgad"]
+
+[resource]
+script = ExtResource("1_rrgad")
+name = "car"
+transportMode = 2
+emissionsPerYear = 4.6
+maxSpeed = 55.0
+agentCapacity = 4

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SimVehicleType" load_steps=2 format=3 uid="uid://da6t5g12gei57"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/SimVehicleType.cs" id="1_jd8q7"]
+
+[resource]
+script = ExtResource("1_jd8q7")
+name = "Pedestrian"
+transportMode = 1
+emissionsPerTick = 0.0
+maxSpeed = 3.0
+agentCapacity = 1

@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+[GlobalClass]
 public partial class SimVehicleType : Resource
 {
 
@@ -39,20 +40,16 @@ public partial class SimVehicleType : Resource
 
 	[Export] public string name; // used by the game ui
 	[Export] private TransportMode transportMode;
-	[Export] private float emissionsPerTick;
-	[Export] private float maxSpeed;
+	[Export] private float emissionsPerYear;
+	//private float emissionsPerTick; // derived from per year based on time scale in Sim
+	[Export] private float maxSpeed;	// in miles per hour for familiarity and being able to look up data. In the future we can display this in different units by converting the number the UI displays, even if the internal number is the same.
 	[Export] private int agentCapacity = 1; // how many agents can travel in it at a time
 
 	public TransportMode Mode { get => transportMode; private set {} }	// Determines what type/s of infrastructure it can travel on. 
 	public float SpeedFactor { get => maxSpeed; private set {} }	// Maximum speed.
-	public float Emissions { get => emissionsPerTick; private set {} }	// Emissions per tick when in use.
+	public float Emissions { get {	// Emissions per tick when in use. Derived from emissions/year based on time scale.
+		return emissionsPerYear / SimClock.ticksPerGameYear; //TODO find a more efficient way where we only calculate this once 
+	} private set {} }	
 	public HashSet<SimEdge.TransportMode> SupportedEdges { get; private set; }
 
-	public SimVehicleType(TransportMode mode, float speedFactor, float emissions, HashSet<SimEdge.TransportMode> supportedEdges)
-	{
-		Mode = mode;
-		SpeedFactor = speedFactor;
-		Emissions = emissions;
-		SupportedEdges = supportedEdges;
-	}
 }

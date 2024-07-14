@@ -65,8 +65,6 @@ public partial class Sim : Node
 
 		for (int i = 0; i < numberAgents; i++)
 		{
-			var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.CAR, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
-			var vehicle = new SimVehicle(vehicleType, new Vector2(0, 0));
 			SimAgent agent = new SimAgent(0.3f, new Vector2Int(0,0)); //TODO randomize starting position to start in homes
 			agents.Add(agent);
 			AddChild(agent);
@@ -174,6 +172,13 @@ public partial class Sim : Node
 		public void GameOverSupport() {
 			GameOver();
 			GD.Print("Game Over: Support lost, you were removed from office!");
+			gameState = GameState.END_LOSS;
+		}
+
+		// 
+		public void GameOverTime() {
+			GameOver();
+			GD.Print("Game Over: The target year to reduce emissions by has passed! You broke your campaign promise and you were removed from office!");
 			gameState = GameState.END_LOSS;
 		}
 

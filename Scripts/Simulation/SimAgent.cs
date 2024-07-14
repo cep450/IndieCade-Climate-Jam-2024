@@ -32,6 +32,7 @@ public partial class SimAgent : Node
 	{
 		//TODO generate driver yes/no 
 		currentCoordinates = coordinates;
+		//TODO set Vehicle to pedestrian by default, we'll need a list to get this 
 		pathFinder = GetNode<SimPath>("../SimPath"); //get a reference to the pathfinder
 		SetRandomTarget();
 	}
@@ -65,6 +66,14 @@ public partial class SimAgent : Node
 
 	void ChooseTarget() {
 
+	}
+
+	void MoveToNextTile() {
+		//TODO change the vehicle type to match the connection vehicle type if needed 
+		//var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.CAR, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
+		//var vehicle = new SimVehicle(vehicleType, new Vector2(0, 0));
+		//TODO update the previous and next tile capacities to account for this agent moving between them 
+			//TODO if the next tile is full, wait on the current tile, and check again next tick 
 	}
 }
 

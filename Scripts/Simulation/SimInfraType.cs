@@ -39,6 +39,7 @@ public partial class SimInfraType : Resource
 
 	//destination type, for choosing where to pathfind 
 	public enum DestinationType {
+		NOT_DESTINATION,
 		HOME, 
 		WORKPLACE,
 		COMMERCIAL,
@@ -50,7 +51,10 @@ public partial class SimInfraType : Resource
 	[Export] public InfraType type;
 	[Export] public SimVehicleType.TransportMode transportModes; // what transport modes can use this infrastructure?
 	[Export] public DestinationType destinationType; // if this is a destination, what type is it?
-	[Export] public int capacity;	// how many vehicles or agents of this type can be on this infrastructure? TODO do we want to be able to have different capacities for different types of vehicle modes? or maybe it's the vehicle types that control how much space they take up.
+
+	// For vehicle-holding tiles, capacity represents the number of vehicles of that type that the tile can hold at a time. 
+	// For destination tiles, capacity represents the number of agents the building can fit, or for HOMEs, how many agents are added to the map when this infra is added or generates on the map
+	[Export] public int capacity;
 	[Export] public bool canTransfer = false; // can a transit type switch to a different transit type?
 									 //I think each tile should be able to have a list of what transit types it can support, and then we can check if the agent's current transit type is in that list when pathfinding,
 									 //instead of assigning a transit type to each tile. This way, we can have tiles that support multiple transit types, and we can have tiles that support no transit types.

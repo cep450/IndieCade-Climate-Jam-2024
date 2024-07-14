@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://rja62av5e6nn"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_aum5u"]
+
+[resource]
+script = ExtResource("1_aum5u")
+type = 64
+transportModes = 1
+destinationType = 0
+capacity = 0
+canTransfer = false
+maxSpeed = 1.0
+safety = 0.0
+costToBuild = 0
+costToDestroy = 0
+incompatibilityMask = 1103
