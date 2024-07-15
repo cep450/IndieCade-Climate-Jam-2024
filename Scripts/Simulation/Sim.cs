@@ -6,7 +6,7 @@ using static SimInfra;
 public partial class Sim : Node
 {
 	/*
-	 * 
+	 * Controls simulation game state and execution order.
 	 */
 
 	// game state 
@@ -16,7 +16,6 @@ public partial class Sim : Node
 		END_LOSS,	// end state
 		END_WIN		// end state 
 	}
-	public GameState gameState = GameState.GAMEPLAY;
 
 	// used to determine what can use what types of connections 
 	public enum TransitType
@@ -29,11 +28,14 @@ public partial class Sim : Node
 	public static Sim Instance { get; private set; }
 
 	public SimGrid grid;
-	private SimEmissionsMeter emissionsMeter;
-	private SimSupportPool supportPool;
+	public SimEmissionsMeter EmissionsMeter { get; private set; }
+	public SimSupportPool SupportPool { get; private set; }
 	private List<SimAgent> agents;
-	public SimClock clock;
+	public SimClock Clock { get; private set; }
 
+	public GameState gameState = GameState.GAMEPLAY;
+
+	int numberAgents = 25; //TODO put this in level info once this is merged 
 
 	// shortcuts 
 	public SimTile GetTile(int x, int y) {
@@ -58,12 +60,18 @@ public partial class Sim : Node
 	{
 		Instance = this;
 		grid = GetNode<SimGrid>("SimGrid");
-		emissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
-		supportPool = GetNode<SimSupportPool>("SimSupportPool");
+		EmissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
+		SupportPool = GetNode<SimSupportPool>("SimSupportPool");
 		agents = new List<SimAgent>();
-		clock = GetNode<SimClock>("SimClock");
+		Clock = GetNode<SimClock>("SimClock");
 
-		for (int i = 0; i < 10; i++)
+		BeginGame();
+	}
+
+	// Start the simulation for the first time. 
+	public void BeginGame() {
+
+		for (int i = 0; i < numberAgents; i++)
 		{
 			var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.CAR, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
 			var vehicle = new SimVehicle(vehicleType, new Vector2(0, 0));
@@ -72,6 +80,8 @@ public partial class Sim : Node
 			AddChild(agent);
 		}
 
+		gameState = GameState.GAMEPLAY;
+		Clock.UnPause();
 	}
 
 	// Simulation logic tick. 
@@ -84,7 +94,9 @@ public partial class Sim : Node
 			agent.UpdateAgent();
 		}
 
-		emissionsMeter.UpdateEmissions(agents);
+		EmissionsMeter.UpdateEmissions(agents);
+
+		EmissionsMeter.EndTick();
 
 	}
 
@@ -181,6 +193,6 @@ public partial class Sim : Node
 
 		// things that need to happen in all game overs 
 		private void GameOver() {
-			clock.Pause();
+			Clock.Pause();
 		}
 }

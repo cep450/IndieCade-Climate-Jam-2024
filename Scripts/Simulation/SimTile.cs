@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 
 public partial class SimTile : Node
@@ -21,11 +22,28 @@ public partial class SimTile : Node
 	public int gridX;
 	public int gridY;
 
+	//GD visual tile 
+	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/visual_tile.gd");
+	GodotObject visualTile;
+
 	public SimTile(Vector2 position)
 	{
 		Position = position;
 		Edges = new List<SimEdge>();
-		InfraTypesMask = SimInfraType.InfraType.NONE;
+		InfraTypesMask = default(SimInfraType.InfraType);
+		visualTile = (GodotObject)visualTileScript.New();
+	}
+
+
+	// load infrastructure on a tile based on a type mask
+	public void AddInfraFromMask(SimInfraType.InfraType mask) {
+
+		for(int i = 0; i < sizeof(uint); i++) {
+			SimInfraType.InfraType bit = (SimInfraType.InfraType)Math.Pow(2, i);
+			if((mask & bit) != 0) {
+				AddInfra(SimInfraType.TypeFromEnum(bit));
+			}
+		}
 	}
 
 	// Add infrastructure to the tile.
@@ -38,53 +56,82 @@ public partial class SimTile : Node
 			}
 		}
 
+		// pay the cost 
+		Sim.Instance.SupportPool.SpendSupport(type.costToBuild);
+
 		//update the mask representing all the types on this tile 
 		InfraTypesMask |= type.type;
 
-		//TODO instantiate new infrastructure
-		//TODO add it to the list 
+		//instantiate new infrastructure
+		SimInfra newInfra = new SimInfra(type);
+
+		//add it to the list 
+		Infra.Add(newInfra);
+
 		//TODO add edges accordingly 
-		//TODO update/add it visually
+
+		//update/add it visually
+		visualTile.Call("update_visuals");
 
 		//return if adding was successful
 		return true;
 	}
 
 	//TODO what do we want to pass in here? an index in the list? a type? an instance? maybe overrides for all of these. one that takes a mask could even add/remove multiple at once.
-	public void RemoveInfra(SimInfraType type) {
+	public bool RemoveInfra(SimInfraType type) {
 		
-		//TODO check if this tile has this infrastrcture 
+		//check if this tile has this infrastrcture 
+		if(!HasInfraType(type.type)) {
+			//tile does not have the infrastructure 
+			return false;
+		}
 
-		//TODO validate that we can afford to remove this 
+		//validate that we can afford to remove this 
+		if(!CanAffordToDestroyInfra(type)) {
+			// cannot afford to remove this
+			return false;
+		}
+
+		// pay the cost 
+		Sim.Instance.SupportPool.SpendSupport(type.costToDestroy);
 
 		// since we know the tile has it, remove from the mask 
 		InfraTypesMask ^= type.type;
 
 		//TODO remove from list 
 		//TODO update any connections 
-		//TODO update/remove it visually 
+
+		//update/remove it visually 
+		visualTile.Call("update_visuals");
+
+		return true;
 	}
 
 	// can this infrastructure to be added to this tile, given the infrastructure it already has?
 	public bool CanAddInfraType(SimInfraType type) {
-		//TODO
-		return true;
+
+		// ex. types mask 0101
+		// compatibility mask 0001: incompatible 
+		// compat mask 1000: compatible
+
+		return (InfraTypesMask & type.incompatibilityMask) != 0;
+	}
+
+	public bool HasInfraType(SimInfraType.InfraType type) {
+		return (InfraTypesMask & type) != 0;
 	}
 
 	// does the player have enough currency to buy this infrastructure?
 	public bool CanAffordToAddInfra(SimInfraType type) {
-		//TODO 
-		return true;
+		return Sim.Instance.SupportPool.HaveEnoughSupport(type.costToBuild);
+	}
+	public bool CanAffordToDestroyInfra(SimInfraType type) {
+		return Sim.Instance.SupportPool.HaveEnoughSupport(type.costToDestroy);
 	}
 
 	public void AddEdge(SimEdge edge)
 	{
 		Edges.Add(edge);
-	}
-
-	// Based on the infrastructure on this tile and the tiles around it, update its appearance. 
-	public void UpdateVisualTile() {
-		//TODO
 	}
 
 	//TODO I have no idea what this means, could someone make the names more descriptive and/or comment this? --Jaden 
