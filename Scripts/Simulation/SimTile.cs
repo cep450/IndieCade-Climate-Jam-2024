@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class SimTile : Node
 {
@@ -11,6 +12,7 @@ public partial class SimTile : Node
 
 	public List<SimInfra> Infra { get; private set; } // infrastructure instances currently on this tile
 	public SimInfraType.InfraType InfraTypesMask { get; private set; }
+	public SimInfraType.DestinationType DestinationType { get; private set; }
 	public List<SimEdge> Edges { get; private set; }
 	public Vector2 Position { get; private set; }
 
@@ -62,6 +64,11 @@ public partial class SimTile : Node
 		//update the mask representing all the types on this tile 
 		InfraTypesMask |= type.type;
 
+		// update the destination type of the tile
+		if(type.destinationType != SimInfraType.DestinationType.NOT_DESTINATION) {
+			DestinationType = type.destinationType;
+		}
+
 		//instantiate new infrastructure
 		SimInfra newInfra = new SimInfra(type);
 
@@ -97,6 +104,11 @@ public partial class SimTile : Node
 
 		// since we know the tile has it, remove from the mask 
 		InfraTypesMask ^= type.type;
+
+		// remove destination type if this infra provided one 
+		if(type.destinationType != SimInfraType.DestinationType.NOT_DESTINATION) {
+			DestinationType = SimInfraType.DestinationType.NOT_DESTINATION;
+		}
 
 		//TODO remove from list 
 		//TODO update any connections 

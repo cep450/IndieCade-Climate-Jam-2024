@@ -30,8 +30,12 @@ public partial class Sim : Node
 	int numberAgents = 25; //TODO put this in level info once this is merged 
 
 	// shortcuts 
+	//TODO it might make more sense for these to be in SimGrid
 	public SimTile GetTile(int x, int y) {
 		return Instance.grid.GetTile(x, y);
+	}
+	public SimInfraType.DestinationType GetDestinationType(int x, int y) {
+		return Instance.grid.GetTile(x,y).DestinationType;
 	}
 
 	public Godot.Collections.Array GetInfra(int tileX, int tileY) {

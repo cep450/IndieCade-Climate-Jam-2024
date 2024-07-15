@@ -25,14 +25,16 @@ public partial class SimAgent : Node
 
 	private SimPath pathFinder;
 
-	private SimInfraType.DestinationType lastDestinationType;
+	private SimInfraType.DestinationType destinationType;
 
+	//TODO should we instantiate these in a different way? or is visual agent the node instance?
 	// Randomize properties for this agent when it first spawns. does it have access to a car? how does it weight different factors?
 	public SimAgent(float _nonDriverProbability, Vector2Int coordinates)
 	{
 		//TODO generate driver yes/no 
 		currentCoordinates = coordinates;
-		//TODO set Vehicle to pedestrian by default, we'll need a list to get this 
+		//TODO set Vehicle to pedestrian by default, we'll need a list to get this
+		destinationType = Sim.Instance.GetTile(currentCoordinates.x, currentCoordinates.y).DestinationType;
 		pathFinder = GetNode<SimPath>("../SimPath"); //get a reference to the pathfinder
 		SetRandomTarget();
 	}
@@ -45,6 +47,7 @@ public partial class SimAgent : Node
 
 	// every simulation tick.
 	public void Tick() {
+
 		Vehicle.Tick();
 
 		//TODO check if arrived at destination 
@@ -60,12 +63,19 @@ public partial class SimAgent : Node
 		Vehicle.SetTarget(targetPosition);
 	}
 
-	void ChooseDestinationType() {
+	// choose a destination type that's not the current type and not NOT_DESTINATION 
+	void ChooseNewDestinationType() {
 
-	}
+		int numTypes = Enum.GetNames(typeof(SimInfraType.DestinationType)).Length - 1;
+		int shift = GD.RandRange(1, numTypes - 1);
+		
+		//GD C# doesn't have repeat/wrap so I have to implement it myself 
+		int newTypeInt = (int)destinationType + shift;
+		while(newTypeInt > numTypes) {
+			newTypeInt -= numTypes;
+		}
 
-	void ChooseTarget() {
-
+		destinationType = (SimInfraType.DestinationType)newTypeInt;
 	}
 
 	void MoveToNextTile() {
