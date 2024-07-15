@@ -6,8 +6,15 @@ using System.Collections.Generic;
 public partial class SimAgent : Node
 {
 
-	// tuning values for use when generating initial values 
-	
+	public enum State {
+		AT_DESTINATION, 
+		TRAVELLING
+	}
+	public State state {get; private set; }
+
+	//TODO if we want to make the pathfinding process non-blocking to avoid lag, we could have them pathfind while they're chilling at their location
+
+
 	//TODO make agents weight different factors differently 
 
 	bool canDrive;
@@ -35,6 +42,8 @@ public partial class SimAgent : Node
 		currentCoordinates = coordinates;
 		//TODO set Vehicle to pedestrian by default, we'll need a list to get this
 		destinationType = Sim.Instance.GetTile(currentCoordinates.X, currentCoordinates.Y).DestinationType;
+		state = State.AT_DESTINATION;
+
 		pathFinder = GetNode<SimPath>("../SimPath"); //get a reference to the pathfinder
 		SetRandomTarget();
 	}
@@ -48,12 +57,32 @@ public partial class SimAgent : Node
 	// every simulation tick.
 	public void Tick() {
 
-		Vehicle.Tick();
+		if(state == State.AT_DESTINATION) {
 
-		//TODO check if arrived at destination 
-		// TODO if so, 
-			// generate support based on the route 
-			//ChooseDestinationType() and ChooseTarget() 
+			//TODO check if we want to pathfind immediately or wait
+			//TODO if we want to pathfind...
+				//TODO ChooseDestinationType() 
+				//TODO ChooseTarget() (i.e. pathfind)
+				//TODO once pathfinding is finished, change state back to State.TRAVELLING
+
+		} else if(state == State.TRAVELLING) {
+
+			//TODO check if arrived at destination
+				// if so, call Arrived();
+				// otherwise, 
+					//call Vehicle.Tick();
+					// check if we're ready to move to the next tile 
+						// if we are, check if the next tile has open capacity
+							// if it does, MoveToNextTile();
+			Vehicle.Tick();
+		}
+
+	}
+
+	private void Arrived() {
+		//TODO set State to AT_DESTINATION
+		//TODO generate support based on the route 
+
 	}
 
 	//TODO we'll be replacing this with ChooseTarget()
@@ -78,10 +107,15 @@ public partial class SimAgent : Node
 		destinationType = (SimInfraType.DestinationType)newTypeInt;
 	}
 
-	void MoveToNextTile() {
+	void MoveToNextTile(SimTile nextTile) {
+
+		//TODO make sure this gets called
+
 		//TODO change the vehicle type to match the connection vehicle type if needed 
+
 		//var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.CAR, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
 		//var vehicle = new SimVehicle(vehicleType, new Vector2(0, 0));
+
 		//TODO update the previous and next tile capacities to account for this agent moving between them 
 			//TODO if the next tile is full, wait on the current tile, and check again next tick 
 	}
