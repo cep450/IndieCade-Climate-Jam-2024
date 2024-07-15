@@ -50,6 +50,8 @@ public partial class SimInfraType : Resource
 
 	[Export] public InfraType type;
 	[Export] public SimVehicleType.TransportMode transportModes; // what transport modes can use this infrastructure?
+	[Export] public SimVehicleType.TransportMode blocks;
+	[Export] public SimVehicleType.TransportMode crosses;
 	[Export] public DestinationType destinationType; // if this is a destination, what type is it?
 
 	// For vehicle-holding tiles, capacity represents the number of vehicles of that type that the tile can hold at a time. 
