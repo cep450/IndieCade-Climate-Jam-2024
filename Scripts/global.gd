@@ -8,4 +8,4 @@ enum InfraType {
 	BUILDING,
 }
 
-@export var resource: Array[SimInfraType]
+##@export var resource: Array[SimInfraType]

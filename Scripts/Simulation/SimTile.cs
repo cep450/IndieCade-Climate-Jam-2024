@@ -9,7 +9,7 @@ public partial class SimTile : Node
 	 */
 
 	public List<SimInfra> Infra { get; private set; } // infrastructure instances currently on this tile
-	public SimInfraType.InfraType InfraTypesMask { get; private set; }
+	public SimInfraType.InfraType InfraTypesMask { get; set; }
 	public List<SimEdge> Edges { get; private set; }
 	public Vector2 Position { get; private set; }
 
