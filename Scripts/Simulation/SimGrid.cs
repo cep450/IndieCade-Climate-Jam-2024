@@ -42,11 +42,13 @@ public partial class SimGrid : Node
 
 		SimInfraType house = new SimInfraType();
 		house.type = SimInfraType.InfraType.HOUSE;
-		GetTile(3,1).AddInfra(house);
+		/*GetTile(3,1).AddInfra(house);
 		GetTile(7,2).AddInfra(house);
 		GetTile(4,6).AddInfra(house);
 		GetTile(9,9).AddInfra(house);
-		SaveGridAsResource();
+		SaveGridAsResource();*/
+		//var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/SavedData.tres");
+		//LoadGridFromResource(startData);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -111,5 +113,16 @@ public partial class SimGrid : Node
 		}
 		ResourceSaver.Save(startData, "res://Scripts/Simulation/CustomResources/SavedData.tres");
 		
+	}
+
+	public void LoadGridFromResource(StartData resourceToLoad)
+	{
+		for (int x = 0; x < width; x++)
+		{
+			for (int y = 0; y < height; y++)
+			{
+				GetTile(x,y).InfraTypesMask = resourceToLoad.gridData[x].gridData[y].type;
+			}
+		}
 	}
 }
