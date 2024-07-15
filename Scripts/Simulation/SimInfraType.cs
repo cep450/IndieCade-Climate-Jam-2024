@@ -74,4 +74,8 @@ public partial class SimInfraType : Resource
 		return types[index];
 	}
 
+	// If we want specific types or groups of types to have extra behavior, they can extend this class and override these functions, which are called when the infra is added to or removed from a tile.
+	public virtual void AddedToTile(SimTile tile) {}
+	public virtual void RemovedFromTile(SimTile tile) {}
+
 }

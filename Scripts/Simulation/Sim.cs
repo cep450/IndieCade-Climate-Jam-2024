@@ -27,7 +27,10 @@ public partial class Sim : Node
 
 	public GameState gameState = GameState.GAMEPLAY;
 
-	int numberAgents = 25; //TODO put this in level info once this is merged 
+
+	//TODO put this in level info once this is merged 
+	float nonDriverProbability = 0.3f; // does this agent have access to a car? TODO see if we can find this figure-- most immediately accessible statistics only measure adults, or households
+	
 
 	// shortcuts 
 	//TODO it might make more sense for these to be in SimGrid
@@ -67,12 +70,14 @@ public partial class Sim : Node
 	// Start the simulation for the first time. 
 	public void BeginGame() {
 
+/*
 		for (int i = 0; i < numberAgents; i++)
 		{
 			SimAgent agent = new SimAgent(0.3f, new Vector2Int(0,0)); //TODO randomize starting position to start in homes
 			agents.Add(agent);
 			AddChild(agent);
 		}
+		*/
 
 		gameState = GameState.GAMEPLAY;
 		Clock.UnPause();
@@ -196,4 +201,22 @@ public partial class Sim : Node
 		private void GameOver() {
 			Clock.Pause();
 		}
+
+
+
+	//TODO we probably want agent stuff in its own script like an AgentManger-- we can refactor this after the jam since we're tight on time 
+
+	public void AddAgents(int number, Vector2I position) {
+
+		for(int i = 0; i < number; i++) {
+			SimAgent agent = new SimAgent(nonDriverProbability, position); //TODO get chance to not have a car from level data 
+			agents.Add(agent);
+			AddChild(agent);
+		}
+	}
+
+	//TODO right now for simplicity this just removes arbitrary agents since they're considered identical, but in the future, we could pick out specific ones to remove like having a Home save the agents attached to it and remove those specific agents if removed
+	public void RemoveAgents(int number) {
+		agents.RemoveRange(agents.Count - number + 1, agents.Count - 1);
+	}
 }

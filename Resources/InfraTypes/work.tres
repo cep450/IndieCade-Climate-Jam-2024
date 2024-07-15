@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_dpm1l")
 type = 2
-transportModes = 0
+transportModes = 5
 destinationType = 2
 capacity = 10
 canTransfer = false

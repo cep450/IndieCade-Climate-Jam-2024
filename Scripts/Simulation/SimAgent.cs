@@ -7,7 +7,7 @@ public partial class SimAgent : Node
 {
 
 	// tuning values for use when generating initial values 
-	float nonDriverProbability = 0.3f; // does this agent have access to a car? TODO see if we can find this figure-- most immediately accessible statistics only measure adults, or households
+	
 	//TODO make agents weight different factors differently 
 
 	bool canDrive;
@@ -20,8 +20,8 @@ public partial class SimAgent : Node
 	public Vector2 targetPosition;
 
 	// coordinate position on grid for moving destination to destination 
-	public Vector2Int currentCoordinates;
-	public Vector2Int targetCoordinates;
+	public Vector2I currentCoordinates;
+	public Vector2I targetCoordinates;
 
 	private SimPath pathFinder;
 
@@ -29,12 +29,12 @@ public partial class SimAgent : Node
 
 	//TODO should we instantiate these in a different way? or is visual agent the node instance?
 	// Randomize properties for this agent when it first spawns. does it have access to a car? how does it weight different factors?
-	public SimAgent(float _nonDriverProbability, Vector2Int coordinates)
+	public SimAgent(float nonDriverProbability, Vector2I coordinates)
 	{
-		//TODO generate driver yes/no 
+		canDrive = GD.Randf() > nonDriverProbability;
 		currentCoordinates = coordinates;
 		//TODO set Vehicle to pedestrian by default, we'll need a list to get this
-		destinationType = Sim.Instance.GetTile(currentCoordinates.x, currentCoordinates.y).DestinationType;
+		destinationType = Sim.Instance.GetTile(currentCoordinates.X, currentCoordinates.Y).DestinationType;
 		pathFinder = GetNode<SimPath>("../SimPath"); //get a reference to the pathfinder
 		SetRandomTarget();
 	}
@@ -84,6 +84,18 @@ public partial class SimAgent : Node
 		//var vehicle = new SimVehicle(vehicleType, new Vector2(0, 0));
 		//TODO update the previous and next tile capacities to account for this agent moving between them 
 			//TODO if the next tile is full, wait on the current tile, and check again next tick 
+	}
+
+	// Calculate how much this agent weights this connection between 2 tiles.
+	float WeightConnection(SimTile from, SimTile to, SimVehicleType.TransportMode transportMode) {
+
+		//TODO add factors like safety and whatever trees might give you from infrastructure on the subsequent tile 
+		
+		//TODO consider the max speed of [whatever's smaller: the current vehicle or the infrastructure for that vehicle]
+
+		//TODO consider emissions of the current vehicle 
+
+		return 0f;
 	}
 }
 

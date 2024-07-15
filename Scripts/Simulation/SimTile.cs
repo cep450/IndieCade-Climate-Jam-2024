@@ -14,7 +14,7 @@ public partial class SimTile : Node
 	public SimInfraType.InfraType InfraTypesMask { get; private set; }
 	public SimInfraType.DestinationType DestinationType { get; private set; }
 	public List<SimEdge> Edges { get; private set; }
-	public Vector2 Position { get; private set; }
+	public Vector2I Position { get; private set; }
 
 	public int gCost;
 	public int hCost;
@@ -28,7 +28,7 @@ public partial class SimTile : Node
 	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/visual_tile.gd");
 	GodotObject visualTile;
 
-	public SimTile(Vector2 position)
+	public SimTile(Vector2I position)
 	{
 		Position = position;
 		Edges = new List<SimEdge>();
@@ -77,6 +77,9 @@ public partial class SimTile : Node
 
 		//TODO add edges accordingly 
 
+		// if this infra has any special behavior when added
+		type.AddedToTile(this);
+
 		//update/add it visually
 		visualTile.Call("update_visuals");
 
@@ -112,6 +115,9 @@ public partial class SimTile : Node
 
 		//TODO remove from list 
 		//TODO update any connections 
+
+		// if this infra has any special behavior when removed
+		type.RemovedFromTile(this);
 
 		//update/remove it visually 
 		visualTile.Call("update_visuals");

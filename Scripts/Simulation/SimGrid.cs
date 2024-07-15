@@ -34,9 +34,11 @@ public partial class SimGrid : Node
 			grid[x] = new SimTile[height];
 			for (int y = 0; y < height; y++)
 			{				
-				Vector2 position = new Vector2(x, y);
+				Vector2I position = new Vector2I(x, y);
 				grid[x][y] = new SimTile(position); // Initialize each tile with a position
 				AddChild(grid[x][y]); // Add each tile as a child node (optional)
+
+				//TODO add infrastructure to this tile based on the level file.
 				
 				// For testing, make each tile a road.
 				//SimInfra infra = new SimInfrastructure(, 1.0f);
