@@ -1,0 +1,318 @@
+[gd_scene load_steps=21 format=3 uid="uid://csswthorupplo"]
+
+[ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="1_meoay"]
+[ext_resource type="Texture2D" uid="uid://umsji8qst4u6" path="res://Assets/Gameplay/Meters/Emissions/EMeter_Blank2_200x200.png" id="2_asuck"]
+[ext_resource type="Texture2D" uid="uid://cyxn8ardfqubi" path="res://Assets/Gameplay/Meters/Emissions/EMeter_Load_100%.png" id="3_5oxgu"]
+[ext_resource type="Texture2D" uid="uid://b041etpehhf40" path="res://Assets/Gameplay/Menu/Time Control Menu - 200x64.png" id="4_2umie"]
+[ext_resource type="Texture2D" uid="uid://viynfkwd4xwt" path="res://Assets/Gameplay/Menu/Build/Build Menu - 3-Icon - 288x92.png" id="4_liuu0"]
+[ext_resource type="Texture2D" uid="uid://c40bw17qsr7of" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (3).png" id="5_6kb1e"]
+[ext_resource type="Texture2D" uid="uid://vkq85ptfwrjt" path="res://Assets/Gameplay/Menu/Time Control Menu - Play - Icons.png" id="5_ddpla"]
+[ext_resource type="Texture2D" uid="uid://6tot00v555i5" path="res://Assets/Gameplay/Menu/Build/Build Menu - 4-Icon - 384x92.png" id="6_7gq45"]
+[ext_resource type="Texture2D" uid="uid://bkqc4jqrf5lho" path="res://Assets/Gameplay/Menu/Time Control Menu - Pause - Icons.png" id="6_iw8eh"]
+[ext_resource type="Texture2D" uid="uid://cdn0sgifthjsk" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (4).png" id="7_ybij0"]
+[ext_resource type="Texture2D" uid="uid://4xvm0qlr156r" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (5).png" id="8_yo5m0"]
+[ext_resource type="Texture2D" uid="uid://bqbqavuprx7qq" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (8).png" id="9_02ca7"]
+[ext_resource type="Texture2D" uid="uid://dxmrw0k72x1kn" path="res://Assets/Gameplay/Meters/Happiness/HMeter_1A_76_x_76.png" id="10_stcum"]
+[ext_resource type="Texture2D" uid="uid://br51dirvvhuem" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (6).png" id="10_udx15"]
+[ext_resource type="Texture2D" uid="uid://on4l5gto86hf" path="res://Assets/Gameplay/Meters/Happiness/HMeter_2A_76_x_76.png" id="11_c756u"]
+[ext_resource type="Texture2D" uid="uid://bl8d5i74np52" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (7).png" id="11_w05hm"]
+[ext_resource type="Texture2D" uid="uid://bqxamlsop5u51" path="res://Assets/Gameplay/Icons/Icon_Clock_92x92.png" id="11_yl1gm"]
+[ext_resource type="Texture2D" uid="uid://cbuyqjgrm2r32" path="res://Assets/Gameplay/Meters/Happiness/HMeter_3A_76_x_76.png" id="12_bhl8g"]
+[ext_resource type="Texture2D" uid="uid://do4p2vmcksbw1" path="res://Assets/Gameplay/Menu/Build/Build Menu - Back Icon.png" id="12_qoj2x"]
+[ext_resource type="Texture2D" uid="uid://dv666v0i7ufn" path="res://Assets/Gameplay/Menu/Time Control Menu - FF - Icons.png" id="16_1f6rw"]
+
+[node name="UI" type="Control" node_paths=PackedStringArray("progress_bar")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -11.0
+offset_right = 17.0
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_meoay")
+progress_bar = NodePath("EmissionsMeter/TextureProgressBar")
+
+[node name="EmissionsMeter" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1160.0
+offset_top = -166.0
+offset_right = -1120.0
+offset_bottom = -126.0
+grow_horizontal = 0
+scale = Vector2(1.25, 1.25)
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="EmissionsMeter"]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 510.0
+offset_right = 230.0
+offset_bottom = 741.0
+scale = Vector2(0.56, 0.56)
+value = 100.0
+fill_mode = 5
+texture_under = ExtResource("2_asuck")
+texture_progress = ExtResource("3_5oxgu")
+texture_progress_offset = Vector2(15, 14)
+tint_under = Color(1, 1, 1, 0.745098)
+
+[node name="Percentage" type="Label" parent="EmissionsMeter"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 560.0
+offset_right = 104.0
+offset_bottom = 615.0
+theme_override_font_sizes/font_size = 30
+text = "50%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Emissions" type="Label" parent="EmissionsMeter"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 544.0
+offset_right = 91.0
+offset_bottom = 561.0
+theme_override_font_sizes/font_size = 12
+text = "Emissions"
+
+[node name="Build" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 731.0
+offset_top = 578.0
+offset_right = 731.0
+offset_bottom = 671.0
+scale = Vector2(1.25, 1.25)
+
+[node name="BuildButtons" type="HBoxContainer" parent="Build"]
+layout_mode = 2
+offset_left = -215.363
+offset_right = 72.6367
+offset_bottom = 93.0
+scale = Vector2(0.497545, 0.511431)
+
+[node name="3 button background" type="TextureButton" parent="Build/BuildButtons"]
+layout_mode = 2
+disabled = true
+texture_normal = ExtResource("4_liuu0")
+
+[node name="Build" type="TextureButton" parent="Build/BuildButtons/3 button background"]
+layout_mode = 0
+offset_left = 33.3333
+offset_top = 15.3846
+offset_right = 83.3333
+offset_bottom = 86.3846
+texture_normal = ExtResource("5_6kb1e")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Tree" type="TextureButton" parent="Build/BuildButtons/3 button background"]
+layout_mode = 0
+offset_left = 116.667
+offset_top = 15.3846
+offset_right = 166.667
+offset_bottom = 86.3846
+texture_normal = ExtResource("7_ybij0")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Lamp" type="TextureButton" parent="Build/BuildButtons/3 button background"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 15.3846
+offset_right = 250.0
+offset_bottom = 86.3846
+texture_normal = ExtResource("8_yo5m0")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="4 button background" type="TextureButton" parent="Build/BuildButtons/3 button background"]
+visible = false
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 93.0
+disabled = true
+texture_normal = ExtResource("6_7gq45")
+
+[node name="Build sidewalk" type="TextureButton" parent="Build/BuildButtons/3 button background/4 button background"]
+visible = false
+layout_mode = 0
+offset_left = 33.3333
+offset_top = 15.3846
+offset_right = 83.3333
+offset_bottom = 86.3846
+texture_normal = ExtResource("9_02ca7")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Build Bikelane" type="TextureButton" parent="Build/BuildButtons/3 button background/4 button background"]
+visible = false
+layout_mode = 0
+offset_left = 116.667
+offset_top = 15.3846
+offset_right = 166.667
+offset_bottom = 86.3846
+texture_normal = ExtResource("10_udx15")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Build Crosswalk" type="TextureButton" parent="Build/BuildButtons/3 button background/4 button background"]
+visible = false
+layout_mode = 0
+offset_left = 200.0
+offset_top = 15.3846
+offset_right = 250.0
+offset_bottom = 86.3846
+texture_normal = ExtResource("11_w05hm")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Back button" type="TextureButton" parent="Build/BuildButtons/3 button background/4 button background"]
+visible = false
+layout_mode = 0
+offset_left = 289.749
+offset_top = 14.0782
+offset_right = 339.749
+offset_bottom = 85.0782
+texture_normal = ExtResource("12_qoj2x")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="SpeedController" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 586.0
+offset_right = 496.0
+offset_bottom = 651.0
+scale = Vector2(0.656984, 0.571196)
+
+[node name="Background Container" type="TextureButton" parent="SpeedController"]
+layout_mode = 2
+disabled = true
+button_mask = 0
+texture_normal = ExtResource("4_2umie")
+
+[node name="Play Background" type="TextureButton" parent="SpeedController/Background Container"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 63.0
+disabled = true
+button_mask = 0
+texture_normal = ExtResource("5_ddpla")
+
+[node name="Pause" type="Button" parent="SpeedController/Background Container/Play Background"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 47.0
+offset_bottom = 52.0
+flat = true
+
+[node name="Play" type="Button" parent="SpeedController/Background Container/Play Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.354
+anchor_right = 0.354
+offset_left = 12.926
+offset_top = 12.0
+offset_right = 43.926
+offset_bottom = 50.0
+flat = true
+
+[node name="SpeedUp" type="Button" parent="SpeedController/Background Container/Play Background"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.423
+anchor_right = 1.423
+offset_left = -130.563
+offset_top = 11.0001
+offset_right = -76.563
+offset_bottom = 49.0001
+flat = true
+
+[node name="Paused pressed background" type="TextureButton" parent="SpeedController/Background Container/Play Background"]
+visible = false
+layout_mode = 0
+offset_left = 0.132645
+offset_top = 0.501518
+offset_right = 181.133
+offset_bottom = 60.5015
+disabled = true
+button_mask = 0
+texture_normal = ExtResource("6_iw8eh")
+
+[node name="Speed pressed background" type="TextureButton" parent="SpeedController/Background Container/Play Background"]
+visible = false
+layout_mode = 0
+offset_left = 0.132645
+offset_top = 0.501518
+offset_right = 181.133
+offset_bottom = 60.5015
+disabled = true
+button_mask = 0
+texture_normal = ExtResource("16_1f6rw")
+
+[node name="SaveButton" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Save
+
+"
+
+[node name="Happiness" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 6.0
+offset_top = 7.0
+offset_right = 46.0
+offset_bottom = 47.0
+
+[node name="Happiness Meter" type="VBoxContainer" parent="Happiness"]
+layout_mode = 2
+offset_left = 970.0
+offset_top = 23.0
+offset_right = 1048.0
+offset_bottom = 106.0
+scale = Vector2(0.76, 0.76)
+
+[node name="Happiness full" type="TextureButton" parent="Happiness/Happiness Meter"]
+layout_mode = 2
+texture_normal = ExtResource("10_stcum")
+
+[node name="Happiness mid" type="TextureButton" parent="Happiness/Happiness Meter/Happiness full"]
+visible = false
+layout_mode = 0
+texture_normal = ExtResource("11_c756u")
+
+[node name="Happiness sad" type="TextureButton" parent="Happiness/Happiness Meter/Happiness full/Happiness mid"]
+visible = false
+layout_mode = 0
+texture_normal = ExtResource("12_bhl8g")
+
+[node name="Timer" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 1054.0
+offset_top = 90.8
+offset_right = 1134.0
+offset_bottom = 90.8
+
+[node name="Timer" type="VBoxContainer" parent="Timer"]
+layout_mode = 2
+offset_top = -64.8
+offset_right = 80.0
+offset_bottom = 12.2
+scale = Vector2(0.80001, 0.8)
+
+[node name="TextureButton" type="TextureButton" parent="Timer/Timer"]
+layout_mode = 2
+texture_normal = ExtResource("11_yl1gm")

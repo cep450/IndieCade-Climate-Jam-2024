@@ -1,6 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbwli37pmewjn"]
+[gd_scene load_steps=6 format=3 uid="uid://bbwli37pmewjn"]
 
 [ext_resource type="ArrayMesh" uid="uid://bjxro24xtg73t" path="res://Resources/TileMeshes/Lightpost.tres" id="1_806fd"]
+
+[sub_resource type="Animation" id="Animation_nmqxd"]
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/SpotLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.727]
+}
+
+[sub_resource type="Animation" id="Animation_maa31"]
+resource_name = "spotlight"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D/SpotLight3D:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 28.2, 30.2, 60),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 3.5, 3.5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kba14"]
+_data = {
+"RESET": SubResource("Animation_nmqxd"),
+"spotlight": SubResource("Animation_maa31")
+}
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_y6db1"]
 points = PackedVector3Array(-0.461339, 0.124621, 0.0138532, -0.488023, -0.00431007, -0.012823, -0.46578, -0.00431007, -0.012823, -0.488023, 0.271323, -0.012823, -0.394665, 0.271323, -0.012823, -0.394665, 0.271323, 0.0138532, -0.488023, 0.271323, 0.0138532, -0.46578, -0.013223, 0.00940366, -0.483563, -0.013223, 0.00940366, -0.394665, 0.24464, -0.012823, -0.394665, 0.24464, 0.0138532, -0.488023, 0.120165, 0.0138532, -0.46578, -0.013223, -0.00837611, -0.482904, -0.011, -0.00823719, -0.46578, 0.120165, 0.0138532)
@@ -9,6 +48,21 @@ points = PackedVector3Array(-0.461339, 0.124621, 0.0138532, -0.488023, -0.004310
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_806fd")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.405337, 0.254569, -0.000866577)
+light_color = Color(0.980033, 0.728943, 0.312479, 1)
+light_energy = 3.727
+spot_range = 0.725
+spot_angle = 34.33
+spot_angle_attenuation = 3.24901
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D/SpotLight3D"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_kba14")
+}
+autoplay = "spotlight"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_y6db1")

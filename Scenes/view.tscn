@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://us6n2vt8kwhw"]
+[gd_scene load_steps=6 format=3 uid="uid://d10lbhx7ndgo7"]
 
 [ext_resource type="Script" path="res://Scripts/View/world.gd" id="1_k5je3"]
 [ext_resource type="Environment" uid="uid://ccufda2p8xb10" path="res://Resources/environment.tres" id="2_o416c"]
@@ -16,6 +16,7 @@ size = Vector2(10, 10)
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -1.90571, 2.95144, 3.20244)
 environment = ExtResource("2_o416c")
+current = true
 script = ExtResource("3_rja75")
 PAN_SPEED = 10.0
 ZOOM_SPEED = 20.0
@@ -25,6 +26,7 @@ script = ExtResource("1_k5je3")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1426, 12.6158, -23.4911)
+visible = false
 light_energy = 10.0
 omni_range = 1000.0
 

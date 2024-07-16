@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj4k06eqxyvoh"]
+
+[ext_resource type="ArrayMesh" uid="uid://81h4knaandb1" path="res://Resources/TileMeshes/Road1Curve.tres" id="1_pr8cp"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sdiob"]
+points = PackedVector3Array(0.496312, 0.4, 0.496312, -0.488496, 2.77556e-17, -0.488496, -0.488496, 2.77556e-17, 0.488496, -0.496312, 0.4, -0.496312, 0.488496, 2.77556e-17, -0.488496, -0.496312, 0.4, 0.496312, 0.496312, 0.4, -0.496312, 0.488496, 2.77556e-17, 0.488496)
+
+[node name="Road1Curve" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_pr8cp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_sdiob")

@@ -6,8 +6,16 @@ using static SimInfra;
 public partial class Sim : Node
 {
 	/*
-	 * 
+	 * Controls simulation game state and execution order.
 	 */
+
+	// game state 
+	public enum GameState {
+		TUTORIAL,	// the game has not begun yet
+		GAMEPLAY,	// the game is currently running, but the clock/simulation might be paused
+		END_LOSS,	// end state
+		END_WIN		// end state 
+	}
 
 	// used to determine what can use what types of connections 
 	public enum TransitType
@@ -20,40 +28,60 @@ public partial class Sim : Node
 	public static Sim Instance { get; private set; }
 
 	public SimGrid grid;
-	private SimEmissionsMeter emissionsMeter;
-	private SimSupportPool supportPool;
+	public SimEmissionsMeter EmissionsMeter { get; private set; }
+	public SimSupportPool SupportPool { get; private set; }
 	private List<SimAgent> agents;
-	public SimClock clock;
+	public SimClock Clock { get; private set; }
 
+	public GameState gameState = GameState.GAMEPLAY;
+
+	int numberAgents = 25; //TODO put this in level info once this is merged 
 
 	// shortcuts 
 	public SimTile GetTile(int x, int y) {
 		return Instance.grid.GetTile(x, y);
 	}
-	public List<SimInfra> GetInfra(int tileX, int tileY) {
-		return Instance.grid.GetTile(tileX, tileY).Infra;
-	}
 
+	public Godot.Collections.Array GetInfra(int tileX, int tileY) {
+		// Convert List<SimInfra> to Godot.Collections.Array
+		Godot.Collections.Array array = new Godot.Collections.Array();
+		//List<SimInfra> InfraList = Instance.grid.GetTile(tileX, tileY).Infra;
+		//for (int i = 0; i < InfraList.Count; i++)
+		//{
+			//array.Add(InfraList[i]);
+		//}
+		return array;
+	}
+	
+	//test func
+	public void SayHi() { GD.Print("hi"); }
 
 	public override void _Ready()
 	{
 		Instance = this;
 		grid = GetNode<SimGrid>("SimGrid");
-		emissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
-		supportPool = GetNode<SimSupportPool>("SimSupportPool");
+		EmissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
+		SupportPool = GetNode<SimSupportPool>("SimSupportPool");
 		agents = new List<SimAgent>();
-		clock = GetNode<SimClock>("SimClock");
+		Clock = GetNode<SimClock>("SimClock");
 
-		for (int i = 0; i < 10; i++)
+		BeginGame();
+	}
+
+	// Start the simulation for the first time. 
+	public void BeginGame() {
+
+		for (int i = 0; i < numberAgents; i++)
 		{
-			var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.Car, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
+			var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.CAR, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
 			var vehicle = new SimVehicle(vehicleType, new Vector2(0, 0));
 			SimAgent agent = new SimAgent(vehicle);
 			agents.Add(agent);
 			AddChild(agent);
 		}
 
-
+		gameState = GameState.GAMEPLAY;
+		Clock.UnPause();
 	}
 
 	// Simulation logic tick. 
@@ -66,7 +94,9 @@ public partial class Sim : Node
 			agent.UpdateAgent();
 		}
 
-		emissionsMeter.UpdateEmissions(agents);
+		EmissionsMeter.UpdateEmissions(agents);
+
+		EmissionsMeter.EndTick();
 
 	}
 
@@ -77,13 +107,6 @@ public partial class Sim : Node
 
 
 
-	/*
-	public InfrastructureType GetType(int x, int y)
-	{
-		//return grid[x][y].Infrastructure.
-	}
-	*/
-	
 	/*
 		public void MakeInfraChange(Vector2 tilePosition, SimInfra.InfraType newInfra)
 		{
@@ -146,4 +169,30 @@ public partial class Sim : Node
 			}
 		}
 		*/
+
+
+
+		// endings 
+		public void GameOverEmissions() {
+			GameOver();
+			GD.Print("Game Over: Emissions cap reached!");
+			gameState = GameState.END_LOSS;
+		}
+
+		public void GameOverSupport() {
+			GameOver();
+			GD.Print("Game Over: Support lost, you were removed from office!");
+			gameState = GameState.END_LOSS;
+		}
+
+		public void GameOverSuccess() {
+			GameOver();
+			GD.Print("Game Over: You Win!");
+			gameState = GameState.END_WIN;
+		}
+
+		// things that need to happen in all game overs 
+		private void GameOver() {
+			Clock.Pause();
+		}
 }
