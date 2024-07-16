@@ -27,14 +27,16 @@ func _process(_delta):
 	
 func on_tile_clicked(_x: int, _y: int):
 	# Follow in the footsteps of Anikin and delete all the children
-	for child in $BuildButtons.get_children():
-		child.queue_free()
+	
+	# I'm commenting this out so the game doesn't crash for people pulling from dev. Uncomment when fixed. --Jaden :^)
+	#for child in $BuildButtons.get_children():
+	#	child.queue_free()
 	# Temp func to add test ones
-	var types = []#[Global.InfraType.ROAD, Global.InfraType.HOUSE, Global.InfraType.BUILDING]
-	for type in types:
-		var instance = button.instantiate()
-		$BuildButtons.add_child(instance)
-		instance.initialize(type)
+	#var types = []#[Global.InfraType.ROAD, Global.InfraType.HOUSE, Global.InfraType.BUILDING]
+	#for type in types:
+	#	var instance = button.instantiate()
+	#	$BuildButtons.add_child(instance)
+	#	instance.initialize(type)
 	return
 	#var tiles = sim.GetInfra(x,y)
 	#for tile in tiles:
