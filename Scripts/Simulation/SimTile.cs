@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,12 +10,41 @@ public partial class SimTile : Node
 	/*
 	 * A single tile in the simulation.
 	 */
+	
+	public enum Direction {
+		NORTH = 0,
+		EAST = 1,
+		SOUTH = 2,
+		WEST = 3
+	}
+	public enum DirectionCombination {
+		NORTH_SOUTH = 0,
+		EAST_WEST = 1,
+		NORTH_EAST = 2,
+		NORTH_WEST = 3,
+		SOUTH_EAST = 4,
+		SOUTH_WEST = 5
+	}
+	public readonly DirectionCombination[][] directionCombinations;
+	public readonly Vector2I[] DIRECTIONS = { Vector2I.Up, Vector2I.Right, Vector2I.Down, Vector2I.Left };
+	public static Direction GetDirection(Vector2I v) {
+		if(v.Equals(Vector2I.Up)) return Direction.NORTH;
+		if(v.Equals(Vector2I.Right)) return Direction.EAST;
+		if(v.Equals(Vector2I.Down)) return Direction.SOUTH;
+		if(v.Equals(Vector2I.Left)) return Direction.WEST;
+		return (Direction)404; //invalid
+	}
 
 	public List<SimInfra> Infra { get; private set; } // infrastructure instances currently on this tile
 	public SimInfraType.InfraType InfraTypesMask { get; private set; }
 	public SimInfraType.DestinationType DestinationType { get; private set; }
-	public List<SimEdge> Edges { get; private set; }
+	//public List<SimEdge> Edges { get; private set; }
 	public Vector2I Position { get; private set; }
+
+	// Stores connections between the north, south, east, west borders of tile.
+	// First array: by ConnectionEvaluationOrder index (3)
+	// Second array: by DirectionCombination index (6)
+	//public Connection[][] Connections { get; private set; }
 
 	public int gCost;
 	public int hCost;
@@ -31,19 +61,20 @@ public partial class SimTile : Node
 	public SimTile(Vector2I position)
 	{
 		Position = position;
-		Edges = new List<SimEdge>();
+		//Connections = new 
+		//Edges = new List<SimEdge>();
 		InfraTypesMask = default(SimInfraType.InfraType);
 		visualTile = (GodotObject)visualTileScript.New();
 	}
 
 
 	// load infrastructure on a tile based on a type mask
-	public void AddInfraFromMask(SimInfraType.InfraType mask) {
+	public void AddInfraFromMask(SimInfraType.InfraType mask, bool bypassValidation) {
 
 		for(int i = 0; i < sizeof(uint); i++) {
 			SimInfraType.InfraType bit = (SimInfraType.InfraType)Math.Pow(2, i);
 			if((mask & bit) != 0) {
-				AddInfra(SimInfraType.TypeFromEnum(bit));
+				AddInfra(SimInfraType.TypeFromEnum(bit), bypassValidation);
 			}
 		}
 	}
@@ -149,11 +180,6 @@ public partial class SimTile : Node
 	}
 	public bool CanAffordToDestroyInfra(SimInfraType type) {
 		return Sim.Instance.SupportPool.HaveEnoughSupport(type.costToDestroy);
-	}
-
-	public void AddEdge(SimEdge edge)
-	{
-		Edges.Add(edge);
 	}
 
 	//TODO I have no idea what this means, could someone make the names more descriptive and/or comment this? --Jaden 
