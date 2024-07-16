@@ -15,6 +15,7 @@ public partial class SimPath : Node
 	//TODO why is this here? should this be removed?
 	public override void _Ready()
 	{
+		/*
 		// Initialize the grid with SimTile nodes
 		_grid = new Dictionary<Vector2, SimTile>();
 
@@ -27,6 +28,7 @@ public partial class SimPath : Node
 				_grid[position] = tile;
 			}
 		}
+		*/
 	}
 
 	public Vector2 GetNextStep(Vector2 start, Vector2 end)
