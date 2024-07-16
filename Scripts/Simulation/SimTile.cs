@@ -83,6 +83,8 @@ public partial class SimTile : Node
 		//update/add it visually
 		visualTile.Call("update_visuals");
 
+		//TODO update OTHER infrastructure on the tile visually
+
 		//return if adding was successful
 		return true;
 	}
@@ -121,6 +123,8 @@ public partial class SimTile : Node
 
 		//update/remove it visually 
 		visualTile.Call("update_visuals");
+
+		//TODO update OTHER infrastructure on the tile visually
 
 		return true;
 	}
