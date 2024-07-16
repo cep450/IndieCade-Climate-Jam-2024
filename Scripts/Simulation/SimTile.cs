@@ -10,63 +10,30 @@ public partial class SimTile : Node
 	/*
 	 * A single tile in the simulation.
 	 */
-	
-	public enum Direction {
-		NORTH = 0,
-		EAST = 1,
-		SOUTH = 2,
-		WEST = 3
-	}
-	public enum DirectionCombination {
-		NORTH_SOUTH = 0,
-		EAST_WEST = 1,
-		NORTH_EAST = 2,
-		NORTH_WEST = 3,
-		SOUTH_EAST = 4,
-		SOUTH_WEST = 5
-	}
-	public readonly DirectionCombination[][] directionCombinations;
-	public readonly Vector2I[] DIRECTIONS = { Vector2I.Up, Vector2I.Right, Vector2I.Down, Vector2I.Left };
-	public static Direction GetDirection(Vector2I v) {
-		if(v.Equals(Vector2I.Up)) return Direction.NORTH;
-		if(v.Equals(Vector2I.Right)) return Direction.EAST;
-		if(v.Equals(Vector2I.Down)) return Direction.SOUTH;
-		if(v.Equals(Vector2I.Left)) return Direction.WEST;
-		return (Direction)404; //invalid
-	}
 
 	public List<SimInfra> Infra { get; private set; } // infrastructure instances currently on this tile
 	public SimInfraType.InfraType InfraTypesMask { get; private set; }
 	public SimInfraType.DestinationType DestinationType { get; private set; }
-	//public List<SimEdge> Edges { get; private set; }
-	public Vector2I Position { get; private set; }
-
-	// Stores connections between the north, south, east, west borders of tile.
-	// First array: by ConnectionEvaluationOrder index (3)
-	// Second array: by DirectionCombination index (6)
-	//public Connection[][] Connections { get; private set; }
+	public Vector2I Coordinates { get; private set; } // coordinates on the SimGrid
+	public Vector2 WorldPosition { get; private set; } 
+	public PathVertex[,] PathVertices { get; private set; }
 
 	public int gCost;
 	public int hCost;
 	public SimTile parent;
 
-	//each tile knows what index it is on the SimGrid
-	public int gridX;
-	public int gridY;
-
 	//GD visual tile 
 	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/visual_tile.gd");
 	GodotObject visualTile;
 
-	public SimTile(Vector2I position)
+	public SimTile(Vector2I coordinates, Vector2 worldPosition)
 	{
-		Position = position;
-		//Connections = new 
-		//Edges = new List<SimEdge>();
+		Coordinates = coordinates;
+		WorldPosition = worldPosition;
+		PathVertices = new PathVertex[3,3];
 		InfraTypesMask = default(SimInfraType.InfraType);
 		visualTile = (GodotObject)visualTileScript.New();
 	}
-
 
 	// load infrastructure on a tile based on a type mask
 	public void AddInfraFromMask(SimInfraType.InfraType mask, bool bypassValidation) {

@@ -9,6 +9,8 @@ public partial class SimGrid : Node
 	 * A 2-dimensional grid of tiles.
 	 */
 	
+	public static readonly float TILE_WORLD_SCALE = 1f; //the size of the tile model in the world 
+	
 	private int width = 10; // Set your grid width
 	private int height = 10; // Set your grid height
 
@@ -34,8 +36,9 @@ public partial class SimGrid : Node
 			grid[x] = new SimTile[height];
 			for (int y = 0; y < height; y++)
 			{				
-				Vector2I position = new Vector2I(x, y);
-				grid[x][y] = new SimTile(position); // Initialize each tile with a position
+				Vector2I coordinates = new Vector2I(x, y);
+				Vector2 position = new Vector2(x * TILE_WORLD_SCALE, y * TILE_WORLD_SCALE);
+				grid[x][y] = new SimTile(coordinates, position); // Initialize each tile with a position
 				AddChild(grid[x][y]); // Add each tile as a child node (optional)
 
 				//TODO add infrastructure to this tile based on the level file.
@@ -70,8 +73,8 @@ public partial class SimGrid : Node
 				if (x == 0 && y == 0) //skip current tile
 					continue;
 				
-				int checkX = tileToCheck.gridX + x;
-				int checkY = tileToCheck.gridY + y;
+				int checkX = tileToCheck.Coordinates.X + x;
+				int checkY = tileToCheck.Coordinates.Y + y;
 
 				if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height)
 				{

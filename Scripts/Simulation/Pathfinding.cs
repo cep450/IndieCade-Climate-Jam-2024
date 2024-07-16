@@ -88,8 +88,8 @@ public partial class Pathfinding : Node
 
 	int GetDistance(SimTile tileA, SimTile tileB)
 	{
-		int dstX = Mathf.Abs(tileA.gridX - tileB.gridX);
-		int dstY = Mathf.Abs(tileA.gridY - tileB.gridY);
+		int dstX = Mathf.Abs(tileA.Coordinates.X - tileB.Coordinates.X);
+		int dstY = Mathf.Abs(tileA.Coordinates.Y - tileB.Coordinates.Y);
 
 		return dstX + dstY; //since we dont move diagonally
 	}

@@ -49,9 +49,10 @@ public partial class SimInfraType : Resource
 	public static readonly SimInfraType [] types = {}; //TODO put the resources we're using in here, in oder so the indices match with the enum values
 
 	[Export] public InfraType type;
+	[Export] public NodePath visualInfra;
 	[Export] public SimVehicleType.TransportMode transportModes; // what transport modes can use this infrastructure?
-	[Export] public SimVehicleType.TransportMode blocks;
-	[Export] public SimVehicleType.TransportMode crosses;
+	[Export] public bool connectsCorners;	// connects on corners between tiles
+	[Export] public bool connectsBorders; // connects on borders between tiles 
 	[Export] public DestinationType destinationType; // if this is a destination, what type is it?
 
 	// For vehicle-holding tiles, capacity represents the number of vehicles of that type that the tile can hold at a time. 
