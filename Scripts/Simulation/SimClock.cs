@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.ConstrainedExecution;
 
 public partial class SimClock : Node
 {
@@ -7,6 +8,9 @@ public partial class SimClock : Node
 	/*
 	 *	Keep track of simulation clock. Allows for pausing and changing timescale. Controls when simulation ticks happen.
 	 */
+
+	public static readonly int ticksPerGameYear = 60;
+	public static readonly int yearsUntilGameOver = 15; //TODO unless we want this as a level property? 
 
 	private double _timeCounter;
 	private double _secondsPerTick = 1.0; //how much real time passes per simulation tick
@@ -23,6 +27,12 @@ public partial class SimClock : Node
 		if(!_paused) {
 			_timeCounter += delta * _timeScales[_timeScaleIndex];
 			if(_timeCounter >= _secondsPerTick) {
+
+				if(_ticksElapsed > ticksPerGameYear * yearsUntilGameOver) {
+					Sim.Instance.GameOverTime();
+					return;
+				}
+
 				_timeCounter = _timeCounter - _secondsPerTick;
 				_ticksElapsed++;
 
