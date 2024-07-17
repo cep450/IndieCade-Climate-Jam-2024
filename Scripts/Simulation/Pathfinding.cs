@@ -11,9 +11,18 @@ public partial class Pathfinding : Node
 		grid = GetNode<SimGrid>("SimGrid");
 	}
 
+	// Find the least weighted path to a tile of the destination type. (Mini Metro style.)
+	// Constitutes both finding a path and determining which tile to travel to next. 
+	public void FindNearestDestination(SimInfraType.DestinationType type) {
+		//TODO
+	}
+
 	//TODO rework this so agents don't use a single type of infrastructure to find a path- let them transfer between them
 	void FindPath(SimTile startTile, SimTile targetTile, SimInfraType.InfraType type)
 	{
+
+		GD.Print("called FindPath");
+
 		List<SimTile> openSet = new List<SimTile>();
 		HashSet<SimTile> closedSet = new HashSet<SimTile>();
 		openSet.Add(startTile);
@@ -65,6 +74,7 @@ public partial class Pathfinding : Node
 
 	void RetracePath(SimTile startTile, SimTile endTile)
 	{
+
 		List<SimTile> path = new List<SimTile>();
 		SimTile currentTile = endTile;
 
@@ -78,8 +88,8 @@ public partial class Pathfinding : Node
 
 	int GetDistance(SimTile tileA, SimTile tileB)
 	{
-		int dstX = Mathf.Abs(tileA.gridX - tileB.gridX);
-		int dstY = Mathf.Abs(tileA.gridY - tileB.gridY);
+		int dstX = Mathf.Abs(tileA.Coordinates.X - tileB.Coordinates.X);
+		int dstY = Mathf.Abs(tileA.Coordinates.Y - tileB.Coordinates.Y);
 
 		return dstX + dstY; //since we dont move diagonally
 	}

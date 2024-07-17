@@ -1,6 +1,8 @@
 using Godot;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class SimTile : Node
 {
@@ -11,37 +13,35 @@ public partial class SimTile : Node
 
 	public List<SimInfra> Infra { get; private set; } // infrastructure instances currently on this tile
 	public SimInfraType.InfraType InfraTypesMask { get; private set; }
-	public List<SimEdge> Edges { get; private set; }
-	public Vector2 Position { get; private set; }
+	public SimInfraType.DestinationType DestinationType { get; private set; }
+	public Vector2I Coordinates { get; private set; } // coordinates on the SimGrid
+	public Vector2 WorldPosition { get; private set; } 
+	public PathVertex[,] PathVertices;
 
 	public int gCost;
 	public int hCost;
 	public SimTile parent;
 
-	//each tile knows what index it is on the SimGrid
-	public int gridX;
-	public int gridY;
-
 	//GD visual tile 
-	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/visual_tile.gd");
+	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/view_tile.gd");
 	GodotObject visualTile;
 
-	public SimTile(Vector2 position)
+	public SimTile(Vector2I coordinates, Vector2 worldPosition)
 	{
-		Position = position;
-		Edges = new List<SimEdge>();
+		Coordinates = coordinates;
+		WorldPosition = worldPosition;
+		PathVertices = new PathVertex[3,3];
 		InfraTypesMask = default(SimInfraType.InfraType);
 		visualTile = (GodotObject)visualTileScript.New();
 	}
 
-
 	// load infrastructure on a tile based on a type mask
-	public void AddInfraFromMask(SimInfraType.InfraType mask) {
+	public void AddInfraFromMask(SimInfraType.InfraType mask, bool bypassValidation) {
 
 		for(int i = 0; i < sizeof(uint); i++) {
 			SimInfraType.InfraType bit = (SimInfraType.InfraType)Math.Pow(2, i);
 			if((mask & bit) != 0) {
-				AddInfra(SimInfraType.TypeFromEnum(bit));
+				AddInfra(SimInfraType.TypeFromEnum(bit), bypassValidation);
 			}
 		}
 	}
@@ -62,6 +62,11 @@ public partial class SimTile : Node
 		//update the mask representing all the types on this tile 
 		InfraTypesMask |= type.type;
 
+		// update the destination type of the tile
+		if(type.destinationType != SimInfraType.DestinationType.NOT_DESTINATION) {
+			DestinationType = type.destinationType;
+		}
+
 		//instantiate new infrastructure
 		SimInfra newInfra = new SimInfra(type);
 
@@ -70,8 +75,13 @@ public partial class SimTile : Node
 
 		//TODO add edges accordingly 
 
+		// if this infra has any special behavior when added
+		type.AddedToTile(this);
+
 		//update/add it visually
 		visualTile.Call("update_visuals");
+
+		//TODO update OTHER infrastructure on the tile visually
 
 		//return if adding was successful
 		return true;
@@ -98,11 +108,21 @@ public partial class SimTile : Node
 		// since we know the tile has it, remove from the mask 
 		InfraTypesMask ^= type.type;
 
+		// remove destination type if this infra provided one 
+		if(type.destinationType != SimInfraType.DestinationType.NOT_DESTINATION) {
+			DestinationType = SimInfraType.DestinationType.NOT_DESTINATION;
+		}
+
 		//TODO remove from list 
 		//TODO update any connections 
 
+		// if this infra has any special behavior when removed
+		type.RemovedFromTile(this);
+
 		//update/remove it visually 
 		visualTile.Call("update_visuals");
+
+		//TODO update OTHER infrastructure on the tile visually
 
 		return true;
 	}
@@ -127,11 +147,6 @@ public partial class SimTile : Node
 	}
 	public bool CanAffordToDestroyInfra(SimInfraType type) {
 		return Sim.Instance.SupportPool.HaveEnoughSupport(type.costToDestroy);
-	}
-
-	public void AddEdge(SimEdge edge)
-	{
-		Edges.Add(edge);
 	}
 
 	//TODO I have no idea what this means, could someone make the names more descriptive and/or comment this? --Jaden 

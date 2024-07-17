@@ -8,10 +8,19 @@ public partial class SimGrid : Node
 	/* 
 	 * A 2-dimensional grid of tiles.
 	 */
-
-	public SimTile[][] grid;
+	
+	public static readonly float TILE_WORLD_SCALE = 1f; //the size of the tile model in the world 
+	
 	private int width = 10; // Set your grid width
 	private int height = 10; // Set your grid height
+
+	public int Width { get => width; private set {}}
+	public int Height { get => height; private set {}}
+
+	public SimTile[][] grid;
+	
+	//TODO for choosing destinations maybe we do all the pathfinding during that choice, where we aren't pathfinding to a particular tile but instead pathfinding until we find a particular type
+	//public SimInfraType.DestinationType destinationGrid; // parallel grid just storing destination types for pathfinding 
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -27,9 +36,12 @@ public partial class SimGrid : Node
 			grid[x] = new SimTile[height];
 			for (int y = 0; y < height; y++)
 			{				
-				Vector2 position = new Vector2(x, y);
-				grid[x][y] = new SimTile(position); // Initialize each tile with a position
+				Vector2I coordinates = new Vector2I(x, y);
+				Vector2 position = new Vector2(x * TILE_WORLD_SCALE, y * TILE_WORLD_SCALE);
+				grid[x][y] = new SimTile(coordinates, position); // Initialize each tile with a position
 				AddChild(grid[x][y]); // Add each tile as a child node (optional)
+
+				//TODO add infrastructure to this tile based on the level file.
 				
 				// For testing, make each tile a road.
 				//SimInfra infra = new SimInfrastructure(, 1.0f);
@@ -38,16 +50,11 @@ public partial class SimGrid : Node
 		}
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-
 	public SimTile GetTile(int x, int y)
 	{
 		if (x < 0 || y < 0 || x >= grid.Length || y >= grid[0].Length)
 		{
-			GD.Print("ERR: Tried to get a tile on the grid that was out of range.");
+			GD.Print("Tried to get a tile on the grid that was out of range.");
 			return null;
 		}
 		return grid[x][y];
@@ -66,8 +73,8 @@ public partial class SimGrid : Node
 				if (x == 0 && y == 0) //skip current tile
 					continue;
 				
-				int checkX = tileToCheck.gridX + x;
-				int checkY = tileToCheck.gridY + y;
+				int checkX = tileToCheck.Coordinates.X + x;
+				int checkY = tileToCheck.Coordinates.Y + y;
 
 				if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height)
 				{

@@ -14,19 +14,21 @@ public partial class SimInfraType : Resource
 [System.Flags]
 	public enum InfraType
 	{
-		HOUSE = 0x01,
+		HOME = 0x01,	//TODO if we need more numbers in the future we can condense home/work/commercial/thirdspace into a single DESTINATION infra type and determine its type via the DESTINATIONTYPE enum. since we're limited to 32 bits in an enum
 		WORK = 0x02,
-		ROAD = 0x04,
-		BIKELANE = 0x08,
-		SIDEWALK = 0x10,
-		STREETLAMP = 0x20,
-		CROSSWALK = 0x40
+		COMMERCIAL = 0x04,
+		THIRDSPACE = 0x08,
+		ROAD = 0x10,
+		SIDEWALK = 0x20,
+		CROSSWALK = 0x40, 
+		BIKELANE = 0x80,
+		STREETLAMP = 0x100, 
+		TREE = 0x200,
+		PARKINGLOT = 0x400,
+		BIKERACK =  0x800
+
 	// add new tags here
-	//BUSLANE = 0x80,
-	//RAIL = 0x100,
-	//J = 0x200,
-	//K = 0x400,
-	//L = 0x800,
+	// RAIL, BUSLANE, BUSSTOP, RAILSTATION...
 	//M = 0x1000,
 	//N = 0x2000,
 	//O = 0x4000,
@@ -35,17 +37,28 @@ public partial class SimInfraType : Resource
 	// ...ect
 	}
 
-	public static readonly SimInfraType [] types = {}; //TODO put the resources we're using in here, in oder so the indices match with the enum values
-
-	//TODO better way to do this?
-	public static SimInfraType TypeFromEnum(InfraType enumType) {
-		int index = (int)Math.Log2((double)((int)enumType));
-		return types[index];
+	//destination type, for choosing where to pathfind 
+	public enum DestinationType {
+		NOT_DESTINATION,
+		HOME, 
+		WORKPLACE,
+		COMMERCIAL,
+		THIRDSPACE
 	}
 
+	public static readonly SimInfraType [] types = {}; //TODO put the resources we're using in here, in oder so the indices match with the enum values
+
 	[Export] public InfraType type;
-	[Export] public SimVehicleType.TransportMode transportModes; // what transport modes can use this infrastructure
-	[Export] public int capacity;	// how many vehicles or agents of this type can be on this infrastructure? TODO do we want to be able to have different capacities for different types of vehicle modes? or maybe it's the vehicle types that control how much space they take up.
+	[Export] public NodePath visualInfra;
+	[Export] public DestinationType destinationType; // if this is a destination, what type is it?
+	[Export] public SimVehicleType.TransportMode transportModes; // what transport modes can use this infrastructure?
+	[Export] public bool connectsCorners;	// connects on corners between tiles
+	[Export] public bool connectsBorders; // connects on borders between tiles 
+	[Export] public SimVehicleType.TransportMode connectionsBlockedBy;
+
+	// For vehicle-holding tiles, capacity represents the number of vehicles of that type that the tile can hold at a time. 
+	// For destination tiles, capacity represents the number of agents the building can fit, or for HOMEs, how many agents are added to the map when this infra is added or generates on the map
+	[Export] public int capacity;
 	[Export] public bool canTransfer = false; // can a transit type switch to a different transit type?
 									 //I think each tile should be able to have a list of what transit types it can support, and then we can check if the agent's current transit type is in that list when pathfinding,
 									 //instead of assigning a transit type to each tile. This way, we can have tiles that support multiple transit types, and we can have tiles that support no transit types.
@@ -57,5 +70,16 @@ public partial class SimInfraType : Resource
 	[Export] public int costToDestroy;
 
 	[Export] public InfraType incompatibilityMask; //1 = incompatible, 0 = compatible
+
+
+	//TODO better way to do this?
+	public static SimInfraType TypeFromEnum(InfraType enumType) {
+		int index = (int)Math.Log2((double)((int)enumType));
+		return types[index];
+	}
+
+	// If we want specific types or groups of types to have extra behavior, they can extend this class and override these functions, which are called when the infra is added to or removed from a tile.
+	public virtual void AddedToTile(SimTile tile) {}
+	public virtual void RemovedFromTile(SimTile tile) {}
 
 }

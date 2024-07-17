@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://deylqf5m5hfbx"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_odrfq"]
+
+[resource]
+script = ExtResource("1_odrfq")
+type = 32
+transportModes = 1
+destinationType = 0
+capacity = 10
+canTransfer = false
+maxSpeed = 0.0
+safety = 0.0
+costToBuild = 1
+costToDestroy = 1
+incompatibilityMask = 1103
