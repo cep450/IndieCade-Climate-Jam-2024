@@ -17,8 +17,9 @@ func _ready():
 			add_child(instance)
 			instance.initialize(x,y)
 			instance.position = pos
-			#instance.test_init("Blank")
-			if (y % 2 != 0):
+			if Global.inDevMode:
+				instance.test_init("Blank")
+			elif (y % 2 != 0):
 				instance.test_init("Road")
 			else:
 				instance.test_init("House")

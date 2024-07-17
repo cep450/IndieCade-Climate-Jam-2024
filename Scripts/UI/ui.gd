@@ -26,19 +26,21 @@ func _process(_delta):
 	$EmissionsMeter/Percentage.text = str(percent) + "%"
 	#emissions_meter.value += emissions_meter.GetEmissions()
 	
-func on_tile_clicked(_x: int, _y: int):
+func on_tile_clicked(x: int, y: int):
 	# Follow in the footsteps of Anikin and delete all the children
 	for child in build_buttons.get_children():
 		child.queue_free()
 	# Temp func to add test ones
-	var types = []#[Global.InfraType.ROAD, Global.InfraType.HOUSE, Global.InfraType.BUILDING]
+	var types = [Global.InfraType.ROAD, Global.InfraType.HOUSE, Global.InfraType.BUILDING]
 	for type in types:
 		var instance = button.instantiate()
 		build_buttons.add_child(instance)
-		instance.initialize(type)
+		instance.initialize(type, x, y)
 	return
 	#var tiles = sim.GetInfra(x,y)
 	#for tile in tiles:
 		#var instance = button.instantiate()
 		#$HBoxContainer.add_child(instance)
 	
+func sayhi():
+	print("hi from UI")

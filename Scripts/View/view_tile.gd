@@ -17,13 +17,14 @@ var blank = preload("res://Scenes/Tiles/Blank.tscn")
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")
 var isYellow: bool = false
 
-var grid
+var sim
 
 func _ready() -> void:
 	pass
 
 func test_init(type: String):
 	var instance
+	sim = get_parent().sim
 	# Setup base or road.
 	if type == "Road":
 		instance = road.instantiate()
@@ -35,6 +36,7 @@ func test_init(type: String):
 	else:
 		instance = base.instantiate()
 		add_child(instance)
+		instance.name = "Base"
 		
 	#If not road put object ontop of base.
 	if type == "House":
@@ -68,4 +70,16 @@ func on_tile_clicked(local_x: int, local_y: int):
 
 func update_visuals():
 	print("visuals updated")
-	pass
+	if has_node("ObjectInstance"):
+		$ObjectInstance.queue_free()
+	if has_node("Base"):
+		$Base.queue_free()
+	#var type = sim.GetInfraType(x,y)
+	var instance
+	#if type == Global.InfraType.BUILDING:
+	if true:
+		instance = blank.instantiate()
+		add_child(instance)
+		instance = house.instantiate()
+		add_child(instance)
+		instance.name = "ObjectInstance"
