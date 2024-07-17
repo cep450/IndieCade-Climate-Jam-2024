@@ -25,10 +25,9 @@ public partial class SimGrid : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		InitializeGrid();
 	}
 
-	private void InitializeGrid()
+	public void InitializeGrid()
 	{
 		grid = new SimTile[width][];
 		for (int x = 0; x < width; x++)

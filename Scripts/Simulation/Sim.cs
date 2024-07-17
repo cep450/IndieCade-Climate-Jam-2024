@@ -20,12 +20,13 @@ public partial class Sim : Node
 	public static Sim Instance { get; private set; }
 
 	public SimGrid grid;
+	public PathfindingGraph PathGraph;
 	public SimEmissionsMeter EmissionsMeter { get; private set; }
 	public SimSupportPool SupportPool { get; private set; }
 	private List<SimAgent> agents;
 	public SimClock Clock { get; private set; }
 
-	public GameState gameState = GameState.GAMEPLAY;
+	public GameState gameState = GameState.TUTORIAL;
 
 
 	//TODO put this in level info once this is merged 
@@ -64,20 +65,24 @@ public partial class Sim : Node
 		agents = new List<SimAgent>();
 		Clock = GetNode<SimClock>("SimClock");
 
+		LoadMap();
+
+		//TODO we might want a button to call this function instead.
 		BeginGame();
+	}
+
+	// load level data from save
+	public void LoadMap() {
+
+		//TODO generate a grid based on map data 
+
+		grid.InitializeGrid();	//TODO we'd probably pass in level data
+		PathGraph = new PathfindingGraph(10,10); //TODO replace this with using grid size from wherever we're asving it
+
 	}
 
 	// Start the simulation for the first time. 
 	public void BeginGame() {
-
-/*
-		for (int i = 0; i < numberAgents; i++)
-		{
-			SimAgent agent = new SimAgent(0.3f, new Vector2Int(0,0)); //TODO randomize starting position to start in homes
-			agents.Add(agent);
-			AddChild(agent);
-		}
-		*/
 
 		gameState = GameState.GAMEPLAY;
 		Clock.UnPause();

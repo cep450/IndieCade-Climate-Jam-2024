@@ -73,7 +73,8 @@ public partial class SimTile : Node
 		//add it to the list 
 		Infra.Add(newInfra);
 
-		//TODO add edges accordingly 
+		//TODO add edges accordingly
+		RecalculateEdges();
 
 		// if this infra has any special behavior when added
 		type.AddedToTile(this);
@@ -114,7 +115,10 @@ public partial class SimTile : Node
 		}
 
 		//TODO remove from list 
+		//Infra.Remove() //TODO how to find it?
+
 		//TODO update any connections 
+		RecalculateEdges();
 
 		// if this infra has any special behavior when removed
 		type.RemovedFromTile(this);
@@ -147,6 +151,11 @@ public partial class SimTile : Node
 	}
 	public bool CanAffordToDestroyInfra(SimInfraType type) {
 		return Sim.Instance.SupportPool.HaveEnoughSupport(type.costToDestroy);
+	}
+
+	// Reclaculate the edges to/from the vertices on this tile based on the current lineup of infrastructure on the tile and around the tile.
+	void RecalculateEdges() {
+		// TODO 
 	}
 
 	//TODO I have no idea what this means, could someone make the names more descriptive and/or comment this? --Jaden 
