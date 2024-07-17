@@ -43,10 +43,23 @@ public partial class SimGrid : Node
 				//TODO add infrastructure to this tile based on the level file.
 				
 				// For testing, make each tile a road.
-				//SimInfra infra = new SimInfrastructure(, 1.0f);
-				//grid[x][y].SetInfrastructure(infra);
+				SimInfraType infra = new SimInfraType();
+				infra.type = SimInfraType.InfraType.ROAD;
+				grid[x][y].AddInfra(infra);
 			}
 		}
+		SimInfraType road = new SimInfraType();
+		road.type = SimInfraType.InfraType.ROAD;
+
+		SimInfraType house = new SimInfraType();
+		house.type = SimInfraType.InfraType.HOUSE;
+		/*GetTile(3,1).AddInfra(house);
+		GetTile(7,2).AddInfra(house);
+		GetTile(4,6).AddInfra(house);
+		GetTile(9,9).AddInfra(house);
+		SaveGridAsResource();*/
+		//var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/SavedData.tres");
+		//LoadGridFromResource(startData);
 	}
 
 	public SimTile GetTile(int x, int y)
@@ -86,5 +99,35 @@ public partial class SimGrid : Node
 			}
 		}
 		return neighbours;
+	}
+	
+	public void SaveGridAsResource() 
+	{
+		var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/StartData.tres");
+		startData.gridData = new SimInfraTypeRow[width];
+		for (int x = 0; x < width; x++)
+		{
+			SimInfraTypeRow currentInfraRow = new SimInfraTypeRow();
+			currentInfraRow.gridData = new SimInfraType[height];
+			for (int y = 0; y < height; y++)
+			{
+				currentInfraRow.gridData[y] = new SimInfraType();
+				currentInfraRow.gridData[y].type = GetTile(x,y).InfraTypesMask;
+			}
+			startData.gridData[x] = currentInfraRow;
+		}
+		ResourceSaver.Save(startData, "res://Scripts/Simulation/CustomResources/SavedData.tres");
+		
+	}
+
+	public void LoadGridFromResource(StartData resourceToLoad)
+	{
+		for (int x = 0; x < width; x++)
+		{
+			for (int y = 0; y < height; y++)
+			{
+				GetTile(x,y).InfraTypesMask = resourceToLoad.gridData[x].gridData[y].type;
+			}
+		}
 	}
 }
