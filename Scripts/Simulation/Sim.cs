@@ -39,15 +39,9 @@ public partial class Sim : Node
 		return Instance.grid.GetTile(x,y).DestinationType;
 	}
 
-	public Godot.Collections.Array GetInfra(int tileX, int tileY) {
-		// Convert List<SimInfra> to Godot.Collections.Array
-		Godot.Collections.Array array = new Godot.Collections.Array();
-		//List<SimInfra> InfraList = Instance.grid.GetTile(tileX, tileY).Infra;
-		//for (int i = 0; i < InfraList.Count; i++)
-		//{
-			//array.Add(InfraList[i]);
-		//}
-		return array;
+	public Godot.Collections.Array<SimInfraType> GetInfra(int tileX, int tileY) {
+		SimInfraType.InfraType mask = GetTile(tileX, tileY).InfraTypesMask;
+		return SimInfraType.TypesFromEnum(mask);
 	}
 	
 	//test func
@@ -107,72 +101,6 @@ public partial class Sim : Node
 	public void VisualTick() {
 		//TODO we should talk about if we want to implement this, how, and for what purposes exactly 
 	}
-
-
-
-	/*
-		public void MakeInfraChange(Vector2 tilePosition, SimInfra.InfraType newInfra)
-		{
-			//Identify the Target Tile: Determine which tile or set of tiles will be affected by the infrastructure change.
-			//Determine the New Infrastructure: Identify what type of infrastructure will be added or modified (e.g., road, bike lane).
-			//Update the Grid and Edges: Modify the SimGrid and associated SimEdge instances to reflect the new infrastructure.
-			//Update Agents: Recalculate paths for agents if necessary.
-
-
-			SimTile tile = grid.GetTile(tilePosition);
-			if (tile == null)
-			{
-				GD.Print("Tile does not exist at position: " + tilePosition);
-				return;
-			}
-
-			// Create new infrastructure
-			SimInfra newInfra = new SimInfra(newInfra, GetBaseWeightForInfra(newInfra));
-
-			// Set the new infrastructure on the tile
-			tile.SetInfra(newInfra);
-
-			// Update the edges connected to this tile
-			foreach (SimEdge edge in tile.Edges)
-			{
-				edge.BaseWeight = newInfra.GetBaseWeight();
-				foreach (var mode in edge.SupportedModes)
-				{
-					edge.Weights[mode] = edge.CalculateWeight(mode);
-				}
-			}
-
-			// Optionally: Recalculate paths for all agents
-			foreach (var agent in agents)
-			{
-				// Assuming there is a method in SimAgent to recalculate path
-				agent.RecalculatePath();
-			}
-
-			GD.Print("Infrastrcture updated at position: " + tilePosition);
-		}
-
-		private float GetBaseWeightForInfra(SimInfra.InfraType infraType)
-		{
-			// Define base weights for different types of infra
-			switch (infraType)
-			{
-				case SimInfra.InfraType.Road:
-					return 10.0f;
-				case SimInfra.InfraType.BikeLane:
-					return 5.0f;
-				case SimInfra.InfraType.Sidewalk:
-					return 3.0f;
-				case SimInfra.InfraType.BusLane:
-					return 7.0f;
-				case SimInfra.InfraType.Rail:
-					return 2.0f;
-				default:
-					return 10.0f;
-			}
-		}
-		*/
-
 
 
 		// endings 
