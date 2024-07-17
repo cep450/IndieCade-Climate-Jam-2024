@@ -107,7 +107,7 @@ public partial class SimAgent : Node
 		destinationType = (SimInfraType.DestinationType)newTypeInt;
 	}
 
-	void MoveToNextTile(SimTile nextTile) {
+	void MoveToNextVertex(PathVertex nextVertex) {
 
 		//TODO make sure this gets called
 
@@ -121,13 +121,13 @@ public partial class SimAgent : Node
 	}
 
 	// Calculate how much this agent weights this connection between 2 tiles.
-	float WeightConnection(SimTile from, SimTile to, SimVehicleType.TransportMode transportMode) {
+	float WeightConnection(PathEdge edge) {
 
 		//TODO add factors like safety and whatever trees might give you from infrastructure on the subsequent tile 
 		
 		//TODO consider the max speed of [whatever's smaller: the current vehicle or the infrastructure for that vehicle]
 
-		//TODO consider emissions of the current vehicle 
+		//TODO consider emissions of the current vehicle based on the transport mode 
 
 		return 0f;
 	}

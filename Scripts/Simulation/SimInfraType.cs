@@ -50,10 +50,11 @@ public partial class SimInfraType : Resource
 
 	[Export] public InfraType type;
 	[Export] public NodePath visualInfra;
+	[Export] public DestinationType destinationType; // if this is a destination, what type is it?
 	[Export] public SimVehicleType.TransportMode transportModes; // what transport modes can use this infrastructure?
 	[Export] public bool connectsCorners;	// connects on corners between tiles
 	[Export] public bool connectsBorders; // connects on borders between tiles 
-	[Export] public DestinationType destinationType; // if this is a destination, what type is it?
+	[Export] public SimVehicleType.TransportMode connectionsBlockedBy;
 
 	// For vehicle-holding tiles, capacity represents the number of vehicles of that type that the tile can hold at a time. 
 	// For destination tiles, capacity represents the number of agents the building can fit, or for HOMEs, how many agents are added to the map when this infra is added or generates on the map

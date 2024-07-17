@@ -5,7 +5,10 @@
 [resource]
 script = ExtResource("1_1s4ox")
 type = 1
+visualInfra = null
 transportModes = 0
+connectsCorners = false
+connectsBorders = false
 destinationType = 1
 capacity = 4
 canTransfer = false

@@ -54,7 +54,7 @@ public partial class SimGrid : Node
 	{
 		if (x < 0 || y < 0 || x >= grid.Length || y >= grid[0].Length)
 		{
-			GD.Print("ERR: Tried to get a tile on the grid that was out of range.");
+			GD.Print("Tried to get a tile on the grid that was out of range.");
 			return null;
 		}
 		return grid[x][y];

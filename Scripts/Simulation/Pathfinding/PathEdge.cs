@@ -16,4 +16,12 @@ public class PathEdge {
 	// all but distance are determined by infrastructure
 	public float MaxSpeed = 1;
 	public float Safety = 0;
+
+	public PathEdge(PathVertex a, PathVertex b, SimVehicleType.TransportMode transportMode, float maxSpeed, float safety) {
+		A = a;
+		B = b;
+		TransportMode = transportMode;
+		MaxSpeed = maxSpeed;
+		Safety = safety;
+	}
 }

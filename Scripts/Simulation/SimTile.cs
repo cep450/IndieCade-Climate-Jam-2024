@@ -16,14 +16,14 @@ public partial class SimTile : Node
 	public SimInfraType.DestinationType DestinationType { get; private set; }
 	public Vector2I Coordinates { get; private set; } // coordinates on the SimGrid
 	public Vector2 WorldPosition { get; private set; } 
-	public PathVertex[,] PathVertices { get; private set; }
+	public PathVertex[,] PathVertices;
 
 	public int gCost;
 	public int hCost;
 	public SimTile parent;
 
 	//GD visual tile 
-	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/visual_tile.gd");
+	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/view_tile.gd");
 	GodotObject visualTile;
 
 	public SimTile(Vector2I coordinates, Vector2 worldPosition)
