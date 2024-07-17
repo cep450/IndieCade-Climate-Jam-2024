@@ -23,9 +23,10 @@
 
 [node name="UI" type="Control" node_paths=PackedStringArray("progress_bar")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = -0.0112847
+anchor_top = 0.0154321
+anchor_right = 0.986111
+anchor_bottom = 1.01389
 offset_left = 17.0
 offset_top = -11.0
 offset_right = 17.0
@@ -34,18 +35,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_meoay")
 progress_bar = NodePath("EmissionsMeter/TextureProgressBar")
+metadata/_edit_use_anchors_ = true
 
 [node name="EmissionsMeter" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -1160.0
-offset_top = -166.0
-offset_right = -1120.0
-offset_bottom = -126.0
+anchor_left = 0.015
+anchor_top = 0.924
+anchor_right = 0.015
+anchor_bottom = 0.924
+offset_left = -25.28
+offset_top = -764.752
+offset_right = 14.72
+offset_bottom = -724.752
 grow_horizontal = 0
 scale = Vector2(1.25, 1.25)
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="EmissionsMeter"]
 layout_mode = 0
@@ -82,20 +86,31 @@ theme_override_font_sizes/font_size = 12
 text = "Emissions"
 
 [node name="Build" type="Control" parent="."]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 731.0
-offset_top = 578.0
-offset_right = 731.0
-offset_bottom = 671.0
+layout_mode = 1
+anchor_left = 0.505
+anchor_top = 0.941
+anchor_right = 0.505
+anchor_bottom = 0.941
+offset_left = -8.24493
+offset_top = -55.827
+offset_right = -8.24493
+offset_bottom = 37.173
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(1.25, 1.25)
+metadata/_edit_use_anchors_ = true
 
 [node name="BuildButtons" type="HBoxContainer" parent="Build"]
-layout_mode = 2
-offset_left = -215.363
-offset_right = 72.6367
-offset_bottom = 93.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.511
+anchor_bottom = 0.511
+offset_top = -47.5231
+offset_right = 288.0
+offset_bottom = 45.477
+grow_vertical = 2
 scale = Vector2(0.497545, 0.511431)
+metadata/_edit_use_anchors_ = true
 
 [node name="3 button background" type="TextureButton" parent="Build/BuildButtons"]
 layout_mode = 2
@@ -103,31 +118,46 @@ disabled = true
 texture_normal = ExtResource("4_liuu0")
 
 [node name="Build" type="TextureButton" parent="Build/BuildButtons/3 button background"]
-layout_mode = 0
-offset_left = 33.3333
-offset_top = 15.3846
-offset_right = 83.3333
-offset_bottom = 86.3846
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.142
+anchor_top = 0.81
+anchor_right = 0.142
+anchor_bottom = 0.81
+offset_left = -7.5627
+offset_top = -59.9454
+offset_right = 42.4373
+offset_bottom = 11.0546
 texture_normal = ExtResource("5_6kb1e")
 ignore_texture_size = true
 stretch_mode = 3
 
 [node name="Tree" type="TextureButton" parent="Build/BuildButtons/3 button background"]
-layout_mode = 0
-offset_left = 116.667
-offset_top = 15.3846
-offset_right = 166.667
-offset_bottom = 86.3846
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.436
+anchor_top = 0.821
+anchor_right = 0.436
+anchor_bottom = 0.821
+offset_left = -8.90101
+offset_top = -60.9684
+offset_right = 41.099
+offset_bottom = 10.0316
 texture_normal = ExtResource("7_ybij0")
 ignore_texture_size = true
 stretch_mode = 3
 
 [node name="Lamp" type="TextureButton" parent="Build/BuildButtons/3 button background"]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 15.3846
-offset_right = 250.0
-offset_bottom = 86.3846
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.694
+anchor_top = 0.788
+anchor_right = 0.694
+anchor_bottom = 0.788
+offset_left = 0.127991
+offset_top = -57.8994
+offset_right = 50.128
+offset_bottom = 13.1006
 texture_normal = ExtResource("8_yo5m0")
 ignore_texture_size = true
 stretch_mode = 3
@@ -185,12 +215,18 @@ ignore_texture_size = true
 stretch_mode = 3
 
 [node name="SpeedController" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 138.0
-offset_top = 586.0
-offset_right = 496.0
-offset_bottom = 651.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.12
+anchor_top = 0.963
+anchor_right = 0.12
+anchor_bottom = 0.963
+offset_left = 0.119995
+offset_top = -37.061
+offset_right = 358.12
+offset_bottom = 27.939
 scale = Vector2(0.656984, 0.571196)
+metadata/_edit_use_anchors_ = true
 
 [node name="Background Container" type="TextureButton" parent="SpeedController"]
 layout_mode = 2
@@ -199,43 +235,58 @@ button_mask = 0
 texture_normal = ExtResource("4_2umie")
 
 [node name="Play Background" type="TextureButton" parent="SpeedController/Background Container"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 3.0
-offset_right = 190.0
-offset_bottom = 63.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015
+anchor_top = 0.969
+anchor_right = 0.015
+anchor_bottom = 0.969
+offset_top = -59.985
+offset_right = 187.0
+offset_bottom = 0.0149956
+grow_vertical = 0
 disabled = true
 button_mask = 0
 texture_normal = ExtResource("5_ddpla")
+metadata/_edit_use_anchors_ = true
 
 [node name="Pause" type="Button" parent="SpeedController/Background Container/Play Background"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 8.0
-offset_right = 47.0
-offset_bottom = 52.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.065
+anchor_top = 0.855
+anchor_right = 0.065
+anchor_bottom = 0.855
+offset_left = -2.155
+offset_top = -43.3
+offset_right = 34.845
+offset_bottom = 0.699997
 flat = true
 
 [node name="Play" type="Button" parent="SpeedController/Background Container/Play Background"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.354
-anchor_right = 0.354
-offset_left = 12.926
-offset_top = 12.0
-offset_right = 43.926
-offset_bottom = 50.0
+anchor_left = 0.423
+anchor_top = 0.833
+anchor_right = 0.423
+anchor_bottom = 0.833
+offset_left = 0.0230026
+offset_top = -37.98
+offset_right = 31.023
+offset_bottom = 0.0199966
 flat = true
 
 [node name="SpeedUp" type="Button" parent="SpeedController/Background Container/Play Background"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.423
-anchor_right = 1.423
-offset_left = -130.563
-offset_top = 11.0001
-offset_right = -76.563
-offset_bottom = 49.0001
+anchor_left = 0.717
+anchor_top = 0.817
+anchor_right = 0.717
+anchor_bottom = 0.817
+offset_left = -0.0789948
+offset_top = -38.02
+offset_right = 36.921
+offset_bottom = -0.0200005
 flat = true
 
 [node name="Paused pressed background" type="TextureButton" parent="SpeedController/Background Container/Play Background"]
