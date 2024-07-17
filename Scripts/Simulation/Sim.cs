@@ -19,6 +19,8 @@ public partial class Sim : Node
 
 	public static Sim Instance { get; private set; }
 
+	[Export] public StartData startData;
+
 	public SimGrid grid;
 	public PathfindingGraph PathGraph;
 	public SimEmissionsMeter EmissionsMeter { get; private set; }
@@ -72,12 +74,14 @@ public partial class Sim : Node
 	}
 
 	// load level data from save
-	public void LoadMap() {
+	public void LoadMap() { //TODO maybe have this take in a startData resource, but for now, it's just the one given to the sim instance 
 
-		//TODO generate a grid based on map data 
+		EmissionsMeter.InitializeEmissionsInfo(startData);
+		Clock.InitializeClockInfo(startData);
 
-		grid.InitializeGrid();	//TODO we'd probably pass in level data
-		PathGraph = new PathfindingGraph(10,10); //TODO replace this with using grid size from wherever we're asving it
+		//generate a grid based on map data 
+		grid.LoadGridFromResource(startData);
+		PathGraph = new PathfindingGraph(startData.GridWidth, startData.GridHeight);
 
 	}
 
