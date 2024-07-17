@@ -117,6 +117,16 @@ public partial class SimGrid : Node
 
 	public void LoadGridFromResource(StartData resourceToLoad)
 	{
+		width = resourceToLoad.gridData.Length;
+		int highestCount = 0;
+		foreach (SimInfraTypeRow row in resourceToLoad.gridData) {
+			if (row.gridData.Length > highestCount)
+			{
+				highestCount = row.gridData.Length;
+			}
+		}
+		height = highestCount;
+		InitializeGrid();
 		for (int x = 0; x < width; x++)
 		{
 			for (int y = 0; y < height; y++)
