@@ -11,8 +11,8 @@ public partial class SimGrid : Node
 	
 	public static readonly float TILE_WORLD_SCALE = 1f; //the size of the tile model in the world 
 	
-	private int width = 10; // will be updated by save resource
-	private int height = 10; // will be updated by save resource
+	private int width; // will be updated by save resource
+	private int height; // will be updated by save resource
 
 	public int Width { get => width; private set {}}
 	public int Height { get => height; private set {}}
@@ -21,11 +21,6 @@ public partial class SimGrid : Node
 	
 	//TODO for choosing destinations maybe we do all the pathfinding during that choice, where we aren't pathfinding to a particular tile but instead pathfinding until we find a particular type
 	//public SimInfraType.DestinationType destinationGrid; // parallel grid just storing destination types for pathfinding 
-
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
 
 	public void LoadGridFromResource(StartData resourceToLoad)
 	{
@@ -44,7 +39,7 @@ public partial class SimGrid : Node
 				AddChild(grid[x,y]); // Add each tile as a child node (optional)
 
 				//Tadd infrastructure to this tile based on the mask in the level file.
-				SimInfraType.InfraType infraMask = resourceToLoad.gridData[x].gridData[y].type;
+				SimInfraType.InfraType infraMask = resourceToLoad.gridData[x].gridData[y];
 				GetTile(x,y).AddInfraFromMask(infraMask, true);
 			}
 		}
@@ -101,11 +96,10 @@ public partial class SimGrid : Node
 		for (int x = 0; x < width; x++)
 		{
 			SimInfraTypeRow currentInfraRow = new SimInfraTypeRow();
-			currentInfraRow.gridData = new SimInfraType[height];
+			currentInfraRow.gridData = new Godot.Collections.Array<SimInfraType.InfraType>();
 			for (int y = 0; y < height; y++)
 			{
-				currentInfraRow.gridData[y] = new SimInfraType();
-				currentInfraRow.gridData[y].type = GetTile(x,y).InfraTypesMask;
+				currentInfraRow.gridData.Add(GetTile(x,y).InfraTypesMask);
 			}
 			startData.gridData[x] = currentInfraRow;
 		}

@@ -4,13 +4,14 @@ using System;
 [GlobalClass]
 public partial class StartData : Resource
 {
-	[Export] public int emissionsCap;
-	[Export] public int emissionsTarget;
-	[Export] public int startingYear;
-	[Export] public int yearsUntilGameOver;
- 
-	[Export] public int GridWidth;
-	[Export] public int GridHeight;
+	[Export] public int emissionsCap = 10000;
+	[Export] public int emissionsTarget = 100;
+	[Export] public int startingYear = 2025;
+	[Export] public int yearsUntilGameOver = 15;
+	[Export] public float nonDriverProbability = 0.3f;
 	
 	[Export] public SimInfraTypeRow[] gridData;
+
+	public int GridWidth { get => gridData.Length; private set {} }
+	public int GridHeight { get => gridData[0].gridData.Count; private set {} }
 }

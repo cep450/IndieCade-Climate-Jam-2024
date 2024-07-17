@@ -33,6 +33,7 @@ public partial class SimTile : Node
 		PathVertices = new PathVertex[3,3];
 		InfraTypesMask = default(SimInfraType.InfraType);
 		visualTile = (GodotObject)visualTileScript.New();
+		//TODO move visual tile to worldposition 
 	}
 
 	// load infrastructure on a tile based on a type mask

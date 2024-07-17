@@ -30,11 +30,6 @@ public partial class Sim : Node
 
 	public GameState gameState = GameState.TUTORIAL;
 
-
-	//TODO put this in level info once this is merged 
-	float nonDriverProbability = 0.3f; // does this agent have access to a car? TODO see if we can find this figure-- most immediately accessible statistics only measure adults, or households
-	
-
 	// shortcuts 
 	//TODO it might make more sense for these to be in SimGrid
 	public SimTile GetTile(int x, int y) {
@@ -218,7 +213,7 @@ public partial class Sim : Node
 	public void AddAgents(int number, Vector2I position) {
 
 		for(int i = 0; i < number; i++) {
-			SimAgent agent = new SimAgent(nonDriverProbability, position); //TODO get chance to not have a car from level data 
+			SimAgent agent = new SimAgent(startData.nonDriverProbability, position); //TODO get chance to not have a car from level data 
 			agents.Add(agent);
 			AddChild(agent);
 		}
