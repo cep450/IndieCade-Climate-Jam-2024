@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bfttri8g4op5h"]
 
-[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/updatedtiles.tres" id="1_0tx8y"]
+[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://tiles.tres" id="1_0tx8y"]
 
 [node name="World" type="Node3D"]
 

@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsh10lnrhplqm"]
+
+[ext_resource type="PackedScene" uid="uid://ywjl0wh8esdf" path="res://Models/Car/Car_Driving_Yellow.glb" id="1_qjhpo"]
+
+[node name="Car_Driving_Yellow" instance=ExtResource("1_qjhpo")]
+
+[node name="Skeleton3D" parent="Car_Rig/DeformationSystem" index="0"]
+bones/9/rotation = Quaternion(0.676993, 0.204157, -0.676993, 0.204157)
+bones/13/rotation = Quaternion(0.568018, -0.421136, -0.568018, -0.421136)
+
+[node name="Skeleton3D" parent="Car_Rig/MotionSystem/FKSystem/FKOffsetRoot_M/FKExtraRoot_M/FKRoot_M/Armature_001" index="0"]
+bones/33/rotation = Quaternion(0.263803, -7.77561e-16, 1.15312e-08, 0.964576)
+bones/45/rotation = Quaternion(0.074736, 2.60028e-18, 3.26681e-09, 0.997203)
+
+[node name="AnimationPlayer" parent="." index="2"]
+root_motion_track = NodePath("Car_Rig/MotionSystem/FKSystem/FKOffsetRoot_M/FKExtraRoot_M/FKRoot_M/Armature_001/Skeleton3D:FKXRoot_M")
+autoplay = "Armature_001|Take 001|BaseLayer"

@@ -12,8 +12,10 @@ public partial class SimPath : Node
 	private Dictionary<Vector2, SimTile> _grid;
 	private int _gridSize = 10;
 
+	//TODO why is this here? should this be removed?
 	public override void _Ready()
 	{
+		/*
 		// Initialize the grid with SimTile nodes
 		_grid = new Dictionary<Vector2, SimTile>();
 
@@ -21,11 +23,12 @@ public partial class SimPath : Node
 		{
 			for (int y = 0; y < _gridSize; y++)
 			{
-				Vector2 position = new Vector2(x, y);
+				Vector2I position = new Vector2I(x, y);
 				SimTile tile = new SimTile(position);
 				_grid[position] = tile;
 			}
 		}
+		*/
 	}
 
 	public Vector2 GetNextStep(Vector2 start, Vector2 end)

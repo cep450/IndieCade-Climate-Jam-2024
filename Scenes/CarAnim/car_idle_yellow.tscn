@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0ad7sfuf5y4a"]
+
+[ext_resource type="PackedScene" uid="uid://cfk80ddo6cvsc" path="res://Models/Car/Car_Idle_Yellow.glb" id="1_2rs0v"]
+
+[node name="Car_Idle_Yellow" instance=ExtResource("1_2rs0v")]
+
+[node name="Skeleton3D" parent="Car_Rig/DeformationSystem" index="0"]
+bones/9/rotation = Quaternion(0.676993, 0.204157, -0.676993, 0.204157)
+bones/13/rotation = Quaternion(0.568018, -0.421136, -0.568018, -0.421136)
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "AimSystem|Take 001|BaseLayer"

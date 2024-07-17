@@ -3,9 +3,8 @@ using System;
 using System.Dynamic;
 
 
-public partial class SimInfra : Node
+public partial class SimInfra
 {
-
 	/*
 	 * A single instance of infra in the simulation. Tiles can have multiple infra on them.
 	 */
@@ -26,6 +25,10 @@ public partial class SimInfra : Node
 	// vehicles will handle speed and emissions 
 
 	// agents will handle calculating weight of paths, since different agents might weight things differently (e.g. how much they value safety and when)
+
+	public SimInfra(SimInfraType _type) {
+		type = _type;
+	}
 
 	//only allow increase in occupancy if it doesn't go over capacity. returns true if action was successful
 	public bool TryAddOccupancy() {

@@ -6,15 +6,24 @@ public partial class SimEmissionsMeter : Node
 	/* 
 	 *	Keeps track of global values.
 	 *  Singleton.
+	 *  for use by vehicles and anything we want to count towards emissions 
 	 */
 
-	private float emissions;
-	private const float emissionsCap = 100000; //example number
+	private float emissions = 0; // running total
+	private const float emissionsCap = 10000; // if emissions surpass this the game ends with a loss. TODO tune this 
+	private const float emissionsTarget = 10; // if emission rate goes below this the game ends with a win. TODO tune this
 
-	//for use by vehicles and anything we want to count towards emissions 
+	private float emissionsThisTick = 0;
+	private float emissionsLastTick = 0;
+
+	// for use by UI
+	public float EmissionRate { get => emissionsLastTick; private set {} }
+	public float Emissions { get => emissions; private set {} }
+
+	public float GetEmissions() { return emissions; }
+	public float GetEmissionsCap() { return emissionsCap; }
+
 	//Singleton instance
-	
-
 	private static SimEmissionsMeter instance = null;
 	public static SimEmissionsMeter Instance
 	{
@@ -29,31 +38,38 @@ public partial class SimEmissionsMeter : Node
 	}
 	private SimEmissionsMeter() { }
 
-	public float GetEmissions() { return emissions; }
-	public float GetEmissionsCap() { return emissionsCap; }
+
+	public void EndTick() {
+		emissions += emissionsThisTick;
+		CheckEmissionsLevel();
+		emissionsLastTick = emissionsThisTick;
+		emissionsThisTick = 0;
+		
+		GD.Print("emissions this tick: " + emissionsLastTick + " total: " + emissions);
+	}
 
 	public void AddEmissions(float amount)
 	{
-
-		//if emissions surpass a threshold, end the game with a loss 
-		emissions += amount;
-		CheckEmissionsLevel();
+		emissionsThisTick += amount;
 	}
 
 	public void ReduceEmissions(float amount)
 	{
-		emissions -= amount;
-		if (emissions < 0)
-		{
-			emissions = 0; // prevent negative emissions
-		}
+		emissionsThisTick -= amount;
 	}
 
+	
 	private void CheckEmissionsLevel()
 	{
+		//if emissions surpass a threshold, end the game with a loss 
 		if (emissions >= emissionsCap && Sim.Instance.gameState == Sim.GameState.GAMEPLAY)
 		{
 			Sim.Instance.GameOverEmissions();
+		}
+
+		//if emissions rate has been lowered below the threshold, end the game with a win
+		if(emissionsThisTick < emissionsTarget) {
+			Sim.Instance.GameOverSuccess();
 		}
 	}
 
