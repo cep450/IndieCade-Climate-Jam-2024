@@ -87,6 +87,7 @@ public partial class SimInfraType : Resource
 	[Export] public InfraType incompatibilityMask; //1 = incompatible, 0 = compatible
 
 	[Export] public string ModelPath;
+	[Export] public int ModelVariantCount = 1;
 	[Export] public bool ModelConnects;
 	[Export] public bool ModelHasBase;
 	
