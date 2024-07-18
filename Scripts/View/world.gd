@@ -26,3 +26,9 @@ func _ready():
 			pos.x += 1
 		pos.z += 1
 		pos.x -= 10
+
+func update_all_tiles_visuals():
+	pass
+	
+func update_eelected_tile_visuals():
+	pass

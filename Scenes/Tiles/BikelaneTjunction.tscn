@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://3qopwwhhn8we"]
+[gd_scene load_steps=3 format=3 uid="uid://cpkv2obg8apvs"]
 
-[ext_resource type="ArrayMesh" uid="uid://bi8tq3dbon4vy" path="res://Resources/TileMeshes/BikelaneTjunction.tres" id="1_8g145"]
+[ext_resource type="ArrayMesh" uid="uid://dgy76g251j05n" path="res://Resources/TileMeshes/BikelaneTjunction.tres" id="1_8g145"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_guemr"]
 points = PackedVector3Array(-0.343937, 0.374865, -0.507937, 0.513206, 0.390735, 0.349132, 0.338522, 0.390735, 0.507937, 0.513206, 0.374865, 0.349132, -0.343937, 0.374865, 0.507937, -0.343937, 0.390735, -0.507937, 0.513206, 0.374865, -0.349132, -0.343937, 0.390735, 0.507937, 0.338522, 0.390735, -0.507937, 0.513206, 0.390735, -0.349132, 0.338522, 0.374865, 0.507937, 0.338522, 0.374865, -0.507937)

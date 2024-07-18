@@ -27,16 +27,15 @@ public partial class Sim : Node
 
 	public GameState gameState = GameState.GAMEPLAY;
 
-
 	//TODO put this in level info once this is merged 
 	float nonDriverProbability = 0.3f; // does this agent have access to a car? TODO see if we can find this figure-- most immediately accessible statistics only measure adults, or households
 	
-
 	// shortcuts 
 	//TODO it might make more sense for these to be in SimGrid
 	public SimTile GetTile(int x, int y) {
 		return Instance.grid.GetTile(x, y);
 	}
+	
 	public SimInfraType.DestinationType GetDestinationType(int x, int y) {
 		return Instance.grid.GetTile(x,y).DestinationType;
 	}

@@ -69,12 +69,12 @@ func on_tile_clicked(local_x: int, local_y: int):
 		isYellow = false
 
 func update_visuals():
+	var infra = sim.GetInfra()
 	print("visuals updated")
 	if has_node("ObjectInstance"):
 		$ObjectInstance.queue_free()
 	if has_node("Base"):
 		$Base.queue_free()
-	#var type = sim.GetInfraType(x,y)
 	var instance
 	#if type == Global.InfraType.BUILDING:
 	if true:
@@ -83,3 +83,6 @@ func update_visuals():
 		instance = house.instantiate()
 		add_child(instance)
 		instance.name = "ObjectInstance"
+	#if Infra.type == ROAD:
+		#func get_get_version(type)
+		#var instance = preload("res://Scenes/Tiles/Bikelane" + version + ".tscn")

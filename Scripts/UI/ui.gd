@@ -31,7 +31,7 @@ func on_tile_clicked(x: int, y: int):
 	for child in build_buttons.get_children():
 		child.queue_free()
 	# Temp func to add test ones
-	var types = [Global.InfraType.ROAD, Global.InfraType.HOUSE, Global.InfraType.BUILDING]
+	var types = [Global.InfraType.HOME, Global.InfraType.WORK, Global.InfraType.COMMERCIAL]
 	for type in types:
 		var instance = button.instantiate()
 		build_buttons.add_child(instance)

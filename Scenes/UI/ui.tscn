@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://csswthorupplo"]
+[gd_scene load_steps=24 format=3 uid="uid://csswthorupplo"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="1_meoay"]
 [ext_resource type="Texture2D" uid="uid://umsji8qst4u6" path="res://Assets/Gameplay/Meters/Emissions/EMeter_Blank2_200x200.png" id="2_asuck"]
@@ -29,6 +29,11 @@ texture_margin_top = 2.0
 texture_margin_right = 23.0
 texture_margin_bottom = 3.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_goyyu"]
+texture = ExtResource("4_2umie")
+texture_margin_left = 12.0
+texture_margin_right = 12.0
+
 [node name="UI" type="Control" node_paths=PackedStringArray("emissions_meter", "build_buttons")]
 layout_mode = 3
 anchors_preset = 15
@@ -47,10 +52,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 0.999999
-offset_top = -129.0
-offset_right = 233.0
-offset_bottom = 102.0
+offset_left = 9.0
+offset_top = -138.0
+offset_right = 241.0
+offset_bottom = 93.0
 scale = Vector2(0.56, 0.56)
 value = 100.0
 fill_mode = 5
@@ -189,65 +194,44 @@ texture_normal = ExtResource("12_qoj2x")
 ignore_texture_size = true
 stretch_mode = 3
 
-[node name="SpeedController" type="HBoxContainer" parent="."]
+[node name="Background Container" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 138.0
-offset_top = -61.0
-offset_right = 496.0
-offset_bottom = 4.0
+offset_left = 149.0
+offset_top = -70.0
+offset_right = 345.0
+offset_bottom = -18.0
 grow_vertical = 0
-scale = Vector2(0.656984, 0.571196)
+scale = Vector2(0.864657, 0.87203)
+theme_override_styles/panel = SubResource("StyleBoxTexture_goyyu")
 
-[node name="Background Container" type="TextureButton" parent="SpeedController"]
+[node name="Play" type="Button" parent="Background Container"]
 layout_mode = 2
-disabled = true
-button_mask = 0
-texture_normal = ExtResource("4_2umie")
+flat = true
 
-[node name="Play Background" type="TextureButton" parent="SpeedController/Background Container"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 3.0
-offset_right = 190.0
-offset_bottom = 63.0
+[node name="Pause" type="Button" parent="Background Container"]
+layout_mode = 2
+flat = true
+
+[node name="SpeedUp" type="Button" parent="Background Container"]
+layout_mode = 2
+flat = true
+
+[node name="Icons" type="TextureRect" parent="Background Container"]
+layout_mode = 2
+texture = ExtResource("16_1f6rw")
+
+[node name="Play Background" type="TextureButton" parent="Background Container"]
+visible = false
+layout_mode = 2
 disabled = true
 button_mask = 0
 texture_normal = ExtResource("5_ddpla")
 
-[node name="Pause" type="Button" parent="SpeedController/Background Container/Play Background"]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 8.0
-offset_right = 47.0
-offset_bottom = 52.0
-flat = true
-
-[node name="Play" type="Button" parent="SpeedController/Background Container/Play Background"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.354
-anchor_right = 0.354
-offset_left = 12.926
-offset_top = 12.0
-offset_right = 43.926
-offset_bottom = 50.0
-flat = true
-
-[node name="SpeedUp" type="Button" parent="SpeedController/Background Container/Play Background"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.423
-anchor_right = 1.423
-offset_left = -130.563
-offset_top = 11.0001
-offset_right = -76.563
-offset_bottom = 49.0001
-flat = true
-
-[node name="Paused pressed background" type="TextureButton" parent="SpeedController/Background Container/Play Background"]
+[node name="Paused pressed background" type="TextureButton" parent="Background Container/Play Background"]
 visible = false
 layout_mode = 0
 offset_left = 0.132645
@@ -258,7 +242,7 @@ disabled = true
 button_mask = 0
 texture_normal = ExtResource("6_iw8eh")
 
-[node name="Speed pressed background" type="TextureButton" parent="SpeedController/Background Container/Play Background"]
+[node name="Speed pressed background" type="TextureButton" parent="Background Container/Play Background"]
 visible = false
 layout_mode = 0
 offset_left = 0.132645

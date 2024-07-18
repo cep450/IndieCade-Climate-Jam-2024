@@ -5,4 +5,4 @@
 
 [node name="InfraType" type="Node"]
 script = ExtResource("1_0sv2k")
-resource = Array[Resource("res://Scripts/Simulation/SimInfraType.cs")]([ExtResource("2_etsxy")])
+resource = Array[Resource("res://Scripts/Simulation/SimInfraType.cs")]([ExtResource("2_etsxy"), null, null, null, null, null])

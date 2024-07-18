@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://27rmywx45nfa"]
+[gd_scene load_steps=3 format=3 uid="uid://c3mvhlbel1ac0"]
 
-[ext_resource type="ArrayMesh" uid="uid://kfukmrc0av1k" path="res://Resources/TileMeshes/BikelaneStraight.tres" id="1_1fevl"]
+[ext_resource type="ArrayMesh" uid="uid://ry3i2jkmvhx2" path="res://Resources/TileMeshes/BikelaneStraight.tres" id="1_1fevl"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kub6s"]
 points = PackedVector3Array(-0.339846, 0.386646, -0.503846, 0.337077, 0.386646, 0.503846, 0.337077, 0.386646, -0.503846, -0.339846, 0.386646, 0.503846)

@@ -4,12 +4,13 @@
 
 [resource]
 script = ExtResource("1_1s4ox")
-type = 1
+type = 2
 visualInfra = null
+destinationType = 1
 transportModes = 0
 connectsCorners = false
 connectsBorders = false
-destinationType = 1
+connectionsBlockedBy = 0
 capacity = 4
 canTransfer = false
 maxSpeed = 0.0
