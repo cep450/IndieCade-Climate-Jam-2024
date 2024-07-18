@@ -23,4 +23,4 @@ func init_tile(x, y, xpos, ypos):
 	instance.initialize(x,y)
 	instance.position = Vector3(xpos, 0, ypos)
 	instance.test_init("Blank")
-	return instance;
+	return instance
