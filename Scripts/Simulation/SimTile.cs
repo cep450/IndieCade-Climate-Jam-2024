@@ -186,4 +186,11 @@ public partial class SimTile : Node
 	{
 		return gCost + hCost;
 	}
+	
+	// For testing
+	public void SayHi()
+	{
+		GD.Print("Hi from SimTile");
+	}
+
 }

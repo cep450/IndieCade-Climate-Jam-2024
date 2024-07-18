@@ -33,5 +33,5 @@ func on_tile_clicked(x: int, y: int) -> void:
 	for type in types:
 		var instance = button.instantiate()
 		build_buttons.add_child(instance)
-		instance.initialize(type, x, y)
+		instance.initialize(load("res://Resources/InfraTypes/road.tres"), x, y)
 	return

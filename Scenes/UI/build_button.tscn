@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://mbdci21jlne0" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (9).png" id="4_j2gt5"]
 
 [node name="BuildButton" type="Button"]
+process_priority = -100
+process_physics_priority = -1000
 visibility_layer = 4097
 custom_minimum_size = Vector2(60, 60)
 anchors_preset = 15
@@ -20,5 +22,4 @@ expand_icon = true
 script = ExtResource("1_g1h0j")
 images = Array[Texture2D]([ExtResource("2_gp0xg"), ExtResource("3_bytjp"), ExtResource("4_j2gt5")])
 
-[connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]
