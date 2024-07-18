@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=4 format=3 uid="uid://cs844cowav1yq"]
+[gd_resource type="ArrayMesh" load_steps=4 format=3 uid="uid://ci4cnf3uukdil"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwds1"]
 resource_name = "LightpostMat"

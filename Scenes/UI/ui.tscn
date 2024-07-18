@@ -43,6 +43,7 @@ offset_top = 1.0
 offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_meoay")
 emissions_meter = NodePath("EmissionsMeter")
 build_buttons = NodePath("Build/BuildMenu")
