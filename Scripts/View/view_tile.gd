@@ -20,8 +20,7 @@ var isYellow: bool = false
 var sim
 
 func _ready() -> void:
-	sim = get_parent().sim
-	pass
+		sim = get_parent().sim
 
 func test_init(type: String):
 	var instance
@@ -64,6 +63,7 @@ func on_tile_clicked(local_x: int, local_y: int):
 		else:
 			$ObjectInstance.get_child(0).material_overlay = null
 			isYellow = false
+		update_visuals()
 	else:
 		$ObjectInstance.get_child(0).material_overlay = null
 		isYellow = false
@@ -72,7 +72,14 @@ func update_visuals():
 	if(sim == null):
 		sim = get_parent().sim
 	var infra = sim.GetInfra(x,y)
+	sim.SayHi()
+	#var infra = sim.GetInfra(x,y)
+	#if !infra.is_impty():
+		#for type in infra:
+			#print(type)
 	print("visuals updated")
+	
+	
 	if has_node("ObjectInstance"):
 		$ObjectInstance.queue_free()
 	if has_node("Base"):

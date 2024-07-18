@@ -17,5 +17,4 @@ enum InfraType {
 	BIKERACK,
 }
 
-
 @export var resource: Array[SimInfraType]

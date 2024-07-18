@@ -18,4 +18,6 @@ func initialize(param_type, param_x, param_y):
 
 func _on_pressed():
 	sim.SayHi()
+	sim.AddInfra()
+	
 

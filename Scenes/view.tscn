@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5ishc4d117a6"]
+[gd_scene load_steps=6 format=3 uid="uid://xti42c45x8ws"]
 
 [ext_resource type="Script" path="res://Scripts/View/world.gd" id="1_k5je3"]
 [ext_resource type="Environment" uid="uid://ccufda2p8xb10" path="res://Resources/environment.tres" id="2_o416c"]
@@ -23,12 +23,6 @@ ZOOM_SPEED = 20.0
 
 [node name="World" type="Node3D" parent="."]
 script = ExtResource("1_k5je3")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="World"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1426, 12.6158, -23.4911)
-visible = false
-light_energy = 10.0
-omni_range = 1000.0
 
 [node name="Floor" type="MeshInstance3D" parent="World"]
 mesh = SubResource("PlaneMesh_3jdih")
