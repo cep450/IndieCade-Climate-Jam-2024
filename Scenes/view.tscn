@@ -11,7 +11,7 @@ albedo_color = Color(0.0468326, 0.195618, 2.40654e-08, 1)
 material = SubResource("StandardMaterial3D_ohh6k")
 size = Vector2(10, 10)
 
-[node name="View" type="Node3D"]
+[node name="View2" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -1.90571, 2.95144, 3.20244)

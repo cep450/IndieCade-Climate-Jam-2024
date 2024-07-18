@@ -13,7 +13,6 @@ var sim_emissions_meter
 
 var button = preload("res://Scenes/UI/build_button.tscn")	
 
-
 func _ready():
 	sim = $"../Simulation"
 	sim_emissions_meter = sim.get_node("SimEmissionsMeter")
