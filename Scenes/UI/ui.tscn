@@ -391,21 +391,6 @@ scale = Vector2(0.80001, 0.8)
 layout_mode = 2
 texture_normal = ExtResource("11_yl1gm")
 
-[node name="Button" type="Button" parent="Timer"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 2.655
-anchor_right = 0.5
-anchor_bottom = 2.655
-offset_left = -45.5
-offset_top = -79.995
-offset_right = 38.5
-offset_bottom = 5.005
-scale = Vector2(0.980198, 0.937502)
-icon = ExtResource("11_yl1gm")
-metadata/_edit_use_anchors_ = true
-
 [node name="Speedup" type="Control" parent="."]
 anchors_preset = 0
 offset_right = 40.0
