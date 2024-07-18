@@ -52,6 +52,13 @@ func select() -> void:
 	get_parent().tile_clicked.emit(x,y)
 
 func on_tile_clicked(local_x: int, local_y: int):
+	
+	# TODO the game crashes here because $ObjectInstance seems to be null.
+	# errors print view_tile.gd:61 @ on_tile_clicked(): Node not found: "ObjectInstance" (relative to "/root/Main/View/World/@Node3D@196").
+	# this if statement is just to keep the game from crashing for now.
+	if($ObjectInstance == null):
+		return
+	
 	if x == local_x && y == local_y:
 		# Change the material to yellow_mat when selected
 		if !isYellow:

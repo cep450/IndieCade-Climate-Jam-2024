@@ -4,10 +4,11 @@
 
 [resource]
 script = ExtResource("1_2c54y")
+Name = "Parking Lot"
 type = 1024
 visualInfra = null
 destinationType = 0
-transportModes = 3
+transportModes = 7
 connectsCorners = true
 connectsBorders = true
 connectionsBlockedBy = 0
@@ -18,3 +19,6 @@ safety = 0.0
 costToBuild = 5
 costToDestroy = 5
 incompatibilityMask = 1119
+ModelPath = ""
+ModelConnects = false
+ModelHasBase = false
