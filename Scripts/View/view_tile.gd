@@ -20,11 +20,11 @@ var isYellow: bool = false
 var sim
 
 func _ready() -> void:
+	sim = get_parent().sim
 	pass
 
 func test_init(type: String):
 	var instance
-	sim = get_parent().sim
 	# Setup base or road.
 	if type == "Road":
 		instance = road.instantiate()
@@ -69,7 +69,9 @@ func on_tile_clicked(local_x: int, local_y: int):
 		isYellow = false
 
 func update_visuals():
-	var infra = sim.GetInfra()
+	if(sim == null):
+		sim = get_parent().sim
+	var infra = sim.GetInfra(x,y)
 	print("visuals updated")
 	if has_node("ObjectInstance"):
 		$ObjectInstance.queue_free()
@@ -86,3 +88,5 @@ func update_visuals():
 	#if Infra.type == ROAD:
 		#func get_get_version(type)
 		#var instance = preload("res://Scenes/Tiles/Bikelane" + version + ".tscn")
+
+		# TODO also update the tiles adjacent to this tile, e.g. if they now have a connection to this tile.
