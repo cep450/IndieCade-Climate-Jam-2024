@@ -89,6 +89,8 @@ public partial class SimInfraType : Resource
 	[Export] public string ModelPath;
 	[Export] public bool ModelConnects;
 	[Export] public bool ModelHasBase;
+	
+	[Export] public Texture2D Icon;
 
 
 	//TODO better way to do this?
