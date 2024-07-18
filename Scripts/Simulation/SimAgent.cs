@@ -21,6 +21,13 @@ public partial class SimAgent : Node
 
 	private float happiness; //would every agent have a happiness value?
 	public SimVehicle Vehicle { get; private set; }
+	public bool VehicleIsInUse { get {
+		if(Vehicle != null) {
+			return Vehicle.IsInUse;
+		} else {
+			return false;
+		} 
+	} set {} }
 
 	// smooth in-world positions for moving tile to tile
 	public Vector2 currentPosition;
@@ -44,14 +51,16 @@ public partial class SimAgent : Node
 		destinationType = Sim.Instance.GetTile(currentCoordinates.X, currentCoordinates.Y).DestinationType;
 		state = State.AT_DESTINATION;
 
-		pathFinder = GetNode<SimPath>("../SimPath"); //get a reference to the pathfinder
-		SetRandomTarget();
+		//TODO instantiate a vehicle to go with it 
+
+		//pathFinder = GetNode<SimPath>("../SimPath"); //get a reference to the pathfinder
+		//SetRandomTarget();
 	}
 
 	// every game tick. update position smoothly
 	public override void _Process(double delta)
 	{
-		Vehicle._Process(GetProcessDeltaTime());
+		//Vehicle._Process(GetProcessDeltaTime());
 	}
 
 	// every simulation tick.
@@ -74,7 +83,7 @@ public partial class SimAgent : Node
 					// check if we're ready to move to the next tile 
 						// if we are, check if the next tile has open capacity
 							// if it does, MoveToNextTile();
-			Vehicle.Tick();
+			Vehicle?.Tick();
 		}
 
 	}
@@ -89,7 +98,7 @@ public partial class SimAgent : Node
 	private void SetRandomTarget()
 	{
 		targetPosition = new Vector2(GD.RandRange(0, Sim.Instance.grid.Width), GD.RandRange(0, Sim.Instance.grid.Height));
-		Vehicle.SetTarget(targetPosition);
+		//Vehicle.SetTarget(targetPosition);
 	}
 
 	// choose a destination type that's not the current type and not NOT_DESTINATION 

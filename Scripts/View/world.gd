@@ -8,7 +8,7 @@ var sim: Node
 # The data here is a substitute for Simulation
 func _ready():
 	sim = $"../../Simulation"
-	var _types = sim.GetInfra(0,0)
+#	var _types = sim.GetInfra(0,0)
 	#print(types[0].type.type)
 	var pos = Vector3(-4.5,0,-4.5)
 	for x in 10:

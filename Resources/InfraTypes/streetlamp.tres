@@ -5,8 +5,12 @@
 [resource]
 script = ExtResource("1_paim6")
 type = 256
-transportModes = 0
+visualInfra = null
 destinationType = 0
+transportModes = 0
+connectsCorners = false
+connectsBorders = false
+connectionsBlockedBy = 0
 capacity = 0
 canTransfer = false
 maxSpeed = 0.0

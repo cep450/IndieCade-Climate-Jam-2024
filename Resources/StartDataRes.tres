@@ -4,5 +4,10 @@
 
 [resource]
 script = ExtResource("2_yi43b")
-emissionsCap = 0
-gridData = null
+emissionsCap = 10000
+emissionsTarget = 100
+startingYear = 2025
+yearsUntilGameOver = 15
+GridWidth = 10
+GridHeight = 10
+gridData = Array[Object]([])

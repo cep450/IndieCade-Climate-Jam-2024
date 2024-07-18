@@ -19,6 +19,8 @@ public class PathVertex {
 
 	public List<PathEdge> Edges;
 
+	public bool canTransfer = false;
+
 	public PathVertex(Vector2I pathGraphCoordinates, Vector2 worldPosition) {
 		PathGraphCoordinates = pathGraphCoordinates;
 		WorldPosition = worldPosition;
