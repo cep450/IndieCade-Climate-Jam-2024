@@ -48,7 +48,7 @@ public partial class SimInfraType : Resource
 
 	// resources in order of enum values
 	public static SimInfraType [] types = {
-		GD.Load<SimInfraType>("res://Resources/InfraTypes/home.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/house.tres"),
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/work.tres"),
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/commercial.tres"),
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/thirdspace.tres"),
@@ -58,7 +58,7 @@ public partial class SimInfraType : Resource
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/bikelane.tres"),
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/streetlamp.tres"),
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/tree.tres"),
-		GD.Load<SimInfraType>("res://Resources/InfraTypes/parkinglot.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/parking_lot.tres"),
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/bike_rack.tres"),
 	};
 

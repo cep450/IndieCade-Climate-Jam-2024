@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 public partial class SimGrid : Node
 {
@@ -18,9 +19,17 @@ public partial class SimGrid : Node
 	public int Height { get => height; private set {}}
 
 	public SimTile[,] grid;
+
+	GDScript worldScript = GD.Load<GDScript>("res://Scripts/View/world.gd");
 	
 	//TODO for choosing destinations maybe we do all the pathfinding during that choice, where we aren't pathfinding to a particular tile but instead pathfinding until we find a particular type
 	//public SimInfraType.DestinationType destinationGrid; // parallel grid just storing destination types for pathfinding 
+
+	public float GridToWorldPos(int sizeAxis, int coord) {
+		float pos = coord + 0.5f;
+		pos -= (sizeAxis / 2);
+		return pos;
+	}
 
 	public void LoadGridFromResource(StartData resourceToLoad)
 	{
@@ -29,18 +38,31 @@ public partial class SimGrid : Node
 
 		grid = new SimTile[width,height];
 
+		GodotObject world = GetNode("../../View/World");
+
+		// initialize the view world 
+		//world.Call("init_world", width, height, TILE_WORLD_SCALE);
+
+		// initialize internal SimGrid with SimTiles 
 		for (int x = 0; x < width; x++)
 		{
 			for (int y = 0; y < height; y++)
 			{
+				//create a world tile and a SimTile and associate them with each other 
+				
 				Vector2I coordinates = new Vector2I(x, y);
-				Vector2 position = new Vector2(x * TILE_WORLD_SCALE, y * TILE_WORLD_SCALE);
-				grid[x,y] = new SimTile(coordinates, position); // Initialize each tile with a position
+				Vector2 position = new Vector2(GridToWorldPos(width, x) * TILE_WORLD_SCALE, GridToWorldPos(height, y) * TILE_WORLD_SCALE);
+
+				GodotObject newVisualTile = (GodotObject)world.Call("init_tile", x, y, position.X, position.Y);
+				grid[x,y] = new SimTile(coordinates, position, newVisualTile); // Initialize each tile with a position
 				AddChild(grid[x,y]); // Add each tile as a child node (optional)
 
-				//Tadd infrastructure to this tile based on the mask in the level file.
+				//Add infrastructure to this tile based on the mask in the level file.
 				SimInfraType.InfraType infraMask = resourceToLoad.gridData[x].gridData[y];
-				GetTile(x,y).AddInfraFromMask(infraMask, true);
+				grid[x,y].AddInfraFromMask(infraMask, true);
+
+				// update visual tile once now that all infra has been added
+				newVisualTile.Call("update_visuals");
 			}
 		}
 
@@ -54,7 +76,7 @@ public partial class SimGrid : Node
 	{
 		if (x < 0 || y < 0 || x >= width || y >= height)
 		{
-			GD.Print("Tried to get a tile on the grid that was out of range.");
+			GD.Print("Tried to get a tile on the grid that was out of range at " + x + ", " + y);
 			return null;
 		}
 		return grid[x,y];

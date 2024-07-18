@@ -68,4 +68,6 @@ func on_tile_clicked(local_x: int, local_y: int):
 
 func update_visuals():
 	print("visuals updated")
+
+	# TODO make sure this updates all infrastructure on the tile 
 	pass

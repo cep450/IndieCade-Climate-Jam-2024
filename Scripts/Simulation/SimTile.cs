@@ -26,14 +26,14 @@ public partial class SimTile : Node
 	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/view_tile.gd");
 	GodotObject visualTile;
 
-	public SimTile(Vector2I coordinates, Vector2 worldPosition)
+	public SimTile(Vector2I coordinates, Vector2 worldPosition, GodotObject newVisualTile)
 	{
 		Coordinates = coordinates;
 		WorldPosition = worldPosition;
 		PathVertices = new PathVertex[3,3];
 		InfraTypesMask = default(SimInfraType.InfraType);
-		visualTile = (GodotObject)visualTileScript.New();
-		//TODO move visual tile to worldposition 
+		visualTile = newVisualTile;
+		Infra = new List<SimInfra>();
 	}
 
 	// load infrastructure on a tile based on a type mask
@@ -48,7 +48,7 @@ public partial class SimTile : Node
 	}
 
 	// Add infrastructure to the tile.
-	public bool AddInfra(SimInfraType type, bool bypassValidation = false) {
+	public bool AddInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true) {
 
 		//validate if the infrastructure can be added here, and if the player has enough currency
 		if(!bypassValidation) {
@@ -81,16 +81,18 @@ public partial class SimTile : Node
 		type.AddedToTile(this);
 
 		//update/add it visually
-		visualTile.Call("update_visuals");
+		if(updateVisuals) {
+			visualTile.Call("update_visuals");
 
-		//TODO update OTHER infrastructure on the tile visually
+			//TODO update tiles adjacent to this tile visually
+		}
 
 		//return if adding was successful
 		return true;
 	}
 
 	//TODO what do we want to pass in here? an index in the list? a type? an instance? maybe overrides for all of these. one that takes a mask could even add/remove multiple at once.
-	public bool RemoveInfra(SimInfraType type) {
+	public bool RemoveInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true) {
 		
 		//check if this tile has this infrastrcture 
 		if(!HasInfraType(type.type)) {
@@ -125,9 +127,12 @@ public partial class SimTile : Node
 		type.RemovedFromTile(this);
 
 		//update/remove it visually 
-		visualTile.Call("update_visuals");
+		// this should also update other infrastructure on the tile visually
+		if(updateVisuals) {
+			visualTile.Call("update_visuals");
 
-		//TODO update OTHER infrastructure on the tile visually
+			//TODO update tiles adjacent to this tile visually
+		}
 
 		return true;
 	}

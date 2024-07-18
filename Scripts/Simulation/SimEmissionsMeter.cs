@@ -84,7 +84,7 @@ public partial class SimEmissionsMeter : Node
 
 		foreach (var agent in activeAgents)
 		{
-			if (agent.Vehicle.IsInUse)
+			if (agent.VehicleIsInUse)
 			{
 				totalEmissions += agent.Vehicle.Emissions;
 			}
