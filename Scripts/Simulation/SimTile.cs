@@ -74,7 +74,7 @@ public partial class SimTile : Node
 		//add it to the list 
 		Infra.Add(newInfra);
 
-		//TODO add edges accordingly
+		//add edges accordingly
 		RecalculateEdges();
 
 		// if this infra has any special behavior when added
@@ -119,10 +119,10 @@ public partial class SimTile : Node
 			DestinationType = SimInfraType.DestinationType.NOT_DESTINATION;
 		}
 
-		//TODO remove from list 
-		//Infra.Remove() //TODO how to find it?
+		//remove from list 
+		Infra.RemoveAt(IndexOfInfra(type.type));
 
-		//TODO update any connections 
+		//update any connections 
 		RecalculateEdges();
 
 		// if this infra has any special behavior when removed
@@ -133,7 +133,7 @@ public partial class SimTile : Node
 		if(updateVisuals) {
 			visualTile.Call("update_visuals");
 
-			//TODO update tiles adjacent to this tile visually
+			//TODO update tiles adjacent to this tile visually-- make sure this happens in update_visuals maybe 
 		}
 
 		return true;
@@ -152,6 +152,14 @@ public partial class SimTile : Node
 
 		// return an array of those infrastructure 
 		return SimInfraType.TypesFromEnum(compatible);
+	}
+
+	// index in infra list. returns -1 if none 
+	public int IndexOfInfra(SimInfraType.InfraType type) {
+
+		if(!HasInfraType(type)) return -1;
+
+		return Infra.FindIndex(x => x.Type.type == type);
 	}
 
 	// can this infrastructure to be added to this tile, given the infrastructure it already has?
