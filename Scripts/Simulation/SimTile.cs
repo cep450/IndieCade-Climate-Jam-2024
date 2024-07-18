@@ -186,6 +186,17 @@ public partial class SimTile : Node
 
 	// Reclaculate the edges to/from the vertices on this tile based on the current lineup of infrastructure on the tile and around the tile.
 	void RecalculateEdges() {
+
+		// update the infrastructure affecting each PathVertex, according to what's on the current tile and tiles around it, and how the infra connects
+		// TODO maybe we need to have an export with like a 3x3 set of flags for what vertices the infra influences?
+		// like how trees affect everything, but destinations only exist on the center 
+		// & maybe each PathVertex can figure itself out based on the vertices it knows about 
+		// PathVertex.RecalculateInfra(), PathVertex.RecalculateConnections 
+		// using ConnectsCorners/Borders/Center 
+
+
+		// calculate connections between the PathVertexes, keeping blocking in mind 
+
 		// TODO 
 	}
 
