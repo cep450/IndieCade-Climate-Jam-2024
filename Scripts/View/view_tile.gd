@@ -72,7 +72,7 @@ func update_visuals():
 	if(sim == null):
 		sim = get_parent().sim
 	var infra = sim.GetInfra(x,y)
-	print("visuals updated")
+	#print("visuals updated")
 	if has_node("ObjectInstance"):
 		$ObjectInstance.queue_free()
 	if has_node("Base"):

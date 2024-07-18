@@ -62,6 +62,7 @@ public partial class SimInfraType : Resource
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/bike_rack.tres"),
 	};
 
+	[Export] string Name;
 	[Export] public InfraType type;
 	[Export] public NodePath visualInfra;
 	[Export] public DestinationType destinationType; // if this is a destination, what type is it?
@@ -84,6 +85,10 @@ public partial class SimInfraType : Resource
 	[Export] public int costToDestroy;
 
 	[Export] public InfraType incompatibilityMask; //1 = incompatible, 0 = compatible
+
+	[Export] public string ModelPath;
+	[Export] public bool ModelConnects;
+	[Export] public bool ModelHasBase;
 
 
 	//TODO better way to do this?

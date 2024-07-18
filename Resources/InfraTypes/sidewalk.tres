@@ -4,13 +4,14 @@
 
 [resource]
 script = ExtResource("1_odrfq")
+Name = "Sidewalk"
 type = 32
 visualInfra = null
 destinationType = 0
-transportModes = 1
+transportModes = 5
 connectsCorners = true
 connectsBorders = false
-connectionsBlockedBy = 0
+connectionsBlockedBy = 2
 capacity = 10
 canTransfer = false
 maxSpeed = 1.0
@@ -18,3 +19,6 @@ safety = 1.0
 costToBuild = 1
 costToDestroy = 1
 incompatibilityMask = 1103
+ModelPath = ""
+ModelConnects = true
+ModelHasBase = false

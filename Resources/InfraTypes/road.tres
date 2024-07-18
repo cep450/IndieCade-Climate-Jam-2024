@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_4jdps")
+Name = "Road"
 type = 16
 visualInfra = null
 destinationType = 0
@@ -18,3 +19,6 @@ safety = 0.0
 costToBuild = 5
 costToDestroy = 5
 incompatibilityMask = 1055
+ModelPath = ""
+ModelConnects = true
+ModelHasBase = false

@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_aiiiu")
+Name = "Third Space"
 type = 8
 visualInfra = null
 destinationType = 4
@@ -14,7 +15,10 @@ connectionsBlockedBy = 0
 capacity = 20
 canTransfer = false
 maxSpeed = 0.0
-safety = 0.0
+safety = 1.0
 costToBuild = 10
 costToDestroy = 20
 incompatibilityMask = 1119
+ModelPath = ""
+ModelConnects = false
+ModelHasBase = false

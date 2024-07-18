@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_7rb1n")
+Name = "Tree"
 type = 512
 visualInfra = null
 destinationType = 0
@@ -18,3 +19,6 @@ safety = 1.0
 costToBuild = 1
 costToDestroy = 1
 incompatibilityMask = 1536
+ModelPath = ""
+ModelConnects = false
+ModelHasBase = false

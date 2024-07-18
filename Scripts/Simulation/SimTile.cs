@@ -137,6 +137,21 @@ public partial class SimTile : Node
 		return true;
 	}
 
+	public Godot.Collections.Array<SimInfraType> CompatibleInfra() {
+
+		// calculate a mask representing the compatible infrastructure 
+		SimInfraType.InfraType compatible = 0x0;
+
+		foreach(SimInfra type in Infra) {
+			compatible |= type.TypeEnum;
+		}
+
+		compatible = ~compatible;
+
+		// return an array of those infrastructure 
+		return SimInfraType.TypesFromEnum(compatible);
+	}
+
 	// can this infrastructure to be added to this tile, given the infrastructure it already has?
 	public bool CanAddInfraType(SimInfraType type) {
 

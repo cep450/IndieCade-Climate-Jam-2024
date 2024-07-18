@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_dpm1l")
+Name = "Workplace"
 type = 2
 visualInfra = null
 destinationType = 2
@@ -18,3 +19,6 @@ safety = 0.0
 costToBuild = 0
 costToDestroy = 10
 incompatibilityMask = 1119
+ModelPath = ""
+ModelConnects = false
+ModelHasBase = false

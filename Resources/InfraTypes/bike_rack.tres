@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_87adl")
+Name = "Bike Rack"
 type = 2048
 visualInfra = null
 destinationType = 0
@@ -18,3 +19,6 @@ safety = 0.0
 costToBuild = 1
 costToDestroy = 1
 incompatibilityMask = 2048
+ModelPath = ""
+ModelConnects = false
+ModelHasBase = false
