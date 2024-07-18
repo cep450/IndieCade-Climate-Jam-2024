@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cg5jjhr8j4r7s"]
+[gd_resource type="Resource" script_class="InfraTypeHome" load_steps=2 format=3 uid="uid://cg5jjhr8j4r7s"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/ExtendedInfraTypes/InfraTypeHome.cs" id="1_svdhx"]
 

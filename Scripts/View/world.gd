@@ -3,7 +3,7 @@ extends Node3D
 var data = []
 var tile = preload("res://Scenes/View/view_tile.tscn")
 signal tile_clicked(x: int, y: int)
-var sim: Node
+@onready var sim: Node = Global.sim
 
 # The data here is a substitute for Simulation
 func _ready():

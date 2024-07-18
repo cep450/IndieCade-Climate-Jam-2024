@@ -1,6 +1,7 @@
 extends Node
 
 var inDevMode: bool = true
+@onready var sim: Node = $"../Main/Simulation"
 
 enum InfraType {
 	HOME,	

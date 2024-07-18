@@ -17,10 +17,7 @@ var blank = preload("res://Scenes/Tiles/Blank.tscn")
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")
 var isYellow: bool = false
 
-var sim
-
-func _ready() -> void:
-		sim = get_parent().sim
+@onready var sim: Node = Global.sim
 
 func test_init(type: String):
 	var instance
@@ -78,16 +75,16 @@ func update_visuals():
 		sim = get_parent().sim
 		
 	# Generate new childreni
-	var infra = sim.GetInfra(x,y)
-	var instance
-	for type in infra:
-		if type.ModelHasBase:
-			instance = base.instantiate()
-			add_child(instance)
-		var model_path = type.path + get_version() + ".tscn"
-		instance = load(model_path).instantiate()
-		add_child(instance)
-		instance.rotation.y = get_new_rotation()	
+	#var infra = sim.GetInfra(x,y)
+	#var instance
+	#for type in infra:
+		#if type.ModelHasBase:
+			#instance = base.instantiate()
+			#add_child(instance)
+		#var model_path = type.path + get_version() + ".tscn"
+		#instance = load(model_path).instantiate()
+		#add_child(instance)
+		#instance.rotation.y = get_new_rotation()	
 		
 func get_version() -> String:
 	return ""
