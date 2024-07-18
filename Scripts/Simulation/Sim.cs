@@ -67,6 +67,7 @@ public partial class Sim : Node
 	public void LoadMap() { //TODO maybe have this take in a startData resource, but for now, it's just the one given to the sim instance 
 
 		EmissionsMeter.InitializeEmissionsInfo(startData);
+		SupportPool.Init(startData);
 		Clock.InitializeClockInfo(startData);
 
 		//generate a grid based on map data 

@@ -14,14 +14,10 @@ public partial class SimSupportPool : Node
 	public int Support { get; private set;}      // authoritative 
 
 	public float GlobalHappiness {get; private set;}  // this one isn't authoritative, only a convenient value to get for the ui-- each agent knows their own happiness and updates it accordingly
-	
-	
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		Support = startingSupport;
-	}
 
+	public void Init(StartData startData) {
+		Support = startData.initialSupport;
+	}
 
 	// whenever we want this to happen, 
 	// calculate global happiness 
