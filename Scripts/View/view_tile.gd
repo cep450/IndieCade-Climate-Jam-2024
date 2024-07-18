@@ -17,11 +17,7 @@ var blank = preload("res://Scenes/Tiles/Blank.tscn")
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")
 var isYellow: bool = false
 
-var sim
-
-func _ready() -> void:
-	sim = get_parent().sim
-	pass
+@onready var sim: Node = Global.sim
 
 func test_init(type: String):
 	var instance
@@ -71,29 +67,34 @@ func on_tile_clicked(local_x: int, local_y: int):
 		else:
 			$ObjectInstance.get_child(0).material_overlay = null
 			isYellow = false
+		update_visuals()
 	else:
 		$ObjectInstance.get_child(0).material_overlay = null
 		isYellow = false
 
 func update_visuals():
+	# Clear existing children.
+	for child in get_children():
+		child.queue_free()
+		
+	# In case sime wasn't set for some reason.
 	if(sim == null):
 		sim = get_parent().sim
-	var infra = sim.GetInfra(x,y)
-	#print("visuals updated")
-	if has_node("ObjectInstance"):
-		$ObjectInstance.queue_free()
-	if has_node("Base"):
-		$Base.queue_free()
-	var instance
-	#if type == Global.InfraType.BUILDING:
-	if true:
-		instance = blank.instantiate()
-		add_child(instance)
-		instance = house.instantiate()
-		add_child(instance)
-		instance.name = "ObjectInstance"
-	#if Infra.type == ROAD:
-		#func get_get_version(type)
-		#var instance = preload("res://Scenes/Tiles/Bikelane" + version + ".tscn")
+		
+	# Generate new childreni
+	#var infra = sim.GetInfra(x,y)
+	#var instance
+	#for type in infra:
+		#if type.ModelHasBase:
+			#instance = base.instantiate()
+			#add_child(instance)
+		#var model_path = type.path + get_version() + ".tscn"
+		#instance = load(model_path).instantiate()
+		#add_child(instance)
+		#instance.rotation.y = get_new_rotation()	
+		
+func get_version() -> String:
+	return ""
 
-		# TODO also update the tiles adjacent to this tile, e.g. if they now have a connection to this tile.
+func get_new_rotation() -> float:
+	return 0.0

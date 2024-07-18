@@ -1,6 +1,47 @@
-[gd_resource type="Resource" script_class="StartData" load_steps=2 format=3 uid="uid://bjsfydt3pmsqx"]
+[gd_resource type="Resource" script_class="StartData" load_steps=13 format=3 uid="uid://bjsfydt3pmsqx"]
 
+[ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/SimInfraTypeRow.cs" id="1_xk7f4"]
 [ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/StartData.cs" id="2_yi43b"]
+
+[sub_resource type="Resource" id="Resource_2nush"]
+script = ExtResource("1_xk7f4")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_xutrf"]
+script = ExtResource("1_xk7f4")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_mucju"]
+script = ExtResource("1_xk7f4")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_jqa37"]
+script = ExtResource("1_xk7f4")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_8hita"]
+script = ExtResource("1_xk7f4")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_jbdmk"]
+script = ExtResource("1_xk7f4")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_57tk1"]
+script = ExtResource("1_xk7f4")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_nibpw"]
+script = ExtResource("1_xk7f4")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_8arpx"]
+script = ExtResource("1_xk7f4")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_iddqr"]
+script = ExtResource("1_xk7f4")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 [resource]
 script = ExtResource("2_yi43b")
@@ -8,6 +49,5 @@ emissionsCap = 10000
 emissionsTarget = 100
 startingYear = 2025
 yearsUntilGameOver = 15
-GridWidth = 10
-GridHeight = 10
-gridData = Array[Object]([])
+nonDriverProbability = 0.3
+gridData = Array[Object]([SubResource("Resource_2nush"), SubResource("Resource_xutrf"), SubResource("Resource_mucju"), SubResource("Resource_jqa37"), SubResource("Resource_8hita"), SubResource("Resource_jbdmk"), SubResource("Resource_57tk1"), SubResource("Resource_nibpw"), SubResource("Resource_8arpx"), SubResource("Resource_iddqr")])

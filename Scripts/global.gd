@@ -1,6 +1,7 @@
 extends Node
 
 var inDevMode: bool = true
+@onready var sim: Node = $"../Main/Simulation"
 
 enum InfraType {
 	HOME,	
@@ -16,6 +17,5 @@ enum InfraType {
 	PARKINGLOT,
 	BIKERACK,
 }
-
 
 @export var resource: Array[SimInfraType]
