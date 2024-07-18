@@ -19,7 +19,7 @@ public class PathVertex {
 	public Vector2 WorldPosition { get; private set; }
 	public Vector2I PathGraphCoordinates {get; private set; }
 	public Type type {get; private set;}
-	public List<PathVertex> Neighbors; // can/might connect to this vertex
+	//public List<PathVertex> Neighbors; // can/might connect to this vertex
 	public List<SimTile> tiles; // tiles whose infrastructure will affect this vertex
 
 	public SimInfraType.InfraType InfraAffectedBy { get; private set; }
@@ -39,7 +39,7 @@ public class PathVertex {
 		WorldPosition = worldPosition;
 		CalculateType();
 		Edges = new List<PathEdge>();
-		Neighbors = new List<PathVertex>();
+		//Neighbors = new List<PathVertex>();
 
 		int numModes = SimVehicleType.NumTransportModes;
 		capacity = new int[numModes];
@@ -100,6 +100,8 @@ public class PathVertex {
 	}
 
 	public void RecalculateEdges(bool updateNeighbors = false) {
+
+
 
 		//TODO
 

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://3ovoe8h6ojl1"]
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://jbdb8b483wa0"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_2c54y"]
 
@@ -11,6 +11,8 @@ destinationType = 0
 transportModes = 7
 connectsCorners = true
 connectsBorders = true
+connectsCenter = true
+affectsAllVertices = false
 connectionsBlockedBy = 0
 capacity = 10
 canTransfer = true
@@ -20,5 +22,6 @@ costToBuild = 5
 costToDestroy = 5
 incompatibilityMask = 1119
 ModelPath = ""
+ModelVariantCount = 1
 ModelConnects = false
 ModelHasBase = false
