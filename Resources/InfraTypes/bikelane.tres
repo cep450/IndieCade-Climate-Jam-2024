@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_1byxk")
-Name = "Bike Lane"
 type = 128
 visualInfra = null
 destinationType = 0
@@ -19,6 +18,3 @@ safety = 1.0
 costToBuild = 1
 costToDestroy = 1
 incompatibilityMask = 128
-ModelPath = "res://Resources/TileMeshes/Bikelane"
-ModelConnects = true
-ModelHasBase = false
