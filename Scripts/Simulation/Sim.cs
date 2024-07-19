@@ -30,6 +30,9 @@ public partial class Sim : Node
 
 	public GameState gameState = GameState.TUTORIAL;
 
+	GDScript mainScript = GD.Load<GDScript>("res://Scripts/main.gd");
+	GodotObject mainObject;
+
 	// shortcuts 
 	//TODO it might make more sense for these to be in SimGrid
 	public SimTile GetTile(int x, int y) {
@@ -51,22 +54,23 @@ public partial class Sim : Node
 	public override void _Ready()
 	{
 		Instance = this;
+		Instance.startData = (StartData)ResourceLoader.Load("res://Resources/Maps/inspectortest.tres");
 		grid = GetNode<SimGrid>("SimGrid");
 		EmissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
 		SupportPool = GetNode<SimSupportPool>("SimSupportPool");
 		agents = new List<SimAgent>();
 		Clock = GetNode<SimClock>("SimClock");
-
+		mainObject = GetNode("../../Main");
 		LoadMap();
-
 		//TODO we might want a button to call this function instead.
 		BeginGame();
 	}
 
 	// load level data from save
-	public void LoadMap() { //TODO maybe have this take in a startData resource, but for now, it's just the one given to the sim instance 
-
+	public void LoadMap() { /*TODO maybe have this take in a startData resource, 
+		but for now, it's just the one given to the sim instance*/
 		EmissionsMeter.InitializeEmissionsInfo(startData);
+		SupportPool.Init(startData);
 		Clock.InitializeClockInfo(startData);
 
 		//generate a grid based on map data 
@@ -95,6 +99,8 @@ public partial class Sim : Node
 		EmissionsMeter.UpdateEmissions(agents);
 
 		EmissionsMeter.EndTick();
+
+		mainObject.Call("tick");
 
 	}
 

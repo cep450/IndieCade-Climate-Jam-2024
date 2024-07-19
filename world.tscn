@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfttri8g4op5h"]
+[gd_scene load_steps=11 format=3 uid="uid://qcoim65sqv1b"]
 
 [ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://tiles.tres" id="1_0tx8y"]
 [ext_resource type="Script" path="res://world.gd" id="1_1nhq0"]

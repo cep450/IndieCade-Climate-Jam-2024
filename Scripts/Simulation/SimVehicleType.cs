@@ -37,6 +37,12 @@ public partial class SimVehicleType : Resource
 	//Q = 0x10000
 	// ...ect
 	}
+	public static int NumTransportModes { get {
+		return Enum.GetNames(typeof(TransportMode)).Length;
+	}}
+	public static int ModeIndex(TransportMode mode) {
+		return (int)Math.Log2((double)((int)mode));
+	}
 
 		// resources in order of enum values
 	public static SimVehicleType [] types = {
@@ -47,8 +53,7 @@ public partial class SimVehicleType : Resource
 
 	//TODO since this works the same as in SimInfraType, make it DRY after the jam? unless we can't since it uses different types.
 	public static SimVehicleType TypeFromEnum(TransportMode enumType) {
-		int index = (int)Math.Log2((double)((int)enumType));
-		return types[index];
+		return types[ModeIndex(enumType)];
 	}
 
 	public static Godot.Collections.Array<SimVehicleType> TypesFromEnum(TransportMode enumType) {

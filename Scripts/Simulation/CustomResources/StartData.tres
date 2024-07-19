@@ -4,5 +4,10 @@
 
 [resource]
 script = ExtResource("1_snei7")
-emissionsCap = 0
+emissionsCap = 10000
+emissionsTarget = 100
+initialSupport = 25
+startingYear = 2025
+yearsUntilGameOver = 15
+nonDriverProbability = 0.3
 gridData = null

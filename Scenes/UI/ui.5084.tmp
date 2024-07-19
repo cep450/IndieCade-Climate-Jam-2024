@@ -139,6 +139,16 @@ text = "Save
 
 "
 
+[node name="SupportTemp" type="Label" parent="."]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 9.0
+offset_right = 149.0
+offset_bottom = 43.0
+theme_override_font_sizes/font_size = 24
+text = "Support: 50
+"
+
 [node name="HappinessMeter" type="VBoxContainer" parent="."]
 layout_mode = 2
 anchor_left = 1.0

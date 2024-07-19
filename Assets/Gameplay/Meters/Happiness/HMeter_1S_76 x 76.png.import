@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rx7mff5nil8d"
-path="res://.godot/imported/HMeter_2_76 x 76.png-c5f08659f7f584dc676e85f1d237ce08.ctex"
+uid="uid://dsm1k473ys5rl"
+path="res://.godot/imported/HMeter_1S_76 x 76.png-5be5aed1567971856e086c51338545e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Gameplay/Meters/Happiness/HMeter_2_76 x 76.png"
-dest_files=["res://.godot/imported/HMeter_2_76 x 76.png-c5f08659f7f584dc676e85f1d237ce08.ctex"]
+source_file="res://Assets/Gameplay/Meters/Happiness/HMeter_1S_76 x 76.png"
+dest_files=["res://.godot/imported/HMeter_1S_76 x 76.png-5be5aed1567971856e086c51338545e1.ctex"]
 
 [params]
 
