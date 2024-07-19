@@ -49,18 +49,6 @@ public partial class SimGrid : Node
 				grid[x][y].AddInfra(infra);
 			}
 		}
-		SimInfraType road = new SimInfraType();
-		road.type = SimInfraType.InfraType.ROAD;
-
-		SimInfraType house = new SimInfraType();
-		house.type = SimInfraType.InfraType.HOUSE;
-		/*GetTile(3,1).AddInfra(house);
-		GetTile(7,2).AddInfra(house);
-		GetTile(4,6).AddInfra(house);
-		GetTile(9,9).AddInfra(house);
-		SaveGridAsResource();*/
-		//var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/SavedData.tres");
-		//LoadGridFromResource(startData);
 	}
 
 	public SimTile GetTile(int x, int y)
@@ -137,7 +125,7 @@ public partial class SimGrid : Node
 		{
 			for (int y = 0; y < height; y++)
 			{
-				GetTile(x,y).InfraTypesMask = resourceToLoad.gridData[x].gridData[y].type;
+				GetTile(x,y).AddInfraFromMask(resourceToLoad.gridData[x].gridData[y].type, true);
 			}
 		}
 	}
