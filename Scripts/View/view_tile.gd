@@ -64,8 +64,10 @@ func update_visuals(repeated: bool = false):
 				var model = load(full_path)
 				instance = model.instantiate()
 				add_child(instance)
-				#if (!repeated):
-					#get_parent().update_all_tile_visuals()
+				# TODO for optimization, rewrite this call to only reupdate orthognally
+				# adjacent tiles.
+				if (!repeated):
+					get_parent().update_all_tile_visuals()
 			else: 
 				print("path not given")
 
@@ -76,7 +78,6 @@ func get_version(type: SimInfraType) -> String:
 	var versionInfo = sim.grid.GetVersion(Vector2i(x,y),type)
 	var test_r = versionInfo.rotation
 	rotation = versionInfo.rotation
-	print(rotation.y)
 	return versionInfo.versionString
 
 func update_highlight():

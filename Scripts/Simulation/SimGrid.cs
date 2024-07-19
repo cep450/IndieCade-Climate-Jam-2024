@@ -136,7 +136,7 @@ public partial class SimGrid : Node
 	
 	public PathVersion GetVersion(Vector2I currentTile, SimInfraType targetType)
 	{
-		float y_rot = 0.0f;
+		double y_rot = 0.0;
 		string versionPath = "Straight";
 		List<SimTile> neighbors = new List<SimTile>();
 		//get orthoganal neighbors
@@ -189,41 +189,41 @@ public partial class SimGrid : Node
 			case (1):
 				versionPath = "Straight";
 				if (TileLeft || TileRight)
-					y_rot = 90.0f;
+					y_rot = Math.PI / 2;
 				break;
 			case (2):
 				if(TileUp && TileDown || TileLeft && TileRight) 
 				{
 					versionPath = "Straight";
 					if (TileLeft)
-						y_rot = 90.0f;
+						y_rot = Math.PI / 2;
 					break;
 				} 
 				else
 				{
 					versionPath = "Curve";
 					if (TileLeft && TileDown)
-						y_rot = 90.0f;
+						y_rot = Math.PI / 2;
 					if (TileUp && TileLeft)
-						y_rot = 90.0f;
+						y_rot = Math.PI;
 					if (TileUp && TileRight)
-						y_rot = 90.0f;
+						y_rot = (3 * Math.PI) / 4;
 					break;
 				}
 			case (3):
 				versionPath = "Tjunction";
 				if (TileLeft && TileRight && TileDown)
-					y_rot = 90.0f;
+					y_rot = Math.PI / 2;
 				if (TileUp && TileDown && TileLeft)
-					y_rot = 180.0f;
+					y_rot = Math.PI / 2;
 				if (TileLeft && TileRight && TileDown)
-					y_rot = 270.0f;
+					y_rot =  3 * Math.PI / 4;
 				break;
 			case (4): 
 				versionPath = "Intersection";
 				break;
 		}
-		Vector3 rotationReturn = new Vector3(0.0f,y_rot,0.0f);
+		Vector3 rotationReturn = new Vector3(0.0f,(float)y_rot,0.0f);
 		PathVersion returnData = new PathVersion(versionPath,rotationReturn);
 		return returnData;
 	}
