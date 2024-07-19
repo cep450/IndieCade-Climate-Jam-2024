@@ -1,20 +1,13 @@
 extends Node
 
-var inDevMode: bool = true
 @onready var sim: Node = $"../Main/Simulation"
-var count: int = 0
+@export var inDevMode: bool = true
 
-enum InfraType {
-	HOME,	
-	WORK,
-	COMMERCIAL,
-	THIRDSPACE,
-	ROAD,
-	SIDEWALK,
-	CROSSWALK, 
-	BIKELANE,
-	STREETLAMP, 
-	TREE,
-	PARKINGLOT,
-	BIKERACK,
-}
+var current_tile: Vector2 = Vector2(-1, -1)
+
+# Called by view_tile, Vector2 stores an index
+func on_tile_clicked(clicked_tile: Vector2):
+	if clicked_tile == current_tile:
+		current_tile = Vector2(-1,-1)
+	else: 
+		current_tile = clicked_tile
