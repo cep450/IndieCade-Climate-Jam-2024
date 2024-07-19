@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StartData" load_steps=13 format=3 uid="uid://bjsfydt3pmsqx"]
+[gd_resource type="Resource" script_class="StartData" load_steps=13 format=3 uid="uid://jcq0w1ksiiru"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/SimInfraTypeRow.cs" id="1_xk7f4"]
 [ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/StartData.cs" id="2_yi43b"]
@@ -47,6 +47,7 @@ gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 script = ExtResource("2_yi43b")
 emissionsCap = 10000
 emissionsTarget = 100
+initialSupport = 25
 startingYear = 2025
 yearsUntilGameOver = 15
 nonDriverProbability = 0.3

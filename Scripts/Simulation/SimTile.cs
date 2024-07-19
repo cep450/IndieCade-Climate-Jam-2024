@@ -11,6 +11,8 @@ public partial class SimTile : Node
 	 * A single tile in the simulation.
 	 */
 
+	static bool DEBUG = false;
+
 	public List<SimInfra> Infra { get; private set; } // infrastructure instances currently on this tile
 	public SimInfraType.InfraType InfraTypesMask { get; private set; }
 	public SimInfraType.DestinationType DestinationType { get; private set; }
@@ -24,7 +26,7 @@ public partial class SimTile : Node
 
 	//GD visual tile 
 	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/view_tile.gd");
-	GodotObject visualTile;
+	public GodotObject VisualTile { get; private set; }
 
 	public SimTile(Vector2I coordinates, Vector2 worldPosition, GodotObject newVisualTile)
 	{
@@ -32,7 +34,7 @@ public partial class SimTile : Node
 		WorldPosition = worldPosition;
 		PathVertices = new PathVertex[3,3];
 		InfraTypesMask = default(SimInfraType.InfraType);
-		visualTile = newVisualTile;
+		VisualTile = newVisualTile;
 		Infra = new List<SimInfra>();
 	}
 
@@ -47,14 +49,18 @@ public partial class SimTile : Node
 		}
 	}
 
-	// Add infrastructure to the tile.
+	// Add infrastructure to the tile. Returns false if the infrastructure could not be added.
 	public bool AddInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true) {
+
+		if(DEBUG) GD.Print("called SimTile.AddInfra to add type " + type.Name);
 
 		//validate if the infrastructure can be added here, and if the player has enough currency
 		if(!bypassValidation) {
 			if(!CanAffordToAddInfra(type) || !CanAddInfraType(type)) {
 				return false;
-			}
+			} 
+
+			if(DEBUG) GD.Print("Validated, adding tile, spending " + type.costToBuild);
 
 			// pay the cost 
 			Sim.Instance.SupportPool.SpendSupport(type.costToBuild);
@@ -82,7 +88,7 @@ public partial class SimTile : Node
 
 		//update/add it visually
 		if(updateVisuals) {
-			visualTile.Call("update_visuals");
+			VisualTile.Call("update_visuals");
 
 			//TODO update tiles adjacent to this tile visually
 		}
@@ -131,7 +137,7 @@ public partial class SimTile : Node
 		//update/remove it visually 
 		// this should also update other infrastructure on the tile visually
 		if(updateVisuals) {
-			visualTile.Call("update_visuals");
+			VisualTile.Call("update_visuals");
 
 			//TODO update tiles adjacent to this tile visually-- make sure this happens in update_visuals maybe 
 		}
@@ -169,7 +175,9 @@ public partial class SimTile : Node
 		// compatibility mask 0001: incompatible 
 		// compat mask 1000: compatible
 
-		return (InfraTypesMask & type.incompatibilityMask) != 0;
+		if(DEBUG) GD.Print("is " + InfraTypesMask.ToString() + " compatible with the incompatibility mask " + type.incompatibilityMask.ToString() + "? " + ((InfraTypesMask & type.incompatibilityMask) == 0));
+
+		return (InfraTypesMask & type.incompatibilityMask) == 0;
 	}
 
 	public bool HasInfraType(SimInfraType.InfraType type) {

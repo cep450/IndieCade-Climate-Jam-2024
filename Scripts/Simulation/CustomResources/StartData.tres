@@ -1,8 +1,13 @@
-[gd_resource type="Resource" script_class="StartData" load_steps=2 format=3 uid="uid://dtju72e0b321o"]
+[gd_resource type="Resource" script_class="StartData" load_steps=2 format=3 uid="uid://cwras7ffmfy5r"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/StartData.cs" id="1_snei7"]
 
 [resource]
 script = ExtResource("1_snei7")
-emissionsCap = 0
+emissionsCap = 10000
+emissionsTarget = 100
+initialSupport = 25
+startingYear = 2025
+yearsUntilGameOver = 15
+nonDriverProbability = 0.3
 gridData = null

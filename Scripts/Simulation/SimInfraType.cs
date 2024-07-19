@@ -62,7 +62,7 @@ public partial class SimInfraType : Resource
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/bike_rack.tres"),
 	};
 
-	[Export] string Name;
+	[Export] public string Name;
 	[Export] public InfraType type;
 	[Export] public NodePath visualInfra;
 	[Export] public DestinationType destinationType; // if this is a destination, what type is it?

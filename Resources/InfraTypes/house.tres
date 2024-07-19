@@ -6,7 +6,7 @@
 script = ExtResource("1_svdhx")
 minAgentsToAdd = 2
 maxAgentsToAdd = 5
-Name = ""
+Name = "House"
 type = 1
 visualInfra = null
 destinationType = 1

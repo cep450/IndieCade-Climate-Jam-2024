@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://bvxaoao3ymdl"]
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://lpfqh03fnxfl"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_aiiiu"]
 
