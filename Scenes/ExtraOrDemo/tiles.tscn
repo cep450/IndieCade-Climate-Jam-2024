@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://drxjt03qah5lp"]
+[gd_scene load_steps=33 format=3 uid="uid://drxjt03qah5lp"]
 
 [ext_resource type="PackedScene" uid="uid://d2gvrb770nub" path="res://Models/Tile_Road2Curve.gltf" id="1_ulpor"]
 [ext_resource type="PackedScene" uid="uid://ot76rqh7dg5d" path="res://Models/Tile_Road2Intersection.gltf" id="2_h5ppf"]
@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://bk53tfke7865b" path="res://Models/Tile_Bikelane_Intersection.gltf" id="29_16pap"]
 [ext_resource type="PackedScene" uid="uid://cbwg1bmio5bdq" path="res://Models/Tile_Bikelane_Straight.gltf" id="30_xufi1"]
 [ext_resource type="PackedScene" uid="uid://dwbj41acogml5" path="res://Models/Tile_Bikelane_Tjunction.gltf" id="31_t58lj"]
+[ext_resource type="PackedScene" uid="uid://bgpd0yoyibol1" path="res://Models/Tile_Building_House01.gltf" id="32_iiieq"]
 
 [node name="Tiles" type="Node3D"]
 
@@ -95,3 +96,5 @@
 [node name="Tile_Bikelane_Straight" parent="." instance=ExtResource("30_xufi1")]
 
 [node name="Tile_Bikelane_Tjunction" parent="." instance=ExtResource("31_t58lj")]
+
+[node name="Tile_Building_House01" parent="." instance=ExtResource("32_iiieq")]
