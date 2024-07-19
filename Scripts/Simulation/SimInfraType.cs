@@ -62,17 +62,19 @@ public partial class SimInfraType : Resource
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/bike_rack.tres"),
 	};
 
-	[Export] string Name;
+	[Export] public string Name;
 	[Export] public InfraType type;
 	[Export] public NodePath visualInfra;
 	[Export] public DestinationType destinationType; // if this is a destination, what type is it?
 	[Export] public SimVehicleType.TransportMode transportModes; // what transport modes can use this infrastructure?
 	[Export] public bool connectsCorners;	// connects on corners between tiles
-	[Export] public bool connectsBorders; // connects on borders between tiles 
+	[Export] public bool connectsBorders; 	// connects on borders between tiles 
+	[Export] public bool connectsCenter; 	// connects from the center to its edges
+	[Export] public bool affectsAllVertices; // infra applies its weight effects to all PathVertexes on the tile 
 	[Export] public SimVehicleType.TransportMode connectionsBlockedBy;
 
-	// For vehicle-holding tiles, capacity represents the number of vehicles of that type that the tile can hold at a time. 
-	// For destination tiles, capacity represents the number of agents the building can fit, or for HOMEs, how many agents are added to the map when this infra is added or generates on the map
+	// For vehicle-holding tiles, capacity represents the number of vehicles of that type that the VERTEX affected by infrastructure can hold at a time. 
+	// For destination tiles, capacity represents the number of agents the building (vertex) can fit, or for HOMEs, how many agents are added to the map when this infra is added or generates on the map
 	[Export] public int capacity;
 	[Export] public bool canTransfer = false; // can a transit type switch to a different transit type?
 									 //I think each tile should be able to have a list of what transit types it can support, and then we can check if the agent's current transit type is in that list when pathfinding,
@@ -87,8 +89,11 @@ public partial class SimInfraType : Resource
 	[Export] public InfraType incompatibilityMask; //1 = incompatible, 0 = compatible
 
 	[Export] public string ModelPath;
+	[Export] public int ModelVariantCount = 1;
 	[Export] public bool ModelConnects;
 	[Export] public bool ModelHasBase;
+	
+	[Export] public Texture2D Icon;
 
 
 	//TODO better way to do this?

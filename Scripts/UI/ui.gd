@@ -51,18 +51,19 @@ func _process(_delta):
 	emissions_meter.get_node("Percentage").text = str(percent) + "%"
 	# Update Happines State
 	# TODO request this info from simulation.
-	var happiness = sim.SupportPool.GlobalHappiness
-	happiness_meter.get_node("Text").text = str(happiness)
-	if happiness > 66:
+	# repurposing this for Support since we condensed Support and Happiness into one number for the jam
+	#var happiness = sim.SupportPool.GlobalHappiness
+	var support = 10#sim.get_node("SimSupportPool").Support
+	happiness_meter.get_node("Text").text = str(support)
+	if support > 20:
 		happiness_state =  HappinessState.GREAT
-	elif happiness > 33:
+	elif support > 10:
 		happiness_state = HappinessState.NEUTRAL
 	else:
 		happiness_state = HappinessState.BAD
 	happiness_meter.get_node("Image").texture = happiness_meter_images[happiness_state]
 	# Update Support
-	var support = sim.SupportPool.Support
-	$SupportTemp.text = "Support: " + str(support)
+	#$SupportTemp.text = "Support: " + str(support)
 	
 func on_tile_clicked(x: int, y: int) -> void:
 	# Only display if tile selected checked by if it's a valid index.

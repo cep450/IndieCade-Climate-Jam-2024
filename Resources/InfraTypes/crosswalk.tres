@@ -20,5 +20,6 @@ costToBuild = 1
 costToDestroy = 1
 incompatibilityMask = 1103
 ModelPath = ""
+ModelVariantCount = 1
 ModelConnects = true
 ModelHasBase = false

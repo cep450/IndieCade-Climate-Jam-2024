@@ -4,17 +4,24 @@
 
 [resource]
 script = ExtResource("1_1byxk")
+Name = "Bike Lane"
 type = 128
 visualInfra = null
 destinationType = 0
 transportModes = 4
 connectsCorners = true
 connectsBorders = false
+connectsCenter = false
+affectsAllVertices = false
 connectionsBlockedBy = 2
 capacity = 6
 canTransfer = false
 maxSpeed = 2.0
 safety = 1.0
-costToBuild = 1
-costToDestroy = 1
-incompatibilityMask = 128
+costToBuild = 3
+costToDestroy = 2
+incompatibilityMask = 143
+ModelPath = "res://Resources/TileMeshes/Bikelane"
+ModelVariantCount = 1
+ModelConnects = true
+ModelHasBase = false

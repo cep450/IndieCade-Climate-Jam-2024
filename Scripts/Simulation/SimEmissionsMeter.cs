@@ -36,8 +36,12 @@ public partial class SimEmissionsMeter : Node
 			return instance;
 		}
 	}
+
 	public void InitializeEmissionsInfo(StartData startData) {
-		emissionsCap = startData.emissionsCap;
+		GD.Print("41");
+		GD.Print(startData.emissionsCap);
+		int x = startData.emissionsCap;
+		GD.Print("42");
 		emissionsTarget = startData.emissionsTarget;
 		emissions = 0;
 		emissionsThisTick = 0;

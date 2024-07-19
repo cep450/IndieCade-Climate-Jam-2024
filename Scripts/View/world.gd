@@ -9,4 +9,4 @@ func init_tile(x, y, xpos, ypos):
 	add_child(instance)
 	instance.initialize(x,y)
 	instance.position = Vector3(xpos, 0, ypos)
-	return instance;
+	return instance

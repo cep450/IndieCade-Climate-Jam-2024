@@ -60,9 +60,15 @@ public partial class SimGrid : Node
 				//Add infrastructure to this tile based on the mask in the level file.
 				SimInfraType.InfraType infraMask = resourceToLoad.gridData[x].gridData[y];
 				grid[x,y].AddInfraFromMask(infraMask, true);
-
+			}
+		}
+		// update models 
+		for (int x = 0; x < width; x++)
+		{
+			for (int y = 0; y < height; y++)
+			{
 				// update visual tile once now that all infra has been added
-				newVisualTile.Call("update_visuals");
+				grid[x,y].VisualTile.Call("update_visuals");
 			}
 		}
 		/*

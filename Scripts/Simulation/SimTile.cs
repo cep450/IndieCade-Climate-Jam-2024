@@ -11,6 +11,8 @@ public partial class SimTile : Node
 	 * A single tile in the simulation.
 	 */
 
+	static bool DEBUG = false;
+
 	public List<SimInfra> Infra { get; private set; } // infrastructure instances currently on this tile
 	public SimInfraType.InfraType InfraTypesMask { get; private set; }
 	public SimInfraType.DestinationType DestinationType { get; private set; }
@@ -24,7 +26,7 @@ public partial class SimTile : Node
 
 	//GD visual tile 
 	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/view_tile.gd");
-	GodotObject visualTile;
+	public GodotObject VisualTile { get; private set; }
 
 	public SimTile(Vector2I coordinates, Vector2 worldPosition, GodotObject newVisualTile)
 	{
@@ -32,7 +34,7 @@ public partial class SimTile : Node
 		WorldPosition = worldPosition;
 		PathVertices = new PathVertex[3,3];
 		InfraTypesMask = default(SimInfraType.InfraType);
-		visualTile = newVisualTile;
+		VisualTile = newVisualTile;
 		Infra = new List<SimInfra>();
 	}
 
@@ -47,18 +49,22 @@ public partial class SimTile : Node
 		}
 	}
 
-	// Add infrastructure to the tile.
+	// Add infrastructure to the tile. Returns false if the infrastructure could not be added.
 	public bool AddInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true) {
+
+		if(DEBUG) GD.Print("called SimTile.AddInfra to add type " + type.Name);
 
 		//validate if the infrastructure can be added here, and if the player has enough currency
 		if(!bypassValidation) {
 			if(!CanAffordToAddInfra(type) || !CanAddInfraType(type)) {
 				return false;
-			}
-		}
+			} 
 
-		// pay the cost 
-		Sim.Instance.SupportPool.SpendSupport(type.costToBuild);
+			if(DEBUG) GD.Print("Validated, adding tile, spending " + type.costToBuild);
+
+			// pay the cost 
+			Sim.Instance.SupportPool.SpendSupport(type.costToBuild);
+		}
 
 		//update the mask representing all the types on this tile 
 		InfraTypesMask |= type.type;
@@ -74,7 +80,7 @@ public partial class SimTile : Node
 		//add it to the list 
 		Infra.Add(newInfra);
 
-		//TODO add edges accordingly
+		//add edges accordingly
 		RecalculateEdges();
 
 		// if this infra has any special behavior when added
@@ -82,7 +88,7 @@ public partial class SimTile : Node
 
 		//update/add it visually
 		if(updateVisuals) {
-			visualTile.Call("update_visuals");
+			VisualTile.Call("update_visuals");
 
 			//TODO update tiles adjacent to this tile visually
 		}
@@ -94,20 +100,22 @@ public partial class SimTile : Node
 	//TODO what do we want to pass in here? an index in the list? a type? an instance? maybe overrides for all of these. one that takes a mask could even add/remove multiple at once.
 	public bool RemoveInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true) {
 		
-		//check if this tile has this infrastrcture 
-		if(!HasInfraType(type.type)) {
-			//tile does not have the infrastructure 
-			return false;
-		}
+		if(!bypassValidation) {
+			//check if this tile has this infrastrcture 
+			if(!HasInfraType(type.type)) {
+				//tile does not have the infrastructure 
+				return false;
+			}
 
-		//validate that we can afford to remove this 
-		if(!CanAffordToDestroyInfra(type)) {
-			// cannot afford to remove this
-			return false;
-		}
+			//validate that we can afford to remove this 
+			if(!CanAffordToDestroyInfra(type)) {
+				// cannot afford to remove this
+				return false;
+			}
 
-		// pay the cost 
-		Sim.Instance.SupportPool.SpendSupport(type.costToDestroy);
+			// pay the cost 
+			Sim.Instance.SupportPool.SpendSupport(type.costToDestroy);
+		}
 
 		// since we know the tile has it, remove from the mask 
 		InfraTypesMask ^= type.type;
@@ -117,10 +125,10 @@ public partial class SimTile : Node
 			DestinationType = SimInfraType.DestinationType.NOT_DESTINATION;
 		}
 
-		//TODO remove from list 
-		//Infra.Remove() //TODO how to find it?
+		//remove from list 
+		Infra.RemoveAt(IndexOfInfra(type.type));
 
-		//TODO update any connections 
+		//update any connections 
 		RecalculateEdges();
 
 		// if this infra has any special behavior when removed
@@ -129,9 +137,9 @@ public partial class SimTile : Node
 		//update/remove it visually 
 		// this should also update other infrastructure on the tile visually
 		if(updateVisuals) {
-			visualTile.Call("update_visuals");
+			VisualTile.Call("update_visuals");
 
-			//TODO update tiles adjacent to this tile visually
+			//TODO update tiles adjacent to this tile visually-- make sure this happens in update_visuals maybe 
 		}
 
 		return true;
@@ -152,6 +160,14 @@ public partial class SimTile : Node
 		return SimInfraType.TypesFromEnum(compatible);
 	}
 
+	// index in infra list. returns -1 if none 
+	public int IndexOfInfra(SimInfraType.InfraType type) {
+
+		if(!HasInfraType(type)) return -1;
+
+		return Infra.FindIndex(x => x.Type.type == type);
+	}
+
 	// can this infrastructure to be added to this tile, given the infrastructure it already has?
 	public bool CanAddInfraType(SimInfraType type) {
 
@@ -159,7 +175,9 @@ public partial class SimTile : Node
 		// compatibility mask 0001: incompatible 
 		// compat mask 1000: compatible
 
-		return (InfraTypesMask & type.incompatibilityMask) != 0;
+		if(DEBUG) GD.Print("is " + InfraTypesMask.ToString() + " compatible with the incompatibility mask " + type.incompatibilityMask.ToString() + "? " + ((InfraTypesMask & type.incompatibilityMask) == 0));
+
+		return (InfraTypesMask & type.incompatibilityMask) == 0;
 	}
 
 	public bool HasInfraType(SimInfraType.InfraType type) {
@@ -176,6 +194,17 @@ public partial class SimTile : Node
 
 	// Reclaculate the edges to/from the vertices on this tile based on the current lineup of infrastructure on the tile and around the tile.
 	void RecalculateEdges() {
+
+		// update the infrastructure affecting each PathVertex, according to what's on the current tile and tiles around it, and how the infra connects
+		// TODO maybe we need to have an export with like a 3x3 set of flags for what vertices the infra influences?
+		// like how trees affect everything, but destinations only exist on the center 
+		// & maybe each PathVertex can figure itself out based on the vertices it knows about 
+		// PathVertex.RecalculateInfra(), PathVertex.RecalculateConnections 
+		// using ConnectsCorners/Borders/Center 
+
+
+		// calculate connections between the PathVertexes, keeping blocking in mind 
+
 		// TODO 
 	}
 
