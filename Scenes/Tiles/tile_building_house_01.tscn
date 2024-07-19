@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://kvs6thqevylw"]
-
-[ext_resource type="PackedScene" uid="uid://bgpd0yoyibol1" path="res://Models/Tile_Building_House01.gltf" id="1_pr07c"]
-
-[node name="Tile_Building_House01" instance=ExtResource("1_pr07c")]
