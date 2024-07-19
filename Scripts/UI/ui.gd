@@ -53,7 +53,7 @@ func _process(_delta):
 	# TODO request this info from simulation.
 	# repurposing this for Support since we condensed Support and Happiness into one number for the jam
 	#var happiness = sim.SupportPool.GlobalHappiness
-	var support = 10#sim.get_node("SimSupportPool").Support
+	var support = sim.get_node("SimSupportPool").Support
 	happiness_meter.get_node("Text").text = str(support)
 	if support > 20:
 		happiness_state =  HappinessState.GREAT
@@ -63,7 +63,6 @@ func _process(_delta):
 		happiness_state = HappinessState.BAD
 	happiness_meter.get_node("Image").texture = happiness_meter_images[happiness_state]
 	# Update Support
-	#$SupportTemp.text = "Support: " + str(support)
 	
 func on_tile_clicked(x: int, y: int) -> void:
 	# Only display if tile selected checked by if it's a valid index.

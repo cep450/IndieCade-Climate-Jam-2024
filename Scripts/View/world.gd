@@ -10,3 +10,8 @@ func init_tile(x, y, xpos, ypos):
 	instance.initialize(x,y)
 	instance.position = Vector3(xpos, 0, ypos)
 	return instance
+	
+func update_all_tile_visuals():
+	for child in get_children():
+		if (child.has_method("update_visuals")):
+			child.update_visuals(true)

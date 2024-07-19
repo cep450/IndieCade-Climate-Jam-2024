@@ -134,28 +134,31 @@ public partial class SimGrid : Node
 		
 	}
 	
-	public PathVersion GetVersion(Vector2I currentTile, SimInfraType type)
+	public PathVersion GetVersion(Vector2I currentTile, SimInfraType targetType)
 	{
-		GD.Print("grid_called");
 		float y_rot = 0.0f;
 		string versionPath = "Straight";
 		List<SimTile> neighbors = new List<SimTile>();
-
 		//get orthoganal neighbors
-		//get up
-		if (currentTile.Y != 0)
-			neighbors.Add(grid[currentTile.X, currentTile.Y - 1]);
-		//get down
-		if (currentTile.Y < height - 1)
-			neighbors.Add(grid[currentTile.X, currentTile.Y + 1]);
-		//get left
-		if (currentTile.Y != 0)
-			neighbors.Add(grid[currentTile.X - 1, currentTile.Y]);
-		//get right
-		if (currentTile.Y < width -1)
-			neighbors.Add(grid[currentTile.X + 1, currentTile.Y]);
-
+		Vector2I[] shifts = { new Vector2I(0,1), new Vector2I(0, -1), new Vector2I(-1,0), new Vector2I(1,0) };
+		foreach (Vector2I shift in shifts)
+		{
+			Vector2I cordChecked = currentTile + shift;
+			// Catch out of bounds stuff
+			if (cordChecked.X == -1 || cordChecked.Y == -1 || cordChecked.X > Width - 1 || cordChecked.Y > Height - 1)
+				continue;
+			
+			SimTile tile = grid[cordChecked.X,cordChecked.Y];
+			foreach (SimInfra infra in tile.Infra)
+			{
+				if (infra.Type == targetType)
+				{
+					neighbors.Add(tile);
+				}
+			}
+		}
 		bool TileUp = false; bool TileDown = false; bool TileLeft = false; bool TileRight = false;
+		SimTile tileToCheck = grid[currentTile.X,currentTile.Y];
 		foreach (SimTile tile in neighbors)
 		{
 			switch (tile.Coordinates.X - currentTile.X)
@@ -180,50 +183,48 @@ public partial class SimGrid : Node
 				default:
 					continue;
 			}
-			switch (neighbors.Count)
-			{
-				case (1):
+		}
+		switch (neighbors.Count)
+		{
+			case (1):
+				versionPath = "Straight";
+				if (TileLeft || TileRight)
+					y_rot = 90.0f;
+				break;
+			case (2):
+				if(TileUp && TileDown || TileLeft && TileRight) 
+				{
 					versionPath = "Straight";
-					if (TileLeft || TileRight)
+					if (TileLeft)
 						y_rot = 90.0f;
 					break;
-				case (2):
-					if(TileUp && TileDown || TileLeft && TileRight) 
-					{
-						versionPath = "Straight";
-						if (TileLeft)
-							y_rot = 90.0f;
-						break;
-					} 
-					else
-					{
-						versionPath = "Curve";
-						if (TileLeft && TileDown)
-							y_rot = 90.0f;
-						if (TileUp && TileLeft)
-							y_rot = 90.0f;
-						if (TileUp && TileRight)
-							y_rot = 90.0f;
-						break;
-					}
-				case (3):
-					versionPath = "Tjunction";
-					if (TileLeft && TileRight && TileDown)
+				} 
+				else
+				{
+					versionPath = "Curve";
+					if (TileLeft && TileDown)
 						y_rot = 90.0f;
-					if (TileUp && TileDown && TileLeft)
-						y_rot = 180.0f;
-					if (TileLeft && TileRight && TileDown)
-						y_rot = 270.0f;
+					if (TileUp && TileLeft)
+						y_rot = 90.0f;
+					if (TileUp && TileRight)
+						y_rot = 90.0f;
 					break;
-				case (4): 
-					versionPath = "Intersection";
-					break;
-			}
+				}
+			case (3):
+				versionPath = "Tjunction";
+				if (TileLeft && TileRight && TileDown)
+					y_rot = 90.0f;
+				if (TileUp && TileDown && TileLeft)
+					y_rot = 180.0f;
+				if (TileLeft && TileRight && TileDown)
+					y_rot = 270.0f;
+				break;
+			case (4): 
+				versionPath = "Intersection";
+				break;
 		}
 		Vector3 rotationReturn = new Vector3(0.0f,y_rot,0.0f);
 		PathVersion returnData = new PathVersion(versionPath,rotationReturn);
-		GD.Print("versionPath: " + versionPath);
-		GD.Print("versionPathFromReturnData: " + returnData.versionString);
 		return returnData;
 	}
 }

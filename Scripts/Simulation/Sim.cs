@@ -54,26 +54,22 @@ public partial class Sim : Node
 	public override void _Ready()
 	{
 		Instance = this;
+		Instance.startData = (StartData)ResourceLoader.Load("res://Resources/Maps/inspectortest.tres");
 		grid = GetNode<SimGrid>("SimGrid");
-		GD.Print(startData.emissionsCap);
 		EmissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
 		SupportPool = GetNode<SimSupportPool>("SimSupportPool");
 		agents = new List<SimAgent>();
 		Clock = GetNode<SimClock>("SimClock");
 		mainObject = GetNode("../../Main");
-		GD.Print("sim::64");
 		LoadMap();
-		GD.Print("sim::66");
 		//TODO we might want a button to call this function instead.
 		BeginGame();
 	}
 
 	// load level data from save
-	public void LoadMap() { //TODO maybe have this take in a startData resource, but for now, it's just the one given to the sim instance 
-		GD.Print("Sim::73");
-		GD.Print(startData.emissionsCap);
+	public void LoadMap() { /*TODO maybe have this take in a startData resource, 
+		but for now, it's just the one given to the sim instance*/
 		EmissionsMeter.InitializeEmissionsInfo(startData);
-		GD.Print("Sim::75");
 		SupportPool.Init(startData);
 		Clock.InitializeClockInfo(startData);
 

@@ -38,7 +38,7 @@ func on_tile_clicked(local_x: int, local_y: int):
 		isYellow = false
 	update_highlight()
 	
-func update_visuals():
+func update_visuals(repeated: bool = false):
 	# Clear existing children.
 	for child in get_children():
 		child.queue_free()
@@ -64,12 +64,19 @@ func update_visuals():
 				var model = load(full_path)
 				instance = model.instantiate()
 				add_child(instance)
+				#if (!repeated):
+					#get_parent().update_all_tile_visuals()
 			else: 
 				print("path not given")
 
 
 func get_version(type: SimInfraType) -> String:
-	var versionInfo: PathVersion = sim.get_node("SimGrid").GetVersion(Vector2i(x,y),type)
+	if !type.ModelConnects:
+		return ""
+	var versionInfo = sim.grid.GetVersion(Vector2i(x,y),type)
+	var test_r = versionInfo.rotation
+	rotation = versionInfo.rotation
+	print(rotation.y)
 	return versionInfo.versionString
 
 func update_highlight():
