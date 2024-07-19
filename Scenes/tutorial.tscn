@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6ohh7l7wmakm"]
+[gd_scene load_steps=4 format=3 uid="uid://b6ohh7l7wmakm"]
 
-[ext_resource type="Script" path="res://Scenes/Main_Menu.gd" id="1_hdqxf"]
-[ext_resource type="Texture2D" uid="uid://cu3x7ugelnvga" path="res://Scenes/Tutorial-Menu_BLANK.png" id="2_2dx4j"]
+[ext_resource type="Script" path="res://Scripts/Simulation/Main_Menu.gd" id="1_hdqxf"]
 
 [sub_resource type="SystemFont" id="SystemFont_snwt3"]
 font_names = PackedStringArray("Impact")
@@ -36,7 +35,6 @@ offset_bottom = 433.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.599663, 0.599663)
-texture = ExtResource("2_2dx4j")
 
 [node name="MarginContainer" type="MarginContainer" parent="tutorial"]
 layout_mode = 1

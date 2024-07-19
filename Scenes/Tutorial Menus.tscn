@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7nklxcsqhvid"]
+[gd_scene load_steps=12 format=3 uid="uid://cq17206gfvsv6"]
 
 [ext_resource type="Texture2D" uid="uid://62v1bsk4wofe" path="res://Assets/Tutorial/Menu/BG/Tutorial-Menu_BLANK.png" id="1_4qvgk"]
 [ext_resource type="Texture2D" uid="uid://b1kvucqw8ds5d" path="res://Assets/Tutorial/Menu/Navigation Buttons/Return_Navigation.png" id="2_20alr"]
@@ -54,6 +54,7 @@ icon = ExtResource("2_20alr")
 flat = true
 
 [node name="Button2" type="Button" parent="Tutorial front"]
+layout_mode = 0
 offset_left = 386.0
 offset_top = 453.0
 offset_right = 800.0
@@ -63,6 +64,7 @@ icon = ExtResource("3_hlx1n")
 flat = true
 
 [node name="Button3" type="Button" parent="Tutorial front"]
+layout_mode = 0
 offset_left = 384.0
 offset_top = 363.0
 offset_right = 798.0
@@ -106,6 +108,7 @@ icon = ExtResource("2_20alr")
 flat = true
 
 [node name="Button2" type="Button" parent="Controls"]
+layout_mode = 0
 offset_left = 472.0
 offset_top = 534.0
 offset_right = 549.0
@@ -115,6 +118,7 @@ icon = ExtResource("6_acpls")
 flat = true
 
 [node name="Button4" type="Button" parent="Controls"]
+layout_mode = 0
 offset_left = 366.0
 offset_top = 533.0
 offset_right = 443.0
@@ -146,6 +150,7 @@ scale = Vector2(0.608041, 0.61819)
 texture = ExtResource("6_37x1q")
 
 [node name="TextureRect" type="TextureRect" parent="Overview/TextureRect"]
+layout_mode = 0
 offset_left = 577.0
 offset_top = 354.0
 offset_right = 1361.0
@@ -166,6 +171,7 @@ icon = ExtResource("2_20alr")
 flat = true
 
 [node name="Button2" type="Button" parent="Overview"]
+layout_mode = 0
 offset_left = 354.0
 offset_top = 536.0
 offset_right = 438.0
@@ -175,6 +181,7 @@ icon = ExtResource("8_nhkdt")
 flat = true
 
 [node name="Button4" type="Button" parent="Overview"]
+layout_mode = 0
 offset_left = 474.0
 offset_top = 536.0
 offset_right = 558.0
