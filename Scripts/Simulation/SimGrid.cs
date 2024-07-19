@@ -169,19 +169,15 @@ public partial class SimGrid : Node
 				case (-1):
 					TileLeft = true;
 					break;
-				default:
-					continue;
 			}
 			switch (tile.Coordinates.Y - currentTile.Y)
 			{
 				case (1):
-					TileUp = true;
-					break;
-				case (-1):
 					TileDown = true;
 					break;
-				default:
-					continue;
+				case (-1):
+					TileUp = true;
+					break;
 			}
 		}
 		switch (neighbors.Count)
@@ -203,21 +199,21 @@ public partial class SimGrid : Node
 				{
 					versionPath = "Curve";
 					if (TileLeft && TileDown)
-						y_rot = Math.PI / 2;
+						y_rot = -(Math.PI / 2);
 					if (TileUp && TileLeft)
 						y_rot = Math.PI;
 					if (TileUp && TileRight)
-						y_rot = (3 * Math.PI) / 4;
+						y_rot = Math.PI / 2;
 					break;
 				}
 			case (3):
 				versionPath = "Tjunction";
 				if (TileLeft && TileRight && TileDown)
-					y_rot = Math.PI / 2;
+					y_rot = -(Math.PI / 2);
 				if (TileUp && TileDown && TileLeft)
 					y_rot = Math.PI;
-				if (TileLeft && TileRight && TileDown)
-					y_rot =  (3 * Math.PI) / 4;
+				if (TileLeft && TileRight && TileUp)
+					y_rot =  (Math.PI / 2);
 				break;
 			case (4): 
 				versionPath = "Intersection";
@@ -225,6 +221,7 @@ public partial class SimGrid : Node
 		}
 		Vector3 rotationReturn = new Vector3(0.0f,(float)y_rot,0.0f);
 		PathVersion returnData = new PathVersion(versionPath,rotationReturn);
+		//Debug printing GD.Print($"Tile: {tileToCheck.Coordinates.X}, {tileToCheck.Coordinates.Y} Neighbor Count: {neighbors.Count} TileUp: {TileUp} TileDown: {TileDown} TileLeft: {TileLeft} TileRight: {TileRight} y_rot: {y_rot}");
 		return returnData;
 	}
 }
