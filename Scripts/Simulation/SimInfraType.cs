@@ -46,8 +46,23 @@ public partial class SimInfraType : Resource
 		THIRDSPACE
 	}
 
-	public static readonly SimInfraType [] types = {}; //TODO put the resources we're using in here, in oder so the indices match with the enum values
+	// resources in order of enum values
+	public static SimInfraType [] types = {
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/house.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/work.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/commercial.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/thirdspace.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/road.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/sidewalk.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/crosswalk.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/bikelane.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/streetlamp.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/tree.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/parking_lot.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/bike_rack.tres"),
+	};
 
+	[Export] string Name;
 	[Export] public InfraType type;
 	[Export] public NodePath visualInfra;
 	[Export] public DestinationType destinationType; // if this is a destination, what type is it?
@@ -71,11 +86,26 @@ public partial class SimInfraType : Resource
 
 	[Export] public InfraType incompatibilityMask; //1 = incompatible, 0 = compatible
 
+	[Export] public string ModelPath;
+	[Export] public bool ModelConnects;
+	[Export] public bool ModelHasBase;
+
 
 	//TODO better way to do this?
 	public static SimInfraType TypeFromEnum(InfraType enumType) {
 		int index = (int)Math.Log2((double)((int)enumType));
 		return types[index];
+	}
+
+	public static Godot.Collections.Array<SimInfraType> TypesFromEnum(InfraType enumType) {
+		Godot.Collections.Array<SimInfraType> arr = new Godot.Collections.Array<SimInfraType>();
+		for(int i = 0; i < types.Length; i++) {
+			int bit = (int)Math.Pow(2, i);
+			if((enumType & (InfraType)bit) > 0) {
+				arr.Add(types[i]);
+			}
+		}
+		return arr;
 	}
 
 	// If we want specific types or groups of types to have extra behavior, they can extend this class and override these functions, which are called when the infra is added to or removed from a tile.

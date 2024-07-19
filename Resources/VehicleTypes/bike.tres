@@ -4,8 +4,10 @@
 
 [resource]
 script = ExtResource("1_fdaua")
-name = ""
+name = "Bike"
 transportMode = 4
-emissionsPerTick = 0.0
+emissionsPerYear = 0.0
 maxSpeed = 15.0
 agentCapacity = 1
+visualVehicle = null
+model = null
