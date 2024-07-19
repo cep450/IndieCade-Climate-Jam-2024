@@ -215,9 +215,9 @@ public partial class SimGrid : Node
 				if (TileLeft && TileRight && TileDown)
 					y_rot = Math.PI / 2;
 				if (TileUp && TileDown && TileLeft)
-					y_rot = Math.PI / 2;
+					y_rot = Math.PI;
 				if (TileLeft && TileRight && TileDown)
-					y_rot =  3 * Math.PI / 4;
+					y_rot =  (3 * Math.PI) / 4;
 				break;
 			case (4): 
 				versionPath = "Intersection";

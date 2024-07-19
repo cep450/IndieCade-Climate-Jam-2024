@@ -76,7 +76,6 @@ func get_version(type: SimInfraType) -> String:
 	if !type.ModelConnects:
 		return ""
 	var versionInfo = sim.grid.GetVersion(Vector2i(x,y),type)
-	var test_r = versionInfo.rotation
 	rotation = versionInfo.rotation
 	return versionInfo.versionString
 
