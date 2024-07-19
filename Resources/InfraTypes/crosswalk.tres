@@ -4,13 +4,21 @@
 
 [resource]
 script = ExtResource("1_aum5u")
+Name = "Crosswalk"
 type = 64
-transportModes = 1
+visualInfra = null
 destinationType = 0
-capacity = 0
+transportModes = 1
+connectsCorners = false
+connectsBorders = false
+connectionsBlockedBy = 0
+capacity = 10
 canTransfer = false
 maxSpeed = 1.0
 safety = 0.0
-costToBuild = 0
-costToDestroy = 0
+costToBuild = 1
+costToDestroy = 1
 incompatibilityMask = 1103
+ModelPath = ""
+ModelConnects = true
+ModelHasBase = false

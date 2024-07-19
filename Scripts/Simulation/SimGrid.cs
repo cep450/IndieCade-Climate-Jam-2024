@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 public partial class SimGrid : Node
 {
@@ -11,53 +12,74 @@ public partial class SimGrid : Node
 	
 	public static readonly float TILE_WORLD_SCALE = 1f; //the size of the tile model in the world 
 	
-	private int width = 10; // Set your grid width
-	private int height = 10; // Set your grid height
+	private int width; // will be updated by save resource
+	private int height; // will be updated by save resource
 
 	public int Width { get => width; private set {}}
 	public int Height { get => height; private set {}}
 
-	public SimTile[][] grid;
+	public SimTile[,] grid;
+
+	GDScript worldScript = GD.Load<GDScript>("res://Scripts/View/world.gd");
 	
 	//TODO for choosing destinations maybe we do all the pathfinding during that choice, where we aren't pathfinding to a particular tile but instead pathfinding until we find a particular type
 	//public SimInfraType.DestinationType destinationGrid; // parallel grid just storing destination types for pathfinding 
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		InitializeGrid();
+	public float GridToWorldPos(int sizeAxis, int coord) {
+		float pos = coord + 0.5f;
+		pos -= (sizeAxis / 2);
+		return pos;
 	}
 
-	private void InitializeGrid()
+	public void LoadGridFromResource(StartData resourceToLoad)
 	{
-		grid = new SimTile[width][];
+		width = resourceToLoad.GridWidth;
+		height = resourceToLoad.GridHeight;
+
+		grid = new SimTile[width,height];
+
+		GodotObject world = GetNode("../../View/World");
+
+		// initialize the view world 
+		//world.Call("init_world", width, height, TILE_WORLD_SCALE);
+
+		// initialize internal SimGrid with SimTiles 
 		for (int x = 0; x < width; x++)
 		{
-			grid[x] = new SimTile[height];
 			for (int y = 0; y < height; y++)
-			{				
-				Vector2I coordinates = new Vector2I(x, y);
-				Vector2 position = new Vector2(x * TILE_WORLD_SCALE, y * TILE_WORLD_SCALE);
-				grid[x][y] = new SimTile(coordinates, position); // Initialize each tile with a position
-				AddChild(grid[x][y]); // Add each tile as a child node (optional)
-
-				//TODO add infrastructure to this tile based on the level file.
+			{
+				//create a world tile and a SimTile and associate them with each other 
 				
-				// For testing, make each tile a road.
-				//SimInfra infra = new SimInfrastructure(, 1.0f);
-				//grid[x][y].SetInfrastructure(infra);
+				Vector2I coordinates = new Vector2I(x, y);
+				Vector2 position = new Vector2(GridToWorldPos(width, x) * TILE_WORLD_SCALE, GridToWorldPos(height, y) * TILE_WORLD_SCALE);
+
+				GodotObject newVisualTile = (GodotObject)world.Call("init_tile", x, y, position.X, position.Y);
+				grid[x,y] = new SimTile(coordinates, position, newVisualTile); // Initialize each tile with a position
+				AddChild(grid[x,y]); // Add each tile as a child node (optional)
+
+				//Add infrastructure to this tile based on the mask in the level file.
+				SimInfraType.InfraType infraMask = resourceToLoad.gridData[x].gridData[y];
+				grid[x,y].AddInfraFromMask(infraMask, true);
+
+				// update visual tile once now that all infra has been added
+				newVisualTile.Call("update_visuals");
 			}
 		}
+
+		/*
+		SaveGridAsResource();*/
+		//var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/SavedData.tres");
+		//LoadGridFromResource(startData);
 	}
 
 	public SimTile GetTile(int x, int y)
 	{
-		if (x < 0 || y < 0 || x >= grid.Length || y >= grid[0].Length)
+		if (x < 0 || y < 0 || x >= width || y >= height)
 		{
-			GD.Print("Tried to get a tile on the grid that was out of range.");
+			GD.Print("Tried to get a tile on the grid that was out of range at " + x + ", " + y);
 			return null;
 		}
-		return grid[x][y];
+		return grid[x,y];
 	}
 
 //TODO it's probably more efficient to calculate connections when infrastructure is added/removed and save the connections.
@@ -78,9 +100,9 @@ public partial class SimGrid : Node
 
 				if (checkX >= 0 && checkX < width && checkY >= 0 && checkY < height)
 				{
-					if (grid[checkX][checkY].Infra[0].Type.type == type)
+					if (grid[checkX,checkY].Infra[0].Type.type == type)
 					{
-						neighbours.Add(grid[checkX][checkY]);
+						neighbours.Add(grid[checkX,checkY]);
 					}
 				}
 
@@ -88,4 +110,23 @@ public partial class SimGrid : Node
 		}
 		return neighbours;
 	}
+	
+	public void SaveGridAsResource() 
+	{
+		var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/StartData.tres");
+		startData.gridData = new SimInfraTypeRow[width];
+		for (int x = 0; x < width; x++)
+		{
+			SimInfraTypeRow currentInfraRow = new SimInfraTypeRow();
+			currentInfraRow.gridData = new Godot.Collections.Array<SimInfraType.InfraType>();
+			for (int y = 0; y < height; y++)
+			{
+				currentInfraRow.gridData.Add(GetTile(x,y).InfraTypesMask);
+			}
+			startData.gridData[x] = currentInfraRow;
+		}
+		ResourceSaver.Save(startData, "res://Scripts/Simulation/CustomResources/SavedData.tres");
+		
+	}
+
 }

@@ -4,6 +4,5 @@ using System;
 [GlobalClass]
 public partial class SimInfraTypeRow : Resource
 {
-	[Export]
-	public SimInfraType[] gridData;
+	[Export] public Godot.Collections.Array<SimInfraType.InfraType> gridData;
 }

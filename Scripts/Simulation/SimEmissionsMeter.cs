@@ -10,8 +10,8 @@ public partial class SimEmissionsMeter : Node
 	 */
 
 	private float emissions = 0; // running total
-	private const float emissionsCap = 10000; // if emissions surpass this the game ends with a loss. TODO tune this 
-	private const float emissionsTarget = 10; // if emission rate goes below this the game ends with a win. TODO tune this
+	private float emissionsCap = 10000; // if emissions surpass this the game ends with a loss. TODO tune this 
+	private float emissionsTarget = 10; // if emission rate goes below this the game ends with a win. TODO tune this
 
 	private float emissionsThisTick = 0;
 	private float emissionsLastTick = 0;
@@ -36,8 +36,13 @@ public partial class SimEmissionsMeter : Node
 			return instance;
 		}
 	}
-	private SimEmissionsMeter() { }
-
+	public void InitializeEmissionsInfo(StartData startData) {
+		emissionsCap = startData.emissionsCap;
+		emissionsTarget = startData.emissionsTarget;
+		emissions = 0;
+		emissionsThisTick = 0;
+		emissionsLastTick = 0;
+	}
 
 	public void EndTick() {
 		emissions += emissionsThisTick;
@@ -79,7 +84,7 @@ public partial class SimEmissionsMeter : Node
 
 		foreach (var agent in activeAgents)
 		{
-			if (agent.Vehicle.IsInUse)
+			if (agent.VehicleIsInUse)
 			{
 				totalEmissions += agent.Vehicle.Emissions;
 			}

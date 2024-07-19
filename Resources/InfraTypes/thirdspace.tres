@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://lpfqh03fnxfl"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_aiiiu"]
+
+[resource]
+script = ExtResource("1_aiiiu")
+Name = "Third Space"
+type = 8
+visualInfra = null
+destinationType = 4
+transportModes = 1
+connectsCorners = false
+connectsBorders = false
+connectionsBlockedBy = 0
+capacity = 20
+canTransfer = false
+maxSpeed = 0.0
+safety = 1.0
+costToBuild = 10
+costToDestroy = 20
+incompatibilityMask = 1119
+ModelPath = ""
+ModelConnects = false
+ModelHasBase = false

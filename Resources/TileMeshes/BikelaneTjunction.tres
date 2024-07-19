@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=3 format=3 uid="uid://bi8tq3dbon4vy"]
+[gd_resource type="ArrayMesh" load_steps=3 format=3 uid="uid://dgy76g251j05n"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajqyf"]
 resource_name = "BikeLane"
