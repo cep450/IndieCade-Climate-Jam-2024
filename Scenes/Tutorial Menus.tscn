@@ -48,20 +48,20 @@ texture = ExtResource("1_4qvgk")
 
 [node name="Button" type="Button" parent="Tutorial front"]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 17.0
-offset_right = 354.0
-offset_bottom = 125.0
+offset_left = 104.0
+offset_top = -104.0
+offset_right = 437.0
+offset_bottom = 4.0
 scale = Vector2(0.652683, 0.566698)
 icon = ExtResource("2_20alr")
 flat = true
 
 [node name="Button2" type="Button" parent="Tutorial front"]
 layout_mode = 0
-offset_left = 617.0
-offset_top = 691.0
-offset_right = 1031.0
-offset_bottom = 800.0
+offset_left = 575.0
+offset_top = 285.0
+offset_right = 989.0
+offset_bottom = 394.0
 scale = Vector2(0.652683, 0.566698)
 icon = ExtResource("3_hlx1n")
 flat = true
