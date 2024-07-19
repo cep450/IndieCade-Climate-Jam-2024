@@ -19,6 +19,6 @@ safety = 0.0
 costToBuild = 5
 costToDestroy = 5
 incompatibilityMask = 1055
-ModelPath = "res://Scenes/Tiles/Road1Straight"
+ModelPath = "res://Scenes/Tiles/Road1"
 ModelConnects = true
 ModelHasBase = false

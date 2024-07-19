@@ -65,7 +65,6 @@ public partial class SimGrid : Node
 				newVisualTile.Call("update_visuals");
 			}
 		}
-
 		/*
 		SaveGridAsResource();*/
 		//var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/SavedData.tres");
@@ -128,5 +127,97 @@ public partial class SimGrid : Node
 		ResourceSaver.Save(startData, "res://Scripts/Simulation/CustomResources/SavedData.tres");
 		
 	}
+	
+	public PathVersion GetVersion(Vector2I currentTile, SimInfraType type)
+	{
+		GD.Print("grid_called");
+		float y_rot = 0.0f;
+		string versionPath = "Straight";
+		List<SimTile> neighbors = new List<SimTile>();
 
+		//get orthoganal neighbors
+		//get up
+		if (currentTile.Y != 0)
+			neighbors.Add(grid[currentTile.X, currentTile.Y - 1]);
+		//get down
+		if (currentTile.Y < height - 1)
+			neighbors.Add(grid[currentTile.X, currentTile.Y + 1]);
+		//get left
+		if (currentTile.Y != 0)
+			neighbors.Add(grid[currentTile.X - 1, currentTile.Y]);
+		//get right
+		if (currentTile.Y < width -1)
+			neighbors.Add(grid[currentTile.X + 1, currentTile.Y]);
+
+		bool TileUp = false; bool TileDown = false; bool TileLeft = false; bool TileRight = false;
+		foreach (SimTile tile in neighbors)
+		{
+			switch (tile.Coordinates.X - currentTile.X)
+			{
+				case (1):
+					TileRight = true;
+					break;
+				case (-1):
+					TileLeft = true;
+					break;
+				default:
+					continue;
+			}
+			switch (tile.Coordinates.Y - currentTile.Y)
+			{
+				case (1):
+					TileUp = true;
+					break;
+				case (-1):
+					TileUp = true;
+					break;
+				default:
+					continue;
+			}
+			switch (neighbors.Count)
+			{
+				case (1):
+					versionPath = "Straight";
+					if (TileLeft || TileRight)
+						y_rot = 90.0f;
+					break;
+				case (2):
+					if(TileUp && TileDown || TileLeft && TileRight) 
+					{
+						versionPath = "Straight";
+						if (TileLeft)
+							y_rot = 90.0f;
+						break;
+					} 
+					else
+					{
+						versionPath = "Curve";
+						if (TileLeft && TileDown)
+							y_rot = 90.0f;
+						if (TileUp && TileLeft)
+							y_rot = 90.0f;
+						if (TileUp && TileRight)
+							y_rot = 90.0f;
+						break;
+					}
+				case (3):
+					versionPath = "Tjunction";
+					if (TileLeft && TileRight && TileDown)
+						y_rot = 90.0f;
+					if (TileUp && TileDown && TileLeft)
+						y_rot = 180.0f;
+					if (TileLeft && TileRight && TileDown)
+						y_rot = 270.0f;
+					break;
+				case (4): 
+					versionPath = "Intersection";
+					break;
+			}
+		}
+		Vector3 rotationReturn = new Vector3(0.0f,y_rot,0.0f);
+		PathVersion returnData = new PathVersion(versionPath,rotationReturn);
+		GD.Print("versionPath: " + versionPath);
+		GD.Print("versionPathFromReturnData: " + returnData.versionString);
+		return returnData;
+	}
 }

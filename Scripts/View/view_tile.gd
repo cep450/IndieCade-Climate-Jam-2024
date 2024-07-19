@@ -7,7 +7,7 @@ var y: int
 
 # Block Scenes
 var base = preload("res://Scenes/Tiles/base.tscn")
-var blank = preload("res://Scenes/Tiles/Blank.tscn")
+var blank = preload("res://Scenes/Tiles/Grass.tscn")
 
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")
 var isYellow: bool = false
@@ -59,19 +59,18 @@ func update_visuals():
 				instance = base.instantiate()
 				add_child(instance)
 			if !type.ModelPath.is_empty():
-				var full_path = type.ModelPath + get_version() + ".tscn"
+				# Note that 'get_version() also rotates as needed.
+				var full_path = type.ModelPath + get_version(type) + ".tscn"
 				var model = load(full_path)
 				instance = model.instantiate()
 				add_child(instance)
-				instance.rotation.y = get_new_rotation()	
 			else: 
 				print("path not given")
-	
-func get_version() -> String:
-	return ""
 
-func get_new_rotation() -> float:
-	return 0.0
+
+func get_version(type: SimInfraType) -> String:
+	var versionInfo: PathVersion = sim.get_node("SimGrid").GetVersion(Vector2i(x,y),type)
+	return versionInfo.versionString
 
 func update_highlight():
 	for child in get_children():
