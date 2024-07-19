@@ -30,6 +30,9 @@ public partial class Sim : Node
 
 	public GameState gameState = GameState.TUTORIAL;
 
+	GDScript mainScript = GD.Load<GDScript>("res://Scripts/main.gd");
+	GodotObject mainObject;
+
 	// shortcuts 
 	//TODO it might make more sense for these to be in SimGrid
 	public SimTile GetTile(int x, int y) {
@@ -56,6 +59,7 @@ public partial class Sim : Node
 		SupportPool = GetNode<SimSupportPool>("SimSupportPool");
 		agents = new List<SimAgent>();
 		Clock = GetNode<SimClock>("SimClock");
+		mainObject = GetNode("../../Main");
 
 		LoadMap();
 
@@ -96,6 +100,8 @@ public partial class Sim : Node
 		EmissionsMeter.UpdateEmissions(agents);
 
 		EmissionsMeter.EndTick();
+
+		mainObject.Call("tick");
 
 	}
 
