@@ -178,7 +178,7 @@ public partial class SimGrid : Node
 					TileUp = true;
 					break;
 				case (-1):
-					TileUp = true;
+					TileDown = true;
 					break;
 				default:
 					continue;

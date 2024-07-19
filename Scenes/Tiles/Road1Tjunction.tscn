@@ -6,6 +6,7 @@
 points = PackedVector3Array(0.496312, 0.4, 0.496312, -0.488496, 2.77556e-17, -0.488496, -0.488496, 2.77556e-17, 0.488496, -0.496312, 0.4, -0.496312, 0.488496, 2.77556e-17, -0.488496, -0.496312, 0.4, 0.496312, 0.496312, 0.4, -0.496312, 0.488496, 2.77556e-17, 0.488496)
 
 [node name="Road1Tjunction" type="StaticBody3D"]
+rotation_order = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_pmuyn")
