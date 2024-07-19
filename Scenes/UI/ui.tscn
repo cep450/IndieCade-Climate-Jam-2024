@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://csswthorupplo"]
+[gd_scene load_steps=16 format=3 uid="uid://csswthorupplo"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="1_meoay"]
 [ext_resource type="Texture2D" uid="uid://umsji8qst4u6" path="res://Assets/Gameplay/Meters/Emissions/EMeter_Blank2_200x200.png" id="2_asuck"]
@@ -6,20 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://b041etpehhf40" path="res://Assets/Gameplay/Menu/Time Control Menu - 200x64.png" id="4_2umie"]
 [ext_resource type="FontFile" uid="uid://bih7em55811y0" path="res://Assets/Fonts/Inter-SemiBold.ttf" id="4_16ne3"]
 [ext_resource type="Texture2D" uid="uid://cx48haxlw10fn" path="res://Assets/Gameplay/Buttons/Button_Buy_384x56.png" id="5_2xy5a"]
-[ext_resource type="Texture2D" uid="uid://c40bw17qsr7of" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (3).png" id="5_6kb1e"]
 [ext_resource type="Texture2D" uid="uid://vkq85ptfwrjt" path="res://Assets/Gameplay/Menu/Time Control Menu - Play - Icons.png" id="5_ddpla"]
-[ext_resource type="Texture2D" uid="uid://6tot00v555i5" path="res://Assets/Gameplay/Menu/Build/Build Menu - 4-Icon - 384x92.png" id="6_7gq45"]
 [ext_resource type="Texture2D" uid="uid://bkqc4jqrf5lho" path="res://Assets/Gameplay/Menu/Time Control Menu - Pause - Icons.png" id="6_iw8eh"]
-[ext_resource type="Texture2D" uid="uid://cdn0sgifthjsk" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (4).png" id="7_ybij0"]
-[ext_resource type="Texture2D" uid="uid://4xvm0qlr156r" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (5).png" id="8_yo5m0"]
-[ext_resource type="Texture2D" uid="uid://bqbqavuprx7qq" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (8).png" id="9_02ca7"]
-[ext_resource type="Texture2D" uid="uid://dxmrw0k72x1kn" path="res://Assets/Gameplay/Meters/Happiness/HMeter_1A_76_x_76.png" id="10_stcum"]
-[ext_resource type="Texture2D" uid="uid://br51dirvvhuem" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (6).png" id="10_udx15"]
-[ext_resource type="Texture2D" uid="uid://on4l5gto86hf" path="res://Assets/Gameplay/Meters/Happiness/HMeter_2A_76_x_76.png" id="11_c756u"]
-[ext_resource type="Texture2D" uid="uid://bl8d5i74np52" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (7).png" id="11_w05hm"]
+[ext_resource type="Texture2D" uid="uid://ddy1wpei63xig" path="res://Assets/Gameplay/Meters/Happiness/HMeter_2S_76 x 76.png" id="6_msbju"]
+[ext_resource type="Texture2D" uid="uid://ditry4toai5p8" path="res://Assets/Gameplay/Meters/Happiness/HMeter_3S_76 x 76.png" id="7_m7yaf"]
 [ext_resource type="Texture2D" uid="uid://bqxamlsop5u51" path="res://Assets/Gameplay/Icons/Icon_Clock_92x92.png" id="11_yl1gm"]
-[ext_resource type="Texture2D" uid="uid://cbuyqjgrm2r32" path="res://Assets/Gameplay/Meters/Happiness/HMeter_3A_76_x_76.png" id="12_bhl8g"]
-[ext_resource type="Texture2D" uid="uid://do4p2vmcksbw1" path="res://Assets/Gameplay/Menu/Build/Build Menu - Back Icon.png" id="12_qoj2x"]
+[ext_resource type="Texture2D" uid="uid://dsm1k473ys5rl" path="res://Assets/Gameplay/Meters/Happiness/HMeter_1S_76 x 76.png" id="12_ip4wc"]
 [ext_resource type="Texture2D" uid="uid://dv666v0i7ufn" path="res://Assets/Gameplay/Menu/Time Control Menu - FF - Icons.png" id="16_1f6rw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_muhwf"]
@@ -34,19 +26,22 @@ texture = ExtResource("4_2umie")
 texture_margin_left = 12.0
 texture_margin_right = 12.0
 
-[node name="UI" type="Control" node_paths=PackedStringArray("emissions_meter", "build_buttons")]
+[node name="UI" type="Control" node_paths=PackedStringArray("emissions_meter", "build_buttons", "speed_controller")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 1.0
-offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_meoay")
 emissions_meter = NodePath("EmissionsMeter")
 build_buttons = NodePath("Build/BuildMenu")
+speed_controller = NodePath("SpeedController")
+speed_controller_images = Array[Texture2D]([ExtResource("6_iw8eh"), ExtResource("5_ddpla"), ExtResource("16_1f6rw")])
+happiness_meter_images = Array[Texture2D]([ExtResource("12_ip4wc"), ExtResource("6_msbju"), ExtResource("7_m7yaf")])
+metadata/_edit_horizontal_guides_ = [631.0, 16.0]
+metadata/_edit_vertical_guides_ = [16.0, 1136.0]
 
 [node name="EmissionsMeter" type="TextureProgressBar" parent="."]
 layout_mode = 1
@@ -54,9 +49,9 @@ anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 9.0
-offset_top = -138.0
+offset_top = -137.013
 offset_right = 241.0
-offset_bottom = 93.0
+offset_bottom = 94.0
 scale = Vector2(0.56, 0.56)
 value = 100.0
 fill_mode = 5
@@ -96,9 +91,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -29.0
-offset_top = -71.0
+offset_top = -69.0
 offset_right = 29.0
-offset_bottom = -17.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.97, 0.97)
@@ -107,152 +102,34 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_muhwf")
 [node name="BuildMenu" type="HBoxContainer" parent="Build"]
 layout_mode = 2
 
-[node name="3 button background" type="TextureButton" parent="Build"]
-visible = false
-layout_mode = 2
-disabled = true
-texture_normal = ExtResource("5_2xy5a")
-stretch_mode = 0
-
-[node name="Build" type="TextureButton" parent="Build/3 button background"]
-visible = false
-layout_mode = 0
-offset_left = 33.3333
-offset_top = 15.3846
-offset_right = 83.3333
-offset_bottom = 86.3846
-texture_normal = ExtResource("5_6kb1e")
-ignore_texture_size = true
-stretch_mode = 3
-
-[node name="Tree" type="TextureButton" parent="Build/3 button background"]
-visible = false
-layout_mode = 0
-offset_left = 116.667
-offset_top = 15.3846
-offset_right = 166.667
-offset_bottom = 86.3846
-texture_normal = ExtResource("7_ybij0")
-ignore_texture_size = true
-stretch_mode = 3
-
-[node name="Lamp" type="TextureButton" parent="Build/3 button background"]
-visible = false
-layout_mode = 0
-offset_left = 200.0
-offset_top = 15.3846
-offset_right = 250.0
-offset_bottom = 86.3846
-texture_normal = ExtResource("8_yo5m0")
-ignore_texture_size = true
-stretch_mode = 3
-
-[node name="4 button background" type="TextureButton" parent="Build/3 button background"]
-visible = false
-layout_mode = 0
-offset_right = 384.0
-offset_bottom = 93.0
-disabled = true
-texture_normal = ExtResource("6_7gq45")
-
-[node name="Build sidewalk" type="TextureButton" parent="Build/3 button background/4 button background"]
-layout_mode = 0
-offset_left = 33.3333
-offset_top = 15.3846
-offset_right = 83.3333
-offset_bottom = 86.3846
-texture_normal = ExtResource("9_02ca7")
-ignore_texture_size = true
-stretch_mode = 3
-
-[node name="Build Bikelane" type="TextureButton" parent="Build/3 button background/4 button background"]
-layout_mode = 0
-offset_left = 116.667
-offset_top = 15.3846
-offset_right = 166.667
-offset_bottom = 86.3846
-texture_normal = ExtResource("10_udx15")
-ignore_texture_size = true
-stretch_mode = 3
-
-[node name="Build Crosswalk" type="TextureButton" parent="Build/3 button background/4 button background"]
-layout_mode = 0
-offset_left = 200.0
-offset_top = 15.3846
-offset_right = 250.0
-offset_bottom = 86.3846
-texture_normal = ExtResource("11_w05hm")
-ignore_texture_size = true
-stretch_mode = 3
-
-[node name="Back button" type="TextureButton" parent="Build/3 button background/4 button background"]
-layout_mode = 0
-offset_left = 289.749
-offset_top = 14.0782
-offset_right = 339.749
-offset_bottom = 85.0782
-texture_normal = ExtResource("12_qoj2x")
-ignore_texture_size = true
-stretch_mode = 3
-
-[node name="Background Container" type="PanelContainer" parent="."]
-visible = false
+[node name="SpeedController" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 149.0
-offset_top = -70.0
-offset_right = 345.0
-offset_bottom = -18.0
+offset_left = 158.0
+offset_top = -65.0
+offset_right = 363.0
+offset_bottom = -5.0
 grow_vertical = 0
-scale = Vector2(0.864657, 0.87203)
+scale = Vector2(0.784657, 0.791348)
 theme_override_styles/panel = SubResource("StyleBoxTexture_goyyu")
 
-[node name="Play" type="Button" parent="Background Container"]
+[node name="Play" type="Button" parent="SpeedController"]
 layout_mode = 2
 flat = true
 
-[node name="Pause" type="Button" parent="Background Container"]
+[node name="Pause" type="Button" parent="SpeedController"]
 layout_mode = 2
 flat = true
 
-[node name="SpeedUp" type="Button" parent="Background Container"]
+[node name="SpeedUp" type="Button" parent="SpeedController"]
 layout_mode = 2
 flat = true
 
-[node name="Icons" type="TextureRect" parent="Background Container"]
+[node name="Image" type="TextureRect" parent="SpeedController"]
 layout_mode = 2
-texture = ExtResource("16_1f6rw")
-
-[node name="Play Background" type="TextureButton" parent="Background Container"]
-visible = false
-layout_mode = 2
-disabled = true
-button_mask = 0
-texture_normal = ExtResource("5_ddpla")
-
-[node name="Paused pressed background" type="TextureButton" parent="Background Container/Play Background"]
-visible = false
-layout_mode = 0
-offset_left = 0.132645
-offset_top = 0.501518
-offset_right = 181.133
-offset_bottom = 60.5015
-disabled = true
-button_mask = 0
-texture_normal = ExtResource("6_iw8eh")
-
-[node name="Speed pressed background" type="TextureButton" parent="Background Container/Play Background"]
-visible = false
-layout_mode = 0
-offset_left = 0.132645
-offset_top = 0.501518
-offset_right = 181.133
-offset_bottom = 60.5015
-disabled = true
-button_mask = 0
-texture_normal = ExtResource("16_1f6rw")
+texture = ExtResource("5_ddpla")
 
 [node name="SaveButton" type="Button" parent="."]
 visible = false
@@ -263,40 +140,24 @@ text = "Save
 
 "
 
-[node name="Happiness" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 1
+[node name="Happiness Meter" type="VBoxContainer" parent="."]
+layout_mode = 2
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1148.0
-offset_top = 7.0
-offset_right = -1108.0
-offset_bottom = 47.0
-grow_horizontal = 0
+offset_left = -156.0
+offset_top = 16.0
+offset_right = -76.0
+offset_bottom = 125.0
+scale = Vector2(0.8, 0.8)
 
-[node name="Happiness Meter" type="VBoxContainer" parent="Happiness"]
+[node name="TextureRect" type="TextureRect" parent="Happiness Meter"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
-offset_left = 970.0
-offset_top = 23.0
-offset_right = 1048.0
-offset_bottom = 106.0
-scale = Vector2(0.76, 0.76)
+texture = ExtResource("12_ip4wc")
+expand_mode = 4
+stretch_mode = 4
 
-[node name="Happiness full" type="TextureButton" parent="Happiness/Happiness Meter"]
-layout_mode = 2
-texture_normal = ExtResource("10_stcum")
-
-[node name="Happiness mid" type="TextureButton" parent="Happiness/Happiness Meter/Happiness full"]
-visible = false
-layout_mode = 0
-texture_normal = ExtResource("11_c756u")
-
-[node name="Happiness sad" type="TextureButton" parent="Happiness/Happiness Meter/Happiness full/Happiness mid"]
-visible = false
-layout_mode = 0
-texture_normal = ExtResource("12_bhl8g")
-
-[node name="Text" type="Label" parent="Happiness/Happiness Meter"]
+[node name="Text" type="Label" parent="Happiness Meter"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_16ne3")
 theme_override_font_sizes/font_size = 20
@@ -304,28 +165,23 @@ text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Control" parent="."]
+[node name="Timer" type="VBoxContainer" parent="."]
 layout_mode = 2
-anchors_preset = 0
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -100.0
-offset_top = 90.8
-offset_right = -20.0
-offset_bottom = 90.8
-
-[node name="Timer" type="VBoxContainer" parent="Timer"]
-layout_mode = 2
-offset_top = -64.8
-offset_right = 80.0
-offset_bottom = 12.2
+offset_left = -82.0
+offset_top = 16.0
+offset_right = -2.0
+offset_bottom = 125.0
 scale = Vector2(0.80001, 0.8)
 
-[node name="TextureButton" type="TextureButton" parent="Timer/Timer"]
+[node name="TextureRect" type="TextureRect" parent="Timer"]
 layout_mode = 2
-texture_normal = ExtResource("11_yl1gm")
+texture = ExtResource("11_yl1gm")
+expand_mode = 4
+stretch_mode = 4
 
-[node name="Text" type="Label" parent="Timer/Timer"]
+[node name="Text" type="Label" parent="Timer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_16ne3")
 theme_override_font_sizes/font_size = 20
