@@ -28,6 +28,7 @@ func initialize(local_x: int, local_y: int) -> void:
 	
 		
 func select() -> void:
+	Global.on_tile_clicked(Vector2(x,y))
 	get_parent().tile_clicked.emit(x,y)
 
 func on_tile_clicked(local_x: int, local_y: int):
