@@ -22,7 +22,7 @@ public partial class SimVehicle : Node
 		IsInUse = false;
 		Emissions = vehicleType.Emissions;
 	}
-
+/*
 	public override void _Ready()
 	{
 		// Initialize the vehicle here if needed
@@ -35,13 +35,14 @@ public partial class SimVehicle : Node
 			UpdateVehiclePosition((float)delta);
 		}
 	}
-
+*/
 	public void Tick() {
 		if(IsInUse) {
 			SimEmissionsMeter.Instance.AddEmissions(Emissions);
 		}
 	}
 
+// TODO probaly move this to view_agent 
 	public void UpdateVehiclePosition(float delta)
 	{
 		if (CurrentPosition != TargetPosition)
@@ -66,6 +67,7 @@ public partial class SimVehicle : Node
 		IsInUse = true;
 	}
 
+//TODO move this
 	public float CalculateWeight(SimEdge edge)
 	{
 		if (!VehicleType.SupportedEdges.Contains(edge.Mode))

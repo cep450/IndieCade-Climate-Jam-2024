@@ -1,0 +1,62 @@
+[gd_scene load_steps=2 format=3 uid="uid://chclfvnxi78ke"]
+
+[ext_resource type="PackedScene" uid="uid://figkeg2xvfcx" path="res://Models/Car/Car GLBs/Car_Red_Driving.glb" id="1_32uuv"]
+
+[node name="Car_Red_Driving" instance=ExtResource("1_32uuv")]
+
+[node name="Skeleton3D" parent="Car_Rig/DeformationSystem" index="0"]
+bones/0/position = Vector3(-3.6977e-11, 1.5416e-18, -18.8143)
+bones/2/position = Vector3(4.12483, -2.64772e-07, 1.80338e-07)
+bones/2/rotation = Quaternion(1.08721e-08, 2.76721e-08, -0.151618, 0.988439)
+bones/2/scale = Vector3(1, 1, 1)
+bones/3/position = Vector3(-1.43656, 5.61525, 4.33125)
+bones/3/rotation = Quaternion(0.979261, 0.202602, 7.39322e-08, -1.52961e-08)
+bones/3/scale = Vector3(0.75, 1, 1)
+bones/5/position = Vector3(-0.0162479, -10.2615, 3.28312)
+bones/5/rotation = Quaternion(7.29039e-08, 3.0769e-08, -0.616904, 0.787039)
+bones/5/scale = Vector3(1, 1, 1)
+bones/7/position = Vector3(0.435442, 5.46977, -4.82862)
+bones/7/rotation = Quaternion(0.322421, 0.629321, -0.322421, 0.629321)
+bones/7/scale = Vector3(1, 1, 1)
+bones/9/position = Vector3(0.687613, -5.33061, -4.82861)
+bones/9/rotation = Quaternion(0.60063, 0.373154, -0.60063, 0.373154)
+bones/9/scale = Vector3(1, 1, 1)
+bones/11/position = Vector3(0.435442, 5.46977, 4.82861)
+bones/11/rotation = Quaternion(-0.196291, 0.679316, 0.196291, 0.679316)
+bones/11/scale = Vector3(1, 1, 1)
+bones/13/position = Vector3(0.687613, -5.33062, 4.82861)
+bones/13/rotation = Quaternion(-0.145366, -0.692003, 0.145366, -0.692004)
+bones/13/scale = Vector3(1, 1, 1)
+
+[node name="Skeleton3D" parent="Car_Rig/MotionSystem/FKSystem/FKOffsetRoot_M/FKExtraRoot_M/FKRoot_M/Armature" index="0"]
+bones/23/rotation = Quaternion(-0.306891, 3.24426e-15, -1.34146e-08, 0.951745)
+bones/29/rotation = Quaternion(0.227475, 3.99629e-15, 9.94323e-09, 0.973784)
+bones/35/rotation = Quaternion(0.483026, -1.63987e-15, 2.11137e-08, 0.875606)
+bones/41/rotation = Quaternion(0.83737, 3.64837e-15, 3.66026e-08, 0.546637)
+
+[node name="prevPosBRWheel_L" parent="Car_Rig/MotionSystem/WheelSystem/prevPosOffsetBRWheel_L" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="prevPosAnglerBRWheel_L" parent="Car_Rig/MotionSystem/WheelSystem/prevPosOffsetBRWheel_L/prevPosBRWheel_L" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="prevPosBRWheel_R" parent="Car_Rig/MotionSystem/WheelSystem/prevPosOffsetBRWheel_R" index="0"]
+transform = Transform3D(-1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 0, 0)
+
+[node name="prevPosAnglerBRWheel_R" parent="Car_Rig/MotionSystem/WheelSystem/prevPosOffsetBRWheel_R/prevPosBRWheel_R" index="0"]
+transform = Transform3D(-1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0)
+
+[node name="prevPosFRWheel_L" parent="Car_Rig/MotionSystem/WheelSystem/prevPosOffsetFRWheel_L" index="0"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="prevPosAnglerFRWheel_L" parent="Car_Rig/MotionSystem/WheelSystem/prevPosOffsetFRWheel_L/prevPosFRWheel_L" index="0"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="prevPosFRWheel_R" parent="Car_Rig/MotionSystem/WheelSystem/prevPosOffsetFRWheel_R" index="0"]
+transform = Transform3D(-1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 2.28107e-06, 0, 0)
+
+[node name="prevPosAnglerFRWheel_R" parent="Car_Rig/MotionSystem/WheelSystem/prevPosOffsetFRWheel_R/prevPosFRWheel_R" index="0"]
+transform = Transform3D(-1.62921e-07, 0, 1, 0, 1, 0, -1, 0, -1.62921e-07, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="." index="2"]
+autoplay = "DeformationSystem|Take 001|BaseLayer"

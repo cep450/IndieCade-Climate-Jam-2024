@@ -39,18 +39,18 @@ public partial class SimTile : Node
 	}
 
 	// load infrastructure on a tile based on a type mask
-	public void AddInfraFromMask(SimInfraType.InfraType mask, bool bypassValidation) {
+	public void AddInfraFromMask(SimInfraType.InfraType mask, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
 
 		for(int i = 0; i < sizeof(uint); i++) {
 			SimInfraType.InfraType bit = (SimInfraType.InfraType)Math.Pow(2, i);
 			if((mask & bit) != 0) {
-				AddInfra(SimInfraType.TypeFromEnum(bit), bypassValidation);
+				AddInfra(SimInfraType.TypeFromEnum(bit), bypassValidation, updateVisuals, recalculateEdges);
 			}
 		}
 	}
 
 	// Add infrastructure to the tile. Returns false if the infrastructure could not be added.
-	public bool AddInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true) {
+	public bool AddInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
 
 		if(DEBUG) GD.Print("called SimTile.AddInfra to add type " + type.Name);
 
@@ -81,7 +81,7 @@ public partial class SimTile : Node
 		Infra.Add(newInfra);
 
 		//add edges accordingly
-		RecalculateEdges();
+		if(recalculateEdges) RecalculateVertices();
 
 		// if this infra has any special behavior when added
 		type.AddedToTile(this);
@@ -98,7 +98,7 @@ public partial class SimTile : Node
 	}
 
 	//TODO what do we want to pass in here? an index in the list? a type? an instance? maybe overrides for all of these. one that takes a mask could even add/remove multiple at once.
-	public bool RemoveInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true) {
+	public bool RemoveInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
 		
 		if(!bypassValidation) {
 			//check if this tile has this infrastrcture 
@@ -129,7 +129,7 @@ public partial class SimTile : Node
 		Infra.RemoveAt(IndexOfInfra(type.type));
 
 		//update any connections 
-		RecalculateEdges();
+		if(recalculateEdges) RecalculateVertices();
 
 		// if this infra has any special behavior when removed
 		type.RemovedFromTile(this);
@@ -193,19 +193,26 @@ public partial class SimTile : Node
 	}
 
 	// Reclaculate the edges to/from the vertices on this tile based on the current lineup of infrastructure on the tile and around the tile.
-	void RecalculateEdges() {
+	public void RecalculateVertices() {
 
 		// update the infrastructure affecting each PathVertex, according to what's on the current tile and tiles around it, and how the infra connects
+
+		// update infrastructure on the vertices
+		for(int x = 0; x < 3; x++) {
+			for(int y = 0; y < 3; y++) {
+				PathVertices[x,y]?.RecalculateInfra();
+			}
+		}
+
+		// now that we know the infrastructure, update the connections on these vertices 
+		for(int x = 0; x < 3; x++) {
+			for(int y = 0; y < 3; y++) {
+				PathVertices[x,y]?.RecalculateEdges();
+			}
+		}
+
 		// TODO maybe we need to have an export with like a 3x3 set of flags for what vertices the infra influences?
 		// like how trees affect everything, but destinations only exist on the center 
-		// & maybe each PathVertex can figure itself out based on the vertices it knows about 
-		// PathVertex.RecalculateInfra(), PathVertex.RecalculateConnections 
-		// using ConnectsCorners/Borders/Center 
-
-
-		// calculate connections between the PathVertexes, keeping blocking in mind 
-
-		// TODO 
 	}
 
 	//TODO I have no idea what this means, could someone make the names more descriptive and/or comment this? --Jaden 
@@ -219,5 +226,4 @@ public partial class SimTile : Node
 	{
 		GD.Print("Hi from SimTile");
 	}
-
 }

@@ -18,7 +18,7 @@ func initialize(param_type: SimInfraType, param_x: int, param_y: int) -> void:
 #just adds houses for now
 func _on_pressed():
 	var bypass_validation = Global.inDevMode
-	sim.GetTile(x,y).AddInfra(type, bypass_validation, true)
+	sim.GetTile(x,y).AddInfra(type, bypass_validation, true, true)
 	
 	
 
