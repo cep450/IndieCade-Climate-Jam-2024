@@ -37,7 +37,7 @@ public partial class SimAgent : Node
 	public Vector2I currentCoordinates;
 	public Vector2I targetCoordinates;
 
-	private SimPath pathFinder;
+	private SimPath currentPath;
 
 	private SimInfraType.DestinationType destinationType;
 
@@ -57,12 +57,6 @@ public partial class SimAgent : Node
 		//SetRandomTarget();
 	}
 
-	// every game tick. update position smoothly
-	public override void _Process(double delta)
-	{
-		//Vehicle._Process(GetProcessDeltaTime());
-	}
-
 	// every simulation tick.
 	public void Tick() {
 
@@ -80,8 +74,8 @@ public partial class SimAgent : Node
 				// if so, call Arrived();
 				// otherwise, 
 					//call Vehicle.Tick();
-					// check if we're ready to move to the next tile 
-						// if we are, check if the next tile has open capacity
+					// check if we're ready to move to the next vertex
+						// if we are, check if the next vertex has open capacity
 							// if it does, MoveToNextTile();
 			Vehicle?.Tick();
 		}
@@ -116,14 +110,17 @@ public partial class SimAgent : Node
 		destinationType = (SimInfraType.DestinationType)newTypeInt;
 	}
 
+	// choose the destination of the chosen destination type to pathfind to 
+	void ChooseTarget() {
+		//TODO 
+	}
+
+	// Move to the next vertex on the path
 	void MoveToNextVertex(PathVertex nextVertex) {
 
 		//TODO make sure this gets called
 
 		//TODO change the vehicle type to match the connection vehicle type if needed 
-
-		//var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.CAR, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
-		//var vehicle = new SimVehicle(vehicleType, new Vector2(0, 0));
 
 		//TODO update the previous and next tile capacities to account for this agent moving between them 
 			//TODO if the next tile is full, wait on the current tile, and check again next tick 

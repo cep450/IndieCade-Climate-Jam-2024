@@ -142,6 +142,7 @@ public class PathVertex {
 	}
 
 	private void AddInfra(SimInfraType infraType) {
+		
 		InfraAffectedBy |= infraType.type;
 		DestinationType |= infraType.destinationType;
 		CanTransfer = infraType.canTransfer;
@@ -160,13 +161,12 @@ public class PathVertex {
 		if(type == Type.CENTER || type == Type.CORNER) {
 			// link up to alike infra normally 
 
+
 		} else if(type == Type.BORDER) {
 			// worry about road blocking 
 			//TODO right now roads are the only blocking infra, but later we can make this generic. this solution is just for the jam
 
 		} 
-
-		//GD.Print("recalculating vertex " + PathGraphCoordinates.ToString());
 
 		//TODO factor in blocking 
 

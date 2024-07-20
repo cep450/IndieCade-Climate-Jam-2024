@@ -6,30 +6,23 @@ public partial class SimPath : Node
 {
 
 	/*
-	 *  A path between two tiles.
+	 *  An object representing a path between two tiles.
 	 */
+	
+	// these lists are parallel
+	public List<PathVertex> vertices;
+	public List<PathEdge> edges;
 
-	//private Dictionary<Vector2, SimTile> _grid;
-	private int _gridSize = 10;
+	// running totals of weights 
+	public float safety;
+	public int distance;
+	public float time;
+	public float emissions;
 
-	//TODO why is this here? should this be removed?
-	public override void _Ready()
-	{
-		/*
-		// Initialize the grid with SimTile nodes
-		_grid = new Dictionary<Vector2, SimTile>();
+}
 
-		for (int x = 0; x < _gridSize; x++)
-		{
-			for (int y = 0; y < _gridSize; y++)
-			{
-				Vector2I position = new Vector2I(x, y);
-				SimTile tile = new SimTile(position);
-				_grid[position] = tile;
-			}
-		}
-		*/
-	}
+
+/*
 
 	public Vector2 GetNextStep(Vector2 start, Vector2 end)
 	{
@@ -163,3 +156,4 @@ public partial class SimPath : Node
 		return neighbors;
 	}
 }
+*/
