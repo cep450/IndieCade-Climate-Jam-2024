@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://j0gqqeeh830f"]
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=3 format=3 uid="uid://j0gqqeeh830f"]
 
+[ext_resource type="Texture2D" uid="uid://bcxwr4wbhrm2u" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (10).png" id="1_d080y"]
 [ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_dpm1l"]
 
 [resource]
@@ -25,3 +26,4 @@ ModelPath = "res://Scenes/Tiles/BuildingGeneric"
 ModelVariantCount = 2
 ModelConnects = false
 ModelHasBase = true
+Icon = ExtResource("1_d080y")

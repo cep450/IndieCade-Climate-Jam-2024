@@ -16,7 +16,9 @@ func initialize(param_type: SimInfraType, param_x: int, param_y: int) -> void:
 
 #just adds houses for now
 func _on_pressed():
-	sim.GetTile(x,y).AddInfra(type, false, true)
-
+	var error = sim.GetTile(x,y).AddInfra(type, false, true)
+	if error != "":
+		entered.emit(error)
+		
 func _on_mouse_entered():
 	entered.emit(type.Name + " - " + str(type.costToBuild))

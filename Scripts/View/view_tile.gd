@@ -50,6 +50,7 @@ func update_visuals(repeated: bool = false):
 	# Generate new children
 	var infra = sim.GetInfra(x,y)
 	var instance
+	var needs_grass = true
 	model_connects = false
 	if infra.is_empty():
 		instance = grass.instantiate()
@@ -59,9 +60,9 @@ func update_visuals(repeated: bool = false):
 			if type.ModelHasBase:
 				instance = base.instantiate()
 				add_child(instance)
-			if type.Name == "Trees":
-				instance = grass.instantiate()
-				add_child(instance)
+				needs_grass = false
+			elif type.Name == "Road":
+				needs_grass = false
 			if type.ModelConnects:
 				model_connects = true
 			if !type.ModelPath.is_empty():
@@ -74,7 +75,10 @@ func update_visuals(repeated: bool = false):
 					get_parent().update_neighbors(Vector2i(x,y))
 			else: 
 				print("path not given")	
-				
+		if needs_grass:
+			instance = grass.instantiate()
+			add_child(instance)
+			
 func get_variant(type) -> String:
 	if type.ModelVariantCount < 1:
 		return ""
