@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvsp00awex2ug"]
+
+[ext_resource type="PackedScene" uid="uid://bruoh8tele7av" path="res://Models/Car/car_red_driving2.tscn" id="1_5n7vm"]
+[ext_resource type="Script" path="res://Scenes/View/visual_agent.gd" id="1_k1mhd"]
+
+[node name="VisualAgent" type="Node3D"]
+script = ExtResource("1_k1mhd")
+
+[node name="Car_Red_Driving" parent="." instance=ExtResource("1_5n7vm")]

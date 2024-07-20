@@ -73,7 +73,7 @@ public partial class SimVehicleType : Resource
 	//private float emissionsPerTick; // derived from per year based on time scale in Sim
 	[Export] private float maxSpeed;	// in miles per hour for familiarity and being able to look up data. In the future we can display this in different units by converting the number the UI displays, even if the internal number is the same.
 	[Export] private int agentCapacity = 1; // how many agents can travel in it at a time
-	[Export] public NodePath visualVehicle;
+	[Export] public string visualVehicle;
 
 	public TransportMode Mode { get => transportMode; private set {} }	// Determines what type/s of infrastructure it can travel on. 
 	public float SpeedFactor { get => maxSpeed; private set {} }	// Maximum speed.

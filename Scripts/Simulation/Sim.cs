@@ -151,6 +151,7 @@ public partial class Sim : Node
 			SimAgent agent = new SimAgent(startData.nonDriverProbability, position); //TODO get chance to not have a car from level data 
 			agents.Add(agent);
 			AddChild(agent);
+			agent.CreateVisualVersion();
 		}
 	}
 
