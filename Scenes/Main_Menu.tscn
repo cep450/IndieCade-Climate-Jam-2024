@@ -44,7 +44,7 @@ grow_vertical = 2
 script = ExtResource("1_a00rb")
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="Main_Menu"]
+[node name="bg" type="TextureRect" parent="Main_Menu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.00434028
@@ -63,14 +63,13 @@ metadata/_edit_use_anchors_ = true
 [node name="VBoxContainer" type="VBoxContainer" parent="Main_Menu"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.132812
-anchor_right = 0.132813
-anchor_bottom = 0.453
-offset_right = 455.0
-offset_bottom = 648.0
+anchor_left = 0.125868
+anchor_top = 0.174383
+anchor_right = 1.12587
+anchor_bottom = 1.17438
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.685148, 0.685148)
+scale = Vector2(0.280345, 0.628643)
 size_flags_horizontal = 3
 theme_override_constants/separation = 32
 alignment = 1
@@ -85,13 +84,6 @@ texture = ExtResource("3_rn7bo")
 script = SubResource("GDScript_aqttt")
 metadata/_edit_use_anchors_ = true
 
-[node name="StartButton" type="Button" parent="Main_Menu/VBoxContainer/Start_Game_Button"]
-show_behind_parent = true
-layout_mode = 2
-offset_top = 133.0
-offset_right = 455.0
-offset_bottom = 141.0
-
 [node name="Seperator3" type="Control" parent="Main_Menu/VBoxContainer"]
 layout_mode = 2
 
@@ -104,32 +96,7 @@ texture = ExtResource("5_wjd27")
 script = SubResource("GDScript_aqttt")
 metadata/_edit_use_anchors_ = true
 
-[node name="QuitButton" type="Button" parent="Main_Menu/VBoxContainer/Quit_Game_Button"]
-show_behind_parent = true
-layout_mode = 0
-offset_left = -32.109
-offset_top = -11.4851
-offset_right = -24.109
-offset_bottom = -3.48511
-scale = Vector2(67.5695, 15.8175)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Main_Menu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.00694444
-anchor_top = 0.0015432
-anchor_right = 0.269775
-anchor_bottom = 0.666253
-offset_right = 152.22
-offset_bottom = 217.268
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2.20183, 0.866608)
-size_flags_horizontal = 4
-alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="TextureRect2" type="TextureRect" parent="Main_Menu"]
+[node name="mock_image" type="TextureRect" parent="Main_Menu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.287326
@@ -140,4 +107,28 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.673269, 0.673269)
 texture = ExtResource("6_180k2")
+metadata/_edit_use_anchors_ = true
+
+[node name="StartButton" type="Button" parent="Main_Menu"]
+show_behind_parent = true
+layout_mode = 2
+offset_left = 146.0
+offset_top = 227.0
+offset_right = 609.0
+offset_bottom = 336.0
+scale = Vector2(0.693664, 0.806687)
+icon = ExtResource("3_rn7bo")
+metadata/_edit_use_anchors_ = true
+
+[node name="QuitButton" type="Button" parent="Main_Menu"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.118056
+anchor_top = 0.541667
+anchor_right = 0.425952
+anchor_bottom = 0.675726
+offset_right = -346.697
+offset_bottom = -78.8707
+scale = Vector2(44.3371, 10.8588)
 metadata/_edit_use_anchors_ = true

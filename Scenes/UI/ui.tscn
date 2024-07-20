@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://csswthorupplo"]
+[gd_scene load_steps=29 format=3 uid="uid://csswthorupplo"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="1_meoay"]
 [ext_resource type="Texture2D" uid="uid://umsji8qst4u6" path="res://Assets/Gameplay/Meters/Emissions/EMeter_Blank2_200x200.png" id="2_asuck"]
@@ -20,6 +20,14 @@
 [ext_resource type="Texture2D" uid="uid://cbuyqjgrm2r32" path="res://Assets/Gameplay/Meters/Happiness/HMeter_3A_76_x_76.png" id="12_bhl8g"]
 [ext_resource type="Texture2D" uid="uid://do4p2vmcksbw1" path="res://Assets/Gameplay/Menu/Build/Build Menu - Back Icon.png" id="12_qoj2x"]
 [ext_resource type="Texture2D" uid="uid://dv666v0i7ufn" path="res://Assets/Gameplay/Menu/Time Control Menu - FF - Icons.png" id="16_1f6rw"]
+[ext_resource type="Script" path="res://Scenes/UI/Tutorial.gd" id="21_7t86o"]
+[ext_resource type="Texture2D" uid="uid://cr3ouppaa1cad" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_1.png" id="21_njbtc"]
+[ext_resource type="Texture2D" uid="uid://cn3r6qo7kxwr" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_2.png" id="22_0btqg"]
+[ext_resource type="Texture2D" uid="uid://86jah6e2ecit" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_3.png" id="23_khdwt"]
+[ext_resource type="Texture2D" uid="uid://7jg84cj1iqfu" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_4.png" id="24_ac3h6"]
+[ext_resource type="Texture2D" uid="uid://c04j08vfcbfbp" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_5.png" id="25_hmvxg"]
+[ext_resource type="Texture2D" uid="uid://daxcm3dfrmh2k" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_6.png" id="26_gkrbe"]
+[ext_resource type="Texture2D" uid="uid://ckgdic55mv2fg" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_7.png" id="27_wsyhl"]
 
 [node name="UI" type="Control" node_paths=PackedStringArray("progress_bar")]
 layout_mode = 3
@@ -60,6 +68,7 @@ texture_under = ExtResource("2_asuck")
 texture_progress = ExtResource("3_5oxgu")
 texture_progress_offset = Vector2(15, 14)
 tint_under = Color(1, 1, 1, 0.745098)
+metadata/_edit_use_anchors_ = true
 
 [node name="Percentage" type="Label" parent="EmissionsMeter"]
 layout_mode = 0
@@ -71,6 +80,7 @@ theme_override_font_sizes/font_size = 30
 text = "50%"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Emissions" type="Label" parent="EmissionsMeter"]
 layout_mode = 0
@@ -80,6 +90,7 @@ offset_right = 91.0
 offset_bottom = 561.0
 theme_override_font_sizes/font_size = 12
 text = "Emissions"
+metadata/_edit_use_anchors_ = true
 
 [node name="Build" type="Control" parent="."]
 layout_mode = 2
@@ -89,6 +100,7 @@ offset_top = 578.0
 offset_right = 731.0
 offset_bottom = 671.0
 scale = Vector2(1.25, 1.25)
+metadata/_edit_use_anchors_ = true
 
 [node name="BuildButtons" type="HBoxContainer" parent="Build"]
 layout_mode = 2
@@ -96,6 +108,7 @@ offset_left = -215.363
 offset_right = 72.6367
 offset_bottom = 93.0
 scale = Vector2(0.497545, 0.511431)
+metadata/_edit_use_anchors_ = true
 
 [node name="3 button background" type="TextureButton" parent="Build/BuildButtons"]
 layout_mode = 2
@@ -111,6 +124,7 @@ offset_bottom = 86.3846
 texture_normal = ExtResource("5_6kb1e")
 ignore_texture_size = true
 stretch_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Tree" type="TextureButton" parent="Build/BuildButtons/3 button background"]
 layout_mode = 0
@@ -121,6 +135,7 @@ offset_bottom = 86.3846
 texture_normal = ExtResource("7_ybij0")
 ignore_texture_size = true
 stretch_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="Lamp" type="TextureButton" parent="Build/BuildButtons/3 button background"]
 layout_mode = 0
@@ -131,6 +146,7 @@ offset_bottom = 86.3846
 texture_normal = ExtResource("8_yo5m0")
 ignore_texture_size = true
 stretch_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="4 button background" type="TextureButton" parent="Build/BuildButtons/3 button background"]
 visible = false
@@ -191,6 +207,7 @@ offset_top = 586.0
 offset_right = 496.0
 offset_bottom = 651.0
 scale = Vector2(0.656984, 0.571196)
+metadata/_edit_use_anchors_ = true
 
 [node name="Background Container" type="TextureButton" parent="SpeedController"]
 layout_mode = 2
@@ -207,6 +224,7 @@ offset_bottom = 63.0
 disabled = true
 button_mask = 0
 texture_normal = ExtResource("5_ddpla")
+metadata/_edit_use_anchors_ = true
 
 [node name="Pause" type="Button" parent="SpeedController/Background Container/Play Background"]
 layout_mode = 0
@@ -215,6 +233,7 @@ offset_top = 8.0
 offset_right = 47.0
 offset_bottom = 52.0
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Play" type="Button" parent="SpeedController/Background Container/Play Background"]
 layout_mode = 1
@@ -226,6 +245,7 @@ offset_top = 12.0
 offset_right = 43.926
 offset_bottom = 50.0
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="SpeedUp" type="Button" parent="SpeedController/Background Container/Play Background"]
 layout_mode = 1
@@ -237,6 +257,7 @@ offset_top = 11.0001
 offset_right = -76.563
 offset_bottom = 49.0001
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [node name="Paused pressed background" type="TextureButton" parent="SpeedController/Background Container/Play Background"]
 visible = false
@@ -275,6 +296,7 @@ offset_left = 6.0
 offset_top = 7.0
 offset_right = 46.0
 offset_bottom = 47.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Happiness Meter" type="VBoxContainer" parent="Happiness"]
 layout_mode = 2
@@ -283,6 +305,7 @@ offset_top = 23.0
 offset_right = 1048.0
 offset_bottom = 106.0
 scale = Vector2(0.76, 0.76)
+metadata/_edit_use_anchors_ = true
 
 [node name="Happiness full" type="TextureButton" parent="Happiness/Happiness Meter"]
 layout_mode = 2
@@ -305,6 +328,7 @@ offset_left = 1054.0
 offset_top = 90.8
 offset_right = 1134.0
 offset_bottom = 90.8
+metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="VBoxContainer" parent="Timer"]
 layout_mode = 2
@@ -312,7 +336,111 @@ offset_top = -64.8
 offset_right = 80.0
 offset_bottom = 12.2
 scale = Vector2(0.80001, 0.8)
+metadata/_edit_use_anchors_ = true
 
 [node name="TextureButton" type="TextureButton" parent="Timer/Timer"]
 layout_mode = 2
 texture_normal = ExtResource("11_yl1gm")
+
+[node name="Tutorial" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.5911, 16.3995)
+script = ExtResource("21_7t86o")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Tutorial"]
+visible = false
+layout_mode = 0
+offset_left = 10.143
+offset_top = 13.2321
+offset_right = 599.143
+offset_bottom = 294.232
+scale = Vector2(0.0311769, 0.0456709)
+texture = ExtResource("21_njbtc")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="Tutorial"]
+visible = false
+layout_mode = 0
+offset_left = 8.98882
+offset_top = 10.915
+offset_right = 597.989
+offset_bottom = 340.475
+scale = Vector2(0.0345528, 0.0478554)
+texture = ExtResource("22_0btqg")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="TextureRect3" type="TextureRect" parent="Tutorial"]
+visible = false
+layout_mode = 0
+offset_left = 22.5245
+offset_top = 7.6222
+offset_right = 611.525
+offset_bottom = 549.07
+scale = Vector2(0.0307662, 0.0458645)
+texture = ExtResource("23_khdwt")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="TextureRect4" type="TextureRect" parent="Tutorial"]
+layout_mode = 0
+offset_left = 20.1462
+offset_top = 11.0369
+offset_right = 609.146
+offset_bottom = 358.59
+scale = Vector2(0.0346259, 0.0526413)
+texture = ExtResource("24_ac3h6")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="TextureRect5" type="TextureRect" parent="Tutorial"]
+visible = false
+layout_mode = 0
+offset_left = 20.2511
+offset_top = 11.0979
+offset_right = 609.251
+offset_bottom = 388.274
+scale = Vector2(0.0350894, 0.0562853)
+texture = ExtResource("25_hmvxg")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="TextureRect6" type="TextureRect" parent="Tutorial"]
+visible = false
+layout_mode = 0
+offset_left = 20.9156
+offset_top = 10.793
+offset_right = 609.916
+offset_bottom = 444.964
+scale = Vector2(0.033177, 0.0489274)
+texture = ExtResource("26_gkrbe")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="TextureRect7" type="TextureRect" parent="Tutorial"]
+visible = false
+layout_mode = 0
+offset_left = 19.6915
+offset_top = 12.1345
+offset_right = 608.691
+offset_bottom = 337.435
+scale = Vector2(0.0363536, 0.0570363)
+texture = ExtResource("27_wsyhl")
+expand_mode = 5
+stretch_mode = 3
+
+[node name="NextButton" type="Button" parent="Tutorial"]
+visibility_layer = 0
+layout_mode = 0
+offset_left = 5.28137
+offset_top = 6.82949
+offset_right = 13.2814
+offset_bottom = 14.8295
+scale = Vector2(4.34686, 3.08396)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+flat = true
+metadata/_edit_use_anchors_ = true

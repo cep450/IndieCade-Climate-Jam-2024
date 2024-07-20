@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhixs3wudgjvb"]
 
 [ext_resource type="Script" path="res://Scripts/global.gd" id="1_0sv2k"]
-[ext_resource type="Resource" uid="uid://cg5jjhr8j4r7s" path="res://Resources/InfraTypes/oldhousedonotuse.tres" id="2_etsxy"]
+[ext_resource type="Resource" path="res://Resources/InfraTypes/oldhousedonotuse.tres" id="2_etsxy"]
 
 [node name="InfraType" type="Node"]
 script = ExtResource("1_0sv2k")
