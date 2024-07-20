@@ -6,8 +6,7 @@ extends Camera3D
 ## Used to prevent camera from getting to close to scene.
 @export var MIN_CAM_Y_POS: float
 
-
-func _input(event):
+func _unhandled_input(event):
 	# WASD to Pan
 	if event is InputEventKey:
 		if event.pressed:

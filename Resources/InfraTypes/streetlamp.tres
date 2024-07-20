@@ -4,13 +4,24 @@
 
 [resource]
 script = ExtResource("1_paim6")
+Name = "Streetlamp"
 type = 256
-transportModes = 0
+visualInfra = null
 destinationType = 0
+transportModes = 0
+connectsCorners = false
+connectsBorders = false
+connectsCenter = false
+affectsAllVertices = false
+connectionsBlockedBy = 0
 capacity = 0
 canTransfer = false
 maxSpeed = 0.0
-safety = 1.0
+safety = 2.0
 costToBuild = 1
 costToDestroy = 1
 incompatibilityMask = 0
+ModelPath = ""
+ModelVariantCount = 1
+ModelConnects = false
+ModelHasBase = false

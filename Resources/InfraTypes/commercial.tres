@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://cwqcek7qmdfl2"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_rtxf6"]
+
+[resource]
+script = ExtResource("1_rtxf6")
+Name = "Comercial Building"
+type = 4
+visualInfra = null
+destinationType = 3
+transportModes = 1
+connectsCorners = false
+connectsBorders = false
+connectsCenter = false
+affectsAllVertices = false
+connectionsBlockedBy = 0
+capacity = 20
+canTransfer = false
+maxSpeed = 0.0
+safety = 0.0
+costToBuild = 10
+costToDestroy = 15
+incompatibilityMask = 1055
+ModelPath = ""
+ModelVariantCount = 1
+ModelConnects = false
+ModelHasBase = false

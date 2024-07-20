@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://b52ntahtxglrl"]
+[gd_scene load_steps=3 format=3 uid="uid://drgl6uftk1em0"]
 
-[ext_resource type="ArrayMesh" uid="uid://byjkm25xbpk5y" path="res://Resources/TileMeshes/Road1StraightCrosswalk.tres" id="1_13ajl"]
+[ext_resource type="ArrayMesh" uid="uid://cuw6yhvocnvsq" path="res://Resources/TileMeshes/Road1StraightCrosswalk.tres" id="1_13ajl"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rh7q8"]
 points = PackedVector3Array(0.496312, 0.4, 0.496312, -0.488496, 2.77556e-17, -0.488496, -0.488496, 2.77556e-17, 0.488496, -0.496312, 0.4, -0.496312, 0.488496, 2.77556e-17, -0.488496, -0.496312, 0.4, 0.496312, 0.496312, 0.4, -0.496312, 0.488496, 2.77556e-17, 0.488496)

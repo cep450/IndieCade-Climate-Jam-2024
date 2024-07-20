@@ -240,6 +240,7 @@ size = Vector2(10, 10)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0.302535, 4.79208, 3.27902)
+current = true
 size = 10.0
 script = ExtResource("3_rja75")
 PAN_SPEED = 10.0
@@ -269,11 +270,6 @@ autoplay = "SunRotate"
 
 [node name="World" type="Node3D" parent="."]
 script = ExtResource("1_k5je3")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="World"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -18.1426, 12.6158, -23.4911)
-light_energy = 10.0
-omni_range = 1000.0
 
 [node name="Floor" type="MeshInstance3D" parent="World"]
 mesh = SubResource("PlaneMesh_3jdih")

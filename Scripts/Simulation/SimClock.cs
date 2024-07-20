@@ -10,7 +10,7 @@ public partial class SimClock : Node
 	 */
 
 	public static readonly int ticksPerGameYear = 60;
-	public static readonly int yearsUntilGameOver = 15; //TODO unless we want this as a level property? 
+	public static int yearsUntilGameOver { get; private set; }
 
 	private double _timeCounter;
 	private double _secondsPerTick = 1.0; //how much real time passes per simulation tick
@@ -21,6 +21,9 @@ public partial class SimClock : Node
 
 	public int Tick { get => _ticksElapsed; private set{} }
 	
+	public void InitializeClockInfo(StartData startData) {
+		yearsUntilGameOver = startData.yearsUntilGameOver;
+	}
 
 	public override void _Process(double delta)
 	{

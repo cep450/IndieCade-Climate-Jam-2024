@@ -9,12 +9,13 @@ public partial class SimPath : Node
 	 *  A path between two tiles.
 	 */
 
-	private Dictionary<Vector2, SimTile> _grid;
+	//private Dictionary<Vector2, SimTile> _grid;
 	private int _gridSize = 10;
 
 	//TODO why is this here? should this be removed?
 	public override void _Ready()
 	{
+		/*
 		// Initialize the grid with SimTile nodes
 		_grid = new Dictionary<Vector2, SimTile>();
 
@@ -27,6 +28,7 @@ public partial class SimPath : Node
 				_grid[position] = tile;
 			}
 		}
+		*/
 	}
 
 	public Vector2 GetNextStep(Vector2 start, Vector2 end)
@@ -151,10 +153,11 @@ public partial class SimPath : Node
 		foreach (Vector2 direction in directions)
 		{
 			Vector2 neighbor = node + direction;
-			if (_grid.ContainsKey(neighbor))
-			{
-				neighbors.Add(neighbor);
-			}
+			//TODO I don't think this if statement ever evaluates to true
+			//if (_grid.ContainsKey(neighbor))
+			//{
+				//neighbors.Add(neighbor);
+			//}
 		}
 
 		return neighbors;

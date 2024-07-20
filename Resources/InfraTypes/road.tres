@@ -4,13 +4,24 @@
 
 [resource]
 script = ExtResource("1_4jdps")
+Name = "Road"
 type = 16
-transportModes = 2
+visualInfra = null
 destinationType = 0
+transportModes = 2
+connectsCorners = false
+connectsBorders = true
+connectsCenter = false
+affectsAllVertices = false
+connectionsBlockedBy = 0
 capacity = 4
 canTransfer = false
-maxSpeed = 0.0
+maxSpeed = 55.0
 safety = 0.0
-costToBuild = 0
-costToDestroy = 0
+costToBuild = 8
+costToDestroy = 8
 incompatibilityMask = 1055
+ModelPath = "res://Scenes/Tiles/Road1"
+ModelVariantCount = 1
+ModelConnects = true
+ModelHasBase = false

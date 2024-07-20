@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="InfraTypeHome" load_steps=2 format=3 uid="uid://bx8xe420jb5qx"]
+[gd_resource type="Resource" script_class="InfraTypeHome" load_steps=2 format=3 uid="uid://cg5jjhr8j4r7s"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/ExtendedInfraTypes/InfraTypeHome.cs" id="1_svdhx"]
 
@@ -6,13 +6,24 @@
 script = ExtResource("1_svdhx")
 minAgentsToAdd = 2
 maxAgentsToAdd = 5
+Name = "House"
 type = 1
-transportModes = 7
+visualInfra = null
 destinationType = 1
+transportModes = 7
+connectsCorners = false
+connectsBorders = false
+connectsCenter = true
+affectsAllVertices = false
+connectionsBlockedBy = 0
 capacity = 6
 canTransfer = false
 maxSpeed = 0.0
 safety = 0.0
-costToBuild = 1
+costToBuild = 10
 costToDestroy = 25
 incompatibilityMask = 1119
+ModelPath = "res://Scenes/Tiles/House"
+ModelVariantCount = 1
+ModelConnects = false
+ModelHasBase = true

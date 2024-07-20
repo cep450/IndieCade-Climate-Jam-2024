@@ -16,7 +16,7 @@ public partial class InfraTypeHome : SimInfraType {
 
 		AgentsLivingHere = GD.RandRange(minAgentsToAdd, maxAgentsToAdd);
 
-		Sim.Instance.AddAgents(AgentsLivingHere, tile.Position);
+		Sim.Instance.AddAgents(AgentsLivingHere, tile.Coordinates);
 	}
 
 	public override void RemovedFromTile(SimTile tile)

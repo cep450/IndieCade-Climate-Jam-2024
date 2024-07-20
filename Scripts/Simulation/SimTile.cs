@@ -10,87 +10,61 @@ public partial class SimTile : Node
 	/*
 	 * A single tile in the simulation.
 	 */
-	
-	public enum Direction {
-		NORTH = 0,
-		EAST = 1,
-		SOUTH = 2,
-		WEST = 3
-	}
-	public enum DirectionCombination {
-		NORTH_SOUTH = 0,
-		EAST_WEST = 1,
-		NORTH_EAST = 2,
-		NORTH_WEST = 3,
-		SOUTH_EAST = 4,
-		SOUTH_WEST = 5
-	}
-	public readonly DirectionCombination[][] directionCombinations;
-	public readonly Vector2I[] DIRECTIONS = { Vector2I.Up, Vector2I.Right, Vector2I.Down, Vector2I.Left };
-	public static Direction GetDirection(Vector2I v) {
-		if(v.Equals(Vector2I.Up)) return Direction.NORTH;
-		if(v.Equals(Vector2I.Right)) return Direction.EAST;
-		if(v.Equals(Vector2I.Down)) return Direction.SOUTH;
-		if(v.Equals(Vector2I.Left)) return Direction.WEST;
-		return (Direction)404; //invalid
-	}
+
+	static bool DEBUG = false;
 
 	public List<SimInfra> Infra { get; private set; } // infrastructure instances currently on this tile
 	public SimInfraType.InfraType InfraTypesMask { get; private set; }
 	public SimInfraType.DestinationType DestinationType { get; private set; }
-	//public List<SimEdge> Edges { get; private set; }
-	public Vector2I Position { get; private set; }
-
-	// Stores connections between the north, south, east, west borders of tile.
-	// First array: by ConnectionEvaluationOrder index (3)
-	// Second array: by DirectionCombination index (6)
-	//public Connection[][] Connections { get; private set; }
+	public Vector2I Coordinates { get; private set; } // coordinates on the SimGrid
+	public Vector2 WorldPosition { get; private set; } 
+	public PathVertex[,] PathVertices;
 
 	public int gCost;
 	public int hCost;
 	public SimTile parent;
 
-	//each tile knows what index it is on the SimGrid
-	public int gridX;
-	public int gridY;
-
 	//GD visual tile 
-	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/visual_tile.gd");
-	GodotObject visualTile;
+	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/view_tile.gd");
+	public GodotObject VisualTile { get; private set; }
 
-	public SimTile(Vector2I position)
+	public SimTile(Vector2I coordinates, Vector2 worldPosition, GodotObject newVisualTile)
 	{
-		Position = position;
-		//Connections = new 
-		//Edges = new List<SimEdge>();
+		Coordinates = coordinates;
+		WorldPosition = worldPosition;
+		PathVertices = new PathVertex[3,3];
 		InfraTypesMask = default(SimInfraType.InfraType);
-		visualTile = (GodotObject)visualTileScript.New();
+		VisualTile = newVisualTile;
+		Infra = new List<SimInfra>();
 	}
 
-
 	// load infrastructure on a tile based on a type mask
-	public void AddInfraFromMask(SimInfraType.InfraType mask, bool bypassValidation) {
+	public void AddInfraFromMask(SimInfraType.InfraType mask, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
 
 		for(int i = 0; i < sizeof(uint); i++) {
 			SimInfraType.InfraType bit = (SimInfraType.InfraType)Math.Pow(2, i);
 			if((mask & bit) != 0) {
-				AddInfra(SimInfraType.TypeFromEnum(bit), bypassValidation);
+				AddInfra(SimInfraType.TypeFromEnum(bit), bypassValidation, updateVisuals, recalculateEdges);
 			}
 		}
 	}
 
-	// Add infrastructure to the tile.
-	public bool AddInfra(SimInfraType type, bool bypassValidation = false) {
+	// Add infrastructure to the tile. Returns false if the infrastructure could not be added.
+	public bool AddInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
+
+		if(DEBUG) GD.Print("called SimTile.AddInfra to add type " + type.Name);
 
 		//validate if the infrastructure can be added here, and if the player has enough currency
 		if(!bypassValidation) {
 			if(!CanAffordToAddInfra(type) || !CanAddInfraType(type)) {
 				return false;
-			}
-		}
+			} 
 
-		// pay the cost 
-		Sim.Instance.SupportPool.SpendSupport(type.costToBuild);
+			if(DEBUG) GD.Print("Validated, adding tile, spending " + type.costToBuild);
+
+			// pay the cost 
+			Sim.Instance.SupportPool.SpendSupport(type.costToBuild);
+		}
 
 		//update the mask representing all the types on this tile 
 		InfraTypesMask |= type.type;
@@ -106,37 +80,42 @@ public partial class SimTile : Node
 		//add it to the list 
 		Infra.Add(newInfra);
 
-		//TODO add edges accordingly 
+		//add edges accordingly
+		if(recalculateEdges) RecalculateVertices();
 
 		// if this infra has any special behavior when added
 		type.AddedToTile(this);
 
 		//update/add it visually
-		visualTile.Call("update_visuals");
+		if(updateVisuals) {
+			VisualTile.Call("update_visuals");
 
-		//TODO update OTHER infrastructure on the tile visually
+			//TODO update tiles adjacent to this tile visually
+		}
 
 		//return if adding was successful
 		return true;
 	}
 
 	//TODO what do we want to pass in here? an index in the list? a type? an instance? maybe overrides for all of these. one that takes a mask could even add/remove multiple at once.
-	public bool RemoveInfra(SimInfraType type) {
+	public bool RemoveInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
 		
-		//check if this tile has this infrastrcture 
-		if(!HasInfraType(type.type)) {
-			//tile does not have the infrastructure 
-			return false;
-		}
+		if(!bypassValidation) {
+			//check if this tile has this infrastrcture 
+			if(!HasInfraType(type.type)) {
+				//tile does not have the infrastructure 
+				return false;
+			}
 
-		//validate that we can afford to remove this 
-		if(!CanAffordToDestroyInfra(type)) {
-			// cannot afford to remove this
-			return false;
-		}
+			//validate that we can afford to remove this 
+			if(!CanAffordToDestroyInfra(type)) {
+				// cannot afford to remove this
+				return false;
+			}
 
-		// pay the cost 
-		Sim.Instance.SupportPool.SpendSupport(type.costToDestroy);
+			// pay the cost 
+			Sim.Instance.SupportPool.SpendSupport(type.costToDestroy);
+		}
 
 		// since we know the tile has it, remove from the mask 
 		InfraTypesMask ^= type.type;
@@ -146,18 +125,47 @@ public partial class SimTile : Node
 			DestinationType = SimInfraType.DestinationType.NOT_DESTINATION;
 		}
 
-		//TODO remove from list 
-		//TODO update any connections 
+		//remove from list 
+		Infra.RemoveAt(IndexOfInfra(type.type));
+
+		//update any connections 
+		if(recalculateEdges) RecalculateVertices();
 
 		// if this infra has any special behavior when removed
 		type.RemovedFromTile(this);
 
 		//update/remove it visually 
-		visualTile.Call("update_visuals");
+		// this should also update other infrastructure on the tile visually
+		if(updateVisuals) {
+			VisualTile.Call("update_visuals");
 
-		//TODO update OTHER infrastructure on the tile visually
+			//TODO update tiles adjacent to this tile visually-- make sure this happens in update_visuals maybe 
+		}
 
 		return true;
+	}
+
+	public Godot.Collections.Array<SimInfraType> CompatibleInfra() {
+
+		// calculate a mask representing the compatible infrastructure 
+		SimInfraType.InfraType compatible = 0x0;
+
+		foreach(SimInfra type in Infra) {
+			compatible |= type.TypeEnum;
+		}
+
+		compatible = ~compatible;
+
+		// return an array of those infrastructure 
+		return SimInfraType.TypesFromEnum(compatible);
+	}
+
+	// index in infra list. returns -1 if none 
+	public int IndexOfInfra(SimInfraType.InfraType type) {
+
+		if(!HasInfraType(type)) return -1;
+
+		return Infra.FindIndex(x => x.Type.type == type);
 	}
 
 	// can this infrastructure to be added to this tile, given the infrastructure it already has?
@@ -167,7 +175,9 @@ public partial class SimTile : Node
 		// compatibility mask 0001: incompatible 
 		// compat mask 1000: compatible
 
-		return (InfraTypesMask & type.incompatibilityMask) != 0;
+		if(DEBUG) GD.Print("is " + InfraTypesMask.ToString() + " compatible with the incompatibility mask " + type.incompatibilityMask.ToString() + "? " + ((InfraTypesMask & type.incompatibilityMask) == 0));
+
+		return (InfraTypesMask & type.incompatibilityMask) == 0;
 	}
 
 	public bool HasInfraType(SimInfraType.InfraType type) {
@@ -182,9 +192,38 @@ public partial class SimTile : Node
 		return Sim.Instance.SupportPool.HaveEnoughSupport(type.costToDestroy);
 	}
 
+	// Reclaculate the edges to/from the vertices on this tile based on the current lineup of infrastructure on the tile and around the tile.
+	public void RecalculateVertices() {
+
+		// update the infrastructure affecting each PathVertex, according to what's on the current tile and tiles around it, and how the infra connects
+
+		// update infrastructure on the vertices
+		for(int x = 0; x < 3; x++) {
+			for(int y = 0; y < 3; y++) {
+				PathVertices[x,y]?.RecalculateInfra();
+			}
+		}
+
+		// now that we know the infrastructure, update the connections on these vertices 
+		for(int x = 0; x < 3; x++) {
+			for(int y = 0; y < 3; y++) {
+				PathVertices[x,y]?.RecalculateEdges();
+			}
+		}
+
+		// TODO maybe we need to have an export with like a 3x3 set of flags for what vertices the infra influences?
+		// like how trees affect everything, but destinations only exist on the center 
+	}
+
 	//TODO I have no idea what this means, could someone make the names more descriptive and/or comment this? --Jaden 
 	public int fCost() 
 	{
 		return gCost + hCost;
+	}
+	
+	// For testing
+	public void SayHi()
+	{
+		GD.Print("Hi from SimTile");
 	}
 }

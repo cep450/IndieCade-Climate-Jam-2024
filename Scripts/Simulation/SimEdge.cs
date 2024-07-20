@@ -73,35 +73,3 @@ public partial class SimEdge : Node
 	}
 
 }
-
-
-
-
-
-class PathfindingEdge {
-	//////////////////////////////
-	// Since we have art assets for sidewalks and bike lanes being on the same tiles as roads, 
-	// here's an implementation of edges as being from specific corners of tiles to other corners of the same tile, a destination, or an interchange.
-	// so they're within tiles instead of between tiles. 
-	// which sucks a bit, and if we revisit this project we should probably put bike lanes and pedestrian stuff on tiles adjacent to roads instead of on the road tiles 
-	// but this is what we'll do for the end of the jam. 
-
-	public SimTile currentTile;
-	public Vector2I coordinates;
-	public PathfindingVertex A, B;
-
-	public float maxSpeed;
-	public float distance;
-	public float safety;
-}
-
-class PathfindingVertex {
-
-	// a tile corner, tile border, a destination, or an interchange 
-	// stores connected edges by TransportationMode 
-	// stores an in-world location, so that agents can travel between vertices visually 
-		//TODO do we also want to set these up on tile model godot nodes so they actually walk on crosswalks and the like. probably after the jam 
-
-	//TODO maybe infrastructure has these. sets these up on the tiles
-	// like a tile could have a pedestrian east, pedestrian west, car north, car south...
-}
