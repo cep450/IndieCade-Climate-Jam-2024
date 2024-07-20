@@ -10,12 +10,14 @@ extends Control
 @onready var speed_controller: PanelContainer = $SpeedController
 @export var speed_controller_images: Array[Texture2D]
 
-@onready var happiness_meter: VBoxContainer = $"HappinessMeter"
-@export var happiness_meter_images: Array[Texture2D]
+@onready var support_meter: VBoxContainer = $"SupportMeter"
+@export var support_meter_images: Array[Texture2D]
+
+@onready var timer = $Timer
 
 @onready var world: Node3D = $"../View/World"
 #Public Variables
-var happiness_state: HappinessState
+var support_state: SupportState
 var speed: SpeedState
 
 # Private Variables
@@ -29,42 +31,39 @@ enum SpeedState
 	PAUSE, PLAY, SPEEDUP,
 }
 
-enum HappinessState
+enum SupportState
 {
 	GREAT, NEUTRAL, BAD
 }
 
-func tick():
-	pass
-
 func _ready():
 	speed = SpeedState.PLAY
 	build_buttons.get_parent().visible = false
+	emissions_meter.get_node("HoverInfo").visible = false
 	speed_controller.get_node("Image").texture = speed_controller_images[speed]
 	emissions_meter.max_value = sim_emissions_meter.GetEmissionsCap()
 	world.tile_clicked.connect(on_tile_clicked)
 
-func _process(_delta):
+func tick():
 	# Update Emissions Meter
 	emissions_meter.value += sim_emissions_meter.GetEmissions()
 	var percent = int(100 * emissions_meter.value/emissions_meter.max_value)
+	# Update Emissions HoverInfo
+	var percent_change = int(100 * sim_emissions_meter.EmissionRate/emissions_meter.max_value)
+	emissions_meter.get_node("HoverInfo/Text").text = str(percent_change) + "%/30s"
 	emissions_meter.get_node("Percentage").text = str(percent) + "%"
-	# Update Happines State
-	# TODO request this info from simulation.
-	# repurposing this for Support since we condensed Support and Happiness into one number for the jam
-	#var happiness = sim.SupportPool.GlobalHappiness
-	var support = sim.SupportPool.Support
-	happiness_meter.get_node("Text").text = str(support)
+	# Get Support Info (i.e. repurposed happiness meter)
+	var support = sim.get_node("SimSupportPool").Support
+	support_meter.get_node("Text").text = str(support)
 	if support > 20:
-		happiness_state =  HappinessState.GREAT
+		support_state =  SupportState.GREAT
 	elif support > 10:
-		happiness_state = HappinessState.NEUTRAL
+		support_state = SupportState.NEUTRAL
 	else:
-		happiness_state = HappinessState.BAD
-	happiness_meter.get_node("Image").texture = happiness_meter_images[happiness_state]
-	# Update Support
-	#$SupportTemp.text = "Support: " + str(support)
-	
+		support_state = SupportState.BAD
+	support_meter.get_node("Image").texture = support_meter_images[support_state]
+	# Get clock
+	# TODO not sure exactly how we want this done
 func on_tile_clicked(x: int, y: int) -> void:
 	# Only display if tile selected checked by if it's a valid index.
 	if Global.current_tile == Vector2(-1,-1):
@@ -81,4 +80,12 @@ func on_tile_clicked(x: int, y: int) -> void:
 			build_buttons.add_child(instance)
 			instance.initialize(load("res://Resources/InfraTypes/road.tres"), x, y)
 		return
-	
+
+
+
+
+func _on_emissions_meter_mouse_entered():
+	emissions_meter.get_node("HoverInfo").visible = true
+
+func _on_emissions_meter_mouse_exited():
+	emissions_meter.get_node("HoverInfo").visible = false

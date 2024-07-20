@@ -7,10 +7,11 @@ var y: int
 
 # Block Scenes
 var base = preload("res://Scenes/Tiles/base.tscn")
-var blank = preload("res://Scenes/Tiles/Blank.tscn")
+var blank = preload("res://Scenes/Tiles/Grass.tscn")
 
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")
 var isYellow: bool = false
+var model_connects: bool = false
 
 @onready var sim: Node = Global.sim
 
@@ -38,18 +39,22 @@ func on_tile_clicked(local_x: int, local_y: int):
 		isYellow = false
 	update_highlight()
 	
-func update_visuals():
+func update_visuals(repeated: bool = false):
+	# Don't re-update visuals for non connecting models
+	if repeated && !model_connects:
+		return
 	# Clear existing children.
 	for child in get_children():
 		child.queue_free()
 		
 	# In case sime wasn't set for some reason.
-	if(sim == null):
+	if(sim == null):     
 		sim = Global.sim
 		
 	# Generate new children
 	var infra = sim.GetInfra(x,y)
 	var instance
+	model_connects = false
 	if infra.is_empty():
 		instance = blank.instantiate()
 		add_child(instance)
@@ -58,20 +63,25 @@ func update_visuals():
 			if type.ModelHasBase:
 				instance = base.instantiate()
 				add_child(instance)
+			if type.ModelConnects:
+				model_connects = true
 			if !type.ModelPath.is_empty():
-				var full_path = type.ModelPath + get_version() + ".tscn"
+				# Note that 'get_version() also rotates as needed.
+				var full_path = type.ModelPath + get_version(type) + ".tscn"
 				var model = load(full_path)
 				instance = model.instantiate()
 				add_child(instance)
-				instance.rotation.y = get_new_rotation()	
+				if !repeated:
+					get_parent().update_neighbors(Vector2i(x,y))
 			else: 
 				print("path not given")
-	
-func get_version() -> String:
-	return ""
-
-func get_new_rotation() -> float:
-	return 0.0
+				
+func get_version(type: SimInfraType) -> String:
+	if !type.ModelConnects:
+		return ""
+	var versionInfo = sim.grid.GetVersion(Vector2i(x,y),type)
+	rotation = versionInfo.rotation
+	return versionInfo.versionString
 
 func update_highlight():
 	for child in get_children():

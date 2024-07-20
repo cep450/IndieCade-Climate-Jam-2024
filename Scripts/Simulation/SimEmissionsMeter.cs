@@ -36,6 +36,7 @@ public partial class SimEmissionsMeter : Node
 			return instance;
 		}
 	}
+
 	public void InitializeEmissionsInfo(StartData startData) {
 		emissionsCap = startData.emissionsCap;
 		emissionsTarget = startData.emissionsTarget;

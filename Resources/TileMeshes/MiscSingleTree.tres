@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=4 format=3 uid="uid://dem87hlx80ma"]
+[gd_resource type="ArrayMesh" load_steps=4 format=3 uid="uid://c51oa0mqkn4hc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxwfa"]
 resource_name = "Tree.Leaves"
