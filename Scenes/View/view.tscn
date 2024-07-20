@@ -271,11 +271,6 @@ autoplay = "SunRotate"
 [node name="World" type="Node3D" parent="."]
 script = ExtResource("1_k5je3")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="World"]
-transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -18.1426, 12.6158, -23.4911)
-light_energy = 10.0
-omni_range = 1000.0
-
 [node name="Floor" type="MeshInstance3D" parent="World"]
 mesh = SubResource("PlaneMesh_3jdih")
 skeleton = NodePath("../..")

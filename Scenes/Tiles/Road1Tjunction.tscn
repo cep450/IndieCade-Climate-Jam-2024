@@ -1,11 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctbwxj2rod65k"]
+[gd_scene load_steps=3 format=3 uid="uid://delme81mb4mkw"]
 
-[ext_resource type="ArrayMesh" uid="uid://coytsuo1u3yhq" path="res://Resources/TileMeshes/Road1Tjunction.tres" id="1_pmuyn"]
+[ext_resource type="ArrayMesh" uid="uid://dj70u00dglngb" path="res://Resources/TileMeshes/Road1Tjunction.tres" id="1_pmuyn"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q6031"]
 points = PackedVector3Array(0.496312, 0.4, 0.496312, -0.488496, 2.77556e-17, -0.488496, -0.488496, 2.77556e-17, 0.488496, -0.496312, 0.4, -0.496312, 0.488496, 2.77556e-17, -0.488496, -0.496312, 0.4, 0.496312, 0.496312, 0.4, -0.496312, 0.488496, 2.77556e-17, 0.488496)
 
 [node name="Road1Tjunction" type="StaticBody3D"]
+rotation_order = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_pmuyn")
