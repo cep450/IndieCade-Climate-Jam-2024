@@ -43,7 +43,8 @@ func _ready():
 	speed_controller.get_node("Image").texture = speed_controller_images[speed]
 	emissions_meter.max_value = sim_emissions_meter.GetEmissionsCap()
 	world.tile_clicked.connect(on_tile_clicked)
-
+	$BuildButtons/BuildMenu.mouse_exited.connect(_on_mouse_exited)
+		
 func _process(_delta):
 	# Update Emissions Meter
 	emissions_meter.value += sim_emissions_meter.GetEmissions()
@@ -82,6 +83,7 @@ func on_tile_clicked(x: int, y: int) -> void:
 				var instance = button.instantiate()
 				build_buttons.add_child(instance)
 				instance.initialize(type, x, y)
+				instance.entered.connect(_on_mouse_entered_build)
 		return
 
 func _on_emissions_meter_mouse_entered():
@@ -89,3 +91,12 @@ func _on_emissions_meter_mouse_entered():
 
 func _on_emissions_meter_mouse_exited():
 	emissions_meter.get_node("HoverInfo").visible = false
+
+func _on_mouse_entered_build(text: String):
+	$BuildInfo.visible = true
+	$BuildInfo/Text.text = text
+	$BuildInfo.size.x = $BuildButtons.size.x
+	$BuildInfo.position.x = $BuildButtons.position.x
+
+func _on_mouse_exited():
+	$BuildInfo.visible = false

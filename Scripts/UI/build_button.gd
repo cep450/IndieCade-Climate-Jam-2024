@@ -1,5 +1,7 @@
 extends Button
 
+# Public
+signal entered
 # Private
 var type: SimInfraType
 @onready var sim = Global.sim
@@ -14,9 +16,7 @@ func initialize(param_type: SimInfraType, param_x: int, param_y: int) -> void:
 
 #just adds houses for now
 func _on_pressed():
-	var bypass_validation = Global.inDevMode
-	sim.GetTile(x,y).AddInfra(type, bypass_validation, true)
-	
-	
+	sim.GetTile(x,y).AddInfra(type, false, true)
 
-"res://Scenes/Tiles/SidewalkCurve.tscn"
+func _on_mouse_entered():
+	entered.emit(type.Name + " - " + str(type.costToBuild))

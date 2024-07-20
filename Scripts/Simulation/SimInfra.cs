@@ -26,6 +26,5 @@ public partial class SimInfra
 	public SimInfra(SimInfraType _type) {
 		type = _type;
 	}
-
 }
 

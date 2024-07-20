@@ -21,7 +21,9 @@
 texture = ExtResource("11_qaxsh")
 texture_margin_left = 10.0
 texture_margin_right = 10.0
+expand_margin_left = 10.0
 expand_margin_top = 5.0
+expand_margin_right = 10.0
 expand_margin_bottom = 5.0
 modulate_color = Color(1, 1, 1, 0.745098)
 
@@ -46,7 +48,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_filter = 1
 script = ExtResource("1_meoay")
 emissions_meter = NodePath("EmissionsMeter")
 build_buttons = NodePath("BuildButtons/BuildMenu")
@@ -111,16 +113,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BuildInfo" type="PanelContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -93.5
-offset_top = -120.0
-offset_right = 93.5
-offset_bottom = -90.0
+visible = false
+layout_mode = 2
+offset_left = 443.0
+offset_top = 529.0
+offset_right = 630.0
+offset_bottom = 559.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 2
@@ -136,16 +134,11 @@ vertical_alignment = 1
 
 [node name="BuildButtons" type="PanelContainer" parent="."]
 modulate = Color(1, 1, 1, 0.745098)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -53.0
-offset_top = -78.0
-offset_right = 53.0
-offset_bottom = -18.0
+layout_mode = 2
+offset_left = 483.0
+offset_top = 571.0
+offset_right = 589.0
+offset_bottom = 631.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -157,7 +150,6 @@ layout_mode = 2
 size_flags_vertical = 4
 
 [node name="TestButton" parent="BuildButtons/BuildMenu" instance=ExtResource("13_2xlt3")]
-visible = false
 layout_mode = 2
 icon = ExtResource("14_e8mhk")
 
