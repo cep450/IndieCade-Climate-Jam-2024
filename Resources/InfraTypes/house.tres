@@ -24,6 +24,6 @@ costToBuild = 10
 costToDestroy = 25
 incompatibilityMask = 1119
 ModelPath = "res://Scenes/Tiles/House"
-ModelVariantCount = 1
+ModelVariantCount = 0
 ModelConnects = false
 ModelHasBase = true

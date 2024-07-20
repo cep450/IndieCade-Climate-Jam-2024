@@ -44,7 +44,7 @@ func _ready():
 	emissions_meter.max_value = sim_emissions_meter.GetEmissionsCap()
 	world.tile_clicked.connect(on_tile_clicked)
 
-func tick():
+func _process(_delta):
 	# Update Emissions Meter
 	emissions_meter.value += sim_emissions_meter.GetEmissions()
 	var percent = int(100 * emissions_meter.value/emissions_meter.max_value)
@@ -64,6 +64,7 @@ func tick():
 	support_meter.get_node("Image").texture = support_meter_images[support_state]
 	# Get clock
 	# TODO not sure exactly how we want this done
+
 func on_tile_clicked(x: int, y: int) -> void:
 	# Only display if tile selected checked by if it's a valid index.
 	if Global.current_tile == Vector2(-1,-1):
@@ -75,14 +76,13 @@ func on_tile_clicked(x: int, y: int) -> void:
 		for child in build_buttons.get_children():
 			child.queue_free()
 		# Temp func to add test ones
-		for type in 1:
-			var instance = button.instantiate()
-			build_buttons.add_child(instance)
-			instance.initialize(load("res://Resources/InfraTypes/road.tres"), x, y)
+		var types = load("res://Resources/InfraTypes/bikelane.tres").GetTypes()
+		for type in types:
+			if type.Icon != null:
+				var instance = button.instantiate()
+				build_buttons.add_child(instance)
+				instance.initialize(type, x, y)
 		return
-
-
-
 
 func _on_emissions_meter_mouse_entered():
 	emissions_meter.get_node("HoverInfo").visible = true

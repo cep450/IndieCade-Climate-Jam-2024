@@ -1,8 +1,5 @@
 extends Button
 
-
-@export var images: Array[Texture2D] = []
-
 # Private
 var type: SimInfraType
 @onready var sim = Global.sim
@@ -13,7 +10,7 @@ func initialize(param_type: SimInfraType, param_x: int, param_y: int) -> void:
 	type = param_type
 	x = param_x
 	y = param_y
-	icon = images[0]
+	icon = type.Icon
 
 #just adds houses for now
 func _on_pressed():

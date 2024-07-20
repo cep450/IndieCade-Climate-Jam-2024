@@ -7,7 +7,7 @@ var y: int
 
 # Block Scenes
 var base = preload("res://Scenes/Tiles/base.tscn")
-var blank = preload("res://Scenes/Tiles/Grass.tscn")
+var grass = preload("res://Scenes/Tiles/Grass.tscn")
 
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")
 var isYellow: bool = false
@@ -15,10 +15,10 @@ var model_connects: bool = false
 
 @onready var sim: Node = Global.sim
 
-func test_init(type: String):
-	if type == "Blank":
-		var instance = blank.instantiate()
-		add_child(instance)
+#func test_init(type: String):
+	#if type == "Blank":
+		#var instance = grass.instantiate()
+		#add_child(instance)
 
 func initialize(local_x: int, local_y: int) -> void:
 	# Access grid and get info from there or maybe call directly from Sim.cs?
@@ -56,18 +56,21 @@ func update_visuals(repeated: bool = false):
 	var instance
 	model_connects = false
 	if infra.is_empty():
-		instance = blank.instantiate()
+		instance = grass.instantiate()
 		add_child(instance)
 	else:
 		for type in infra:
 			if type.ModelHasBase:
 				instance = base.instantiate()
 				add_child(instance)
+			if type.Name == "Trees":
+				instance = grass.instantiate()
+				add_child(instance)
 			if type.ModelConnects:
 				model_connects = true
 			if !type.ModelPath.is_empty():
 				# Note that 'get_version() also rotates as needed.
-				var full_path = type.ModelPath + get_version(type) + ".tscn"
+				var full_path = type.ModelPath + get_variant(type) + get_version(type) + ".tscn"
 				var model = load(full_path)
 				instance = model.instantiate()
 				add_child(instance)
@@ -76,6 +79,13 @@ func update_visuals(repeated: bool = false):
 			else: 
 				print("path not given")
 				
+func get_variant(type) -> String:
+	if type.ModelVariantCount < 1:
+		return ""
+	var random = RandomNumberGenerator.new()
+	var variant_string = str(random.randi_range(1, type.ModelVariantCount))
+	return variant_string
+			
 func get_version(type: SimInfraType) -> String:
 	if !type.ModelConnects:
 		return ""

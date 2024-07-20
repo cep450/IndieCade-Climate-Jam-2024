@@ -89,7 +89,8 @@ public partial class SimInfraType : Resource
 	[Export] public InfraType incompatibilityMask; //1 = incompatible, 0 = compatible
 
 	[Export] public string ModelPath;
-	[Export] public int ModelVariantCount = 1;
+	//// if path does not contain a number, this value should be 0
+	[Export] public int ModelVariantCount = 0;
 	[Export] public bool ModelConnects;
 	[Export] public bool ModelHasBase;
 	
@@ -111,6 +112,16 @@ public partial class SimInfraType : Resource
 			}
 		}
 		return arr;
+	}
+	
+	public static Godot.Collections.Array<SimInfraType> GetTypes()
+	{
+		var godotArray = new Godot.Collections.Array<SimInfraType>();
+		foreach (var type in types)
+		{
+			godotArray.Add(type);
+		}
+		return godotArray;
 	}
 
 	// If we want specific types or groups of types to have extra behavior, they can extend this class and override these functions, which are called when the infra is added to or removed from a tile.
