@@ -75,6 +75,8 @@ public partial class SimVehicleType : Resource
 	[Export] private int agentCapacity = 1; // how many agents can travel in it at a time
 	[Export] public NodePath visualVehicle;
 
+	[Export] public string ModelPath;
+
 	public TransportMode Mode { get => transportMode; private set {} }	// Determines what type/s of infrastructure it can travel on. 
 	public float SpeedFactor { get => maxSpeed; private set {} }	// Maximum speed.
 	public float Emissions { get {	// Emissions per tick when in use. Derived from emissions/year based on time scale.
