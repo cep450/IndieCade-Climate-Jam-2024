@@ -51,16 +51,26 @@ public partial class SimAgent : Node
 		destinationType = Sim.Instance.GetTile(currentCoordinates.X, currentCoordinates.Y).DestinationType;
 		state = State.AT_DESTINATION;
 
-		//TODO instantiate a vehicle to go with it 
-
 		//pathFinder = GetNode<SimPath>("../SimPath"); //get a reference to the pathfinder
-		//SetRandomTarget();
+		SetRandomTarget();
 	}
 
 	// every simulation tick.
 	public void Tick() {
 
 		if(state == State.AT_DESTINATION) {
+			int timer = 0, ticksToWait = 10;
+			if (timer > ticksToWait) 
+			{
+				ChooseNewDestinationType();
+				SetRandomTarget(); //Choose target
+				timer = 0;
+				state = State.TRAVELLING;
+				//call world
+			} else 
+			{
+				timer++;
+			}
 
 			//TODO check if we want to pathfind immediately or wait
 			//TODO if we want to pathfind...
@@ -70,6 +80,15 @@ public partial class SimAgent : Node
 
 		} else if(state == State.TRAVELLING) {
 
+			if (currentPosition == targetPosition) //might need to compare x/y properties instead
+			{
+				Arrived();
+
+			} else 
+			{
+				Vehicle?.Tick(); //add emissions
+			}
+
 			//TODO check if arrived at destination
 				// if so, call Arrived();
 				// otherwise, 
@@ -77,13 +96,14 @@ public partial class SimAgent : Node
 					// check if we're ready to move to the next vertex
 						// if we are, check if the next vertex has open capacity
 							// if it does, MoveToNextTile();
-			Vehicle?.Tick();
+			
 		}
 
 	}
 
 	private void Arrived() {
-		//TODO set State to AT_DESTINATION
+
+		state = State.AT_DESTINATION;
 		//TODO generate support based on the route 
 
 	}
