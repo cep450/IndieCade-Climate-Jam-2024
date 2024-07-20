@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://kvs6thqevylw"]
+[gd_scene load_steps=13 format=3 uid="uid://kvs6thqevylw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7gpo"]
 resource_name = "HouseBase"
@@ -9,6 +9,9 @@ albedo_color = Color(0.830905, 0.839261, 0.842968, 1)
 resource_name = "Windows"
 cull_mode = 2
 albedo_color = Color(0.136617, 0.139433, 0.24431, 1)
+emission_enabled = true
+emission = Color(0.811893, 0.519689, 0.169564, 1)
+emission_energy_multiplier = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mnolf"]
 resource_name = "WindowTrim"
@@ -177,6 +180,44 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_7wulv")
 
+[sub_resource type="Animation" id="Animation_spy4k"]
+resource_name = "HouseDayNight"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:surface_1/material:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 27.9, 30.2, 60),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_gbpd0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:surface_1/material:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qm7d7"]
+_data = {
+"HouseDayNight": SubResource("Animation_spy4k"),
+"RESET": SubResource("Animation_gbpd0")
+}
+
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5ujlp"]
 points = PackedVector3Array(0.241095, 0.501198, 0.137995, -0.240657, -0.024927, 0.270262, 0.195056, -0.024927, 0.270262, -0.0528025, -0.00405451, -0.283, -0.25723, 0.734864, -0.243862, 0.356995, 0.348751, -0.339777, 0.00783662, 0.684208, 0.368279, -0.36522, 0.348826, -0.339855, -0.363507, 0.385071, 0.332747, 0.319692, -0.0123804, 0.394861, 0.0078066, 0.683396, -0.360704, 0.263649, -0.00398063, -0.283, -0.318235, -0.0013679, 0.383698, 0.355142, 0.409049, 0.332624, -0.269666, -0.00104467, -0.280492, -0.265599, 0.747219, -0.0907369, -0.203354, -0.024927, 0.419827, 0.354715, 0.408993, -0.325554, -0.327843, -0.0124559, 0.270262, 0.07064, 0.560305, -0.377227, 0.157753, -0.024927, 0.419827, -0.364318, 0.409176, -0.326961, 0.319692, -0.024927, 0.307712, -0.153543, 0.734748, -0.0907369, -0.19092, 0.0373526, 0.419827, -0.19092, 0.473159, -0.364744, -0.251724, 0.490834, 0.339651, -0.0643621, 0.638348, -0.364455, 0.356174, 0.361146, 0.333518, 0.307185, 0.398408, -0.352261, 0.282243, -0.024927, 0.407266, -0.0157528, 0.677738, 0.36133)
 
@@ -187,6 +228,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0012435, 0, 0.000328547)
 mesh = SubResource("ArrayMesh_d3o1v")
 skeleton = NodePath("")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BuildingHouse"]
+libraries = {
+"": SubResource("AnimationLibrary_qm7d7")
+}
+autoplay = "HouseDayNight"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0012435, 0, 0.000328547)
