@@ -14,14 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://bqxamlsop5u51" path="res://Assets/Gameplay/Icons/Icon_Clock_92x92.png" id="11_yl1gm"]
 [ext_resource type="Texture2D" uid="uid://dsm1k473ys5rl" path="res://Assets/Gameplay/Meters/Happiness/HMeter_1S_76 x 76.png" id="12_ip4wc"]
 [ext_resource type="Texture2D" uid="uid://dv666v0i7ufn" path="res://Assets/Gameplay/Menu/Time Control Menu - FF - Icons.png" id="16_1f6rw"]
-[ext_resource type="Script" path="res://Scenes/UI/Tutorial.gd" id="21_7t86o"]
-[ext_resource type="Texture2D" uid="uid://cr3ouppaa1cad" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_1.png" id="21_njbtc"]
-[ext_resource type="Texture2D" uid="uid://cn3r6qo7kxwr" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_2.png" id="22_0btqg"]
-[ext_resource type="Texture2D" uid="uid://86jah6e2ecit" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_3.png" id="23_khdwt"]
-[ext_resource type="Texture2D" uid="uid://7jg84cj1iqfu" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_4.png" id="24_ac3h6"]
-[ext_resource type="Texture2D" uid="uid://c04j08vfcbfbp" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_5.png" id="25_hmvxg"]
-[ext_resource type="Texture2D" uid="uid://daxcm3dfrmh2k" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_6.png" id="26_gkrbe"]
-[ext_resource type="Texture2D" uid="uid://ckgdic55mv2fg" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_7.png" id="27_wsyhl"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x4o6g"]
 texture = ExtResource("11_qaxsh")
