@@ -40,6 +40,9 @@ public partial class SimAgent : Node
 	private SimPath currentPath;
 
 	private SimInfraType.DestinationType destinationType;
+	
+	private GodotObject visualAgent;
+	private GodotObject world;
 
 	//TODO should we instantiate these in a different way? or is visual agent the node instance?
 	// Randomize properties for this agent when it first spawns. does it have access to a car? how does it weight different factors?
@@ -52,7 +55,19 @@ public partial class SimAgent : Node
 		state = State.AT_DESTINATION;
 
 		//pathFinder = GetNode<SimPath>("../SimPath"); //get a reference to the pathfinder
-		SetRandomTarget();
+		//SetRandomTarget();
+	}
+	
+	public void CreateVisualVersion()
+	{
+		world = GetNode("../../View/World");
+		visualAgent = (GodotObject)world.Call("init_agent");
+	}
+
+	// every game tick. update position smoothly
+	public override void _Process(double delta)
+	{
+		//Vehicle._Process(GetProcessDeltaTime());
 	}
 
 	// every simulation tick.
