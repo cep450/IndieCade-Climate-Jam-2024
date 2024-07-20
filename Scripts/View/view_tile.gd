@@ -15,11 +15,6 @@ var model_connects: bool = false
 
 @onready var sim: Node = Global.sim
 
-func test_init(type: String):
-	if type == "Blank":
-		var instance = blank.instantiate()
-		add_child(instance)
-
 func initialize(local_x: int, local_y: int) -> void:
 	# Access grid and get info from there or maybe call directly from Sim.cs?
 	#grid = $"../../Simulation/SimGrid"

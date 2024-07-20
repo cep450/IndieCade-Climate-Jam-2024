@@ -44,7 +44,7 @@ func _ready():
 	emissions_meter.max_value = sim_emissions_meter.GetEmissionsCap()
 	world.tile_clicked.connect(on_tile_clicked)
 
-func tick():
+func _process(_delta):
 	# Update Emissions Meter
 	emissions_meter.value += sim_emissions_meter.GetEmissions()
 	var percent = int(100 * emissions_meter.value/emissions_meter.max_value)
