@@ -15,9 +15,9 @@ var button = preload("res://Scenes/UI/build_button.tscn")
 
 func _ready():
 	sim = $"../Simulation"
-	emissions_meter = sim.get_node("SimEmissionsMeter")
-	progress_bar.max_value = emissions_meter.GetEmissionsCap()
-	$"../View/World".tile_clicked.connect(on_tile_clicked)
+	#emissions_meter = sim.get_node("SimEmissionsMeter")
+	#progress_bar.max_value = emissions_meter.GetEmissionsCap()
+	#$"../View/World".tile_clicked.connect(on_tile_clicked)
 
 func _process(_delta):
 	progress_bar.value += 100
