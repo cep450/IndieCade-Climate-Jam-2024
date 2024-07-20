@@ -10,8 +10,11 @@ func init_tile(x, y, xpos, ypos):
 	instance.initialize(x,y)
 	instance.position = Vector3(xpos, 0, ypos)
 	return instance
-	
-func update_all_tile_visuals():
+
+# TODO this is kinda inefficient but don't have time to optimize
+func update_neighbors(coord: Vector2i):
 	for child in get_children():
-		if (child.has_method("update_visuals")):
-			child.update_visuals(true)
+		if child.has_method("update_visuals"):
+			# If orthogonally adjacent.
+			if abs(child.x - coord.x) + abs(child.y - coord.y) == 1:
+				child.update_visuals(true)

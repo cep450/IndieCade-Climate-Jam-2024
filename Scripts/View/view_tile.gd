@@ -11,6 +11,7 @@ var blank = preload("res://Scenes/Tiles/Grass.tscn")
 
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")
 var isYellow: bool = false
+var model_connects: bool = false
 
 @onready var sim: Node = Global.sim
 
@@ -39,17 +40,21 @@ func on_tile_clicked(local_x: int, local_y: int):
 	update_highlight()
 	
 func update_visuals(repeated: bool = false):
+	# Don't re-update visuals for non connecting models
+	if repeated && !model_connects:
+		return
 	# Clear existing children.
 	for child in get_children():
 		child.queue_free()
 		
 	# In case sime wasn't set for some reason.
-	if(sim == null):
+	if(sim == null):     
 		sim = Global.sim
 		
 	# Generate new children
 	var infra = sim.GetInfra(x,y)
 	var instance
+	model_connects = false
 	if infra.is_empty():
 		instance = blank.instantiate()
 		add_child(instance)
@@ -58,20 +63,19 @@ func update_visuals(repeated: bool = false):
 			if type.ModelHasBase:
 				instance = base.instantiate()
 				add_child(instance)
+			if type.ModelConnects:
+				model_connects = true
 			if !type.ModelPath.is_empty():
 				# Note that 'get_version() also rotates as needed.
 				var full_path = type.ModelPath + get_version(type) + ".tscn"
 				var model = load(full_path)
 				instance = model.instantiate()
 				add_child(instance)
-				# TODO for optimization, rewrite this call to only reupdate orthognally
-				# adjacent tiles.
-				if (!repeated):
-					get_parent().update_all_tile_visuals()
+				if !repeated:
+					get_parent().update_neighbors(Vector2i(x,y))
 			else: 
 				print("path not given")
-
-
+				
 func get_version(type: SimInfraType) -> String:
 	if !type.ModelConnects:
 		return ""
