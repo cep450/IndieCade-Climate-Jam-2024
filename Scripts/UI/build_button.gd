@@ -19,3 +19,4 @@ func _on_pressed():
 	
 	
 
+"res://Scenes/Tiles/SidewalkCurve.tscn"

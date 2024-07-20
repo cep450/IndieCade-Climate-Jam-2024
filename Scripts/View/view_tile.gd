@@ -8,17 +8,13 @@ var y: int
 # Block Scenes
 var base = preload("res://Scenes/Tiles/base.tscn")
 var grass = preload("res://Scenes/Tiles/Grass.tscn")
+var road_resource: SimInfraType = preload("res://Resources/InfraTypes/road.tres")
 
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")
 var isYellow: bool = false
 var model_connects: bool = false
 
 @onready var sim: Node = Global.sim
-
-#func test_init(type: String):
-	#if type == "Blank":
-		#var instance = grass.instantiate()
-		#add_child(instance)
 
 func initialize(local_x: int, local_y: int) -> void:
 	# Access grid and get info from there or maybe call directly from Sim.cs?
@@ -77,7 +73,7 @@ func update_visuals(repeated: bool = false):
 				if !repeated:
 					get_parent().update_neighbors(Vector2i(x,y))
 			else: 
-				print("path not given")
+				print("path not given")	
 				
 func get_variant(type) -> String:
 	if type.ModelVariantCount < 1:
@@ -89,7 +85,8 @@ func get_variant(type) -> String:
 func get_version(type: SimInfraType) -> String:
 	if !type.ModelConnects:
 		return ""
-	var versionInfo = sim.grid.GetVersion(Vector2i(x,y),type)
+	var versionInfo = sim.grid.GetVersion(Vector2i(x,y),road_resource)
+	# Only use road to determine rotation.
 	rotation = versionInfo.rotation
 	return versionInfo.versionString
 
