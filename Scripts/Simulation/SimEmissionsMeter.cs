@@ -9,6 +9,8 @@ public partial class SimEmissionsMeter : Node
 	 *  for use by vehicles and anything we want to count towards emissions 
 	 */
 
+	bool DEBUG = true;
+
 	private float emissions = 0; // running total
 	private float emissionsCap = 10000; // if emissions surpass this the game ends with a loss. TODO tune this 
 	private float emissionsTarget = 10; // if emission rate goes below this the game ends with a win. TODO tune this
@@ -87,7 +89,7 @@ public partial class SimEmissionsMeter : Node
 
 		//if emissions rate has been lowered below the threshold, end the game with a win
 		if(checkWin && emissionsThisCheck < emissionsTarget) {
-			Sim.Instance.GameOverSuccess();
+			if(!DEBUG) Sim.Instance.GameOverSuccess();
 		}
 	}
 
