@@ -9,7 +9,7 @@ var current_tile: Vector2 = Vector2(-1, -1)
 #Private audio stuff
 var audio_dict = {}
 var stream_player = preload("res://Scenes/stream_player.tscn")
-var music_tracks: Array[String] =  ["OST-A","OST-B","High Emissions"]
+var music_tracks: Array[String] =  ["OST-A","OST-B"]
 var music_index: int = 0
 # Called by view_tile, Vector2 stores an index
 func on_tile_clicked(clicked_tile: Vector2):
