@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bin6irbdlvj2a"]
 
 [ext_resource type="Shader" path="res://Shaders/Gradientsky.gdshader" id="1_so6t4"]
-[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/updatedtiles.tres" id="2_wjkst"]
+[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://tiles.tres" id="2_wjkst"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d7b6n"]
 shader = ExtResource("1_so6t4")
