@@ -56,7 +56,7 @@ public partial class Sim : Node
 	public override void _Ready()
 	{
 		Instance = this;
-		Instance.startData = (StartData)ResourceLoader.Load("res://Resources/Maps/inspectortest.tres");
+		Instance.startData = (StartData)ResourceLoader.Load("res://Scripts/Simulation/CustomResources/SavedData.tres");
 		grid = GetNode<SimGrid>("SimGrid");
 		EmissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
 		SupportPool = GetNode<SimSupportPool>("SimSupportPool");
@@ -158,7 +158,8 @@ public partial class Sim : Node
 	}
 
 	//TODO right now for simplicity this just removes arbitrary agents since they're considered identical, but in the future, we could pick out specific ones to remove like having a Home save the agents attached to it and remove those specific agents if removed
+	//TODO does not work right now
 	public void RemoveAgents(int number) {
-		agents.RemoveRange(agents.Count - number + 1, agents.Count - 1);
+		//agents.RemoveRange(agents.Count - number + 1, agents.Count - 1);
 	}
 }

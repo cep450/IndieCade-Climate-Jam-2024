@@ -1,6 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhixs3wudgjvb"]
+[gd_scene load_steps=9 format=3 uid="uid://bhixs3wudgjvb"]
 
 [ext_resource type="Script" path="res://Scripts/global.gd" id="1_0sv2k"]
+[ext_resource type="Script" path="res://Scripts/audio.gd" id="3_rbah5"]
+[ext_resource type="AudioStream" uid="uid://b1oc1dtalsxqe" path="res://Audio/SFX/Bloop.wav" id="4_ony7c"]
+[ext_resource type="AudioStream" uid="uid://b3imaprx8motn" path="res://Audio/Music/CarbonBustersOST SIDE A.mp3" id="5_y0eit"]
+[ext_resource type="AudioStream" uid="uid://bx3xdrfkeetc3" path="res://Audio/Music/CarbonBustersOST SIDE B.mp3" id="6_d3jx0"]
 
-[node name="InfraType" type="Node"]
+[sub_resource type="Resource" id="Resource_1btx3"]
+script = ExtResource("3_rbah5")
+sound_name = "Bloop"
+audio_stream = ExtResource("4_ony7c")
+is_music = false
+
+[sub_resource type="Resource" id="Resource_3tyr2"]
+script = ExtResource("3_rbah5")
+sound_name = "OST-A"
+audio_stream = ExtResource("5_y0eit")
+is_music = true
+
+[sub_resource type="Resource" id="Resource_dm1d3"]
+script = ExtResource("3_rbah5")
+sound_name = "OST-B"
+audio_stream = ExtResource("6_d3jx0")
+is_music = true
+
+[node name="Global" type="Node"]
 script = ExtResource("1_0sv2k")
+inDevMode = true
+audio_files = Array[ExtResource("3_rbah5")]([SubResource("Resource_1btx3"), SubResource("Resource_3tyr2"), SubResource("Resource_dm1d3")])

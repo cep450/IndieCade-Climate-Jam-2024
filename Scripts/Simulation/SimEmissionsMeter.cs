@@ -65,7 +65,7 @@ public partial class SimEmissionsMeter : Node
 		emissionsLastTick = emissionsThisTick;
 		emissionsThisTick = 0;
 		
-		GD.Print("emissions this tick: " + emissionsLastTick + " total: " + emissions);
+		//GD.Print("emissions this tick: " + emissionsLastTick + " total: " + emissions);
 	}
 
 	public void AddEmissions(float amount)

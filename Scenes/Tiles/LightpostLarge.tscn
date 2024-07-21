@@ -1,9 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://7if4pct2x4ak"]
+[gd_scene load_steps=10 format=3 uid="uid://7if4pct2x4ak"]
 
 [ext_resource type="ArrayMesh" uid="uid://7wplrbjwu5x2" path="res://Resources/TileMeshes/LightpostLarge.tres" id="1_a0ldo"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_x8s7d"]
 points = PackedVector3Array(-0.489839, -0.00899259, -0.0183, -0.488573, -0.00466456, 0.0183, -0.487806, 0.306547, -0.0111595, -0.393674, 0.309433, -0.0111595, -0.464984, -0.0215266, 0.0202193, -0.470685, 0.329427, 0.00880559, -0.464984, -0.0215266, -0.0197266, -0.393674, 0.315101, 0.0116561, -0.493507, 0.00702097, 0.0202193, -0.493507, 0.00702097, -0.0197266, -0.485322, 0.306329, 0.00833968, -0.390819, 0.309433, 0.00880559, -0.393674, 0.315101, -0.0111595, -0.416496, 0.315101, 0.0116561, -0.390819, 0.309433, -0.00830906, -0.464984, 0.00702097, -0.0197266, -0.464984, 0.00702097, 0.0202193, -0.416496, 0.315101, -0.0111595, -0.390819, 0.315101, -0.00830906, -0.468099, 0.313518, -0.00753345, -0.393674, 0.309433, 0.0116561, -0.390819, 0.315101, 0.00880559, -0.482452, 0.311058, -0.00780935)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2dta1"]
+animation = &"LightpostLargeAnim"
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_trfux"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_olcdu"]
+graph_offset = Vector2(-159.031, 58.0575)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_2dta1")
+nodes/Animation/position = Vector2(0, 100)
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_trfux")
+nodes/TimeSeek/position = Vector2(260, 100)
+nodes/output/position = Vector2(460, 140)
+node_connections = [&"TimeSeek", 0, &"Animation", &"output", 0, &"TimeSeek"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_edkq3"]
+states/BlendTree/node = SubResource("AnimationNodeBlendTree_olcdu")
+states/BlendTree/position = Vector2(520, 126)
 
 [sub_resource type="Animation" id="Animation_1nesw"]
 resource_name = "LightpostLargeAnim"
@@ -16,7 +34,7 @@ tracks/0/path = NodePath(".:light_energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(2, 28.2, 30.2, 60),
+"times": PackedFloat32Array(0, 28.2, 30.2, 60),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0, 3.7, 3.7]
@@ -28,7 +46,7 @@ tracks/1/path = NodePath("../MeshInstance3D:mesh:surface_1/material:emission_ene
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.9, 28.2, 30.3, 60),
+"times": PackedFloat32Array(0, 28.2, 30.3, 60),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0, 1.0, 1.0]
@@ -68,6 +86,7 @@ _data = {
 }
 
 [node name="LightpostLarge" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_a0ldo")
@@ -83,7 +102,13 @@ spot_range = 0.725
 spot_angle = 34.33
 spot_angle_attenuation = 3.24901
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="SpotLight3D"]
+[node name="AnimationTree" type="AnimationTree" parent="SpotLight3D"]
+tree_root = SubResource("AnimationNodeStateMachine_edkq3")
+anim_player = NodePath("AnimationPlayer")
+parameters/BlendTree/TimeSeek/seek_request = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpotLight3D/AnimationTree"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_a2snw")
 }

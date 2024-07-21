@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bx3xdrfkeetc3"
+path="res://.godot/imported/CarbonBustersOST SIDE B.mp3-d4349ef3fadebda59acd0cf015782cdf.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/CarbonBustersOST SIDE B.mp3"
+dest_files=["res://.godot/imported/CarbonBustersOST SIDE B.mp3-d4349ef3fadebda59acd0cf015782cdf.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

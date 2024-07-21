@@ -130,17 +130,19 @@ public partial class SimAgent : Node
 
 	// every simulation tick.
 	public void Tick() {
+		//TODO fix
+		/*
 		if(state == State.AT_DESTINATION) {
-			GD.Print($"Timer: {timer}");
+			//GD.Print($"Timer: {timer}");
 			if (timer > ticksToWait) 
 			{
-				GD.Print("Timer Completed!");
 				PathVertex currentV = Sim.Instance.PathGraph.GetVertex(currentCoordinates);
 				ChooseNewDestinationType();
 				currentPath = pathfinder.FindPath(currentV, destinationType, this); 
 				Vehicle = new SimVehicle(currentPath.pathVehicleType); //TODO CHANGE THIS THIS IS VERY BAD
 				Vehicle.IsInUse = true;
 				visualAgent.Call("Set_Vehicle", currentPath.pathVehicleType.ModelPath); //change visual model
+				//GD.Print("Timer Completed!");
 				timer = 0;
 				state = State.TRAVELLING;
 				visualAgent.Call("Set_Visible", true);
@@ -171,6 +173,7 @@ public partial class SimAgent : Node
 				currentCoordinates = currentStartVertex.PathGraphCoordinates;
 			}
 		}
+		*/
 	}
 
 	private void Arrived() {
@@ -225,7 +228,7 @@ public partial class SimAgent : Node
 			
 			currentPosition = new Vector2(simGrid.GridToWorldPos(true, (int)nextVertex.WorldPosition.X), simGrid.GridToWorldPos(false, (int)nextVertex.WorldPosition.Y)); //Move to next vertex
 			visualAgent.Call("Set_Pos", new Vector3(currentPosition.X, 0.22f, currentPosition.Y));
-			GD.Print($"Moving from: {currentVertex.WorldPosition} to: {nextVertex.WorldPosition}");
+			//GD.Print($"Moving from: {currentVertex.WorldPosition} to: {nextVertex.WorldPosition}");
 			return true;
 		} else
 		{
@@ -273,7 +276,6 @@ public partial class SimAgent : Node
 		return cost;
 	}
 }
-
 
 
 

@@ -6,11 +6,9 @@ using System.Linq;
 
 public partial class SimTile : Node
 {
-
 	/*
 	 * A single tile in the simulation.
 	 */
-
 	static bool DEBUG = false;
 
 	public List<SimInfra> Infra { get; private set; } // infrastructure instances currently on this tile
@@ -50,15 +48,18 @@ public partial class SimTile : Node
 	}
 
 	// Add infrastructure to the tile. Returns false if the infrastructure could not be added.
-	public bool AddInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
+	public string AddInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
 
 		if(DEBUG) GD.Print("called SimTile.AddInfra to add type " + type.Name);
 
 		//validate if the infrastructure can be added here, and if the player has enough currency
 		if(!bypassValidation) {
-			if(!CanAffordToAddInfra(type) || !CanAddInfraType(type)) {
-				return false;
+			if(!CanAffordToAddInfra(type)){
+				return "Can't Afford";
 			} 
+			if(!CanAddInfraType(type)){
+				return "Not Valid Space to Add";
+			}
 
 			if(DEBUG) GD.Print("Validated, adding tile, spending " + type.costToBuild);
 
@@ -93,13 +94,12 @@ public partial class SimTile : Node
 			//TODO update tiles adjacent to this tile visually
 		}
 
-		//return if adding was successful
-		return true;
+		//return "" adding was successful
+		return "";
 	}
 
 	//TODO what do we want to pass in here? an index in the list? a type? an instance? maybe overrides for all of these. one that takes a mask could even add/remove multiple at once.
 	public bool RemoveInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
-		
 		if(!bypassValidation) {
 			//check if this tile has this infrastrcture 
 			if(!HasInfraType(type.type)) {
@@ -117,9 +117,6 @@ public partial class SimTile : Node
 			Sim.Instance.SupportPool.SpendSupport(type.costToDestroy);
 		}
 
-		// since we know the tile has it, remove from the mask 
-		InfraTypesMask ^= type.type;
-
 		// remove destination type if this infra provided one 
 		if(type.destinationType != SimInfraType.DestinationType.NOT_DESTINATION) {
 			DestinationType = SimInfraType.DestinationType.NOT_DESTINATION;
@@ -127,6 +124,9 @@ public partial class SimTile : Node
 
 		//remove from list 
 		Infra.RemoveAt(IndexOfInfra(type.type));
+
+		// since we know the tile has it, remove from the mask 
+		InfraTypesMask ^= type.type;
 
 		//update any connections 
 		if(recalculateEdges) RecalculateVertices();
@@ -141,7 +141,6 @@ public partial class SimTile : Node
 
 			//TODO update tiles adjacent to this tile visually-- make sure this happens in update_visuals maybe 
 		}
-
 		return true;
 	}
 
@@ -151,7 +150,7 @@ public partial class SimTile : Node
 		SimInfraType.InfraType compatible = 0x0;
 
 		foreach(SimInfra type in Infra) {
-			compatible |= type.TypeEnum;
+			compatible |= type.Type.incompatibilityMask;
 		}
 
 		compatible = ~compatible;
@@ -164,7 +163,7 @@ public partial class SimTile : Node
 	public int IndexOfInfra(SimInfraType.InfraType type) {
 
 		if(!HasInfraType(type)) return -1;
-
+		
 		return Infra.FindIndex(x => x.Type.type == type);
 	}
 
@@ -219,11 +218,5 @@ public partial class SimTile : Node
 	public int fCost() 
 	{
 		return gCost + hCost;
-	}
-	
-	// For testing
-	public void SayHi()
-	{
-		GD.Print("Hi from SimTile");
 	}
 }

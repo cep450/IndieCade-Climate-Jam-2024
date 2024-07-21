@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://m1y0lk0u5qt7"]
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=3 format=3 uid="uid://m1y0lk0u5qt7"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_1byxk"]
+[ext_resource type="Texture2D" uid="uid://br51dirvvhuem" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (6).png" id="1_j6npv"]
 
 [resource]
 script = ExtResource("1_1byxk")
@@ -15,13 +16,14 @@ connectsCenter = false
 affectsAllVertices = false
 connectionsBlockedBy = 2
 capacity = 6
-canTransfer = false
+canTransfer = 0
 maxSpeed = 2.0
 safety = 1.0
-costToBuild = 3
+costToBuild = 2
 costToDestroy = 2
-incompatibilityMask = 143
-ModelPath = "res://Resources/TileMeshes/Bikelane"
+incompatibilityMask = 3327
+ModelPath = "res://Scenes/Tiles/Bikelane"
 ModelVariantCount = 1
 ModelConnects = true
 ModelHasBase = false
+Icon = ExtResource("1_j6npv")
