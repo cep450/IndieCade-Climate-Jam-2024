@@ -34,6 +34,7 @@ enum SupportState
 }
 
 func _ready():
+	Global.set_ui(self)
 	# connections
 	$SaveButton.pressed.connect(_on_save_button_pressed)
 	$BuildButtons/BuildMenu.mouse_exited.connect(_on_mouse_exited_build)
@@ -99,6 +100,9 @@ func on_tile_clicked(x: int, y: int) -> void:
 			instance.initialize(null,x,y)
 			instance.entered.connect(_on_mouse_entered_build)
 		return
+
+func set_song_name(song_name: String):
+	$SongName.text = song_name
 
 func _on_emissions_meter_mouse_entered():
 	emissions_meter.get_node("HoverInfo").visible = true

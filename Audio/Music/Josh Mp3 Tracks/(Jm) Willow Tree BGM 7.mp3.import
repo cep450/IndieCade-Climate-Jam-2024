@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dg02vv4c0f448"
+path="res://.godot/imported/(Jm) Willow Tree BGM 7.mp3-d2ed2cb7e02213737bc687543aa26a84.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Josh Mp3 Tracks/(Jm) Willow Tree BGM 7.mp3"
+dest_files=["res://.godot/imported/(Jm) Willow Tree BGM 7.mp3-d2ed2cb7e02213737bc687543aa26a84.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
