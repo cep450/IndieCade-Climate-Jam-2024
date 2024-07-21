@@ -1,0 +1,165 @@
+[gd_scene load_steps=16 format=3 uid="uid://c2motk6ne77pn"]
+
+[ext_resource type="Script" path="res://Scripts/UI/FTE_Tutorial.gd" id="1_llqxp"]
+[ext_resource type="Texture2D" uid="uid://clss3p647dkb6" path="res://Assets/Tutorial/gameplay5.png" id="2_wrph4"]
+[ext_resource type="Texture2D" uid="uid://cr3ouppaa1cad" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_1.png" id="3_peejk"]
+[ext_resource type="Texture2D" uid="uid://cn3r6qo7kxwr" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_2.png" id="4_4idpq"]
+[ext_resource type="Texture2D" uid="uid://dtkl3j5wx63u6" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_3B.png" id="5_11vf3"]
+[ext_resource type="Texture2D" uid="uid://7jg84cj1iqfu" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_4.png" id="6_rgifv"]
+[ext_resource type="Texture2D" uid="uid://cphkbdv3bd0kw" path="res://Assets/Buttons + Elements/Icon_Build/Icon_Build_76x96.png" id="7_h05s7"]
+[ext_resource type="Texture2D" uid="uid://c04j08vfcbfbp" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_5.png" id="8_cxacj"]
+[ext_resource type="Texture2D" uid="uid://opwirvak2a5x" path="res://Assets/Buttons + Elements/Icon_Build/Icon_Build_BLANK_76x96.png" id="9_l15n1"]
+[ext_resource type="Texture2D" uid="uid://c7hdchc4x5hqi" path="res://Assets/Buttons + Elements/Meter_Happiness/HMeter_2S_76 x 76.png" id="10_tu4nm"]
+[ext_resource type="Texture2D" uid="uid://daxcm3dfrmh2k" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_6.png" id="11_03mg2"]
+[ext_resource type="Texture2D" uid="uid://bvdb3eag3wdtc" path="res://Assets/Tutorial/FTE/NewDownloads/Agent.png" id="12_3xwoc"]
+[ext_resource type="Texture2D" uid="uid://ckgdic55mv2fg" path="res://Assets/Tutorial/FTE/NewDownloads/Popup_Text_7.png" id="13_dp1cj"]
+[ext_resource type="Texture2D" uid="uid://b4wnunwifoxfr" path="res://Assets/Tutorial/FTE/NewDownloads/Tutorial-Arrow_52x32.png" id="14_xoixn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rto3x"]
+
+[node name="FTETutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_llqxp")
+metadata/_edit_use_anchors_ = true
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00356, 1.00356)
+texture = ExtResource("2_wrph4")
+expand_mode = 1
+
+[node name="pop_up1" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.248264
+anchor_top = 0.290123
+anchor_right = 0.759549
+anchor_bottom = 0.723765
+texture = ExtResource("3_peejk")
+metadata/_edit_use_anchors_ = true
+
+[node name="pop_up2" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.249132
+anchor_top = 0.257716
+anchor_right = 0.759549
+anchor_bottom = 0.765432
+texture = ExtResource("4_4idpq")
+metadata/_edit_use_anchors_ = true
+
+[node name="pop_up3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.644965
+anchor_top = 0.175926
+anchor_right = 1.11805
+anchor_bottom = 1.0571
+scale = Vector2(0.755893, 0.755893)
+texture = ExtResource("5_11vf3")
+metadata/_edit_use_anchors_ = true
+
+[node name="pop_up4" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.53125
+anchor_top = 0.262346
+anchor_right = 1.00347
+anchor_bottom = 0.757716
+texture = ExtResource("6_rgifv")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="pop_up4"]
+layout_mode = 0
+anchor_left = -0.584559
+anchor_top = 0.308411
+anchor_right = -0.444853
+anchor_bottom = 0.610592
+texture = ExtResource("7_h05s7")
+metadata/_edit_use_anchors_ = true
+
+[node name="pop_up5" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.527778
+anchor_top = 0.217593
+anchor_right = 1.00087
+anchor_bottom = 0.756173
+texture = ExtResource("8_cxacj")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="pop_up5"]
+layout_mode = 0
+anchor_left = 0.842202
+anchor_top = -0.361032
+anchor_right = 0.996565
+anchor_bottom = -0.0533709
+offset_right = -8.12775
+offset_bottom = -10.3736
+scale = Vector2(1.10694, 1.10694)
+texture = ExtResource("9_l15n1")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="pop_up5"]
+layout_mode = 0
+anchor_left = 0.862385
+anchor_top = -0.335244
+anchor_right = 0.98009
+anchor_bottom = -0.151435
+offset_right = 12.851
+offset_bottom = 12.851
+scale = Vector2(0.833104, 0.833104)
+texture = ExtResource("10_tu4nm")
+metadata/_edit_use_anchors_ = true
+
+[node name="pop_up6" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.532118
+anchor_top = 0.180556
+anchor_right = 1.00434
+anchor_bottom = 0.799383
+texture = ExtResource("11_03mg2")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="pop_up6"]
+layout_mode = 0
+offset_left = -173.0
+offset_top = 210.0
+offset_right = -93.0
+offset_bottom = 414.0
+scale = Vector2(0.594272, 0.594272)
+texture = ExtResource("12_3xwoc")
+
+[node name="pop_up7" type="TextureRect" parent="."]
+layout_mode = 0
+anchor_left = 0.53125
+anchor_top = 0.270062
+anchor_right = 1.00434
+anchor_bottom = 0.734568
+texture = ExtResource("13_dp1cj")
+metadata/_edit_use_anchors_ = true
+
+[node name="Clickable_Next_Button" type="Button" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 1022.0
+offset_top = 564.0
+offset_right = 1075.0
+offset_bottom = 597.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rto3x")
+icon = ExtResource("14_xoixn")
+
+[node name="Full_Screen_Next_Button" type="Button" parent="."]
+visibility_layer = 0
+layout_mode = 0
+offset_left = 19.0
+offset_top = 12.0
+offset_right = 27.0
+offset_bottom = 20.0
+scale = Vector2(133.907, 71.9503)

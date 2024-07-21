@@ -68,7 +68,6 @@ texture_under = ExtResource("2_asuck")
 texture_progress = ExtResource("3_5oxgu")
 texture_progress_offset = Vector2(15, 14)
 tint_under = Color(1, 1, 1, 0.745098)
-metadata/_edit_use_anchors_ = true
 
 [node name="Percentage" type="Label" parent="EmissionsMeter"]
 layout_mode = 0
@@ -81,7 +80,6 @@ theme_override_font_sizes/font_size = 50
 text = "0%"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
 
 [node name="Emissions" type="Label" parent="EmissionsMeter"]
 layout_mode = 0
@@ -92,7 +90,6 @@ offset_bottom = 104.071
 theme_override_fonts/font = ExtResource("4_16ne3")
 theme_override_font_sizes/font_size = 24
 text = "Emissions"
-metadata/_edit_use_anchors_ = true
 
 [node name="HoverInfo" type="PanelContainer" parent="EmissionsMeter"]
 layout_mode = 0
@@ -173,17 +170,14 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_goyyu")
 [node name="Play" type="Button" parent="SpeedController"]
 layout_mode = 2
 flat = true
-metadata/_edit_use_anchors_ = true
 
 [node name="Pause" type="Button" parent="SpeedController"]
 layout_mode = 2
 flat = true
-metadata/_edit_use_anchors_ = true
 
 [node name="SpeedUp" type="Button" parent="SpeedController"]
 layout_mode = 2
 flat = true
-metadata/_edit_use_anchors_ = true
 
 [node name="Image" type="TextureRect" parent="SpeedController"]
 layout_mode = 2
@@ -235,7 +229,6 @@ offset_top = 16.0
 offset_right = -2.0
 offset_bottom = 125.0
 scale = Vector2(0.80001, 0.8)
-metadata/_edit_use_anchors_ = true
 
 [node name="Image" type="TextureRect" parent="Timer"]
 layout_mode = 2
