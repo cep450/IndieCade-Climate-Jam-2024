@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bdc7cviuyir3u"
+path="res://.godot/imported/(EA) BGM 05 Clock_s Ticking (Loop).mp3-7ac3bfb657a42b03a262fd0e7cda676d.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Edoardo mp3 tracks/(EA) BGM 05 Clock_s Ticking (Loop).mp3"
+dest_files=["res://.godot/imported/(EA) BGM 05 Clock_s Ticking (Loop).mp3-7ac3bfb657a42b03a262fd0e7cda676d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
