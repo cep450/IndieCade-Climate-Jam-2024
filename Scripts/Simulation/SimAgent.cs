@@ -7,6 +7,25 @@ using System.Linq;
 public partial class SimAgent : Node
 {
 
+		// TODO generate these properly later
+	float suppFactorSafety = 1f;
+	float suppFactorDistance = -0.1f;
+	float suppFactorEmissions = -0.1f;
+									// pedestrian, car, bike
+	float [] suppFactorsTransportMode = { 0.2f, 0f, 0.1f }; //TODO define this properly later
+
+	
+	// TODO generate these properly later
+	float weightFactorSafety = -0.9f;
+	float weightFactorDistance = 1f;
+	float weightFactorEmissions = 0.5f;
+									// pedestrian, car, bike
+	float [] weightFactorsTransportMode = { 0.1f, 0.5f, 0.2f }; //TODO define this properly later
+
+	float cantTakeTransitTypeWeightMod = 10f;
+
+
+
 	public enum State {
 		AT_DESTINATION, 
 		TRAVELLING
@@ -55,6 +74,9 @@ public partial class SimAgent : Node
 	public SimAgent(float nonDriverProbability, Vector2I coordinates)
 	{
 		canDrive = GD.Randf() > nonDriverProbability;
+		if(!canDrive) {
+			weightFactorsTransportMode[(int)SimVehicleType.TransportMode.CAR] = cantTakeTransitTypeWeightMod;
+		}
 		currentCoordinates = coordinates;
 		//TODO set Vehicle to pedestrian by default, we'll need a list to get this
 		destinationType = Sim.Instance.GetTile(currentCoordinates.X, currentCoordinates.Y).DestinationType;
@@ -201,17 +223,8 @@ public partial class SimAgent : Node
 		  
 	}
 
-
-
-	// TODO generate these properly later
-	float suppFactorSafety = 1f;
-	float suppFactorDistance = -0.1f;
-	float suppFactorEmissions = -0.1f;
-									// pedestrian, car, bike
-	float [] suppFactorsTransportMode = { 0.2f, 0f, 0.1f }; //TODO define this properly later
-
 	// how much support this agent calculates from this edge 
-	float SupportGainedConnection(PathEdge edge, SimVehicleType.TransportMode mode) {
+	public float SupportGainedConnection(PathEdge edge, SimVehicleType.TransportMode mode) {
 
 		float support = 0; 
 
@@ -231,15 +244,8 @@ public partial class SimAgent : Node
 		return support;
 	}
 
-	// TODO generate these properly later
-	float weightFactorSafety = -0.9f;
-	float weightFactorDistance = 1f;
-	float weightFactorEmissions = 0.5f;
-									// pedestrian, car, bike
-	float [] weightFactorsTransportMode = { 0.1f, 0.5f, 0.2f }; //TODO define this properly later
-
 	// Calculate how much this agent weights this connection between 2 tiles.
-	float WeightConnection(PathEdge edge, SimVehicleType.TransportMode mode) {
+	public float WeightConnection(PathEdge edge, SimVehicleType.TransportMode mode) {
 
 		float cost = 0;
 
