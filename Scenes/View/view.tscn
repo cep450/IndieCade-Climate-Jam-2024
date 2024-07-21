@@ -229,11 +229,11 @@ _data = {
 "SunRotate": SubResource("Animation_yc5en")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ohh6k"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_komll"]
 albedo_color = Color(0.0468326, 0.195618, 2.40654e-08, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3jdih"]
-material = SubResource("StandardMaterial3D_ohh6k")
+material = SubResource("StandardMaterial3D_komll")
 size = Vector2(10, 10)
 
 [node name="View" type="Node3D"]
@@ -241,7 +241,6 @@ size = Vector2(10, 10)
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0.302535, 4.79208, 3.27902)
 current = true
-size = 10.0
 script = ExtResource("3_rja75")
 PAN_SPEED = 10.0
 ZOOM_SPEED = 20.0

@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmgqsdfxf1p8v"]
-
-[ext_resource type="PackedScene" uid="uid://figkeg2xvfcx" path="res://Models/Car/Car GLBs/Car_Red_Driving.glb" id="1_cxxbb"]
-
-[node name="RedcarDriving" type="Node3D"]
-
-[node name="Car_Red_Driving" parent="." instance=ExtResource("1_cxxbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0402375, 0, 0.126338)
