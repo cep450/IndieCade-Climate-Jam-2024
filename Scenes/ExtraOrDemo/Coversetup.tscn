@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bin6irbdlvj2a"]
 
-[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/updatedtiles.tres" id="1_gw3x0"]
+[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://tiles.tres" id="1_gw3x0"]
 
 [node name="Coversetup" type="Node3D"]
 

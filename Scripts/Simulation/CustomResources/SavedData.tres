@@ -1,85 +1,85 @@
-[gd_resource type="Resource" script_class="StartData" load_steps=23 format=3 uid="uid://dn10bjj8466vm"]
+[gd_resource type="Resource" script_class="StartData" load_steps=23 format=3 uid="uid://crr23ihw8s347"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/SimInfraTypeRow.cs" id="2_bnejw"]
 [ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/StartData.cs" id="3_tae6k"]
 
-[sub_resource type="Resource" id="Resource_gy41t"]
+[sub_resource type="Resource" id="Resource_ob0rq"]
 script = ExtResource("2_bnejw")
 gridData = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_xhvnn"]
+[sub_resource type="Resource" id="Resource_buskf"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_mfpdt"]
+[sub_resource type="Resource" id="Resource_f7ej5"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_s65it"]
+[sub_resource type="Resource" id="Resource_di3jn"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_smc81"]
+[sub_resource type="Resource" id="Resource_jkcmp"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_ma23q"]
+[sub_resource type="Resource" id="Resource_qmidd"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_bju7m"]
+[sub_resource type="Resource" id="Resource_sdiag"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_eggv7"]
+[sub_resource type="Resource" id="Resource_06cij"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_mky5v"]
+[sub_resource type="Resource" id="Resource_1bi03"]
 script = ExtResource("2_bnejw")
-gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0]
+gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 272, 16, 16, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_06f06"]
+[sub_resource type="Resource" id="Resource_4ix68"]
 script = ExtResource("2_bnejw")
-gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+gridData = [0, 0, 0, 0, 0, 0, 0, 0, 16, 16, 16, 0, 0, 16, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_x6ubk"]
+[sub_resource type="Resource" id="Resource_h2dh1"]
 script = ExtResource("2_bnejw")
-gridData = [0, 0, 0, 0, 0, 0, 1, 0, 16, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0]
+gridData = [0, 0, 0, 0, 0, 0, 1, 0, 16, 1, 16, 0, 3, 16, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_sv41t"]
+[sub_resource type="Resource" id="Resource_3jas1"]
 script = ExtResource("2_bnejw")
-gridData = [0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+gridData = [0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 16, 17, 16, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_oayn3"]
-script = ExtResource("2_bnejw")
-gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
-[sub_resource type="Resource" id="Resource_x1ov5"]
+[sub_resource type="Resource" id="Resource_yppbc"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_moobv"]
+[sub_resource type="Resource" id="Resource_lwl04"]
+script = ExtResource("2_bnejw")
+gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 768, 0, 512, 0, 0, 0, 0, 0, 0, 0, 0]
+
+[sub_resource type="Resource" id="Resource_ue756"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_npfyi"]
+[sub_resource type="Resource" id="Resource_7lqwj"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_r8idv"]
+[sub_resource type="Resource" id="Resource_fdoyr"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_5moks"]
+[sub_resource type="Resource" id="Resource_hpl71"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_o136n"]
+[sub_resource type="Resource" id="Resource_rbxah"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-[sub_resource type="Resource" id="Resource_xpq3q"]
+[sub_resource type="Resource" id="Resource_elt4g"]
 script = ExtResource("2_bnejw")
 gridData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
@@ -91,4 +91,4 @@ initialSupport = 100
 startingYear = 2025
 yearsUntilGameOver = 2030
 nonDriverProbability = 0.3
-gridData = [SubResource("Resource_gy41t"), SubResource("Resource_xhvnn"), SubResource("Resource_mfpdt"), SubResource("Resource_s65it"), SubResource("Resource_smc81"), SubResource("Resource_ma23q"), SubResource("Resource_bju7m"), SubResource("Resource_eggv7"), SubResource("Resource_mky5v"), SubResource("Resource_06f06"), SubResource("Resource_x6ubk"), SubResource("Resource_sv41t"), SubResource("Resource_oayn3"), SubResource("Resource_x1ov5"), SubResource("Resource_moobv"), SubResource("Resource_npfyi"), SubResource("Resource_r8idv"), SubResource("Resource_5moks"), SubResource("Resource_o136n"), SubResource("Resource_xpq3q")]
+gridData = [SubResource("Resource_ob0rq"), SubResource("Resource_buskf"), SubResource("Resource_f7ej5"), SubResource("Resource_di3jn"), SubResource("Resource_jkcmp"), SubResource("Resource_qmidd"), SubResource("Resource_sdiag"), SubResource("Resource_06cij"), SubResource("Resource_1bi03"), SubResource("Resource_4ix68"), SubResource("Resource_h2dh1"), SubResource("Resource_3jas1"), SubResource("Resource_yppbc"), SubResource("Resource_lwl04"), SubResource("Resource_ue756"), SubResource("Resource_7lqwj"), SubResource("Resource_fdoyr"), SubResource("Resource_hpl71"), SubResource("Resource_rbxah"), SubResource("Resource_elt4g")]
