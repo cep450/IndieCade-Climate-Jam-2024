@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_4jdps")
 Name = "Road"
-type = 16
+type = 12307
 visualInfra = null
 destinationType = 0
 transportModes = 2

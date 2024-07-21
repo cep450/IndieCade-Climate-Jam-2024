@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c2motk6ne77pn"]
+[gd_scene load_steps=16 format=3 uid="uid://daienj3h5qbvw"]
 
 [ext_resource type="Script" path="res://Scripts/UI/FTE_Tutorial.gd" id="1_llqxp"]
 [ext_resource type="Texture2D" uid="uid://clss3p647dkb6" path="res://Assets/Tutorial/gameplay5.png" id="2_wrph4"]

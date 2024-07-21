@@ -11,7 +11,7 @@ extends Control
 ]  
 
 @onready var next_button = $Full_Screen_Next_Button
-@onready var mainScene = preload("res://Scenes/main.tscn") as PackedScene
+var mainScene = "res://Scenes/main.tscn"
 
 var current_index = 0
 
@@ -30,6 +30,4 @@ func _update_image_visibility():
 		images[i].visible = (i == current_index)
 		
 	if current_index == -1:
-		for i in range(images.size()):
-			images[i].visible = false
-			get_tree().change_scene_to_packed(mainScene)
+		get_tree().change_scene_to_file(mainScene)

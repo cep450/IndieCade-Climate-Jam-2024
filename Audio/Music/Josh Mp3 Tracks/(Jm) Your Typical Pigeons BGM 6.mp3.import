@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b8utxlr6s5isc"
+path="res://.godot/imported/(Jm) Your Typical Pigeons BGM 6.mp3-5113f8a73560c2729d66b7fe9f6da29c.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Josh Mp3 Tracks/(Jm) Your Typical Pigeons BGM 6.mp3"
+dest_files=["res://.godot/imported/(Jm) Your Typical Pigeons BGM 6.mp3-5113f8a73560c2729d66b7fe9f6da29c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhixs3wudgjvb"]
+
+[ext_resource type="Script" path="res://Scripts/global.gd" id="1_0sv2k"]
+[ext_resource type="AudioStream" uid="uid://bqlpf5k5qef3y" path="res://Audio/Music/(EA) BGM 02 Mr. Wilkinson (Loop).wav" id="2_t3gqe"]
+[ext_resource type="Script" path="res://Scripts/audio.gd" id="3_rbah5"]
+
+[sub_resource type="Resource" id="Resource_82p1v"]
+script = ExtResource("3_rbah5")
+sound_name = "Wilkons"
+audio_stream = ExtResource("2_t3gqe")
+is_music = true
+
+[node name="Global" type="Node"]
+script = ExtResource("1_0sv2k")
+inDevMode = true
+audio_files = Array[ExtResource("3_rbah5")]([SubResource("Resource_82p1v")])
