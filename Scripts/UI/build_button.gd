@@ -4,7 +4,7 @@ extends Button
 signal entered
 
 # Private
-var type: SimInfraType
+var type
 var is_build: bool 
 var bypass_restrictions: bool
 
