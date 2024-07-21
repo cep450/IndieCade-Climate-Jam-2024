@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 
 public partial class SimAgent : Node
@@ -146,6 +147,9 @@ public partial class SimAgent : Node
 				ChooseNewDestinationType();
 				GD.Print("dest type " + destinationType.ToString() + " currentv " + currentV.PathGraphCoordinates.ToString());
 				currentPath = pathfinder.FindPath(currentV, destinationType, this); 
+				if(currentPath == null) {
+					return;
+				}
 				Vehicle = new SimVehicle(currentPath.pathVehicleType); //TODO CHANGE THIS THIS IS VERY BAD
 				Vehicle.IsInUse = true;
 				visualAgent.Call("Set_Vehicle", currentPath.pathVehicleType.ModelPath); //change visual model
@@ -188,10 +192,18 @@ public partial class SimAgent : Node
 		state = State.AT_DESTINATION;
 		Vehicle.IsInUse = false;
 
-		PathVertex lastVert = currentPath.vertices[currentPath.vertices.Count - 1];
-		currentVertexCoords = lastVert.PathGraphCoordinates;
-		currentTileCoords = new Vector2I((int)PathfindingGraph.VertexToTileCoord(lastVert.PathGraphCoordinates.X), (int)PathfindingGraph.VertexToTileCoord(lastVert.PathGraphCoordinates.Y));
-
+		PathVertex lastVert = null;
+		if(currentPath.vertices.Count > 1) {
+			lastVert = currentPath.vertices[currentPath.vertices.Count - 1];
+		} else if(currentPath.vertices.Count > 0 ){
+			lastVert = currentPath.vertices[0];
+		}
+		
+		if(lastVert != null ){
+			currentVertexCoords = lastVert.PathGraphCoordinates;
+			currentTileCoords = new Vector2I((int)PathfindingGraph.VertexToTileCoord(lastVert.PathGraphCoordinates.X), (int)PathfindingGraph.VertexToTileCoord(lastVert.PathGraphCoordinates.Y));
+		}
+		
 		//generate support based on the route 
 		Sim.Instance.SupportPool.AddSupport(currentPath.totalSupport);
 
@@ -255,7 +267,15 @@ public partial class SimAgent : Node
 		support += edge.Safety * suppFactorSafety;
 		support += edge.Distance * suppFactorDistance;
 		support += SimVehicleType.TypeFromEnum(mode).Emissions * suppFactorEmissions;
-		support += suppFactorsTransportMode[(int)mode];
+		
+				//TODO non bullshit way 
+		if(mode == SimVehicleType.TransportMode.PEDESTRIAN) {
+			support += suppFactorsTransportMode[0];
+		} else if(mode == SimVehicleType.TransportMode.CAR) {
+			support += suppFactorsTransportMode[1];
+		} else if(mode == SimVehicleType.TransportMode.BIKE) {
+			support += suppFactorsTransportMode[2];
+		}
 
 		//TODO consider the max speed of [whatever's smaller: the current vehicle or the infrastructure for that vehicle]
 		// really: consdier time 
@@ -276,7 +296,16 @@ public partial class SimAgent : Node
 		cost += edge.Safety * weightFactorSafety;
 		cost += edge.Distance * weightFactorDistance;
 		cost += SimVehicleType.TypeFromEnum(mode).Emissions * weightFactorEmissions;
-		cost += weightFactorsTransportMode[(int)mode];
+
+		//TODO non bullshit way 
+		if(mode == SimVehicleType.TransportMode.PEDESTRIAN) {
+			cost += weightFactorsTransportMode[0];
+		} else if(mode == SimVehicleType.TransportMode.CAR) {
+			cost += weightFactorsTransportMode[1];
+		} else if(mode == SimVehicleType.TransportMode.BIKE) {
+			cost += weightFactorsTransportMode[2];
+		}
+		
 
 		//TODO consider the max speed of [whatever's smaller: the current vehicle or the infrastructure for that vehicle]
 		// really: consider time 

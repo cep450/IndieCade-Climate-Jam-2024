@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.Serialization;
 
 public partial class Pathfinding : Node
 {
@@ -44,11 +45,12 @@ public partial class Pathfinding : Node
 		SimPath path = null; 
 		foreach(SimVehicleType.TransportMode mode in Enum.GetValues<SimVehicleType.TransportMode>()) {
 			SimPath newPath = FindPath(startVert, destinationType, agent, mode);
-			GD.Print(" path was " + (newPath == null));
+			if(newPath == null) continue;
 			if(path == null || newPath.totalWeight < path.totalWeight) {
 				path = newPath;
 			}
 		}
+		if(path == null) GD.Print("no path found to " + destinationType + " from " + startVert.PathGraphCoordinates.ToString());
 		return path;
 	}
 
@@ -168,8 +170,16 @@ public partial class Pathfinding : Node
 		path.vertices.Reverse();
 		path.edges.Reverse();
 
-		path.pathVehicleType = SimVehicleType.TypeFromEnum(SimVehicleType.TransportMode.CAR);
-		path.totalSupport += agent.suppLumpSumTransportMode[(int)mode];
+		path.pathVehicleType = SimVehicleType.TypeFromEnum(mode);
+
+		//TODO non bullshit way 
+		if(mode == SimVehicleType.TransportMode.PEDESTRIAN) {
+			path.totalSupport += agent.suppLumpSumTransportMode[0];
+		} else if(mode == SimVehicleType.TransportMode.CAR) {
+			path.totalSupport += agent.suppLumpSumTransportMode[1];
+		} else if(mode == SimVehicleType.TransportMode.BIKE) {
+			path.totalSupport += agent.suppLumpSumTransportMode[2];
+		}
 
 		return path;
 	}

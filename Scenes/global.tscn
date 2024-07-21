@@ -89,5 +89,4 @@ is_music = true
 
 [node name="Global" type="Node"]
 script = ExtResource("1_0sv2k")
-inDevMode = true
 audio_files = Array[ExtResource("3_rbah5")]([SubResource("Resource_1btx3"), SubResource("Resource_5rmt4"), SubResource("Resource_7w7yl"), SubResource("Resource_dm1d3"), SubResource("Resource_gbf1y"), SubResource("Resource_xeqc3"), SubResource("Resource_cpsyk"), SubResource("Resource_tf0ma"), SubResource("Resource_ofp2s"), SubResource("Resource_n2kse"), SubResource("Resource_qik16"), SubResource("Resource_hngt0")])
