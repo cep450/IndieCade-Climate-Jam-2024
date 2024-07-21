@@ -84,11 +84,8 @@ func on_tile_clicked(x: int, y: int) -> void:
 			instance.initialize(load("res://Resources/InfraTypes/road.tres"), x, y)
 		return
 
-
-
-
 func _on_emissions_meter_mouse_entered():
 	emissions_meter.get_node("HoverInfo").visible = true
 
 func _on_emissions_meter_mouse_exited():
-	emissions_meter.get_node("HoverInfo").visible = false
+	emissions_meter.get_node("HoverInfo").visible = falses

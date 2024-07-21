@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv666v0i7ufn"
-path="res://.godot/imported/Time Control Menu - FF - Icons.png-a2f9abe58bf4feed5665d08d8d42e882.ctex"
+uid="uid://bkqc4jqrf5lho"
+path="res://.godot/imported/Time Control Menu - Pause - Icons.png-e8260f9db677c6229a059d6328c7428b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Gameplay/Menu/Time Control Menu - FF - Icons.png"
-dest_files=["res://.godot/imported/Time Control Menu - FF - Icons.png-a2f9abe58bf4feed5665d08d8d42e882.ctex"]
+source_file="res://Assets/Gameplay/Menu/TimeControl/Time Control Menu - Pause - Icons.png"
+dest_files=["res://.godot/imported/Time Control Menu - Pause - Icons.png-e8260f9db677c6229a059d6328c7428b.ctex"]
 
 [params]
 
