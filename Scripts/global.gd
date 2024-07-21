@@ -1,7 +1,7 @@
 extends Node
 
 @onready var sim: Node = $"../Main/Simulation"
-@onready var ui: Control = $"../Main/UI"
+var ui: Control
 @export var inDevMode: bool = false
 @export var audio_files: Array[Audio]
 	
@@ -58,6 +58,10 @@ func _input(event):
 					incriment_music_index()
 					play(music_tracks[music_index])
 						
+func set_ui(ui_node: Control):
+	ui = ui_node
+	ui.set_song_name(music_tracks[music_index])
+
 # Helpers
 func incriment_music_index():
 	music_index = (music_index + 1) % music_tracks.size()
