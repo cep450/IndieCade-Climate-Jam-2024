@@ -49,7 +49,7 @@ build_buttons = NodePath("Build/BuildMenu")
 speed_controller_images = Array[Texture2D]([ExtResource("6_iw8eh"), ExtResource("5_ddpla"), ExtResource("16_1f6rw")])
 support_meter_images = Array[Texture2D]([ExtResource("12_ip4wc"), ExtResource("6_msbju"), ExtResource("7_m7yaf")])
 metadata/_edit_horizontal_guides_ = [631.0, 16.0]
-metadata/_edit_vertical_guides_ = [16.0, 1136.0, 130.0]
+metadata/_edit_vertical_guides_ = [16.0, 1136.0]
 
 [node name="EmissionsMeter" type="TextureProgressBar" parent="."]
 layout_mode = 1
@@ -156,13 +156,14 @@ layout_mode = 2
 texture = ExtResource("5_ddpla")
 
 [node name="SaveButton" type="Button" parent="."]
-visible = false
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Save
-
-"
+offset_left = 9.0
+offset_top = 16.0
+offset_right = 153.0
+offset_bottom = 57.0
+theme_override_fonts/font = ExtResource("4_16ne3")
+theme_override_font_sizes/font_size = 24
+text = "Save"
 
 [node name="SupportMeter" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -214,3 +215,4 @@ horizontal_alignment = 1
 
 [connection signal="mouse_entered" from="EmissionsMeter" to="." method="_on_emissions_meter_mouse_entered"]
 [connection signal="mouse_exited" from="EmissionsMeter" to="." method="_on_emissions_meter_mouse_exited"]
+[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]

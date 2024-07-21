@@ -38,8 +38,11 @@ enum SupportState
 
 func _ready():
 	speed = SpeedState.PLAY
+	
+	# Set proper components to visible or not.
 	build_buttons.get_parent().visible = false
 	emissions_meter.get_node("HoverInfo").visible = false
+	$SaveButton.visible = Global.inDevMode
 	speed_controller.get_node("Image").texture = speed_controller_images[speed]
 	emissions_meter.max_value = sim_emissions_meter.GetEmissionsCap()
 	world.tile_clicked.connect(on_tile_clicked)

@@ -57,7 +57,6 @@ public partial class SimGrid : Node
 			for (int y = 0; y < height; y++)
 			{
 				//create a world tile and a SimTile and associate them with each other 
-				
 				Vector2I coordinates = new Vector2I(x, y);
 				Vector2 position = new Vector2(GridToWorldPos(width, x) * TILE_WORLD_SCALE, GridToWorldPos(height, y) * TILE_WORLD_SCALE);
 
@@ -79,6 +78,7 @@ public partial class SimGrid : Node
 				grid[x,y].VisualTile.Call("update_visuals");
 			}
 		}
+		GD.Print("Data Loaded");
 		/*
 		SaveGridAsResource();*/
 		//var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/SavedData.tres");
@@ -126,7 +126,7 @@ public partial class SimGrid : Node
 	
 	public void SaveGridAsResource() 
 	{
-		var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/StartData.tres");
+		var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/SavedData.tres");
 		startData.gridData = new SimInfraTypeRow[width];
 		for (int x = 0; x < width; x++)
 		{
@@ -139,7 +139,7 @@ public partial class SimGrid : Node
 			startData.gridData[x] = currentInfraRow;
 		}
 		ResourceSaver.Save(startData, "res://Scripts/Simulation/CustomResources/SavedData.tres");
-		
+		GD.Print("Data Saved");
 	}
 	
 	public PathVersion GetVersion(Vector2I currentTile, SimInfraType targetType)

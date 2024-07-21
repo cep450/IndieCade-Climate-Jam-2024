@@ -56,7 +56,7 @@ public partial class Sim : Node
 	public override void _Ready()
 	{
 		Instance = this;
-		Instance.startData = (StartData)ResourceLoader.Load("res://Resources/Maps/inspectortest.tres");
+		Instance.startData = (StartData)ResourceLoader.Load("res://Scripts/Simulation/CustomResources/SavedData.tres");
 		grid = GetNode<SimGrid>("SimGrid");
 		EmissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
 		SupportPool = GetNode<SimSupportPool>("SimSupportPool");
