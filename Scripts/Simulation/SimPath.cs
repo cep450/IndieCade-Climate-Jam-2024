@@ -19,6 +19,9 @@ public partial class SimPath : Node
 	public float time;
 	public float emissions;
 
+	//what kind of vehicle is being used on this path
+	public SimVehicleType pathVehicleType;
+
 }
 
 

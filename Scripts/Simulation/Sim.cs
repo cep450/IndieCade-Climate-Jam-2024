@@ -90,7 +90,7 @@ public partial class Sim : Node
 	// Enforce execution order. 
 	// The clock calls this when the game is running. 
 	public void SimulationTick() {
-
+		GD.Print("Sim Tick!");
 		foreach (var agent in agents)
 		{
 			agent.Tick();
@@ -151,6 +151,7 @@ public partial class Sim : Node
 			SimAgent agent = new SimAgent(startData.nonDriverProbability, position); //TODO get chance to not have a car from level data 
 			agents.Add(agent);
 			AddChild(agent);
+			agent.CreateVisualVersion();
 		}
 	}
 
