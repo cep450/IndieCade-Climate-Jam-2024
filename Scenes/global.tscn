@@ -1,7 +1,93 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhixs3wudgjvb"]
+[gd_scene load_steps=27 format=3 uid="uid://bhixs3wudgjvb"]
 
 [ext_resource type="Script" path="res://Scripts/global.gd" id="1_0sv2k"]
+[ext_resource type="Script" path="res://Scripts/audio.gd" id="3_rbah5"]
+[ext_resource type="AudioStream" uid="uid://b1oc1dtalsxqe" path="res://Audio/SFX/Bloop.wav" id="4_ony7c"]
+[ext_resource type="AudioStream" uid="uid://ctdr8npy5n3sm" path="res://Audio/Music/Josh Mp3 Tracks/(Jm) Lighthearted BGM Track 1.mp3" id="5_rqfn3"]
+[ext_resource type="AudioStream" uid="uid://gkaenxal4gv5" path="res://Audio/Music/Edoardo mp3 tracks/Edoardo Ardizzone - Clock_s Ticking.mp3" id="5_ujel6"]
+[ext_resource type="AudioStream" uid="uid://dswe3mbrw65jl" path="res://Audio/Music/Josh Mp3 Tracks/(Jm) Polished Footprints BGM Track 04.mp3" id="6_fq373"]
+[ext_resource type="AudioStream" uid="uid://bfmfy56pgutlw" path="res://Audio/Music/Josh Mp3 Tracks/(Jm) Safe Water BGM Track 8.mp3" id="7_cmam3"]
+[ext_resource type="AudioStream" uid="uid://dtl4mybd7kb7e" path="res://Audio/Music/Josh Mp3 Tracks/(Jm) Waltz of the Ducks BGM 5.mp3" id="8_8q7nd"]
+[ext_resource type="AudioStream" uid="uid://dg02vv4c0f448" path="res://Audio/Music/Josh Mp3 Tracks/(Jm) Willow Tree BGM 7.mp3" id="9_uykj3"]
+[ext_resource type="AudioStream" uid="uid://b8utxlr6s5isc" path="res://Audio/Music/Josh Mp3 Tracks/(Jm) Your Typical Pigeons BGM 6.mp3" id="10_ikrbn"]
+[ext_resource type="AudioStream" uid="uid://bgo3yf25xtumg" path="res://Audio/Music/Edoardo mp3 tracks/Edoardo Ardizzone - Goodmorning!.mp3" id="11_4lw7g"]
+[ext_resource type="AudioStream" uid="uid://ctdogrrlcr65a" path="res://Audio/Music/Edoardo mp3 tracks/Edoardo Ardizzone - Green New Engines.mp3" id="12_j4lhj"]
+[ext_resource type="AudioStream" uid="uid://gkuqd3v77p1t" path="res://Audio/Music/Edoardo mp3 tracks/Edoardo Ardizzone - Lovely Spring.mp3" id="13_7alox"]
+[ext_resource type="AudioStream" uid="uid://cqwfl5iys8ksf" path="res://Audio/Music/Edoardo mp3 tracks/Edoardo Ardizzone - Mr. Wilkinson.mp3" id="14_jhpoo"]
+
+[sub_resource type="Resource" id="Resource_1btx3"]
+script = ExtResource("3_rbah5")
+sound_name = "Bloop"
+audio_stream = ExtResource("4_ony7c")
+is_music = false
+
+[sub_resource type="Resource" id="Resource_5rmt4"]
+script = ExtResource("3_rbah5")
+sound_name = "Waltz of the Ducks - Joshua Miller"
+audio_stream = ExtResource("8_8q7nd")
+is_music = true
+
+[sub_resource type="Resource" id="Resource_7w7yl"]
+script = ExtResource("3_rbah5")
+sound_name = "Green New Engines  - Edoardo Ardizzone"
+audio_stream = ExtResource("12_j4lhj")
+is_music = true
+
+[sub_resource type="Resource" id="Resource_dm1d3"]
+script = ExtResource("3_rbah5")
+sound_name = "Lighthearted - Joshua Miller"
+audio_stream = ExtResource("5_rqfn3")
+is_music = true
+
+[sub_resource type="Resource" id="Resource_gbf1y"]
+script = ExtResource("3_rbah5")
+sound_name = "Clocks Ticking - Edoardo Ardizzone"
+audio_stream = ExtResource("5_ujel6")
+is_music = true
+
+[sub_resource type="Resource" id="Resource_xeqc3"]
+script = ExtResource("3_rbah5")
+sound_name = "Polished Footprints - Joshua Miller"
+audio_stream = ExtResource("6_fq373")
+is_music = true
+
+[sub_resource type="Resource" id="Resource_cpsyk"]
+script = ExtResource("3_rbah5")
+sound_name = "Safe Water - Joshua Miller"
+audio_stream = ExtResource("7_cmam3")
+is_music = true
+
+[sub_resource type="Resource" id="Resource_tf0ma"]
+script = ExtResource("3_rbah5")
+sound_name = "Willow Tree - Joshua Miller"
+audio_stream = ExtResource("9_uykj3")
+is_music = true
+
+[sub_resource type="Resource" id="Resource_ofp2s"]
+script = ExtResource("3_rbah5")
+sound_name = "Your Typical Pigeons - Joshua Miller"
+audio_stream = ExtResource("10_ikrbn")
+is_music = true
+
+[sub_resource type="Resource" id="Resource_n2kse"]
+script = ExtResource("3_rbah5")
+sound_name = "Goodmorning! - Edoardo Ardizzone"
+audio_stream = ExtResource("11_4lw7g")
+is_music = true
+
+[sub_resource type="Resource" id="Resource_qik16"]
+script = ExtResource("3_rbah5")
+sound_name = "Lovely Spring - Edoardo Ardizzone"
+audio_stream = ExtResource("13_7alox")
+is_music = true
+
+[sub_resource type="Resource" id="Resource_hngt0"]
+script = ExtResource("3_rbah5")
+sound_name = "Mr. Wilkinson - Edoardo Ardizzone"
+audio_stream = ExtResource("14_jhpoo")
+is_music = true
 
 [node name="Global" type="Node"]
 script = ExtResource("1_0sv2k")
 inDevMode = true
+audio_files = Array[ExtResource("3_rbah5")]([SubResource("Resource_1btx3"), SubResource("Resource_5rmt4"), SubResource("Resource_7w7yl"), SubResource("Resource_dm1d3"), SubResource("Resource_gbf1y"), SubResource("Resource_xeqc3"), SubResource("Resource_cpsyk"), SubResource("Resource_tf0ma"), SubResource("Resource_ofp2s"), SubResource("Resource_n2kse"), SubResource("Resource_qik16"), SubResource("Resource_hngt0")])
