@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvsp00awex2ug"]
+[gd_scene load_steps=3 format=3 uid="uid://bk506vfylvtuw"]
 
 [ext_resource type="Script" path="res://Scripts/View/visual_agent.gd" id="1_ub48b"]
-[ext_resource type="PackedScene" uid="uid://chclfvnxi78ke" path="res://Models/Car/car_red_driving.tscn" id="2_gdag4"]
+[ext_resource type="PackedScene" uid="uid://cykbho4jhtxj2" path="res://Models/Car/car_red_driving.tscn" id="2_gdag4"]
 
 [node name="VisualAgent" type="Node3D"]
 script = ExtResource("1_ub48b")

@@ -34,15 +34,16 @@ enum SupportState
 }
 
 func _ready():
-	speed = SpeedState.PLAY
+	# connections
+	$SaveButton.pressed.connect(_on_save_button_pressed)
+	$BuildButtons/BuildMenu.mouse_exited.connect(_on_mouse_exited_build)
+	world.tile_clicked.connect(on_tile_clicked)
 	# Manage visibility
 	$BuildInfo.visible = false
 	$BuildButtons.visible = false
 	emissions_meter.get_node("HoverInfo").visible = false
 	$SaveButton.visible = Global.inDevMode
 	emissions_meter.max_value = sim_emissions_meter.GetEmissionsCap()
-	world.tile_clicked.connect(on_tile_clicked)
-	$BuildButtons/BuildMenu.mouse_exited.connect(_on_mouse_exited)
 		
 func _process(_delta):
 	# Update Emissions Meter
@@ -89,7 +90,6 @@ func on_tile_clicked(x: int, y: int) -> void:
 		build_buttons.add_child(instance)
 		instance.initialize(null,x,y)
 		instance.entered.connect(_on_mouse_entered_build)
-		
 		return
 
 func _on_emissions_meter_mouse_entered():
@@ -104,8 +104,11 @@ func _on_mouse_entered_build(text: String):
 	$BuildInfo.size.x = $BuildButtons.size.x
 	$BuildInfo.position.x = $BuildButtons.position.x
 
-func _on_mouse_exited():
+func _on_mouse_exited_build():
 	$BuildInfo.visible = false
 	
 func _on_save_button_pressed():
 	sim.get_node("SimGrid").SaveGridAsResource()
+
+
+

@@ -245,4 +245,3 @@ horizontal_alignment = 1
 
 [connection signal="mouse_entered" from="EmissionsMeter" to="." method="_on_emissions_meter_mouse_entered"]
 [connection signal="mouse_exited" from="EmissionsMeter" to="." method="_on_emissions_meter_mouse_exited"]
-[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]

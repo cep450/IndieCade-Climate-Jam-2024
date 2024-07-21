@@ -30,14 +30,14 @@ func initialize_as_remove_button():
 #just adds houses for now
 func _on_pressed():
 	if (is_build):
-		var error = sim.GetTile(x,y).AddInfra(type, bypass_restrictions, true, true)
+		var error = sim.GetTile(x,y).AddInfra(type,bypass_restrictions, true, true)
 		if error != "":
 			entered.emit(error)
 	else:
 		# Clear all infra
 		print(str(x) + " , " + str(y))
 		for t in sim.GetInfra(x,y):
-			sim.GetTile(x,y).RemoveInfra(t,false,true,true);
+			sim.GetTile(x,y).RemoveInfra(t,bypass_restrictions,true,true);
 		
 func _on_mouse_entered():
 	var return_val
