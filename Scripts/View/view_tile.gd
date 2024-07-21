@@ -63,6 +63,7 @@ func update_visuals(repeated: bool = false):
 			if type.ModelConnects:
 				model_connects = true
 			if !type.ModelPath.is_empty():
+				print(type.Name)
 				# Note that 'get_version() also rotates as needed.
 				var full_path = type.ModelPath + get_variant(type) + get_version(type) + ".tscn"
 				var model = load(full_path)

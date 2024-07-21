@@ -42,10 +42,11 @@ func _on_pressed():
 			if sim.GetTile(x,y).AddInfra(trees_res,bypass_restrictions, true, true) == "":
 				# If you can add the grass tile as well
 				sim.GetTile(x,y).AddInfra(grass_res,true, true, true)
-			
-		var error = sim.GetTile(x,y).AddInfra(type,bypass_restrictions, true, true)
-		if error != "":
-			entered.emit(error)
+		else: 
+			print("build " + type.Name)
+			var error = sim.GetTile(x,y).AddInfra(type,bypass_restrictions, true, true)
+			if error != "":
+				entered.emit(error)
 	else:
 		clear_infra()
 		

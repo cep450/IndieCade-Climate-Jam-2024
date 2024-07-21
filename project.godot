@@ -21,6 +21,11 @@ config/icon="res://icon.svg"
 
 Global="*res://Scenes/global.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
+
 [dotnet]
 
 project/assembly_name="ClimateGame"
