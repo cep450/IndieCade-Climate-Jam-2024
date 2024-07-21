@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.Serialization;
 
@@ -10,14 +11,6 @@ public partial class Pathfinding : Node
 	/*
 		Create a SimPath to give to a SimAgent.
 	*/
-/*
-	SimGrid grid;
-
-	public override void _Ready() 
-	{
-		grid = GetNode<SimGrid>("SimGrid");
-	}
-*/
 
 	public bool initialized = false;
 	float [,] weights;
@@ -60,8 +53,6 @@ public partial class Pathfinding : Node
 	{
 		if(!initialized) Init();
 
-		//GD.Print("called FindPath");
-
 		// Run Dijkstra's until we land on a vert of the specified destination type. Then, return that path.
 
 		// set up default values 
@@ -82,7 +73,7 @@ public partial class Pathfinding : Node
 		bool foundDestination = false;
 		while(openSet.Count > 0 && !foundDestination) {
 
-			GD.Print(" open set size " + openSet.Count);
+			//GD.Print(" open set size " + openSet.Count);
 
 			// pick min weight next vertex from the set of verts not yet processed 
 			PathVertex v = openSet[0];
@@ -128,7 +119,7 @@ public partial class Pathfinding : Node
 					parents[otherX, otherY] = v;
 					parentEdges[otherX, otherY] = edge;
 
-					if(visited[other.PathGraphCoordinates.X, other.PathGraphCoordinates.Y] != true) {
+					if(visited[otherX, otherY] != true && !openSet.Contains(other)) {
 						openSet.Add(other);
 					}
 				}

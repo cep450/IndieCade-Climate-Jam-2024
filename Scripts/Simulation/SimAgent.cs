@@ -10,6 +10,8 @@ public partial class SimAgent : Node
 
 	bool DEBUG = false;
 
+	float agentVerticalPos = 0.22f;
+
 		// TODO generate these properly later
 	float suppFactorSafety = 1f;
 	float suppFactorDistance = -0.1f;
@@ -72,6 +74,7 @@ public partial class SimAgent : Node
 	private int pointInList;
 	private SimGrid simGrid;
 	Pathfinding pathfinder;
+	int pathIndex = 0;
 
 
 	//TODO should we instantiate these in a different way? or is visual agent the node instance?
@@ -154,6 +157,7 @@ public partial class SimAgent : Node
 				Vehicle.IsInUse = true;
 				visualAgent.Call("Set_Vehicle", currentPath.pathVehicleType.ModelPath); //change visual model
 				timer = 0;
+				pathIndex = 0;
 				state = State.TRAVELLING;
 				visualAgent.Call("Set_Visible", true);
 			} else 
@@ -164,10 +168,11 @@ public partial class SimAgent : Node
 
 		} else if(state == State.TRAVELLING) {
 
+			//TODO factor in travel time, but for now, just 1 tick per tile 
+
 			if (currentPosition == targetPosition) //might need to compare x/y properties instead
 			{
 				Arrived();
-
 			} else 
 			{
 				PathVertex currentStartVertex = currentPath.vertices[pointInList];
@@ -175,7 +180,7 @@ public partial class SimAgent : Node
 				if (MoveToNextVertex(currentStartVertex,currentDestVertex))
 				{
 					pointInList++; //remove vertex already visited, then next vertex will be the start
-
+					pathIndex++;
 				}
 				Vehicle?.Tick(); //add emissions
 
@@ -244,6 +249,13 @@ public partial class SimAgent : Node
 
 	// Move to the next vertex on the path, returns true if successful
 	bool MoveToNextVertex(PathVertex currentVertex, PathVertex nextVertex) {
+
+		visualAgent.Call("Set_Pos", new Vector3(nextVertex.WorldPosition.X, agentVerticalPos, nextVertex.WorldPosition.Y));
+		GD.Print($"Moving from: {currentVertex.WorldPosition} to: {nextVertex.WorldPosition}");
+		return true;
+
+		// not worrying about occupancy for now 
+		/*
 		if (!nextVertex.TryAddOccupancy(currentPath.pathVehicleType.Mode))
 		{
 			currentVertex.TryRemoveOccupancy(currentPath.pathVehicleType.Mode); //Remove occupancy from previous
@@ -255,7 +267,7 @@ public partial class SimAgent : Node
 		} else
 		{
 			return false;
-		}
+		}*/
 		  
 	}
 
