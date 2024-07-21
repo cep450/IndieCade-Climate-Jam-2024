@@ -6,8 +6,8 @@ var x: int
 var y: int
 
 # Block Scenes
-var base = preload("res://Scenes/Tiles/base.tscn")
-var grass = preload("res://Scenes/Tiles/Grass.tscn")
+var base = preload("res://Scenes/Tiles/Base.tscn")
+var blank = preload("res://Scenes/Tiles/Blank.tscn")
 var road_resource: SimInfraType = preload("res://Resources/InfraTypes/road.tres")
 
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")
@@ -51,19 +51,15 @@ func update_visuals(repeated: bool = false):
 	# Generate new children
 	var infra = sim.GetInfra(x,y)
 	var instance
-	var needs_grass = true
 	model_connects = false
-	if infra.is_empty():
-		instance = grass.instantiate()
+	if infra.is_empty() && Global.inDevMode:
+		instance = blank.instantiate()
 		add_child(instance)
 	else:
 		for type in infra:
 			if type.ModelHasBase:
 				instance = base.instantiate()
 				add_child(instance)
-				needs_grass = false
-			elif type.Name == "Road":
-				needs_grass = false
 			if type.ModelConnects:
 				model_connects = true
 			if !type.ModelPath.is_empty():
@@ -76,9 +72,6 @@ func update_visuals(repeated: bool = false):
 					get_parent().update_neighbors(Vector2i(x,y))
 			else: 
 				print("path not given")	
-		if needs_grass:
-			instance = grass.instantiate()
-			add_child(instance)
 		
 func get_variant(type) -> String:
 	if type.ModelVariantCount < 2:
