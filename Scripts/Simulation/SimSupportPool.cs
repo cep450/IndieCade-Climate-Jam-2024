@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.InteropServices;
 
 public partial class SimSupportPool : Node
 {
@@ -32,6 +33,11 @@ public partial class SimSupportPool : Node
 	//if we ever want to set/get the raw value
 	public void SetSupport(int amount) {
 		Support = amount;
+	}
+
+	public void AddSupport(float amount) {
+		int iamount = (int)amount;
+		Support += iamount;
 	}
 
 }

@@ -7,12 +7,15 @@ using System.Linq;
 public partial class SimAgent : Node
 {
 
+	bool DEBUG = true;
+
 		// TODO generate these properly later
 	float suppFactorSafety = 1f;
 	float suppFactorDistance = -0.1f;
 	float suppFactorEmissions = -0.1f;
 									// pedestrian, car, bike
 	float [] suppFactorsTransportMode = { 0.2f, 0f, 0.1f }; //TODO define this properly later
+	public float [] suppLumpSumTransportMode = { 1f, 0f, 1f }; //TODO define this properly later
 
 	
 	// TODO generate these properly later
@@ -53,7 +56,7 @@ public partial class SimAgent : Node
 	public Vector2 currentPosition;
 	public Vector2 targetPosition;
 
-	// coordinate position on grid for moving destination to destination 
+	// coordinate position on VERTEX GRAPH for moving destination to destination 
 	public Vector2I currentCoordinates;
 	public Vector2I targetCoordinates;
 
@@ -77,7 +80,10 @@ public partial class SimAgent : Node
 		if(!canDrive) {
 			weightFactorsTransportMode[(int)SimVehicleType.TransportMode.CAR] = cantTakeTransitTypeWeightMod;
 		}
-		currentCoordinates = coordinates;
+
+		// tile coords to vertex coords 
+		currentCoordinates = new Vector2I(PathfindingGraph.TileToVertexCoord(coordinates.X), PathfindingGraph.TileToVertexCoord(coordinates.Y));
+
 		//TODO set Vehicle to pedestrian by default, we'll need a list to get this
 		destinationType = Sim.Instance.GetTile(currentCoordinates.X, currentCoordinates.Y).DestinationType;
 		state = State.AT_DESTINATION;
@@ -95,6 +101,9 @@ public partial class SimAgent : Node
 	public override void _Ready()
 	{
 		base._Ready();
+		simGrid = GetNode<SimGrid>("..//SimGrid");
+
+		if(DEBUG) {
 		//DEBUG & TESTING:
 		SimPath simPath = new SimPath();
 		simPath.vertices = new List<PathVertex>(); 
@@ -109,7 +118,8 @@ public partial class SimAgent : Node
 		targetPosition = new Vector2(2,9);
 
 		currentPath = simPath;
-		simGrid = GetNode<SimGrid>("..//SimGrid");
+		}
+		
 	}
 
 	// every game tick. update position smoothly
@@ -125,10 +135,12 @@ public partial class SimAgent : Node
 			if (timer > ticksToWait) 
 			{
 				GD.Print("Timer Completed!");
-				//ChooseNewDestinationType();
-				//SetRandomTarget(); //Choose target
-				//currentPath = Add pathfinding call here
-				//visualAgent.Call("Set_Vehicle", currentPath.pathVehicleType.ModelPath); //change visual model
+				PathVertex currentV = Sim.Instance.PathGraph.GetVertex(currentCoordinates);
+				ChooseNewDestinationType();
+				currentPath = pathfinder.FindPath(currentV, destinationType, this); 
+				Vehicle = new SimVehicle(currentPath.pathVehicleType); //TODO CHANGE THIS THIS IS VERY BAD
+				Vehicle.IsInUse = true;
+				visualAgent.Call("Set_Vehicle", currentPath.pathVehicleType.ModelPath); //change visual model
 				timer = 0;
 				state = State.TRAVELLING;
 				visualAgent.Call("Set_Visible", true);
@@ -154,6 +166,9 @@ public partial class SimAgent : Node
 
 				}
 				Vehicle?.Tick(); //add emissions
+
+				//TODO do this if successful 
+				currentCoordinates = currentStartVertex.PathGraphCoordinates;
 			}
 		}
 	}
@@ -162,16 +177,11 @@ public partial class SimAgent : Node
 
 		GD.Print("ARRIVED!");
 		state = State.AT_DESTINATION;
+		Vehicle.IsInUse = false;
 
-		//TODO generate support based on the route 
+		//generate support based on the route 
+		Sim.Instance.SupportPool.AddSupport(currentPath.totalSupport);
 
-	}
-
-	//TODO we'll be replacing this with ChooseTarget()
-	private void SetRandomTarget()
-	{
-		targetPosition = new Vector2(GD.RandRange(0, Sim.Instance.grid.Width), GD.RandRange(0, Sim.Instance.grid.Height));
-		//Vehicle.SetTarget(targetPosition);
 	}
 
 	// choose a destination type that's not the current type and not NOT_DESTINATION 
@@ -189,6 +199,7 @@ public partial class SimAgent : Node
 		destinationType = (SimInfraType.DestinationType)newTypeInt;
 	}
 
+/*
 	// choose the destination of the chosen destination type to pathfind to 
 	// Find the least weighted path to a tile of the destination type. (Mini Metro style.)
 	// TODO: if we use a different algorithm, this can: Constitutes both finding a path and determining which tile to travel to next. 
@@ -204,7 +215,7 @@ public partial class SimAgent : Node
 		// nothing found 
 		//TODO ChooseNewDestinationType different type 
 
-	}
+	}*/
 
 	// Move to the next vertex on the path, returns true if successful
 	bool MoveToNextVertex(PathVertex currentVertex, PathVertex nextVertex) {

@@ -40,7 +40,7 @@ public partial class Pathfinding : Node
 
 	//TODO rework this when we get agent vehicle transfer 
 	// because this SUCKS!
-	SimPath FindPath(PathVertex startVert, SimInfraType.DestinationType destinationType, SimAgent agent) {
+	public SimPath FindPath(PathVertex startVert, SimInfraType.DestinationType destinationType, SimAgent agent) {
 		SimPath path = null; 
 		foreach(SimVehicleType.TransportMode mode in Enum.GetValues<SimVehicleType.TransportMode>()) {
 			SimPath newPath = FindPath(startVert, destinationType, agent, mode);
@@ -166,6 +166,7 @@ public partial class Pathfinding : Node
 		path.edges.Reverse();
 
 		path.pathVehicleType = SimVehicleType.TypeFromEnum(SimVehicleType.TransportMode.CAR);
+		path.totalSupport += agent.suppLumpSumTransportMode[(int)mode];
 
 		return path;
 	}
