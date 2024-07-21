@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=3 format=3 uid="uid://cu6rekdmogsml"]
+
+[ext_resource type="Texture2D" uid="uid://mbdci21jlne0" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (9).png" id="1_je1wq"]
+[ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="2_n27p3"]
+
+[resource]
+script = ExtResource("2_n27p3")
+Name = "Grass"
+type = 4096
+visualInfra = null
+destinationType = 2
+transportModes = 0
+connectsCorners = false
+connectsBorders = false
+connectsCenter = false
+affectsAllVertices = false
+connectionsBlockedBy = 0
+capacity = 10
+canTransfer = 0
+maxSpeed = 0.0
+safety = 0.0
+costToBuild = 1
+costToDestroy = 1
+incompatibilityMask = 13823
+ModelPath = "res://Scenes/Tiles/Grass"
+ModelVariantCount = 1
+ModelConnects = false
+ModelHasBase = false
+Icon = ExtResource("1_je1wq")
