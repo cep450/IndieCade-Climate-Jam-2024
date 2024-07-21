@@ -151,7 +151,7 @@ public partial class SimTile : Node
 		SimInfraType.InfraType compatible = 0x0;
 
 		foreach(SimInfra type in Infra) {
-			compatible |= type.TypeEnum;
+			compatible |= type.Type.incompatibilityMask;
 		}
 
 		compatible = ~compatible;
