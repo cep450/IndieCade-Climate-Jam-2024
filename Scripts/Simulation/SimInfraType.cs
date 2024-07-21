@@ -102,7 +102,6 @@ public partial class SimInfraType : Resource
 			numTypes = Enum.GetNames(typeof(InfraType)).Length;
 		}
 		return numTypes;
-		
 	}}
 
 	//TODO better way to do this?

@@ -37,8 +37,12 @@ public partial class SimVehicleType : Resource
 	//Q = 0x10000
 	// ...ect
 	}
+	static int numTransportModes = 0;
 	public static int NumTransportModes { get {
-		return Enum.GetNames(typeof(TransportMode)).Length;
+		if(numTransportModes == 0){
+			numTransportModes = Enum.GetNames(typeof(TransportMode)).Length;
+		}
+		return numTransportModes;
 	}}
 	public static int ModeIndex(TransportMode mode) {
 		return (int)Math.Log2((double)((int)mode));
