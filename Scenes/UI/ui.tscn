@@ -185,11 +185,18 @@ layout_mode = 2
 texture = ExtResource("3_86vti")
 
 [node name="SaveButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 1012.0
-offset_top = 576.0
-offset_right = 1135.0
-offset_bottom = 630.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -143.0
+offset_top = -76.0
+offset_right = -20.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("4_16ne3")
 theme_override_font_sizes/font_size = 24
 text = "Save
@@ -256,13 +263,13 @@ expand_mode = 1
 
 [node name="SongName" type="Label" parent="."]
 layout_mode = 0
-offset_left = 60.0
+offset_left = 56.0
 offset_top = 16.0
-offset_right = 570.0
+offset_right = 556.0
 offset_bottom = 40.0
 theme_override_fonts/font = ExtResource("4_16ne3")
 theme_override_font_sizes/font_size = 16
-text = "Songname by - Composer Name"
+text = "Songname - Composer Name"
 vertical_alignment = 1
 
 [connection signal="mouse_entered" from="EmissionsMeter" to="." method="_on_emissions_meter_mouse_entered"]

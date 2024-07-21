@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bgo3yf25xtumg" path="res://Audio/Music/Edoardo mp3 tracks/Edoardo Ardizzone - Goodmorning!.mp3" id="11_4lw7g"]
 [ext_resource type="AudioStream" uid="uid://ctdogrrlcr65a" path="res://Audio/Music/Edoardo mp3 tracks/Edoardo Ardizzone - Green New Engines.mp3" id="12_j4lhj"]
 [ext_resource type="AudioStream" uid="uid://gkuqd3v77p1t" path="res://Audio/Music/Edoardo mp3 tracks/Edoardo Ardizzone - Lovely Spring.mp3" id="13_7alox"]
-[ext_resource type="AudioStream" uid="uid://pvrmjfd4ewoy" path="res://Audio/Music/Edoardo mp3 tracks/Edoardo Ardizzone - Mr. Wilkinson.mp3" id="14_jhpoo"]
+[ext_resource type="AudioStream" uid="uid://cqwfl5iys8ksf" path="res://Audio/Music/Edoardo mp3 tracks/Edoardo Ardizzone - Mr. Wilkinson.mp3" id="14_jhpoo"]
 
 [sub_resource type="Resource" id="Resource_1btx3"]
 script = ExtResource("3_rbah5")
