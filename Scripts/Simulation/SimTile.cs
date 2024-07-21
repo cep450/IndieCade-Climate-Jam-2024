@@ -100,12 +100,17 @@ public partial class SimTile : Node
 
 	//TODO what do we want to pass in here? an index in the list? a type? an instance? maybe overrides for all of these. one that takes a mask could even add/remove multiple at once.
 	public bool RemoveInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
-		
+		GD.Print("Called");
 		if(!bypassValidation) {
 			//check if this tile has this infrastrcture 
 			if(!HasInfraType(type.type)) {
 				//tile does not have the infrastructure 
+				GD.Print("Does not have type: " + type.Name);
 				return false;
+			}
+			else
+			{
+				GD.Print("Has type: " + type.Name);
 			}
 
 			//validate that we can afford to remove this 
@@ -118,9 +123,6 @@ public partial class SimTile : Node
 			Sim.Instance.SupportPool.SpendSupport(type.costToDestroy);
 		}
 
-		// since we know the tile has it, remove from the mask 
-		InfraTypesMask ^= type.type;
-
 		// remove destination type if this infra provided one 
 		if(type.destinationType != SimInfraType.DestinationType.NOT_DESTINATION) {
 			DestinationType = SimInfraType.DestinationType.NOT_DESTINATION;
@@ -128,6 +130,9 @@ public partial class SimTile : Node
 
 		//remove from list 
 		Infra.RemoveAt(IndexOfInfra(type.type));
+
+		// since we know the tile has it, remove from the mask 
+		InfraTypesMask ^= type.type;
 
 		//update any connections 
 		if(recalculateEdges) RecalculateVertices();
@@ -164,8 +169,8 @@ public partial class SimTile : Node
 	// index in infra list. returns -1 if none 
 	public int IndexOfInfra(SimInfraType.InfraType type) {
 
-		if(!HasInfraType(type)) return -1;
-
+		if(!HasInfraType(type)) { GD.Print("doesn't have") ; return -1;}
+		
 		return Infra.FindIndex(x => x.Type.type == type);
 	}
 
@@ -220,11 +225,5 @@ public partial class SimTile : Node
 	public int fCost() 
 	{
 		return gCost + hCost;
-	}
-	
-	// For testing
-	public void SayHi()
-	{
-		GD.Print("Hi from SimTile");
 	}
 }

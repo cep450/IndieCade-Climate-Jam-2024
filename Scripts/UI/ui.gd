@@ -77,12 +77,19 @@ func on_tile_clicked(x: int, y: int) -> void:
 			child.queue_free()
 		# Temp func to add test ones
 		var types = load("res://Resources/InfraTypes/bikelane.tres").GetTypes()
+		var instance
 		for type in types:
 			if type.Icon != null:
-				var instance = button.instantiate()
+				instance = button.instantiate()
 				build_buttons.add_child(instance)
 				instance.initialize(type, x, y)
 				instance.entered.connect(_on_mouse_entered_build)
+		#add delete button
+		instance = button.instantiate()
+		build_buttons.add_child(instance)
+		instance.initialize(null,x,y)
+		instance.entered.connect(_on_mouse_entered_build)
+		
 		return
 
 func _on_emissions_meter_mouse_entered():
