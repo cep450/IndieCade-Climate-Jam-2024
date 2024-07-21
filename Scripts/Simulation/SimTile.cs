@@ -41,7 +41,7 @@ public partial class SimTile : Node
 	// load infrastructure on a tile based on a type mask
 	public void AddInfraFromMask(SimInfraType.InfraType mask, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
 
-		for(int i = 0; i < sizeof(uint); i++) {
+		for(int i = 0; i < SimInfraType.NumTypes; i++) {
 			SimInfraType.InfraType bit = (SimInfraType.InfraType)Math.Pow(2, i);
 			if((mask & bit) != 0) {
 				AddInfra(SimInfraType.TypeFromEnum(bit), bypassValidation, updateVisuals, recalculateEdges);

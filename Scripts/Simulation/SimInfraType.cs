@@ -96,6 +96,13 @@ public partial class SimInfraType : Resource
 	
 	[Export] public Texture2D Icon;
 
+	private static int numTypes = 0;
+	public static int NumTypes { get {
+		if(numTypes == 0) {
+			numTypes = Enum.GetNames(typeof(InfraType)).Length;
+		}
+		return numTypes;
+	}}
 
 	//TODO better way to do this?
 	public static SimInfraType TypeFromEnum(InfraType enumType) {
