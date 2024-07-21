@@ -32,6 +32,7 @@ func play(sound_name: String):
 		add_child(instance)
 		instance.stream = stream
 		instance.audio_resource = stream
+		instance.name = sound_name
 		instance.play()
 		instance.track_finished.connect(on_finished)
 	else:
