@@ -1,5 +1,8 @@
 extends Node3D
 
+func _init():
+	visible = false
+
 func Set_Pos(pos: Vector3):
 	position = pos;
 
