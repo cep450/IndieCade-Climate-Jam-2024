@@ -82,7 +82,7 @@ func get_variant(type) -> String:
 	var variant_string = str(random.randi_range(1, type.ModelVariantCount))
 	variant = variant_string
 	return variant_string
-			
+
 func get_version(type: SimInfraType) -> String:
 	if !type.ModelConnects:
 		return ""
