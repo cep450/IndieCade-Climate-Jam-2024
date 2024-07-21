@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3qqu4m7gehth"]
+
+[ext_resource type="PackedScene" uid="uid://hfjb86j4k50c" path="res://Models/Agent_Person/Agent_Person_1.gltf" id="1_twb6x"]
+
+[node name="Agent_Person_1" instance=ExtResource("1_twb6x")]
+
+[node name="Skeleton3D" parent="PersonRig" index="0"]
+bones/0/position = Vector3(0, 0.132184, 0)
+bones/0/rotation = Quaternion(0.00463296, 1.19208e-07, -5.52292e-10, 0.999989)
+bones/1/position = Vector3(0, 0.102188, -7.1445e-05)
+bones/1/rotation = Quaternion(-0.0029203, 0, 0, 0.999996)
+bones/2/position = Vector3(0.0834425, 0.0505691, 1.63446e-07)
+bones/2/rotation = Quaternion(-0.000485543, 7.48092e-05, 0.991269, -0.131852)
+bones/3/position = Vector3(9.66389e-18, 0.107981, -6.48943e-11)
+bones/3/rotation = Quaternion(-0.000321467, -6.24442e-15, 1.14688e-17, 1)
+bones/4/position = Vector3(-0.0834425, 0.0505691, 1.23661e-07)
+bones/4/rotation = Quaternion(0.000485306, 7.47779e-05, 0.991269, 0.131852)
+bones/5/position = Vector3(0.0446924, 0.0243852, 8.9402e-05)
+bones/5/rotation = Quaternion(-0.000145288, 0.00382076, 0.999259, 0.038304)
+bones/6/position = Vector3(-0.0446924, 0.0243852, 8.93807e-05)
+bones/6/rotation = Quaternion(0.00014505, 0.00382077, 0.999259, -0.038304)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Person_Idle"

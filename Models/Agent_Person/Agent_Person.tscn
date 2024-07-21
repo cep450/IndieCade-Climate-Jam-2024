@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlmtm48yg17rr"]
+
+[ext_resource type="PackedScene" uid="uid://hfjb86j4k50c" path="res://Models/Agent_Person/Agent_Person_1.gltf" id="1_ellja"]
+
+[node name="AgentPerson" type="Node3D"]
+
+[node name="Agent_Person_1" parent="." instance=ExtResource("1_ellja")]
