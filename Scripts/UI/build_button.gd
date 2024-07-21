@@ -34,6 +34,7 @@ func initialize_as_remove_button():
 #just adds houses for now
 func _on_pressed():
 	if (is_build):
+		Global.play("Bloop")
 		#Special code for tree replacement
 		if type == trees_res:
 			clear_infra()

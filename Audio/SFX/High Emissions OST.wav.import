@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://1c2hufxno0yq"
+path="res://.godot/imported/High Emissions OST.wav-f61a756fc9246843524e30c0e12c0063.sample"
+
+[deps]
+
+source_file="res://Audio/SFX/High Emissions OST.wav"
+dest_files=["res://.godot/imported/High Emissions OST.wav-f61a756fc9246843524e30c0e12c0063.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
