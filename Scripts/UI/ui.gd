@@ -76,9 +76,16 @@ func on_tile_clicked(x: int, y: int) -> void:
 		# Follow in the footsteps of Anikin and delete all the children
 		for child in build_buttons.get_children():
 			child.queue_free()
-		# Temp func to add test ones
-		var types = load("res://Resources/InfraTypes/bikelane.tres").GetTypes()
+		
+		var types
 		var instance
+		if Global.inDevMode:
+			# Gets all types, calles function, form S
+			types = SimInfraType.GetTypes()
+		else:
+			# Gets types based on mask
+			types = sim.GetTile(x,y).CompatibleInfra()
+
 		for type in types:
 			if type.Icon != null:
 				instance = button.instantiate()

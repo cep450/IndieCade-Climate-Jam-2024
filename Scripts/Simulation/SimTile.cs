@@ -100,7 +100,6 @@ public partial class SimTile : Node
 
 	//TODO what do we want to pass in here? an index in the list? a type? an instance? maybe overrides for all of these. one that takes a mask could even add/remove multiple at once.
 	public bool RemoveInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
-		GD.Print("Called");
 		if(!bypassValidation) {
 			//check if this tile has this infrastrcture 
 			if(!HasInfraType(type.type)) {
