@@ -1,6 +1,6 @@
 extends Node
 
-@onready var sim: Node = $"../Main/Simulation"
+var sim: Node
 var ui: Control
 @export var inDevMode: bool = false
 @export var audio_files: Array[Audio]
@@ -18,6 +18,12 @@ func on_tile_clicked(clicked_tile: Vector2):
 		current_tile = Vector2(-1,-1)
 	else: 
 		current_tile = clicked_tile
+
+func set_sim(sim_node: Node):
+	sim = sim_node
+
+func say_hi():
+	print("hi")
 
 func _ready():
 	convert_files_to_dict()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7nklxcsqhvid"]
+[gd_scene load_steps=12 format=3 uid="uid://cq17206gfvsv6"]
 
 [ext_resource type="Texture2D" uid="uid://62v1bsk4wofe" path="res://Assets/Tutorial/Menu/BG/Tutorial-Menu_BLANK.png" id="1_4qvgk"]
 [ext_resource type="Texture2D" uid="uid://b1kvucqw8ds5d" path="res://Assets/Tutorial/Menu/Navigation Buttons/Return_Navigation.png" id="2_20alr"]
