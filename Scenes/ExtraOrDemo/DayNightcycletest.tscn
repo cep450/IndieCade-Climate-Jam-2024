@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://Shaders/Gradientsky.gdshader" id="2_jemf5"]
 [ext_resource type="Script" path="res://Scripts/View/camera.gd" id="3_7oyk1"]
 [ext_resource type="PackedScene" uid="uid://bbwli37pmewjn" path="res://Scenes/Tiles/Lightpost.tscn" id="5_ycgy7"]
-[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/updatedtiles.tres" id="6_5b00j"]
+[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://tiles.tres" id="6_5b00j"]
 [ext_resource type="Script" path="res://Scripts/View/world.gd" id="6_tixaw"]
 [ext_resource type="Texture2D" uid="uid://bpl1ai1hxmujv" path="res://Assets/Gameplay/Popup/Error/Error_Icon.png" id="7_32155"]
 
