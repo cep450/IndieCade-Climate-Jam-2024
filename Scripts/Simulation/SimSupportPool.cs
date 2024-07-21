@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Runtime.InteropServices;
 
 public partial class SimSupportPool : Node
 {
@@ -24,14 +25,19 @@ public partial class SimSupportPool : Node
 	public void SpendSupport(int amount) {
 		if (HaveEnoughSupport(amount)) {
 			Support -= amount;
-			GD.Print("spent " + amount + " support");
+			//GD.Print("spent " + amount + " support");
 		} else {
-			GD.Print("Not Enough Support!"); //replace in future with UI
+			//GD.Print("Not Enough Support!"); //replace in future with UI
 		}
 	}
 	//if we ever want to set/get the raw value
 	public void SetSupport(int amount) {
 		Support = amount;
+	}
+
+	public void AddSupport(float amount) {
+		int iamount = (int)amount;
+		Support += iamount;
 	}
 
 }

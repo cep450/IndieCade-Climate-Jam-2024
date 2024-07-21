@@ -1,97 +1,187 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 public partial class Pathfinding : Node
 {
+
+	/*
+		Create a SimPath to give to a SimAgent.
+	*/
+/*
 	SimGrid grid;
 
 	public override void _Ready() 
 	{
 		grid = GetNode<SimGrid>("SimGrid");
 	}
+*/
 
-	// Find the least weighted path to a tile of the destination type. (Mini Metro style.)
-	// Constitutes both finding a path and determining which tile to travel to next. 
-	public void FindNearestDestination(SimInfraType.DestinationType type) {
-		//TODO
+	public bool initialized = false;
+	float [,] weights;
+	bool [,] visited;
+	PathVertex [,] parents;
+	PathEdge [,] parentEdges;
+	int width, height;
+
+	public void Init() {
+
+		width = Sim.Instance.PathGraph.Width;
+		height = Sim.Instance.PathGraph.Height;
+
+		weights = new float[width, height];
+		visited = new bool[width, height];
+		parents = new PathVertex[width, height];
+		parentEdges = new PathEdge[width, height];
+		
+		initialized = true;
 	}
 
+	//TODO rework this when we get agent vehicle transfer 
+	// because this SUCKS!
+	public SimPath FindPath(PathVertex startVert, SimInfraType.DestinationType destinationType, SimAgent agent) {
+		SimPath path = null; 
+		foreach(SimVehicleType.TransportMode mode in Enum.GetValues<SimVehicleType.TransportMode>()) {
+			SimPath newPath = FindPath(startVert, destinationType, agent, mode);
+			GD.Print(" path was " + (newPath == null));
+			if(path == null || newPath.totalWeight < path.totalWeight) {
+				path = newPath;
+			}
+		}
+		return path;
+	}
+
+
 	//TODO rework this so agents don't use a single type of infrastructure to find a path- let them transfer between them
-	void FindPath(SimTile startTile, SimTile targetTile, SimInfraType.InfraType type)
+	SimPath FindPath(PathVertex startVert, SimInfraType.DestinationType destinationType, SimAgent agent, SimVehicleType.TransportMode mode)
 	{
+		if(!initialized) Init();
 
-		GD.Print("called FindPath");
+		//GD.Print("called FindPath");
 
-		List<SimTile> openSet = new List<SimTile>();
-		HashSet<SimTile> closedSet = new HashSet<SimTile>();
-		openSet.Add(startTile);
+		// Run Dijkstra's until we land on a vert of the specified destination type. Then, return that path.
 
-		while (openSet.Count > 0) 
-		{
-			SimTile currentTile = openSet[0];
-			//set the current tile to the one with lowest fCost and update open/closed sets
-			for (int i = 1; i < openSet.Count; i++)
-			{
-				//if the fCosts are equal, change tile only if the openSet tile has a lower hCost
-			   if (openSet[i].fCost() < currentTile.fCost() || openSet[i].fCost() == currentTile.fCost() && openSet[i].hCost < currentTile.hCost) 
-			   {
-				currentTile = openSet[i];
-			   }
+		// set up default values 
+		for(int x = 0; x < width; x++) {
+			for(int y = 0; y < height; y++) {
+				weights[x,y] = float.PositiveInfinity;
+				visited[x,y] = false;
+				parents[x,y] = null;
+			}
+		}
+
+		// set up source 
+		weights[startVert.PathGraphCoordinates.X, startVert.PathGraphCoordinates.Y] = 0f;
+
+		List<PathVertex> openSet = new List<PathVertex>();
+		openSet.Add(startVert);
+
+		bool foundDestination = false;
+		while(openSet.Count > 0 && !foundDestination) {
+
+			GD.Print(" open set size " + openSet.Count);
+
+			// pick min weight next vertex from the set of verts not yet processed 
+			PathVertex v = openSet[0];
+			float minWeight = float.PositiveInfinity;
+
+			// from the last one to the next
+			for(int i = 0; i < openSet.Count; i++) {
+				float newWeight = weights[openSet[i].PathGraphCoordinates.X, openSet[i].PathGraphCoordinates.Y];
+				if(newWeight < minWeight) {
+					minWeight = newWeight;
+					v = openSet[i];
+				}
 			}
 
-			openSet.Remove(currentTile);
-			closedSet.Add(currentTile);
+			openSet.Remove(v);
+			visited[v.PathGraphCoordinates.X, v.PathGraphCoordinates.Y] = true;
 
-			if (currentTile == targetTile) //path has been found
-			{
-				RetracePath(startTile, targetTile);
-				return;
+			if(v.DestinationType == destinationType) {
+				foundDestination = true;
+				return RetracePath(startVert, v, agent, mode);
 			}
 
-			foreach (SimTile neighbour in grid.GetNeighboursOfType(currentTile, type))
-			{
-				if (closedSet.Contains(neighbour)) //ignore closed neighbours
-				{
+			// add the connected neighbors to the open set 
+			foreach(PathEdge edge in v.Edges) {
+
+				//TODO make transit mode switching possible by checking for CanTransfer and updating some kind of local transit mode or making different vertices per mode 
+				// maybe we can use sparse arrays for mode-specific vertices and then the tiles keep track of how they link up with edges idk 
+				if(edge.TransportMode != mode) {
 					continue;
 				}
 
-				int newMovementCostToNeighbour = currentTile.gCost + GetDistance(currentTile, neighbour);
-				if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
-				{
-					neighbour.gCost = newMovementCostToNeighbour;
-					neighbour.hCost = GetDistance(neighbour, targetTile);
-					neighbour.parent = currentTile;
+				PathVertex other = edge.GetOther(v);
 
-					if (!openSet.Contains(neighbour))
-					{
-						openSet.Add(neighbour);
+				float cost = weights[v.PathGraphCoordinates.X, v.PathGraphCoordinates.Y] + agent.WeightConnection(edge, mode);
+
+				int otherX = other.PathGraphCoordinates.X;
+				int otherY = other.PathGraphCoordinates.Y;
+
+				// ignore closed neighbors 
+				if(cost < weights[otherX, otherY] || visited[otherX, otherY] != true) {
+					
+					weights[otherX, otherY] = cost;
+					parents[otherX, otherY] = v;
+					parentEdges[otherX, otherY] = edge;
+
+					if(visited[other.PathGraphCoordinates.X, other.PathGraphCoordinates.Y] != true) {
+						openSet.Add(other);
 					}
 				}
+
 			}
+
 		}
+
+		// we didn't find the destination -- no path 
+		return null;
+
+		//TODO switching between transit modes.
+		// each edge represents a single transit mode 
+		// so..... 
+
+		//TODO the problem we need to fix with transit modes is a vert can be added to the closed set if one transit mode hits it, which closes it off for all the others.
+
+		//TODO also determining the accessible transit modes from the first tile.
+
 	}
 
-	void RetracePath(SimTile startTile, SimTile endTile)
+	SimPath RetracePath(PathVertex startVert, PathVertex endVert, SimAgent agent, SimVehicleType.TransportMode mode)
 	{
+		SimPath path = new SimPath();
+		PathVertex currentVert = endVert;
 
-		List<SimTile> path = new List<SimTile>();
-		SimTile currentTile = endTile;
-
-		while (currentTile != startTile)
+		while (currentVert != startVert)
 		{
-			path.Add(currentTile);
-			currentTile = currentTile.parent;
+			path.vertices.Add(currentVert);
+
+			PathEdge edge = parentEdges[currentVert.PathGraphCoordinates.X, currentVert.PathGraphCoordinates.Y];
+			path.edges.Add(edge);
+			path.totalWeight += agent.WeightConnection(edge, mode);
+			path.totalSupport += agent.SupportGainedConnection(edge, mode);
+
+			currentVert = parents[currentVert.PathGraphCoordinates.X, currentVert.PathGraphCoordinates.Y];
 		}
-		path.Reverse();
+		//TODO does the start vert need to be in the path? if so, add it here 
+		path.vertices.Reverse();
+		path.edges.Reverse();
+
+		path.pathVehicleType = SimVehicleType.TypeFromEnum(SimVehicleType.TransportMode.CAR);
+		path.totalSupport += agent.suppLumpSumTransportMode[(int)mode];
+
+		return path;
 	}
 
+//TODO we could move this to SimGrid if we need it in the future 
+/*
 	int GetDistance(SimTile tileA, SimTile tileB)
 	{
 		int dstX = Mathf.Abs(tileA.Coordinates.X - tileB.Coordinates.X);
 		int dstY = Mathf.Abs(tileA.Coordinates.Y - tileB.Coordinates.Y);
 
 		return dstX + dstY; //since we dont move diagonally
-	}
+	}*/
 
 }

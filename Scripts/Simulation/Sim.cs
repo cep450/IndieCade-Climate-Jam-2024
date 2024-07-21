@@ -55,6 +55,7 @@ public partial class Sim : Node
 
 	public override void _Ready()
 	{
+		GD.Print("sim ready");
 		Instance = this;
 		Instance.startData = (StartData)ResourceLoader.Load("res://Scripts/Simulation/CustomResources/SavedData.tres");
 		//Give Global access to this node
@@ -87,6 +88,10 @@ public partial class Sim : Node
 	// Start the simulation for the first time. 
 	public void BeginGame() {
 
+		foreach(SimAgent agent in agents) {
+			agent.InitAfterMapLoad();
+		}
+
 		gameState = GameState.GAMEPLAY;
 		Clock.UnPause();
 	}
@@ -95,8 +100,8 @@ public partial class Sim : Node
 	// Enforce execution order. 
 	// The clock calls this when the game is running. 
 	public void SimulationTick() {
-		if(DEBUG) GD.Print("Sim Tick!");
-		foreach (var agent in agents)
+
+		foreach (SimAgent agent in agents)
 		{
 			agent.Tick();
 		}

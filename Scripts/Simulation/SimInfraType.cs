@@ -42,8 +42,8 @@ public partial class SimInfraType : Resource
 		NOT_DESTINATION,
 		HOME, 
 		WORKPLACE,
-		COMMERCIAL,
-		THIRDSPACE
+		//COMMERCIAL,
+		//THIRDSPACE
 	}
 
 	// resources in order of enum values
