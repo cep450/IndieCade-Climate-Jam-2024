@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 public partial class SimAgent : Node
@@ -37,12 +38,16 @@ public partial class SimAgent : Node
 	public Vector2I currentCoordinates;
 	public Vector2I targetCoordinates;
 
-	private SimPath pathFinder;
+	private SimPath currentPath;
 
 	private SimInfraType.DestinationType destinationType;
 	
 	private GodotObject visualAgent;
 	private GodotObject world;
+	private int timer = 0, ticksToWait = 1; //Timer for ticks
+	private int pointInList;
+	private SimGrid simGrid;
+
 
 	//TODO should we instantiate these in a different way? or is visual agent the node instance?
 	// Randomize properties for this agent when it first spawns. does it have access to a car? how does it weight different factors?
@@ -54,8 +59,6 @@ public partial class SimAgent : Node
 		destinationType = Sim.Instance.GetTile(currentCoordinates.X, currentCoordinates.Y).DestinationType;
 		state = State.AT_DESTINATION;
 
-		//TODO instantiate a vehicle to go with it 
-
 		//pathFinder = GetNode<SimPath>("../SimPath"); //get a reference to the pathfinder
 		//SetRandomTarget();
 	}
@@ -66,6 +69,26 @@ public partial class SimAgent : Node
 		visualAgent = (GodotObject)world.Call("init_agent");
 	}
 
+	public override void _Ready()
+	{
+		base._Ready();
+		//DEBUG & TESTING:
+		SimPath simPath = new SimPath();
+		simPath.vertices = new List<PathVertex>(); 
+
+		simPath.vertices.Add(new PathVertex(new Vector2I(0,0), new Vector2(4,4), null));
+		simPath.vertices.Add(new PathVertex(new Vector2I(0,0), new Vector2(7,7), null));
+		simPath.vertices.Add(new PathVertex(new Vector2I(0,0), new Vector2(9,9), null));
+		simPath.vertices.Add(new PathVertex(new Vector2I(0,0), new Vector2(4,9), null));
+		simPath.vertices.Add(new PathVertex(new Vector2I(0,0), new Vector2(7,9), null));
+		simPath.vertices.Add(new PathVertex(new Vector2I(0,0), new Vector2(2,9), null));
+		simPath.pathVehicleType = (SimVehicleType)ResourceLoader.Load("res://Resources/VehicleTypes/car.tres");
+		targetPosition = new Vector2(2,9);
+
+		currentPath = simPath;
+		simGrid = GetNode<SimGrid>("..//SimGrid");
+	}
+
 	// every game tick. update position smoothly
 	public override void _Process(double delta)
 	{
@@ -74,31 +97,49 @@ public partial class SimAgent : Node
 
 	// every simulation tick.
 	public void Tick() {
-
 		if(state == State.AT_DESTINATION) {
-
-			//TODO check if we want to pathfind immediately or wait
-			//TODO if we want to pathfind...
-				//TODO ChooseDestinationType() 
-				//TODO ChooseTarget() (i.e. pathfind)
-				//TODO once pathfinding is finished, change state back to State.TRAVELLING
+			GD.Print($"Timer: {timer}");
+			if (timer > ticksToWait) 
+			{
+				GD.Print("Timer Completed!");
+				//ChooseNewDestinationType();
+				//SetRandomTarget(); //Choose target
+				//currentPath = Add pathfinding call here
+				//visualAgent.Call("Set_Vehicle", currentPath.pathVehicleType.ModelPath); //change visual model
+				timer = 0;
+				state = State.TRAVELLING;
+				visualAgent.Call("Set_Visible", true);
+			} else 
+			{
+				timer++;
+				//visualAgent.Call("Set_Visible", false);
+			}
 
 		} else if(state == State.TRAVELLING) {
 
-			//TODO check if arrived at destination
-				// if so, call Arrived();
-				// otherwise, 
-					//call Vehicle.Tick();
-					// check if we're ready to move to the next tile 
-						// if we are, check if the next tile has open capacity
-							// if it does, MoveToNextTile();
-			Vehicle?.Tick();
-		}
+			if (currentPosition == targetPosition) //might need to compare x/y properties instead
+			{
+				Arrived();
 
+			} else 
+			{
+				PathVertex currentStartVertex = currentPath.vertices[pointInList];
+				PathVertex currentDestVertex = currentPath.vertices[pointInList + 1];
+				if (MoveToNextVertex(currentStartVertex,currentDestVertex))
+				{
+					pointInList++; //remove vertex already visited, then next vertex will be the start
+
+				}
+				Vehicle?.Tick(); //add emissions
+			}
+		}
 	}
 
 	private void Arrived() {
-		//TODO set State to AT_DESTINATION
+
+		GD.Print("ARRIVED!");
+		state = State.AT_DESTINATION;
+
 		//TODO generate support based on the route 
 
 	}
@@ -125,17 +166,26 @@ public partial class SimAgent : Node
 		destinationType = (SimInfraType.DestinationType)newTypeInt;
 	}
 
-	void MoveToNextVertex(PathVertex nextVertex) {
+	// choose the destination of the chosen destination type to pathfind to 
+	void ChooseTarget() {
+		//TODO 
+	}
 
-		//TODO make sure this gets called
-
-		//TODO change the vehicle type to match the connection vehicle type if needed 
-
-		//var vehicleType = new SimVehicleType(SimVehicleType.TransportMode.CAR, 1.0f, 5.0f, new HashSet<SimEdge.TransportMode> { SimEdge.TransportMode.Road });
-		//var vehicle = new SimVehicle(vehicleType, new Vector2(0, 0));
-
-		//TODO update the previous and next tile capacities to account for this agent moving between them 
-			//TODO if the next tile is full, wait on the current tile, and check again next tick 
+	// Move to the next vertex on the path, returns true if successful
+	bool MoveToNextVertex(PathVertex currentVertex, PathVertex nextVertex) {
+		if (!nextVertex.TryAddOccupancy(currentPath.pathVehicleType.Mode))
+		{
+			currentVertex.TryRemoveOccupancy(currentPath.pathVehicleType.Mode); //Remove occupancy from previous
+			
+			currentPosition = new Vector2(simGrid.GridToWorldPos(true, (int)nextVertex.WorldPosition.X), simGrid.GridToWorldPos(false, (int)nextVertex.WorldPosition.Y)); //Move to next vertex
+			visualAgent.Call("Set_Pos", new Vector3(currentPosition.X, 0.22f, currentPosition.Y));
+			GD.Print($"Moving from: {currentVertex.WorldPosition} to: {nextVertex.WorldPosition}");
+			return true;
+		} else
+		{
+			return false;
+		}
+		  
 	}
 
 	// Calculate how much this agent weights this connection between 2 tiles.

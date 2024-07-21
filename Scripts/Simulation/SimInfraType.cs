@@ -76,7 +76,8 @@ public partial class SimInfraType : Resource
 	// For vehicle-holding tiles, capacity represents the number of vehicles of that type that the VERTEX affected by infrastructure can hold at a time. 
 	// For destination tiles, capacity represents the number of agents the building (vertex) can fit, or for HOMEs, how many agents are added to the map when this infra is added or generates on the map
 	[Export] public int capacity;
-	[Export] public bool canTransfer = false; // can a transit type switch to a different transit type?
+	[Export] public SimVehicleType.TransportMode canTransfer; // what transit types can switch between each other
+									// can a transit type switch to a different transit type?
 									 //I think each tile should be able to have a list of what transit types it can support, and then we can check if the agent's current transit type is in that list when pathfinding,
 									 //instead of assigning a transit type to each tile. This way, we can have tiles that support multiple transit types, and we can have tiles that support no transit types.
 									 //this is implemented in SimTiles
@@ -89,8 +90,7 @@ public partial class SimInfraType : Resource
 	[Export] public InfraType incompatibilityMask; //1 = incompatible, 0 = compatible
 
 	[Export] public string ModelPath;
-	//// if path does not contain a number, this value should be 0
-	[Export] public int ModelVariantCount = 0;
+	[Export] public int ModelVariantCount = 1;
 	[Export] public bool ModelConnects;
 	[Export] public bool ModelHasBase;
 	
@@ -112,16 +112,6 @@ public partial class SimInfraType : Resource
 			}
 		}
 		return arr;
-	}
-	
-	public static Godot.Collections.Array<SimInfraType> GetTypes()
-	{
-		var godotArray = new Godot.Collections.Array<SimInfraType>();
-		foreach (var type in types)
-		{
-			godotArray.Add(type);
-		}
-		return godotArray;
 	}
 
 	// If we want specific types or groups of types to have extra behavior, they can extend this class and override these functions, which are called when the infra is added to or removed from a tile.

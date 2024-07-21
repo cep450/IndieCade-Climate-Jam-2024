@@ -7,8 +7,7 @@ var y: int
 
 # Block Scenes
 var base = preload("res://Scenes/Tiles/base.tscn")
-var grass = preload("res://Scenes/Tiles/Grass.tscn")
-var road_resource: SimInfraType = preload("res://Resources/InfraTypes/road.tres")
+var blank = preload("res://Scenes/Tiles/Grass.tscn")
 
 var highlight_mat = preload("res://Resources/highlight_mat_overlay.tres")
 var isYellow: bool = false
@@ -50,47 +49,32 @@ func update_visuals(repeated: bool = false):
 	# Generate new children
 	var infra = sim.GetInfra(x,y)
 	var instance
-	var needs_grass = true
 	model_connects = false
 	if infra.is_empty():
-		instance = grass.instantiate()
+		instance = blank.instantiate()
 		add_child(instance)
 	else:
 		for type in infra:
 			if type.ModelHasBase:
 				instance = base.instantiate()
 				add_child(instance)
-				needs_grass = false
-			elif type.Name == "Road":
-				needs_grass = false
 			if type.ModelConnects:
 				model_connects = true
 			if !type.ModelPath.is_empty():
 				# Note that 'get_version() also rotates as needed.
-				var full_path = type.ModelPath + get_variant(type) + get_version(type) + ".tscn"
+				var full_path = type.ModelPath + get_version(type) + ".tscn"
 				var model = load(full_path)
 				instance = model.instantiate()
 				add_child(instance)
 				if !repeated:
 					get_parent().update_neighbors(Vector2i(x,y))
 			else: 
-				print("path not given")	
-		if needs_grass:
-			instance = grass.instantiate()
-			add_child(instance)
-			
-func get_variant(type) -> String:
-	if type.ModelVariantCount < 1:
-		return ""
-	var random = RandomNumberGenerator.new()
-	var variant_string = str(random.randi_range(1, type.ModelVariantCount))
-	return variant_string
-			
+				print("path not given")
+				
 func get_version(type: SimInfraType) -> String:
 	if !type.ModelConnects:
 		return ""
-	var versionInfo = sim.grid.GetVersion(Vector2i(x,y),road_resource)
-	# Only use road to determine rotation.
+	var versionInfo = sim.grid.GetVersion(Vector2i(x,y),type)
 	rotation = versionInfo.rotation
 	return versionInfo.versionString
 

@@ -1,7 +1,8 @@
 extends Button
 
-# Public
-signal entered
+
+@export var images: Array[Texture2D] = []
+
 # Private
 var type: SimInfraType
 @onready var sim = Global.sim
@@ -12,13 +13,12 @@ func initialize(param_type: SimInfraType, param_x: int, param_y: int) -> void:
 	type = param_type
 	x = param_x
 	y = param_y
-	icon = type.Icon
+	icon = images[0]
 
 #just adds houses for now
 func _on_pressed():
-	var error = sim.GetTile(x,y).AddInfra(type, false, true)
-	if error != "":
-		entered.emit(error)
-		
-func _on_mouse_entered():
-	entered.emit(type.Name + " - " + str(type.costToBuild))
+	var bypass_validation = Global.inDevMode
+	sim.GetTile(x,y).AddInfra(type, bypass_validation, true, true)
+	
+	
+

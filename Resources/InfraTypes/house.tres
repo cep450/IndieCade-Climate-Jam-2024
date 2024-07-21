@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="InfraTypeHome" load_steps=3 format=3 uid="uid://cg5jjhr8j4r7s"]
+[gd_resource type="Resource" script_class="InfraTypeHome" load_steps=2 format=3 uid="uid://cg5jjhr8j4r7s"]
 
-[ext_resource type="Texture2D" uid="uid://mbdci21jlne0" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (9).png" id="1_i6otl"]
 [ext_resource type="Script" path="res://Scripts/Simulation/ExtendedInfraTypes/InfraTypeHome.cs" id="1_svdhx"]
 
 [resource]
@@ -25,7 +24,6 @@ costToBuild = 10
 costToDestroy = 25
 incompatibilityMask = 1119
 ModelPath = "res://Scenes/Tiles/House"
-ModelVariantCount = 0
+ModelVariantCount = 1
 ModelConnects = false
 ModelHasBase = true
-Icon = ExtResource("1_i6otl")

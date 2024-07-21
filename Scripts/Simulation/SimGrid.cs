@@ -30,6 +30,14 @@ public partial class SimGrid : Node
 		pos -= (sizeAxis / 2);
 		return pos;
 	}
+	public float GridToWorldPos(bool useWidth, int coord) {
+		if (useWidth)
+		{
+			return GridToWorldPos(width, coord);
+		} else {
+			return GridToWorldPos(height, coord);
+		}
+	}
 
 	public void LoadGridFromResource(StartData resourceToLoad)
 	{
@@ -59,7 +67,7 @@ public partial class SimGrid : Node
 
 				//Add infrastructure to this tile based on the mask in the level file.
 				SimInfraType.InfraType infraMask = resourceToLoad.gridData[x].gridData[y];
-				grid[x,y].AddInfraFromMask(infraMask, true);
+				grid[x,y].AddInfraFromMask(infraMask, true, false, false);
 			}
 		}
 		// update models 
@@ -81,7 +89,7 @@ public partial class SimGrid : Node
 	{
 		if (x < 0 || y < 0 || x >= width || y >= height)
 		{
-			GD.Print("Tried to get a tile on the grid that was out of range at " + x + ", " + y);
+			//GD.Print("Tried to get a tile on the grid that was out of range at " + x + ", " + y);
 			return null;
 		}
 		return grid[x,y];

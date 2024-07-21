@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkqc4jqrf5lho"
-path="res://.godot/imported/Time Control Menu - Pause - Icons.png-78598586c4c346822a439d8e627d2224.ctex"
+path="res://.godot/imported/Time Control Menu - Pause - Icons.png-9ce66b63222822a009b1885672a74100.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Gameplay/TimeControl/Time Control Menu - Pause - Icons.png"
-dest_files=["res://.godot/imported/Time Control Menu - Pause - Icons.png-78598586c4c346822a439d8e627d2224.ctex"]
+source_file="res://Assets/Gameplay/Menu/Time Control Menu - Pause - Icons.png"
+dest_files=["res://.godot/imported/Time Control Menu - Pause - Icons.png-9ce66b63222822a009b1885672a74100.ctex"]
 
 [params]
 

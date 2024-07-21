@@ -3,8 +3,8 @@
 [ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://tiles.tres" id="1_tj74h"]
 [ext_resource type="Shader" path="res://Shaders/Gradientsky.gdshader" id="2_jemf5"]
 [ext_resource type="Script" path="res://Scripts/View/camera.gd" id="3_7oyk1"]
-[ext_resource type="PackedScene" uid="uid://byjd6kcwaa7bc" path="res://Scenes/Tiles/BuildingGeneric2.tscn" id="3_axddo"]
-[ext_resource type="PackedScene" uid="uid://b581x30uj5spc" path="res://Scenes/Tiles/BuildingGeneric1.tscn" id="4_x1aww"]
+[ext_resource type="PackedScene" uid="uid://byjd6kcwaa7bc" path="res://Scenes/Tiles/BuildingGeneric02.tscn" id="3_axddo"]
+[ext_resource type="PackedScene" uid="uid://b581x30uj5spc" path="res://Scenes/Tiles/BuildingGeneric01.tscn" id="4_x1aww"]
 [ext_resource type="PackedScene" uid="uid://bbwli37pmewjn" path="res://Scenes/Tiles/Lightpost.tscn" id="5_ycgy7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8k5wb"]

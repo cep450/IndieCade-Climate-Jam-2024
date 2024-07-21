@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://djbn3nvwq6buc"]
+[gd_scene load_steps=5 format=3 uid="uid://byjd6kcwaa7bc"]
 
 [ext_resource type="ArrayMesh" uid="uid://worpbixwiv1w" path="res://Resources/TileMeshes/BuildingGeneric02.tres" id="1_wq754"]
 
@@ -30,7 +30,6 @@ points = PackedVector3Array(0.0207055, 1.14613, -0.211595, 0.408351, 0.003882, 0
 [node name="StaticBody3D" type="StaticBody3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 mesh = ExtResource("1_wq754")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]

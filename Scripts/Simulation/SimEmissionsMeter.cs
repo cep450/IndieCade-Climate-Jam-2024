@@ -9,12 +9,18 @@ public partial class SimEmissionsMeter : Node
 	 *  for use by vehicles and anything we want to count towards emissions 
 	 */
 
+	bool DEBUG = true;
+
 	private float emissions = 0; // running total
 	private float emissionsCap = 10000; // if emissions surpass this the game ends with a loss. TODO tune this 
 	private float emissionsTarget = 10; // if emission rate goes below this the game ends with a win. TODO tune this
 
 	private float emissionsThisTick = 0;
 	private float emissionsLastTick = 0;
+
+	private int winCheckCounter = 0;
+	private int winCheckTicks = 10;
+	private float emissionsThisCheck = 0;
 
 	// for use by UI
 	public float EmissionRate { get => emissionsLastTick; private set {} }
@@ -47,7 +53,15 @@ public partial class SimEmissionsMeter : Node
 
 	public void EndTick() {
 		emissions += emissionsThisTick;
-		CheckEmissionsLevel();
+		emissionsThisCheck += emissionsThisTick;
+		winCheckCounter++;
+		if(winCheckCounter > winCheckTicks) {
+			CheckEmissionsLevel(true);
+			winCheckCounter = 0;
+			emissionsThisCheck = 0;
+		} else {
+			CheckEmissionsLevel(false);
+		}
 		emissionsLastTick = emissionsThisTick;
 		emissionsThisTick = 0;
 		
@@ -65,7 +79,7 @@ public partial class SimEmissionsMeter : Node
 	}
 
 	
-	private void CheckEmissionsLevel()
+	private void CheckEmissionsLevel(bool checkWin)
 	{
 		//if emissions surpass a threshold, end the game with a loss 
 		if (emissions >= emissionsCap && Sim.Instance.gameState == Sim.GameState.GAMEPLAY)
@@ -74,8 +88,8 @@ public partial class SimEmissionsMeter : Node
 		}
 
 		//if emissions rate has been lowered below the threshold, end the game with a win
-		if(emissionsThisTick < emissionsTarget) {
-			Sim.Instance.GameOverSuccess();
+		if(checkWin && emissionsThisCheck < emissionsTarget) {
+			if(!DEBUG) Sim.Instance.GameOverSuccess();
 		}
 	}
 

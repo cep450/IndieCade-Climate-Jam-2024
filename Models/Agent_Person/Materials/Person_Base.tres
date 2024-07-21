@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c17lv81si1eg7"]
+
+[resource]
+resource_name = "Person_Base"
+cull_mode = 2
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)

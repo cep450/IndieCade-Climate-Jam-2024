@@ -68,7 +68,6 @@ _data = {
 }
 
 [node name="LightpostSmall" type="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_tpsmp")

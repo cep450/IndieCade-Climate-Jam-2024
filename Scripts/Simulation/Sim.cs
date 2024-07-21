@@ -9,6 +9,8 @@ public partial class Sim : Node
 	 * Controls simulation game state and execution order.
 	 */
 
+	bool DEBUG = false;
+
 	// game state 
 	public enum GameState {
 		TUTORIAL,	// the game has not begun yet
@@ -90,7 +92,7 @@ public partial class Sim : Node
 	// Enforce execution order. 
 	// The clock calls this when the game is running. 
 	public void SimulationTick() {
-
+		if(DEBUG) GD.Print("Sim Tick!");
 		foreach (var agent in agents)
 		{
 			agent.Tick();
