@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://qaau6y4f50g1"]
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=3 format=3 uid="uid://qaau6y4f50g1"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_4jdps"]
+[ext_resource type="Texture2D" uid="uid://c40bw17qsr7of" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (3).png" id="1_uwflj"]
 
 [resource]
 script = ExtResource("1_4jdps")
@@ -15,13 +16,14 @@ connectsCenter = false
 affectsAllVertices = false
 connectionsBlockedBy = 0
 capacity = 4
-canTransfer = false
+canTransfer = 0
 maxSpeed = 55.0
 safety = 0.0
 costToBuild = 8
 costToDestroy = 8
 incompatibilityMask = 1055
-ModelPath = "res://Scenes/Tiles/Road1"
+ModelPath = "res://Scenes/Tiles/Road"
 ModelVariantCount = 1
 ModelConnects = true
 ModelHasBase = false
+Icon = ExtResource("1_uwflj")

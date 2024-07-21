@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://ep8cvfrhqj3e"]
+[gd_scene load_steps=2 format=3 uid="uid://y17s7n5hoj24"]
 
-[ext_resource type="Script" path="res://Scripts/UI/build_button.gd" id="1_g1h0j"]
+[ext_resource type="Script" path="res://Scripts/UI/build_button.gd" id="1_jtotq"]
 
 [node name="BuildButton" type="Button"]
 process_priority = -100
@@ -17,7 +17,7 @@ grow_vertical = 2
 mouse_filter = 1
 flat = true
 expand_icon = true
-script = ExtResource("1_g1h0j")
+script = ExtResource("1_jtotq")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="pressed" from="." to="." method="_on_pressed"]

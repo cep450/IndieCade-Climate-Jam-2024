@@ -9,6 +9,8 @@ public partial class Sim : Node
 	 * Controls simulation game state and execution order.
 	 */
 
+	bool DEBUG = false;
+
 	// game state 
 	public enum GameState {
 		TUTORIAL,	// the game has not begun yet
@@ -54,7 +56,7 @@ public partial class Sim : Node
 	public override void _Ready()
 	{
 		Instance = this;
-		Instance.startData = (StartData)ResourceLoader.Load("res://Resources/Maps/inspectortest.tres");
+		Instance.startData = (StartData)ResourceLoader.Load("res://Scripts/Simulation/CustomResources/SavedData.tres");
 		grid = GetNode<SimGrid>("SimGrid");
 		EmissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
 		SupportPool = GetNode<SimSupportPool>("SimSupportPool");
@@ -90,7 +92,7 @@ public partial class Sim : Node
 	// Enforce execution order. 
 	// The clock calls this when the game is running. 
 	public void SimulationTick() {
-
+		if(DEBUG) GD.Print("Sim Tick!");
 		foreach (var agent in agents)
 		{
 			agent.Tick();
@@ -151,6 +153,7 @@ public partial class Sim : Node
 			SimAgent agent = new SimAgent(startData.nonDriverProbability, position); //TODO get chance to not have a car from level data 
 			agents.Add(agent);
 			AddChild(agent);
+			agent.CreateVisualVersion();
 		}
 	}
 

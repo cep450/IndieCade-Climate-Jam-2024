@@ -31,7 +31,7 @@ public class PathVertex {
 
 	public List<PathEdge> Edges;
 
-	public bool CanTransfer { get; private set; }
+	public SimVehicleType.TransportMode CanTransfer { get; private set; } //the transport modes that can be transferred between at this vertex
 
 	// these are parallel with SimVehicleType.TransportMode and are for each transport mode 
 	int[] capacity;
@@ -114,7 +114,7 @@ public class PathVertex {
 		InfraAffectedBy = 0x0;
 		DestinationType = 0x0;
 		TransportModes = 0x0;
-		CanTransfer = false;
+		CanTransfer = 0x0;
 		capacity = new int[SimVehicleType.NumTransportModes];
 		if(Edges.Count > 0) {
 			Edges = new List<PathEdge>();
@@ -144,7 +144,7 @@ public class PathVertex {
 		InfraAffectedBy |= infraType.type;
 		DestinationType |= infraType.destinationType;
 		TransportModes |= infraType.transportModes;
-		CanTransfer = infraType.canTransfer;
+		CanTransfer |= infraType.canTransfer;
 		int numModes = SimVehicleType.NumTransportModes;
 
 		for(int i = 0; i < numModes; i++) {

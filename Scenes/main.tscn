@@ -14,7 +14,6 @@ unique_name_in_owner = true
 
 [node name="UI" parent="." instance=ExtResource("1_70wsr")]
 unique_name_in_owner = true
-metadata/_edit_vertical_guides_ = [16.0, 1136.0]
 
 [node name="View" parent="." instance=ExtResource("3_hdemr")]
 unique_name_in_owner = true
