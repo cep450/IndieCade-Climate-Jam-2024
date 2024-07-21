@@ -31,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://bk53tfke7865b" path="res://Models/Tile_Bikelane_Intersection.gltf" id="29_16pap"]
 [ext_resource type="PackedScene" uid="uid://cbwg1bmio5bdq" path="res://Models/Tile_Bikelane_Straight.gltf" id="30_xufi1"]
 [ext_resource type="PackedScene" uid="uid://dwbj41acogml5" path="res://Models/Tile_Bikelane_Tjunction.gltf" id="31_t58lj"]
-[ext_resource type="PackedScene" uid="uid://bgpd0yoyibol1" path="res://Models/Tile_Building_House01.gltf" id="32_iiieq"]
+[ext_resource type="PackedScene" uid="uid://ck62ha52k48i4" path="res://Models/Tile_Building_House01.gltf" id="32_iiieq"]
 
 [node name="Tiles" type="Node3D"]
 

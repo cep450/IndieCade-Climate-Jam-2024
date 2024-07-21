@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbrvdeqtt42l2"]
+
+[ext_resource type="PackedScene" uid="uid://buq56caxv0em6" path="res://Models/Agent_Biker/Agent_Biker_1.gltf" id="1_3rfb6"]
+
+[node name="Agent_Biker_1" instance=ExtResource("1_3rfb6")]
+
+[node name="Skeleton3D" parent="BikeRig" index="0"]
+bones/1/position = Vector3(2.01604e-08, 0.261429, -0.0857119)
+bones/2/rotation = Quaternion(0.808392, 0.153008, 0.160658, 0.545235)
+bones/3/rotation = Quaternion(0.705738, 0.705738, 0.0439834, -0.0439829)
+bones/4/rotation = Quaternion(-0.4987, -3.14774e-07, -1.8777e-07, 0.866775)
+bones/8/position = Vector3(-0.000450251, 0.0568937, -0.125538)
+bones/8/rotation = Quaternion(-0.150819, 0.000526599, -0.000684664, 0.988561)
+bones/9/position = Vector3(-2.17444e-11, 0.0969196, -6.32139e-05)
+bones/9/rotation = Quaternion(0.0880984, 6.40669e-12, 6.57518e-11, 0.996112)
+bones/10/position = Vector3(1.35508e-07, 0.106467, -0.000164293)
+bones/10/rotation = Quaternion(-0.143621, 1.10215e-05, 1.09931e-05, 0.989633)
+bones/11/position = Vector3(0.0431801, -0.00672186, 0.0133512)
+bones/11/rotation = Quaternion(0.0029294, 0.551591, 0.829836, -0.0843295)
+bones/12/position = Vector3(-0.0450751, -0.0114095, 0.025992)
+bones/12/rotation = Quaternion(-0.0149765, 0.427117, 0.900249, 0.0830552)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "Biker_BikeIdle"
