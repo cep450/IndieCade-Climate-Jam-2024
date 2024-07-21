@@ -25,11 +25,11 @@ public partial class SimInfraType : Resource
 		STREETLAMP = 0x100, 
 		TREE = 0x200,
 		PARKINGLOT = 0x400,
-		BIKERACK =  0x800
-
+		BIKERACK =  0x800,
+		GRASS = 0x1000
+		
 	// add new tags here
 	// RAIL, BUSLANE, BUSSTOP, RAILSTATION...
-	//M = 0x1000,
 	//N = 0x2000,
 	//O = 0x4000,
 	//P = 0x8000,
@@ -60,6 +60,7 @@ public partial class SimInfraType : Resource
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/tree.tres"),
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/parking_lot.tres"),
 		GD.Load<SimInfraType>("res://Resources/InfraTypes/bike_rack.tres"),
+		GD.Load<SimInfraType>("res://Resources/InfraTypes/grass.tres"),
 	};
 
 	[Export] public string Name;

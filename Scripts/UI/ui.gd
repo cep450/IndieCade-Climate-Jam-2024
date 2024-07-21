@@ -93,10 +93,11 @@ func on_tile_clicked(x: int, y: int) -> void:
 				instance.initialize(type, x, y)
 				instance.entered.connect(_on_mouse_entered_build)
 		#add delete button
-		instance = button.instantiate()
-		build_buttons.add_child(instance)
-		instance.initialize(null,x,y)
-		instance.entered.connect(_on_mouse_entered_build)
+		if Global.inDevMode:
+			instance = button.instantiate()
+			build_buttons.add_child(instance)
+			instance.initialize(null,x,y)
+			instance.entered.connect(_on_mouse_entered_build)
 		return
 
 func _on_emissions_meter_mouse_entered():
