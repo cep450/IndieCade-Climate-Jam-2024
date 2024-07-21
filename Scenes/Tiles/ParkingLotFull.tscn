@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh827toh7c1ha"]
+
+[ext_resource type="ArrayMesh" uid="uid://cjphsu018h74" path="res://Resources/TileMeshes/ParkingLotFull.tres" id="1_rq4xe"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rt7r0"]
+points = PackedVector3Array(-0.15587, 0.0100721, -0.505167, 0.410501, 0.0730133, 0.470324, -0.391888, 0.0100721, 0.501868, -0.219184, 0.161774, -0.413455, 0.38803, 0.162663, -0.417979, -0.385641, 0.162769, 0.415126, -0.454867, -0.00566746, -0.45795, 0.410414, 0.00331147, -0.410608, 0.38901, 0.16287, 0.400791, 0.41014, 0.00336355, 0.407034, -0.108613, 0.167417, 0.43878, -0.35312, 0.155888, -0.138017, 0.394778, 0.0100721, -0.505167, -0.408989, 0.00303362, 0.408773, 0.331709, 0.0100721, 0.486096, -0.454867, 0.0100721, -0.45795, -0.409981, 0.0170368, 0.409765, -0.187315, 0.0100721, 0.501868, 0.410279, 0.0174391, -0.410472)
+
+[node name="ParkingLotFull" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_rq4xe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_rt7r0")

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://deylqf5m5hfbx"]
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=3 format=3 uid="uid://deylqf5m5hfbx"]
 
+[ext_resource type="Texture2D" uid="uid://bqbqavuprx7qq" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (8).png" id="1_iq0sc"]
 [ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_odrfq"]
 
 [resource]
@@ -15,13 +16,14 @@ connectsCenter = false
 affectsAllVertices = false
 connectionsBlockedBy = 2
 capacity = 10
-canTransfer = false
+canTransfer = 0
 maxSpeed = 1.0
 safety = 1.0
 costToBuild = 2
 costToDestroy = 2
 incompatibilityMask = 1103
-ModelPath = ""
+ModelPath = "res://Scenes/Tiles/Sidewalk"
 ModelVariantCount = 1
 ModelConnects = true
 ModelHasBase = false
+Icon = ExtResource("1_iq0sc")

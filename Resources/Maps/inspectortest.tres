@@ -5,9 +5,14 @@
 
 [sub_resource type="Resource" id="Resource_y3i57"]
 script = ExtResource("1_onxxh")
-gridData = Array[int]([33, 33, 33, 16, 2, 0, 0, 0, 0, 0])
+gridData = Array[int]([33, 33, 33, 16, 2, 0, 2, 4, 8, 16])
 
 [resource]
 script = ExtResource("1_7eur5")
 emissionsCap = 10000
+emissionsTarget = 100
+initialSupport = 25
+startingYear = 2025
+yearsUntilGameOver = 15
+nonDriverProbability = 0.3
 gridData = Array[Object]([SubResource("Resource_y3i57"), SubResource("Resource_y3i57"), SubResource("Resource_y3i57"), SubResource("Resource_y3i57"), SubResource("Resource_y3i57"), SubResource("Resource_y3i57"), SubResource("Resource_y3i57"), SubResource("Resource_y3i57"), SubResource("Resource_y3i57"), SubResource("Resource_y3i57")])

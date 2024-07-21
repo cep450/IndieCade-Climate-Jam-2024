@@ -9,5 +9,4 @@ transportMode = 2
 emissionsPerYear = 4.6
 maxSpeed = 55.0
 agentCapacity = 4
-visualVehicle = null
-model = null
+visualVehicle = "res://Models/Car/car_red_driving.tscn"

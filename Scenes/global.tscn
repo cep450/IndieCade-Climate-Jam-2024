@@ -2,5 +2,6 @@
 
 [ext_resource type="Script" path="res://Scripts/global.gd" id="1_0sv2k"]
 
-[node name="InfraType" type="Node"]
+[node name="Global" type="Node"]
 script = ExtResource("1_0sv2k")
+inDevMode = true

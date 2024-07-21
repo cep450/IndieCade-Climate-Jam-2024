@@ -37,8 +37,12 @@ public partial class SimVehicleType : Resource
 	//Q = 0x10000
 	// ...ect
 	}
+	static int numTransportModes = 0;
 	public static int NumTransportModes { get {
-		return Enum.GetNames(typeof(TransportMode)).Length;
+		if(numTransportModes == 0){
+			numTransportModes = Enum.GetNames(typeof(TransportMode)).Length;
+		}
+		return numTransportModes;
 	}}
 	public static int ModeIndex(TransportMode mode) {
 		return (int)Math.Log2((double)((int)mode));
@@ -73,7 +77,7 @@ public partial class SimVehicleType : Resource
 	//private float emissionsPerTick; // derived from per year based on time scale in Sim
 	[Export] private float maxSpeed;	// in miles per hour for familiarity and being able to look up data. In the future we can display this in different units by converting the number the UI displays, even if the internal number is the same.
 	[Export] private int agentCapacity = 1; // how many agents can travel in it at a time
-	[Export] public NodePath visualVehicle;
+	[Export] public string visualVehicle;
 
 	[Export] public string ModelPath;
 
