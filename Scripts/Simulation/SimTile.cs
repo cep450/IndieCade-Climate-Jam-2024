@@ -141,6 +141,7 @@ public partial class SimTile : Node
 
 			//TODO update tiles adjacent to this tile visually-- make sure this happens in update_visuals maybe 
 		}
+
 		return true;
 	}
 

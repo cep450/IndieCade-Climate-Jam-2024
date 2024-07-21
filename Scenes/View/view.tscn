@@ -271,6 +271,5 @@ autoplay = "SunRotate"
 script = ExtResource("1_k5je3")
 
 [node name="Floor" type="MeshInstance3D" parent="World"]
-visible = false
 mesh = SubResource("PlaneMesh_3jdih")
 skeleton = NodePath("../..")
