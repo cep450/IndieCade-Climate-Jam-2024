@@ -10,6 +10,5 @@ func Set_Vehicle(path: String):
 		var instance = load(path).instantiate()
 		add_child(instance)
 
-func SetVisible(is_visible):
-	for child in get_children():
-		child.visible = is_visible
+func Set_Visible(is_visible):
+	visible = is_visible

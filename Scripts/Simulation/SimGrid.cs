@@ -30,6 +30,14 @@ public partial class SimGrid : Node
 		pos -= (sizeAxis / 2);
 		return pos;
 	}
+	public float GridToWorldPos(bool useWidth, int coord) {
+		if (useWidth)
+		{
+			return GridToWorldPos(width, coord);
+		} else {
+			return GridToWorldPos(height, coord);
+		}
+	}
 
 	public void LoadGridFromResource(StartData resourceToLoad)
 	{

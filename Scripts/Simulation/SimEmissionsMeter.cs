@@ -75,7 +75,7 @@ public partial class SimEmissionsMeter : Node
 
 		//if emissions rate has been lowered below the threshold, end the game with a win
 		if(emissionsThisTick < emissionsTarget) {
-			Sim.Instance.GameOverSuccess();
+			//Sim.Instance.GameOverSuccess();
 		}
 	}
 
