@@ -9,6 +9,9 @@ albedo_color = Color(0.830905, 0.839261, 0.842968, 1)
 resource_name = "Windows"
 cull_mode = 2
 albedo_color = Color(0.136617, 0.139433, 0.24431, 1)
+emission_enabled = true
+emission = Color(0.603512, 0.4082, 0.167862, 1)
+emission_energy_multiplier = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h4ig"]
 resource_name = "WindowTrim"
