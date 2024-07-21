@@ -84,12 +84,12 @@ public partial class SimAgent : Node
 		// tile coords to vertex coords 
 		currentCoordinates = new Vector2I(PathfindingGraph.TileToVertexCoord(coordinates.X), PathfindingGraph.TileToVertexCoord(coordinates.Y));
 
-		//TODO set Vehicle to pedestrian by default, we'll need a list to get this
-		destinationType = Sim.Instance.GetTile(currentCoordinates.X, currentCoordinates.Y).DestinationType;
 		state = State.AT_DESTINATION;
 
-		//pathFinder = GetNode<SimPath>("../SimPath"); //get a reference to the pathfinder
-		//SetRandomTarget();
+	}
+
+	public void InitAfterMapLoad() {
+		destinationType = Sim.Instance.GetTile(currentCoordinates.X, currentCoordinates.Y).DestinationType;
 	}
 	
 	public void CreateVisualVersion()
@@ -130,19 +130,18 @@ public partial class SimAgent : Node
 
 	// every simulation tick.
 	public void Tick() {
-		//TODO fix
-		/*
+
 		if(state == State.AT_DESTINATION) {
 			//GD.Print($"Timer: {timer}");
 			if (timer > ticksToWait) 
 			{
+				GD.Print("Timer Completed!");
 				PathVertex currentV = Sim.Instance.PathGraph.GetVertex(currentCoordinates);
 				ChooseNewDestinationType();
 				currentPath = pathfinder.FindPath(currentV, destinationType, this); 
 				Vehicle = new SimVehicle(currentPath.pathVehicleType); //TODO CHANGE THIS THIS IS VERY BAD
 				Vehicle.IsInUse = true;
 				visualAgent.Call("Set_Vehicle", currentPath.pathVehicleType.ModelPath); //change visual model
-				//GD.Print("Timer Completed!");
 				timer = 0;
 				state = State.TRAVELLING;
 				visualAgent.Call("Set_Visible", true);
@@ -173,7 +172,6 @@ public partial class SimAgent : Node
 				currentCoordinates = currentStartVertex.PathGraphCoordinates;
 			}
 		}
-		*/
 	}
 
 	private void Arrived() {

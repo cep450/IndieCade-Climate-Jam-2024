@@ -79,6 +79,10 @@ public partial class Sim : Node
 		grid.LoadGridFromResource(startData);
 		PathGraph = new PathfindingGraph(startData.GridWidth, startData.GridHeight);
 
+		foreach(SimAgent agent in agents) {
+			agent.InitAfterMapLoad();
+		}
+
 	}
 
 	// Start the simulation for the first time. 

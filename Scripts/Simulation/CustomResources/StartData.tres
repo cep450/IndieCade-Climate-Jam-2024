@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StartData" load_steps=114 format=3 uid="uid://brr5tlg780o7m"]
+[gd_resource type="Resource" script_class="StartData" load_steps=114 format=3 uid="uid://cwras7ffmfy5r"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_v51qn"]
 [ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/SimInfraTypeRow.cs" id="2_kopov"]
