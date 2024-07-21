@@ -6,12 +6,10 @@ using System.Linq;
 
 public partial class SimTile : Node
 {
-
 	/*
 	 * A single tile in the simulation.
 	 */
-
-	static bool DEBUG = true;
+	static bool DEBUG = false;
 
 	public List<SimInfra> Infra { get; private set; } // infrastructure instances currently on this tile
 	public SimInfraType.InfraType InfraTypesMask { get; private set; }
