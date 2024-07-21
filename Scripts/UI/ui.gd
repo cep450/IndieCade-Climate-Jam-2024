@@ -89,3 +89,16 @@ func _on_emissions_meter_mouse_entered():
 
 func _on_emissions_meter_mouse_exited():
 	emissions_meter.get_node("HoverInfo").visible = falses
+
+func _on_mouse_entered_build(text: String):
+	$BuildInfo.visible = true
+	$BuildInfo/Text.text = text
+	$BuildInfo.size.x = $BuildButtons.size.x
+	$BuildInfo.position.x = $BuildButtons.position.x
+
+func _on_mouse_exited():
+	$BuildInfo.visible = false
+
+func _on_save_button_pressed():
+	sim.get_node("SimGrid").SaveGridAsResource()
+	
