@@ -1,6 +1,7 @@
 extends Node
 
 @onready var sim: Node = $"../Main/Simulation"
+@onready var ui: Control = $"../Main/UI"
 @export var inDevMode: bool = false
 @export var audio_files: Array[Audio]
 	
@@ -9,8 +10,8 @@ var current_tile: Vector2 = Vector2(-1, -1)
 #Private audio stuff
 var audio_dict = {}
 var stream_player = preload("res://Scenes/stream_player.tscn")
-var music_tracks: Array[String] =  ["OST-A","OST-B"]
-var music_index: int = 0
+var music_tracks: Array[String]
+var music_index: int = -1
 # Called by view_tile, Vector2 stores an index
 func on_tile_clicked(clicked_tile: Vector2):
 	if clicked_tile == current_tile:
@@ -20,11 +21,14 @@ func on_tile_clicked(clicked_tile: Vector2):
 
 func _ready():
 	convert_files_to_dict()
+	incriment_music_index()
 	play(music_tracks[music_index])
 	
 func convert_files_to_dict():
 	for file in audio_files:
 		audio_dict[file.sound_name] = file
+		if file.is_music:
+			music_tracks.append(file.sound_name)
 
 func play(sound_name: String):
 	if (audio_dict.has(sound_name)):
@@ -54,7 +58,9 @@ func _input(event):
 					incriment_music_index()
 					play(music_tracks[music_index])
 						
-
 # Helpers
 func incriment_music_index():
 	music_index = (music_index + 1) % music_tracks.size()
+	if ui != null:
+		ui.set_song_name(music_tracks[music_index])
+	print(str(music_index))
