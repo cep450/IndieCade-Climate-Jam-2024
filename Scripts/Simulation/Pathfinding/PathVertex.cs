@@ -11,6 +11,8 @@ public class PathVertex {
 	 *  Might represent a destination 
 	 *  Might be an interchange if edges with multiple transport modes connect to it 
 	 */
+	
+	static bool DEBUG = false;
 
 	public enum Type {
 		CENTER, BORDER, CORNER
@@ -192,7 +194,7 @@ public class PathVertex {
 							!((InfraAffectedBy & SimInfraType.InfraType.CROSSWALK) > 0)) {
 								// connection is blocked 
 						} else {
-							GD.Print("added edge between " + PathGraphCoordinates.ToString() + "," + other.PathGraphCoordinates.ToString() + " of mode " + mode + " from infra " + itype.Name);
+							if(DEBUG) GD.Print("added edge between " + PathGraphCoordinates.ToString() + "," + other.PathGraphCoordinates.ToString() + " of mode " + mode + " from infra " + itype.Name);
 							pathGraph.AddEdge(this, other, mode, itype.maxSpeed, itype.safety);
 						}
 					}
