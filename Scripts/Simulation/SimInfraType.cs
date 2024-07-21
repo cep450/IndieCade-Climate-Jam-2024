@@ -113,6 +113,16 @@ public partial class SimInfraType : Resource
 		}
 		return arr;
 	}
+	
+	public static Godot.Collections.Array<SimInfraType> GetTypes()
+	{
+		var godotArray = new Godot.Collections.Array<SimInfraType>();
+		foreach (var type in types)
+		{
+			godotArray.Add(type);
+		}
+		return godotArray;
+	}
 
 	// If we want specific types or groups of types to have extra behavior, they can extend this class and override these functions, which are called when the infra is added to or removed from a tile.
 	public virtual void AddedToTile(SimTile tile) {}

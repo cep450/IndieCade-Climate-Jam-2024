@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://cc82wjr66j33"]
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=3 format=3 uid="uid://cc82wjr66j33"]
 
+[ext_resource type="Texture2D" uid="uid://4xvm0qlr156r" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (5).png" id="1_j02dm"]
 [ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_paim6"]
 
 [resource]
@@ -21,7 +22,8 @@ safety = 2.0
 costToBuild = 1
 costToDestroy = 1
 incompatibilityMask = 0
-ModelPath = ""
-ModelVariantCount = 1
+ModelPath = "res://Scenes/Tiles/LightpostLarge"
+ModelVariantCount = 0
 ModelConnects = false
 ModelHasBase = false
+Icon = ExtResource("1_j02dm")

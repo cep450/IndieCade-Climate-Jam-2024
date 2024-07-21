@@ -86,7 +86,7 @@ public partial class SimAgent : Node
 		targetPosition = new Vector2(2,9);
 
 		currentPath = simPath;
-		simGrid = GetNode<SimGrid>("..//SimGrid");
+		simGrid = GetNode<SimGrid>("../SimGrid");
 	}
 
 	// every game tick. update position smoothly
@@ -97,11 +97,13 @@ public partial class SimAgent : Node
 
 	// every simulation tick.
 	public void Tick() {
+		//TODO fix
+		/*
 		if(state == State.AT_DESTINATION) {
-			GD.Print($"Timer: {timer}");
+			//GD.Print($"Timer: {timer}");
 			if (timer > ticksToWait) 
 			{
-				GD.Print("Timer Completed!");
+				//GD.Print("Timer Completed!");
 				//ChooseNewDestinationType();
 				//SetRandomTarget(); //Choose target
 				//currentPath = Add pathfinding call here
@@ -133,6 +135,7 @@ public partial class SimAgent : Node
 				Vehicle?.Tick(); //add emissions
 			}
 		}
+		*/
 	}
 
 	private void Arrived() {
@@ -141,7 +144,6 @@ public partial class SimAgent : Node
 		state = State.AT_DESTINATION;
 
 		//TODO generate support based on the route 
-
 	}
 
 	//TODO we'll be replacing this with ChooseTarget()
@@ -179,7 +181,7 @@ public partial class SimAgent : Node
 			
 			currentPosition = new Vector2(simGrid.GridToWorldPos(true, (int)nextVertex.WorldPosition.X), simGrid.GridToWorldPos(false, (int)nextVertex.WorldPosition.Y)); //Move to next vertex
 			visualAgent.Call("Set_Pos", new Vector3(currentPosition.X, 0.22f, currentPosition.Y));
-			GD.Print($"Moving from: {currentVertex.WorldPosition} to: {nextVertex.WorldPosition}");
+			//GD.Print($"Moving from: {currentVertex.WorldPosition} to: {nextVertex.WorldPosition}");
 			return true;
 		} else
 		{

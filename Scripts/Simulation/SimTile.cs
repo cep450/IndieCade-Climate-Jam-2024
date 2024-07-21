@@ -50,15 +50,18 @@ public partial class SimTile : Node
 	}
 
 	// Add infrastructure to the tile. Returns false if the infrastructure could not be added.
-	public bool AddInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
+	public string AddInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
 
 		if(DEBUG) GD.Print("called SimTile.AddInfra to add type " + type.Name);
 
 		//validate if the infrastructure can be added here, and if the player has enough currency
 		if(!bypassValidation) {
-			if(!CanAffordToAddInfra(type) || !CanAddInfraType(type)) {
-				return false;
+			if(!CanAffordToAddInfra(type)){
+				return "Can't Afford";
 			} 
+			if(!CanAddInfraType(type)){
+				return "Not Valid Space to Add";
+			}
 
 			if(DEBUG) GD.Print("Validated, adding tile, spending " + type.costToBuild);
 
@@ -93,8 +96,8 @@ public partial class SimTile : Node
 			//TODO update tiles adjacent to this tile visually
 		}
 
-		//return if adding was successful
-		return true;
+		//return "" adding was successful
+		return "";
 	}
 
 	//TODO what do we want to pass in here? an index in the list? a type? an instance? maybe overrides for all of these. one that takes a mask could even add/remove multiple at once.
