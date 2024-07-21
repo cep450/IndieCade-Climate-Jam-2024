@@ -57,6 +57,9 @@ public partial class Sim : Node
 	{
 		Instance = this;
 		Instance.startData = (StartData)ResourceLoader.Load("res://Scripts/Simulation/CustomResources/SavedData.tres");
+		//Give Global access to this node
+		GodotObject autoload = GetNode("/root/Global");
+		autoload.Call("set_sim",Instance);
 		grid = GetNode<SimGrid>("SimGrid");
 		EmissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
 		SupportPool = GetNode<SimSupportPool>("SimSupportPool");

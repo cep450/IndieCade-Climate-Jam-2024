@@ -1,6 +1,6 @@
 extends Node
 
-@onready var sim: Node = $"..Simulation"
+var sim: Node
 @export var inDevMode: bool = false
 
 var current_tile: Vector2 = Vector2(-1, -1)
@@ -11,3 +11,9 @@ func on_tile_clicked(clicked_tile: Vector2):
 		current_tile = Vector2(-1,-1)
 	else: 
 		current_tile = clicked_tile
+
+func set_sim(sim_node: Node):
+	sim = sim_node
+
+func say_hi():
+	print("hi")
