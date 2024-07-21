@@ -40,6 +40,9 @@ public class PathfindingGraph {
 	private PathVertex[,] vertexGrid; // and each of these will store its edges 
 	int sizeX;
 	int sizeY;
+	public int Width { get => sizeX; }
+	public int Height { get => sizeY; }
+
 
 	public PathfindingGraph(int gridSizeX, int gridSizeY) {
 		sizeX = TileToVertexCoord(gridSizeX);

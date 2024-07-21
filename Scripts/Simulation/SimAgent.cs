@@ -47,6 +47,7 @@ public partial class SimAgent : Node
 	private int timer = 0, ticksToWait = 1; //Timer for ticks
 	private int pointInList;
 	private SimGrid simGrid;
+	Pathfinding pathfinder;
 
 
 	//TODO should we instantiate these in a different way? or is visual agent the node instance?
@@ -167,8 +168,20 @@ public partial class SimAgent : Node
 	}
 
 	// choose the destination of the chosen destination type to pathfind to 
-	void ChooseTarget() {
-		//TODO 
+	// Find the least weighted path to a tile of the destination type. (Mini Metro style.)
+	// TODO: if we use a different algorithm, this can: Constitutes both finding a path and determining which tile to travel to next. 
+	public void FindNearestDestination(SimInfraType.DestinationType type) {
+
+		//TODO search for the nearest tile with infrastructure with chosen destination type 
+
+		for(int dist = 1; dist < Mathf.Min(Sim.Instance.grid.Width, Sim.Instance.grid.Height); dist++) {
+			for(int i = 0; i < dist; i++) {
+				//TODO 
+			}
+		}
+		// nothing found 
+		//TODO ChooseNewDestinationType different type 
+
 	}
 
 	// Move to the next vertex on the path, returns true if successful
@@ -188,16 +201,59 @@ public partial class SimAgent : Node
 		  
 	}
 
-	// Calculate how much this agent weights this connection between 2 tiles.
-	float WeightConnection(PathEdge edge) {
 
-		//TODO add factors like safety and whatever trees might give you from infrastructure on the subsequent tile 
-		
+
+	// TODO generate these properly later
+	float suppFactorSafety = 1f;
+	float suppFactorDistance = -0.1f;
+	float suppFactorEmissions = -0.1f;
+									// pedestrian, car, bike
+	float [] suppFactorsTransportMode = { 0.2f, 0f, 0.1f }; //TODO define this properly later
+
+	// how much support this agent calculates from this edge 
+	float SupportGainedConnection(PathEdge edge, SimVehicleType.TransportMode mode) {
+
+		float support = 0; 
+
+		support += edge.Safety * suppFactorSafety;
+		support += edge.Distance * suppFactorDistance;
+		support += SimVehicleType.TypeFromEnum(mode).Emissions * suppFactorEmissions;
+		support += suppFactorsTransportMode[(int)mode];
+
 		//TODO consider the max speed of [whatever's smaller: the current vehicle or the infrastructure for that vehicle]
+		// really: consdier time 
 
-		//TODO consider emissions of the current vehicle based on the transport mode 
+		//TODO we might want support for transit mode to be a one time thing when they first switch to it, and then distance can outweigh, rather than more tiles travelled increasing it
+		// and start out a lump sum that distance decreases from 
 
-		return 0f;
+		if(support < 0) return 0f;
+
+		return support;
+	}
+
+	// TODO generate these properly later
+	float weightFactorSafety = -0.9f;
+	float weightFactorDistance = 1f;
+	float weightFactorEmissions = 0.5f;
+									// pedestrian, car, bike
+	float [] weightFactorsTransportMode = { 0.1f, 0.5f, 0.2f }; //TODO define this properly later
+
+	// Calculate how much this agent weights this connection between 2 tiles.
+	float WeightConnection(PathEdge edge, SimVehicleType.TransportMode mode) {
+
+		float cost = 0;
+
+		cost += edge.Safety * weightFactorSafety;
+		cost += edge.Distance * weightFactorDistance;
+		cost += SimVehicleType.TypeFromEnum(mode).Emissions * weightFactorEmissions;
+		cost += weightFactorsTransportMode[(int)mode];
+
+		//TODO consider the max speed of [whatever's smaller: the current vehicle or the infrastructure for that vehicle]
+		// really: consider time 
+
+		if(cost < 0) return 0f;
+
+		return cost;
 	}
 }
 
