@@ -20,4 +20,9 @@ public partial class SimPath : Node
 	//what kind of vehicle is being used on this path
 	public SimVehicleType pathVehicleType;
 
+	public SimPath() {
+		vertices = new List<PathVertex>();
+		edges = new List<PathEdge>();
+	}
+
 }
