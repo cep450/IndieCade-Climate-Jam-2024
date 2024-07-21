@@ -7,7 +7,7 @@ using System.Linq;
 public partial class SimAgent : Node
 {
 
-	bool DEBUG = true;
+	bool DEBUG = false;
 
 		// TODO generate these properly later
 	float suppFactorSafety = 1f;
@@ -57,7 +57,8 @@ public partial class SimAgent : Node
 	public Vector2 targetPosition;
 
 	// coordinate position on VERTEX GRAPH for moving destination to destination 
-	public Vector2I currentCoordinates;
+	public Vector2I currentTileCoords;
+	public Vector2I currentVertexCoords;
 	public Vector2I targetCoordinates;
 
 	private SimPath currentPath;
@@ -82,14 +83,15 @@ public partial class SimAgent : Node
 		}
 
 		// tile coords to vertex coords 
-		currentCoordinates = new Vector2I(PathfindingGraph.TileToVertexCoord(coordinates.X), PathfindingGraph.TileToVertexCoord(coordinates.Y));
+		currentTileCoords = coordinates;
+		currentVertexCoords = new Vector2I(PathfindingGraph.TileToVertexCoord(coordinates.X), PathfindingGraph.TileToVertexCoord(coordinates.Y));
 
 		state = State.AT_DESTINATION;
-
 	}
 
 	public void InitAfterMapLoad() {
-		destinationType = Sim.Instance.GetTile(currentCoordinates.X, currentCoordinates.Y).DestinationType;
+		//GD.Print(" sim " + (Sim.Instance == null) + " get tile " + (Sim.Instance.GetTile(currentTileCoords.X, currentTileCoords.Y) == null));
+		destinationType = Sim.Instance.GetTile(currentTileCoords.X, currentTileCoords.Y).DestinationType;
 	}
 	
 	public void CreateVisualVersion()
@@ -136,7 +138,7 @@ public partial class SimAgent : Node
 			if (timer > ticksToWait) 
 			{
 				GD.Print("Timer Completed!");
-				PathVertex currentV = Sim.Instance.PathGraph.GetVertex(currentCoordinates);
+				PathVertex currentV = Sim.Instance.PathGraph.GetVertex(currentVertexCoords);
 				ChooseNewDestinationType();
 				currentPath = pathfinder.FindPath(currentV, destinationType, this); 
 				Vehicle = new SimVehicle(currentPath.pathVehicleType); //TODO CHANGE THIS THIS IS VERY BAD
@@ -169,7 +171,8 @@ public partial class SimAgent : Node
 				Vehicle?.Tick(); //add emissions
 
 				//TODO do this if successful 
-				currentCoordinates = currentStartVertex.PathGraphCoordinates;
+				currentVertexCoords = currentStartVertex.PathGraphCoordinates;
+				currentTileCoords = new Vector2I((int)PathfindingGraph.VertexToTileCoord(currentStartVertex.PathGraphCoordinates.X), (int)PathfindingGraph.VertexToTileCoord(currentStartVertex.PathGraphCoordinates.Y));
 			}
 		}
 	}
@@ -179,6 +182,10 @@ public partial class SimAgent : Node
 		GD.Print("ARRIVED!");
 		state = State.AT_DESTINATION;
 		Vehicle.IsInUse = false;
+
+		PathVertex lastVert = currentPath.vertices[currentPath.vertices.Count - 1];
+		currentVertexCoords = lastVert.PathGraphCoordinates;
+		currentTileCoords = new Vector2I((int)PathfindingGraph.VertexToTileCoord(lastVert.PathGraphCoordinates.X), (int)PathfindingGraph.VertexToTileCoord(lastVert.PathGraphCoordinates.Y));
 
 		//generate support based on the route 
 		Sim.Instance.SupportPool.AddSupport(currentPath.totalSupport);

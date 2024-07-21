@@ -55,6 +55,7 @@ public partial class Sim : Node
 
 	public override void _Ready()
 	{
+		GD.Print("sim ready");
 		Instance = this;
 		Instance.startData = (StartData)ResourceLoader.Load("res://Scripts/Simulation/CustomResources/SavedData.tres");
 		//Give Global access to this node
@@ -82,14 +83,14 @@ public partial class Sim : Node
 		grid.LoadGridFromResource(startData);
 		PathGraph = new PathfindingGraph(startData.GridWidth, startData.GridHeight);
 
-		foreach(SimAgent agent in agents) {
-			agent.InitAfterMapLoad();
-		}
-
 	}
 
 	// Start the simulation for the first time. 
 	public void BeginGame() {
+
+		foreach(SimAgent agent in agents) {
+			agent.InitAfterMapLoad();
+		}
 
 		gameState = GameState.GAMEPLAY;
 		Clock.UnPause();
