@@ -44,6 +44,7 @@ public partial class Pathfinding : Node
 		SimPath path = null; 
 		foreach(SimVehicleType.TransportMode mode in Enum.GetValues<SimVehicleType.TransportMode>()) {
 			SimPath newPath = FindPath(startVert, destinationType, agent, mode);
+			GD.Print(" path was " + (newPath == null));
 			if(path == null || newPath.totalWeight < path.totalWeight) {
 				path = newPath;
 			}
@@ -57,7 +58,7 @@ public partial class Pathfinding : Node
 	{
 		if(!initialized) Init();
 
-		GD.Print("called FindPath");
+		//GD.Print("called FindPath");
 
 		// Run Dijkstra's until we land on a vert of the specified destination type. Then, return that path.
 
@@ -78,6 +79,8 @@ public partial class Pathfinding : Node
 
 		bool foundDestination = false;
 		while(openSet.Count > 0 && !foundDestination) {
+
+			GD.Print(" open set size " + openSet.Count);
 
 			// pick min weight next vertex from the set of verts not yet processed 
 			PathVertex v = openSet[0];

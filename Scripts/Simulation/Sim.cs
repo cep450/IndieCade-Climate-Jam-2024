@@ -100,8 +100,8 @@ public partial class Sim : Node
 	// Enforce execution order. 
 	// The clock calls this when the game is running. 
 	public void SimulationTick() {
-		if(DEBUG) GD.Print("Sim Tick!");
-		foreach (var agent in agents)
+
+		foreach (SimAgent agent in agents)
 		{
 			agent.Tick();
 		}

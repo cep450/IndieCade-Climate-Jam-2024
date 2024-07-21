@@ -85,13 +85,17 @@ public partial class SimAgent : Node
 		// tile coords to vertex coords 
 		currentTileCoords = coordinates;
 		currentVertexCoords = new Vector2I(PathfindingGraph.TileToVertexCoord(coordinates.X), PathfindingGraph.TileToVertexCoord(coordinates.Y));
+		GD.Print(" tile " + currentTileCoords.ToString() + " vert " + currentVertexCoords.ToString());
 
 		state = State.AT_DESTINATION;
+
+		pathfinder = new Pathfinding();
 	}
 
 	public void InitAfterMapLoad() {
 		//GD.Print(" sim " + (Sim.Instance == null) + " get tile " + (Sim.Instance.GetTile(currentTileCoords.X, currentTileCoords.Y) == null));
 		destinationType = Sim.Instance.GetTile(currentTileCoords.X, currentTileCoords.Y).DestinationType;
+		pathfinder.Init();
 	}
 	
 	public void CreateVisualVersion()
@@ -140,6 +144,7 @@ public partial class SimAgent : Node
 				GD.Print("Timer Completed!");
 				PathVertex currentV = Sim.Instance.PathGraph.GetVertex(currentVertexCoords);
 				ChooseNewDestinationType();
+				GD.Print("dest type " + destinationType.ToString() + " currentv " + currentV.PathGraphCoordinates.ToString());
 				currentPath = pathfinder.FindPath(currentV, destinationType, this); 
 				Vehicle = new SimVehicle(currentPath.pathVehicleType); //TODO CHANGE THIS THIS IS VERY BAD
 				Vehicle.IsInUse = true;
