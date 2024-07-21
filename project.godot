@@ -24,7 +24,9 @@ Global="*res://Scenes/global.tscn"
 [display]
 
 window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_height=1920
+window/size/mode=4
+window/size/initial_screen=1080
 
 [dotnet]
 
@@ -32,7 +34,6 @@ project/assembly_name="ClimateGame"
 
 [editor]
 
-movie_writer/mjpeg_quality=1.0
 movie_writer/movie_file="C:/Users/kateq/OneDrive/Desktop/Movies/Movies.avi"
 
 [editor_plugins]
@@ -48,3 +49,7 @@ settings/test/test_lookup_folder=""
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=4
+camera/depth_of_field/depth_of_field_bokeh_shape=0
+camera/depth_of_field/depth_of_field_bokeh_quality=0
+scaling_3d/mode=1
+scaling_3d/fsr_sharpness=0.5
