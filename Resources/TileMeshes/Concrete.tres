@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=3 format=3 uid="uid://bdnp2ykswgxy6"]
+[gd_resource type="ArrayMesh" load_steps=3 format=3 uid="uid://do5ycek4ggk75"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8esc"]
 resource_name = "ConcreteMat"

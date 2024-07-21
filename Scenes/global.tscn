@@ -4,4 +4,3 @@
 
 [node name="Global" type="Node"]
 script = ExtResource("1_0sv2k")
-inDevMode = true

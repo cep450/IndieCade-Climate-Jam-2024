@@ -1,16 +1,17 @@
 extends Control
 
 @onready var images = [
-	$TextureRect,
-	$TextureRect2,
-	$TextureRect3,
-	$TextureRect4,
-	$TextureRect5,
-	$TextureRect6,
-	$TextureRect7
+	$pop_up1,
+	$pop_up2,
+	$pop_up3,
+	$pop_up4,
+	$pop_up5,
+	$pop_up6,
+	$pop_up7
 ]  
 
-@onready var next_button = $NextButton
+@onready var next_button = $Full_Screen_Next_Button
+@onready var mainScene = preload("res://Scenes/main.tscn") as PackedScene
 
 var current_index = 0
 
@@ -21,7 +22,7 @@ func _ready():
 func _on_next_button_pressed():
 	current_index += 1
 	if current_index >= images.size():
-		current_index = -1  # make all images invisible
+		current_index = -1  # go to main.tscn
 	_update_image_visibility()
 
 func _update_image_visibility():
@@ -31,3 +32,4 @@ func _update_image_visibility():
 	if current_index == -1:
 		for i in range(images.size()):
 			images[i].visible = false
+			get_tree().change_scene_to_packed(mainScene)

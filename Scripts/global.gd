@@ -1,6 +1,6 @@
 extends Node
 
-@onready var sim: Node = $"../Main/Simulation"
+@onready var sim: Node = $"..Simulation"
 @export var inDevMode: bool = false
 
 var current_tile: Vector2 = Vector2(-1, -1)
