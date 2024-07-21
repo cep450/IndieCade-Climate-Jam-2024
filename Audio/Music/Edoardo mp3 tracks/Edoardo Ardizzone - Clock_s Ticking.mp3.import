@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://gkaenxal4gv5"
+path="res://.godot/imported/Edoardo Ardizzone - Clock_s Ticking.mp3-519a1394d16c331cbcf02abe1275208c.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Edoardo mp3 tracks/Edoardo Ardizzone - Clock_s Ticking.mp3"
+dest_files=["res://.godot/imported/Edoardo Ardizzone - Clock_s Ticking.mp3-519a1394d16c331cbcf02abe1275208c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

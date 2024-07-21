@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cqwfl5iys8ksf"
+path="res://.godot/imported/Edoardo Ardizzone - Mr. Wilkinson.mp3-141245e00c60f67334415d03ebf25033.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Edoardo mp3 tracks/Edoardo Ardizzone - Mr. Wilkinson.mp3"
+dest_files=["res://.godot/imported/Edoardo Ardizzone - Mr. Wilkinson.mp3-141245e00c60f67334415d03ebf25033.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
