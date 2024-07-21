@@ -6,6 +6,7 @@
 points = PackedVector3Array(-0.450384, 0.00908292, -0.457184, 0.449649, 0.00908292, 0.456384, 0.449649, 0.00908292, -0.457184, -0.450384, 0.00908292, 0.456384)
 
 [node name="ParkingLotEmpty" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_bkc4b")

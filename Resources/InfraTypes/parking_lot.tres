@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://3ovoe8h6ojl1"]
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=3 format=3 uid="uid://3ovoe8h6ojl1"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_2c54y"]
+[ext_resource type="Texture2D" uid="uid://mbdci21jlne0" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (9).png" id="1_kmdcm"]
 
 [resource]
 script = ExtResource("1_2c54y")
@@ -20,8 +21,9 @@ maxSpeed = 1.0
 safety = 0.0
 costToBuild = 4
 costToDestroy = 4
-incompatibilityMask = 1119
-ModelPath = ""
+incompatibilityMask = 1279
+ModelPath = "res://Scenes/Tiles/ParkingLotEmpty"
 ModelVariantCount = 1
 ModelConnects = false
-ModelHasBase = false
+ModelHasBase = true
+Icon = ExtResource("1_kmdcm")
