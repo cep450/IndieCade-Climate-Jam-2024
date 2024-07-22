@@ -101,11 +101,11 @@ public partial class Sim : Node
 	// The clock calls this when the game is running. 
 	public void SimulationTick() {
 
-		GD.Print("sim tick");
+		//GD.Print("sim tick");
 
 		foreach (SimAgent agent in agents)
 		{
-			GD.Print("agent tick");
+			//GD.Print("agent tick");
 			agent.Tick();
 		}
 

@@ -10,14 +10,14 @@ public partial class SimAgent : Node
 
 	bool DEBUG = false;
 
-	float agentVerticalPos = 0.22f;
+	float agentVerticalPos = 1.22f;
 
 		// TODO generate these properly later
 	float suppFactorSafety = 1f;
 	float suppFactorDistance = -0.1f;
 	float suppFactorEmissions = -0.1f;
 									// pedestrian, car, bike
-	float [] suppFactorsTransportMode = { 0.2f, 0f, 0.1f }; //TODO define this properly later
+	float [] suppFactorsTransportMode = { 0.1f, 0f, 0.05f }; //TODO define this properly later
 	public float [] suppLumpSumTransportMode = { 1f, 0f, 1f }; //TODO define this properly later
 
 	
@@ -71,10 +71,9 @@ public partial class SimAgent : Node
 	private GodotObject visualAgent;
 	private GodotObject world;
 	private int timer = 0, ticksToWait = 1; //Timer for ticks
-	private int pointInList;
+	private int pointInList = 0;
 	private SimGrid simGrid;
 	Pathfinding pathfinder;
-	int pathIndex = 0;
 
 
 	//TODO should we instantiate these in a different way? or is visual agent the node instance?
@@ -151,15 +150,19 @@ public partial class SimAgent : Node
 				GD.Print("dest type " + destinationType.ToString() + " currentv " + currentV.PathGraphCoordinates.ToString());
 				currentPath = pathfinder.FindPath(currentV, destinationType, this); 
 				if(currentPath == null) {
+					//if no path that way, 
+					//TODO go somewhere else (when we have more than 1 destination type)
+					//for now just wait 10 ticks 
+					timer = 0;
 					return;
 				}
 				Vehicle = new SimVehicle(currentPath.pathVehicleType); //TODO CHANGE THIS THIS IS VERY BAD
 				Vehicle.IsInUse = true;
 				visualAgent.Call("Set_Vehicle", currentPath.pathVehicleType.ModelPath); //change visual model
 				timer = 0;
-				pathIndex = 0;
 				state = State.TRAVELLING;
 				visualAgent.Call("Set_Visible", true);
+				pointInList = 0;
 			} else 
 			{
 				timer++;
@@ -170,17 +173,15 @@ public partial class SimAgent : Node
 
 			//TODO factor in travel time, but for now, just 1 tick per tile 
 
-			if (currentPosition == targetPosition) //might need to compare x/y properties instead
+			if (pointInList >= currentPath.vertices.Count - 1)
 			{
 				Arrived();
-			} else 
-			{
+			} else {
 				PathVertex currentStartVertex = currentPath.vertices[pointInList];
 				PathVertex currentDestVertex = currentPath.vertices[pointInList + 1];
 				if (MoveToNextVertex(currentStartVertex,currentDestVertex))
 				{
 					pointInList++; //remove vertex already visited, then next vertex will be the start
-					pathIndex++;
 				}
 				Vehicle?.Tick(); //add emissions
 
