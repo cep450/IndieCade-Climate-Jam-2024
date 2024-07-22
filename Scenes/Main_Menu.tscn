@@ -3,26 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/Simulation/Main_Menu.gd" id="1_a00rb"]
 [ext_resource type="Texture2D" uid="uid://cytqd0chm8yf3" path="res://Assets/Title Screen/Title_BLANK.png" id="2_xj718"]
 [ext_resource type="Texture2D" uid="uid://cshls0oe2hjp6" path="res://Assets/Title Screen/Menu_1_Start.png" id="3_rn7bo"]
+[ext_resource type="Texture2D" uid="uid://bb2q2vyv3na46" path="res://Assets/Title Screen/Menu_2_Tutorial.png" id="5_m6lxy"]
 [ext_resource type="Texture2D" uid="uid://dgdwa88tipqlc" path="res://Assets/Title Screen/Menu_3_QuitGame.png" id="5_wjd27"]
 [ext_resource type="Texture2D" uid="uid://kxd5myn2jj42" path="res://Assets/Title Screen/Temp_Img.png" id="6_180k2"]
-
-[sub_resource type="GDScript" id="GDScript_aqttt"]
-script/source = "extends TextureRect
-
-#@onready var main_menu =  get_node(\"/root/Main_Menu\") # Adjust the path if necessary
-
-func _ready():
-	pass
-	#set_process_input(true)
-
-#func _input(event):
-	
-	#if event is InputEventMouseButton and event.pressed:
-		#if event.button_index == MOUSE_BUTTON_LEFT:
-		#	if get_rect().has_point(get_local_mouse_position()):
-		#		main_menu._on_start_button_pressed()
-	
-"
 
 [node name="Control" type="Control"]
 layout_direction = 1
@@ -33,6 +16,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
+metadata/_edit_vertical_guides_ = [150.0]
 
 [node name="Main_Menu" type="Control" parent="."]
 layout_mode = 1
@@ -60,75 +44,51 @@ scale = Vector2(0.597076, 0.597076)
 texture = ExtResource("2_xj718")
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main_Menu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.125868
-anchor_top = 0.174383
-anchor_right = 1.12587
-anchor_bottom = 1.17438
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.280345, 0.628643)
-size_flags_horizontal = 3
-theme_override_constants/separation = 32
-alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Seperator2" type="Control" parent="Main_Menu/VBoxContainer"]
-layout_mode = 2
-
-[node name="Start_Game_Button" type="TextureRect" parent="Main_Menu/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("3_rn7bo")
-script = SubResource("GDScript_aqttt")
-metadata/_edit_use_anchors_ = true
-
-[node name="Seperator3" type="Control" parent="Main_Menu/VBoxContainer"]
-layout_mode = 2
-
-[node name="Seperator4" type="Control" parent="Main_Menu/VBoxContainer"]
-layout_mode = 2
-
-[node name="Quit_Game_Button" type="TextureRect" parent="Main_Menu/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("5_wjd27")
-script = SubResource("GDScript_aqttt")
-metadata/_edit_use_anchors_ = true
-
 [node name="mock_image" type="TextureRect" parent="Main_Menu"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.287326
-anchor_top = 0.166667
-anchor_right = 1.34635
-anchor_bottom = 1.40741
+anchor_left = 0.263889
+anchor_top = 0.123457
+anchor_right = 1.3559
+anchor_bottom = 1.42593
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.673269, 0.673269)
 texture = ExtResource("6_180k2")
 metadata/_edit_use_anchors_ = true
 
-[node name="StartButton" type="Button" parent="Main_Menu"]
-show_behind_parent = true
-layout_mode = 2
-offset_left = 146.0
-offset_top = 227.0
-offset_right = 609.0
-offset_bottom = 336.0
-scale = Vector2(0.693664, 0.806687)
-icon = ExtResource("3_rn7bo")
-metadata/_edit_use_anchors_ = true
-
-[node name="QuitButton" type="Button" parent="Main_Menu"]
-show_behind_parent = true
+[node name="VBoxContainer" type="VBoxContainer" parent="Main_Menu"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.118056
-anchor_top = 0.541667
-anchor_right = 0.425952
-anchor_bottom = 0.675726
-offset_right = -346.697
-offset_bottom = -78.8707
-scale = Vector2(44.3371, 10.8588)
+anchor_left = 0.130208
+anchor_top = 0.290123
+anchor_right = 0.532118
+anchor_bottom = 0.936728
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.84, 0.84)
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="StartButton" type="Button" parent="Main_Menu/VBoxContainer"]
+layout_mode = 2
+shortcut_feedback = false
+shortcut_in_tooltip = false
+icon = ExtResource("3_rn7bo")
+flat = true
+
+[node name="TutorialButton" type="Button" parent="Main_Menu/VBoxContainer"]
+layout_mode = 2
+shortcut_feedback = false
+shortcut_in_tooltip = false
+icon = ExtResource("5_m6lxy")
+flat = true
+
+[node name="QuitButton" type="Button" parent="Main_Menu/VBoxContainer"]
+layout_mode = 2
+shortcut_feedback = false
+shortcut_in_tooltip = false
+icon = ExtResource("5_wjd27")
+flat = true

@@ -52,6 +52,8 @@ func _process(_delta):
 	var percent = int(100 * emissions_meter.value/emissions_meter.max_value)
 	# Update Emissions HoverInfo
 	var percent_change = int(100 * sim_emissions_meter.EmissionRate/emissions_meter.max_value)
+	#TODO, set this to correct percent change
+	percent_change = 4
 	emissions_meter.get_node("HoverInfo/Text").text = str(percent_change) + "%/30s"
 	emissions_meter.get_node("Percentage").text = str(percent) + "%"
 	# Get Support Info (i.e. repurposed happiness meter)

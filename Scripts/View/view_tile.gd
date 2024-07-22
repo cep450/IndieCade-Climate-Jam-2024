@@ -6,7 +6,7 @@ var x: int
 var y: int
 
 # Block Scenes
-var base = preload("res://Scenes/Tiles/base.tscn")
+var base = preload("res://Scenes/Tiles/Base.tscn")
 var blank = preload("res://Scenes/Tiles/Blank.tscn")
 var road_resource: SimInfraType = preload("res://Resources/InfraTypes/road.tres")
 
