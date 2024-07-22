@@ -55,8 +55,12 @@ public partial class Sim : Node
 
 	public override void _Ready()
 	{
+		GD.Print("sim ready");
 		Instance = this;
 		Instance.startData = (StartData)ResourceLoader.Load("res://Scripts/Simulation/CustomResources/SavedData.tres");
+		//Give Global access to this node
+		GodotObject autoload = GetNode("/root/Global");
+		autoload.Call("set_sim",Instance);
 		grid = GetNode<SimGrid>("SimGrid");
 		EmissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
 		SupportPool = GetNode<SimSupportPool>("SimSupportPool");
@@ -84,6 +88,10 @@ public partial class Sim : Node
 	// Start the simulation for the first time. 
 	public void BeginGame() {
 
+		foreach(SimAgent agent in agents) {
+			agent.InitAfterMapLoad();
+		}
+
 		gameState = GameState.GAMEPLAY;
 		Clock.UnPause();
 	}
@@ -92,9 +100,12 @@ public partial class Sim : Node
 	// Enforce execution order. 
 	// The clock calls this when the game is running. 
 	public void SimulationTick() {
-		if(DEBUG) GD.Print("Sim Tick!");
-		foreach (var agent in agents)
+
+		//GD.Print("sim tick");
+
+		foreach (SimAgent agent in agents)
 		{
+			//GD.Print("agent tick");
 			agent.Tick();
 		}
 

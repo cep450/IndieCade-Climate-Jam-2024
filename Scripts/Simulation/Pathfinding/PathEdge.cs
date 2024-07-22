@@ -24,4 +24,14 @@ public class PathEdge {
 		MaxSpeed = maxSpeed;
 		Safety = safety;
 	}
+
+	public PathVertex GetOther(PathVertex current) {
+		if(current.PathGraphCoordinates.Equals(A.PathGraphCoordinates)) {
+			return B;
+		} else if(current.PathGraphCoordinates.Equals(B.PathGraphCoordinates)) {
+			return A;
+		} else {
+			return null;
+		}
+	}
 }

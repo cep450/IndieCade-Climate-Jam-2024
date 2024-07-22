@@ -11,14 +11,14 @@ public partial class SimVehicle : Node
 	public SimVehicleType VehicleType { get; private set; }
 	public Vector2 CurrentPosition { get; private set; }
 	public Vector2 TargetPosition { get; private set; }
-	public bool IsInUse { get; private set; }
+	public bool IsInUse;
 
 	public float Emissions { get => VehicleType.Emissions; private set {} }
 
-	public SimVehicle(SimVehicleType vehicleType, Vector2 startPosition)
+	public SimVehicle(SimVehicleType vehicleType)
 	{
 		VehicleType = vehicleType;
-		CurrentPosition = startPosition;
+		//CurrentPosition = startPosition;
 		IsInUse = false;
 		Emissions = vehicleType.Emissions;
 	}
@@ -41,7 +41,8 @@ public partial class SimVehicle : Node
 			SimEmissionsMeter.Instance.AddEmissions(Emissions);
 		}
 	}
-
+}
+/*
 // TODO probaly move this to view_agent 
 	public void UpdateVehiclePosition(float delta)
 	{
@@ -83,3 +84,4 @@ public partial class SimVehicle : Node
 	}
 
 }
+*/

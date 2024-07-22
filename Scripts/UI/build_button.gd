@@ -52,12 +52,12 @@ func _on_pressed():
 func _on_mouse_entered():
 	var return_val
 	if is_build:
-		return_val = type.Name + " - " + str(type.costToBuild)
+		return_val = type.Name + " - " + str(type.costToBuild) + " Support"
 	else:
 		var total_cost = 0
 		for t in sim.GetInfra(x,y):
 			total_cost += t.costToDestroy
-		return_val = "Destroy All - " + str(total_cost)
+		return_val = "Destroy All - " + str(total_cost) + " Support"
 	entered.emit(return_val)
 
 # Helper functions

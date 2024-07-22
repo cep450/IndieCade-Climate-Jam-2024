@@ -34,6 +34,7 @@ enum SupportState
 }
 
 func _ready():
+	Global.set_ui(self)
 	# connections
 	$SaveButton.pressed.connect(_on_save_button_pressed)
 	$BuildButtons/BuildMenu.mouse_exited.connect(_on_mouse_exited_build)

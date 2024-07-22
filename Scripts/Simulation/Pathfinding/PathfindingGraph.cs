@@ -40,10 +40,13 @@ public class PathfindingGraph {
 	private PathVertex[,] vertexGrid; // and each of these will store its edges 
 	int sizeX;
 	int sizeY;
+	public int Width { get => sizeX; }
+	public int Height { get => sizeY; }
+
 
 	public PathfindingGraph(int gridSizeX, int gridSizeY) {
-		sizeX = TileToVertexCoord(gridSizeX);
-		sizeY = TileToVertexCoord(gridSizeY);
+		sizeX = TileToVertexCoord(gridSizeX) + 1;
+		sizeY = TileToVertexCoord(gridSizeY) + 1;
 		vertexGrid = new PathVertex[sizeX, sizeY];
 		for(int vx = 0; vx < sizeX; vx++) {
 			for(int vy = 0; vy < sizeY; vy++) {
@@ -108,6 +111,7 @@ public class PathfindingGraph {
 
 	// tile coordinates to vertex at tile center coordinates 
 	public static int TileToVertexCoord(int tileCoord) {
+		//GD.Print("tile: " + tileCoord.ToString() + " vertext: " + (((tileCoord + 1) * 2) - 1));
 		return ((tileCoord + 1) * 2) - 1;
 	}
 

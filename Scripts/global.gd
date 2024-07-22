@@ -1,13 +1,14 @@
 extends Node
 
-@onready var sim: Node = $"../Main/Simulation"
-@onready var ui: Control = $"../Main/UI"
 @export var inDevMode: bool = false
 @export var audio_files: Array[Audio]
 	
+# Public
 var current_tile: Vector2 = Vector2(-1, -1)
+var sim: Node
+var ui: Control
 
-#Private audio stuff
+# Private
 var audio_dict = {}
 var stream_player = preload("res://Scenes/stream_player.tscn")
 var music_tracks: Array[String]
@@ -18,6 +19,12 @@ func on_tile_clicked(clicked_tile: Vector2):
 		current_tile = Vector2(-1,-1)
 	else: 
 		current_tile = clicked_tile
+
+func set_sim(sim_node: Node):
+	sim = sim_node
+
+func say_hi():
+	print("hi")
 
 func _ready():
 	convert_files_to_dict()
@@ -58,6 +65,10 @@ func _input(event):
 					incriment_music_index()
 					play(music_tracks[music_index])
 						
+func set_ui(ui_node: Control):
+	ui = ui_node
+	ui.set_song_name(music_tracks[music_index])
+
 # Helpers
 func incriment_music_index():
 	music_index = (music_index + 1) % music_tracks.size()
