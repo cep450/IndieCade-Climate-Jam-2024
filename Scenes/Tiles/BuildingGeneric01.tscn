@@ -1,24 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://b581x30uj5spc"]
+[gd_scene load_steps=6 format=3 uid="uid://b581x30uj5spc"]
 
 [ext_resource type="ArrayMesh" uid="uid://ckdn5m0lb788m" path="res://Resources/TileMeshes/BuildingGeneric01.tres" id="1_ggvmb"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2dta1"]
-animation = &"house_lights"
-
-[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_trfux"]
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_olcdu"]
-graph_offset = Vector2(-68.8182, 41.0909)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_2dta1")
-nodes/Animation/position = Vector2(0, 100)
-nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_trfux")
-nodes/TimeSeek/position = Vector2(260, 100)
-nodes/output/position = Vector2(460, 140)
-node_connections = [&"TimeSeek", 0, &"Animation", &"output", 0, &"TimeSeek"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xr52p"]
-states/BlendTree/node = SubResource("AnimationNodeBlendTree_olcdu")
-states/BlendTree/position = Vector2(520, 126)
 
 [sub_resource type="Animation" id="Animation_b8cyh"]
 resource_name = "BuildingGeneric01Lights"
@@ -67,13 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = ExtResource("1_ggvmb")
 
-[node name="AnimationTree" type="AnimationTree" parent="MeshInstance3D"]
-tree_root = SubResource("AnimationNodeStateMachine_xr52p")
-anim_player = NodePath("AnimationPlayer")
-parameters/BlendTree/TimeSeek/seek_request = 0.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D/AnimationTree"]
-root_node = NodePath("../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
 libraries = {
 "": SubResource("AnimationLibrary_ef56g")
 }
