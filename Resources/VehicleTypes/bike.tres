@@ -9,5 +9,5 @@ transportMode = 4
 emissionsPerYear = 0.0
 maxSpeed = 15.0
 agentCapacity = 1
-visualVehicle = null
-model = null
+visualVehicle = ""
+ModelPath = "res://Models/Agent_Biker/agent_biker_1.tscn"

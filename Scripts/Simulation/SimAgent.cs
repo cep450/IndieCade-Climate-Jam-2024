@@ -10,7 +10,7 @@ public partial class SimAgent : Node
 
 	bool DEBUG = false;
 
-	float agentVerticalPos = 1.22f;
+	float agentVerticalPos = 0.4f;
 
 		// TODO generate these properly later
 	float suppFactorSafety = 1f;

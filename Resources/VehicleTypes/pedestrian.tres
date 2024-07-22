@@ -6,6 +6,8 @@
 script = ExtResource("1_jd8q7")
 name = "Pedestrian"
 transportMode = 1
-emissionsPerTick = 0.0
+emissionsPerYear = 0.0
 maxSpeed = 3.0
 agentCapacity = 1
+visualVehicle = ""
+ModelPath = "res://Models/Agent_Person/Agent_Animated/agent_person_1.tscn"

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="StartData" load_steps=23 format=3]
+[gd_resource type="Resource" script_class="StartData" load_steps=23 format=3 uid="uid://dn10bjj8466vm"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/SimInfraTypeRow.cs" id="2_bnejw"]
 [ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/StartData.cs" id="3_tae6k"]
@@ -85,7 +85,7 @@ gridData = [0, 0, 0, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192,
 
 [resource]
 script = ExtResource("3_tae6k")
-emissionsCap = 1000
+emissionsCap = 10000
 emissionsTarget = 0
 initialSupport = 100
 startingYear = 2025
