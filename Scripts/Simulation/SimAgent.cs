@@ -105,6 +105,9 @@ public partial class SimAgent : Node
 	{
 		world = GetNode("../../View/World");
 		visualAgent = (GodotObject)world.Call("init_agent");
+		//visualAgent.Call("Set_Visible",true);
+		Vector3 vec = new Vector3(1,1,1);
+		//visualAgent.Call("Set_Pos",vec);
 	}
 
 	public override void _Ready()
@@ -158,7 +161,7 @@ public partial class SimAgent : Node
 				}
 				Vehicle = new SimVehicle(currentPath.pathVehicleType); //TODO CHANGE THIS THIS IS VERY BAD
 				Vehicle.IsInUse = true;
-				visualAgent.Call("Set_Vehicle", currentPath.pathVehicleType.ModelPath); //change visual model
+				visualAgent.Call("Set_Vehicle", "res://Models/Car/Car_Yellow_Driving.tscn"); //change visual model
 				timer = 0;
 				state = State.TRAVELLING;
 				visualAgent.Call("Set_Visible", true);

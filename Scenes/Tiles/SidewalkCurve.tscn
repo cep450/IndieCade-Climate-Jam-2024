@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr6acklj0clce"]
+[gd_scene load_steps=3 format=3 uid="uid://sgai5ibtpcom"]
 
-[ext_resource type="ArrayMesh" uid="uid://yu3wg1eyfjoc" path="res://Resources/TileMeshes/SidewalkCurve.tres" id="1_s7w3s"]
+[ext_resource type="ArrayMesh" uid="uid://bjhttgthreykk" path="res://Resources/TileMeshes/SidewalkCurve.tres" id="1_s7w3s"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fdnap"]
 points = PackedVector3Array(0.492186, 0.375022, 0.507778, -0.487778, 0.390578, -0.487778, -0.487778, 0.406133, -0.487778, 0.507778, 0.406133, -0.487778, -0.487778, 0.406133, 0.507778, 0.507778, 0.375022, -0.487778, -0.487778, 0.375022, 0.507778, 0.507778, 0.406133, 0.492186, -0.347644, 0.375022, -0.347644, 0.492186, 0.406133, 0.507778, 0.507778, 0.375022, 0.492186, 0.492186, 0.375022, -0.487778, -0.487778, 0.375022, 0.492186)

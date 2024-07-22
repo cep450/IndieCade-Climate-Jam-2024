@@ -23,8 +23,8 @@ Global="*res://Scenes/global.tscn"
 
 [display]
 
-window/stretch/mode="viewport"
-window/stretch/aspect="keep_height"
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [dotnet]
 

@@ -160,12 +160,12 @@ public partial class Sim : Node
 
 	public void AddAgents(int number, Vector2I position) {
 
-		for(int i = 0; i < number; i++) {
-			SimAgent agent = new SimAgent(startData.nonDriverProbability, position); //TODO get chance to not have a car from level data 
-			agents.Add(agent);
-			AddChild(agent);
-			agent.CreateVisualVersion();
-		}
+		//for(int i = 0; i < number; i++) {
+			//SimAgent agent = new SimAgent(startData.nonDriverProbability, position); //TODO get chance to not have a car from level data 
+			//agents.Add(agent);
+			//AddChild(agent);
+			//agent.CreateVisualVersion();
+		//}
 	}
 
 	//TODO right now for simplicity this just removes arbitrary agents since they're considered identical, but in the future, we could pick out specific ones to remove like having a Home save the agents attached to it and remove those specific agents if removed

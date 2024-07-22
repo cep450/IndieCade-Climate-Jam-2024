@@ -52,6 +52,8 @@ public partial class SimEmissionsMeter : Node
 	}
 
 	public void EndTick() {
+		//TODO: make this work
+		emissionsThisTick = 1;
 		emissions += emissionsThisTick;
 		emissionsThisCheck += emissionsThisTick;
 		winCheckCounter++;
