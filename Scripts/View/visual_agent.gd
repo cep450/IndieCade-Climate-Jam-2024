@@ -1,0 +1,18 @@
+extends Node3D
+
+func _init():
+	visible = false
+
+func Set_Pos(pos: Vector3):
+	position = pos
+
+func Set_Vehicle(_path: String):
+	for child in get_children():
+		child.queue_free()
+	#if path != "":
+		#print("creating vehicle")
+		#var instance = load(path).instantiate()
+		#add_child(instance)
+
+func Set_Visible(is_visible_b: bool):
+	visible = is_visible_b

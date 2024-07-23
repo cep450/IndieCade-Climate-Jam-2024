@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://1j6xjpdvfnqw"]
+
+[ext_resource type="ArrayMesh" uid="uid://13raaq3kl7in" path="res://Resources/TileMeshes/BikelaneCurve.tres" id="1_wr2ad"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7ltm7"]
+points = PackedVector3Array(0.506635, 0.389435, 0.347355, -0.342635, 0.376165, -0.342635, -0.342635, 0.376165, 0.506635, -0.342635, 0.389435, -0.342635, 0.506635, 0.376165, -0.342635, -0.342635, 0.389435, 0.506635, 0.347355, 0.376165, 0.506635, 0.506635, 0.389435, -0.342635, 0.506635, 0.376165, 0.347355, 0.347355, 0.389435, 0.506635)
+
+[node name="BikelaneCurve" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_wr2ad")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_7ltm7")

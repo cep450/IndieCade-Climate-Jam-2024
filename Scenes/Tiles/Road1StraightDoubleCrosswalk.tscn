@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgax5iunndqka"]
+
+[ext_resource type="ArrayMesh" uid="uid://cqap50nrwqm3j" path="res://Resources/TileMeshes/Road1StraightDoubleCrosswalk.tres" id="1_ati4p"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4q22u"]
+points = PackedVector3Array(0.496312, 0.4, 0.496312, -0.488496, 2.77556e-17, -0.488496, -0.488496, 2.77556e-17, 0.488496, -0.496312, 0.4, -0.496312, 0.488496, 2.77556e-17, -0.488496, -0.496312, 0.4, 0.496312, 0.496312, 0.4, -0.496312, 0.488496, 2.77556e-17, 0.488496)
+
+[node name="Road1StraightDoubleCrosswalk" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_ati4p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_4q22u")

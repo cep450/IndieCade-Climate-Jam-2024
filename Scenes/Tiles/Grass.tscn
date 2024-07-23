@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8wanoqjuipo1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7la0a"]
+albedo_color = Color(0.580392, 0.764706, 0.415686, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1bub6"]
+material = SubResource("StandardMaterial3D_7la0a")
+size = Vector3(1, 0.4, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2do72"]
+points = PackedVector3Array(0.496312, 0.4, 0.496312, -0.488496, 0, -0.488496, -0.488496, 0, 0.488496, -0.496312, 0.4, -0.496312, 0.488496, 0, -0.488496, -0.496312, 0.4, 0.496312, 0.496312, 0.4, -0.496312, 0.488496, 0, 0.488496)
+
+[node name="Grass" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("BoxMesh_1bub6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_2do72")

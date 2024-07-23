@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=3 format=3 uid="uid://m1y0lk0u5qt7"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_1byxk"]
+[ext_resource type="Texture2D" uid="uid://br51dirvvhuem" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (6).png" id="1_j6npv"]
+
+[resource]
+script = ExtResource("1_1byxk")
+Name = "Bike Lane"
+type = 128
+visualInfra = null
+destinationType = 0
+transportModes = 4
+connectsCorners = true
+connectsBorders = true
+connectsCenter = false
+affectsAllVertices = false
+connectionsBlockedBy = 0
+capacity = 6
+canTransfer = 0
+maxSpeed = 2.0
+safety = 1.0
+costToBuild = 2
+costToDestroy = 2
+incompatibilityMask = 3279
+ModelPath = "res://Scenes/Tiles/Bikelane"
+ModelVariantCount = 1
+ModelConnects = true
+ModelHasBase = false
+Icon = ExtResource("1_j6npv")

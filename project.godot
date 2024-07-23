@@ -10,15 +10,36 @@ config_version=5
 
 [application]
 
-config/name="ClimateGame"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+config/name="Carbonbusters"
+run/main_scene="res://Scenes/Main_Menu.tscn"
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
+boot_splash/bg_color=Color(0.133196, 0.133196, 0.133196, 1)
+boot_splash/show_image=false
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://Scenes/global.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [dotnet]
 
 project/assembly_name="ClimateGame"
 
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[gdunit4]
+
+settings/test/test_lookup_folder=""
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=4

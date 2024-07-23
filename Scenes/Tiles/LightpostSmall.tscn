@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://cl38a05wubrsx"]
+
+[ext_resource type="ArrayMesh" uid="uid://ci4cnf3uukdil" path="res://Resources/TileMeshes/LightpostSmall.tres" id="1_tpsmp"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0xhje"]
+points = PackedVector3Array(-0.485652, -0.00972538, -0.0131, -0.489397, -0.0207067, 0.014566, -0.484965, 0.249296, -0.0075655, -0.394253, 0.24706, -0.00977921, -0.484965, 0.24706, 0.00792205, -0.467265, -0.0207067, 0.014566, -0.394253, 0.24706, 0.0101386, -0.467265, -0.0207067, -0.0142066, -0.489397, 0.00589952, -0.0142066, -0.469047, 0.262677, -0.00526926, -0.392022, 0.24706, -0.0075655, -0.414164, 0.251504, 0.0101386, -0.399283, 0.260538, -0.00527175, -0.489397, 0.00369165, 0.014566, -0.414164, 0.251504, -0.00977921, -0.392022, 0.24706, 0.00792205, -0.394253, 0.251504, 0.0101386, -0.467265, 0.00589952, -0.0142066, -0.467265, 0.00369165, 0.014566, -0.4081, 0.262353, -0.00525671, -0.394253, 0.251504, -0.00977921, -0.47741, 0.259132, -0.00521642, -0.392022, 0.251504, -0.0075655, -0.475386, 0.251571, 0.00527815, -0.392022, 0.251504, 0.00792205, -0.489397, 0.00589952, 0.0123523)
+
+[sub_resource type="Animation" id="Animation_w0g6k"]
+resource_name = "LightpostSmallanim"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 28, 30.2, 60),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 0.0628931]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../MeshInstance3D:mesh:surface_1/material:emission_energy_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 27.9, 30.2, 60),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_46hkd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:light_energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../MeshInstance3D:mesh:surface_1/material:emission_energy_multiplier")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hwgld"]
+_data = {
+"LightpostSmallanim": SubResource("Animation_w0g6k"),
+"RESET": SubResource("Animation_46hkd")
+}
+
+[node name="LightpostSmall" type="StaticBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_tpsmp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_0xhje")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.405337, 0.25825, 0.00256004)
+light_color = Color(0.981626, 0.805478, 0.41161, 1)
+light_energy = 0.0
+spot_range = 0.5
+spot_angle = 34.33
+spot_angle_attenuation = 3.24901
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape3D/SpotLight3D"]
+libraries = {
+"": SubResource("AnimationLibrary_hwgld")
+}
+autoplay = "LightpostSmallanim"

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dtl4mybd7kb7e"
+path="res://.godot/imported/(Jm) Waltz of the Ducks BGM 5.mp3-f453ef159d9e0fe29046432c61f155c7.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Josh Mp3 Tracks/(Jm) Waltz of the Ducks BGM 5.mp3"
+dest_files=["res://.godot/imported/(Jm) Waltz of the Ducks BGM 5.mp3-f453ef159d9e0fe29046432c61f155c7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

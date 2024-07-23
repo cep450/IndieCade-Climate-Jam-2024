@@ -1,0 +1,181 @@
+[gd_scene load_steps=12 format=3 uid="uid://b8brmcliia5f7"]
+
+[ext_resource type="Shader" path="res://Shaders/Gradientsky.gdshader" id="2_jemf5"]
+[ext_resource type="PackedScene" uid="uid://fnt2oy5v4lp8" path="res://Models/Car/Car_Blue_Driving.tscn" id="5_8lhmh"]
+[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/updatedtiles.tres" id="5_cfg14"]
+[ext_resource type="PackedScene" uid="uid://bbwli37pmewjn" path="res://Scenes/Tiles/Lightpost.tscn" id="5_ycgy7"]
+[ext_resource type="PackedScene" uid="uid://bhnkhle85umyj" path="res://Models/Car/Car_Green_Driving.tscn" id="6_pdhvl"]
+[ext_resource type="Script" path="res://Scripts/View/world.gd" id="6_tixaw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8k5wb"]
+shader = ExtResource("2_jemf5")
+shader_parameter/color_top = Color(0.511524, 0.847553, 0.904268, 1)
+shader_parameter/color_horizon = Color(0.457523, 0.793741, 0.864264, 1)
+shader_parameter/color_bottom = Color(0.49278, 0.705724, 0.773261, 1)
+shader_parameter/exponent_factor_top = 1.0
+shader_parameter/exponent_factor_bottom = 1.0
+shader_parameter/intensity_amp = 1.0
+
+[sub_resource type="Sky" id="Sky_kqgwo"]
+sky_material = SubResource("ShaderMaterial_8k5wb")
+
+[sub_resource type="Environment" id="Environment_4liks"]
+background_mode = 2
+background_color = Color(0.526072, 0.775419, 0.910391, 1)
+background_energy_multiplier = 1.1
+sky = SubResource("Sky_kqgwo")
+ambient_light_source = 2
+ambient_light_color = Color(0.726921, 0.727887, 0.741089, 1)
+ambient_light_energy = 1.26
+reflected_light_source = 2
+tonemap_white = 4.87
+glow_intensity = 2.99
+fog_light_energy = 0.66
+fog_density = 0.0
+fog_sky_affect = 0.175
+volumetric_fog_density = 0.1553
+
+[sub_resource type="Animation" id="Animation_rvvr1"]
+resource_name = "DayNight"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 30, 60),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-3.14159, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DirectionalLight3D:light_energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 32, 60),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DirectionalLight3D:light_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 32, 55.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.472736, 0.550669, 0.598309, 1), Color(0.380431, 0.403931, 0.752193, 1), Color(0.215991, 0.276777, 0.568416, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WorldEnvironment:environment:sky:sky_material:shader_parameter/color_top")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2, 2.3, 23.5, 29.1, 30, 59.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.468372, 0.66374, 0.841674, 1), Color(0.516066, 0.866902, 0.910857, 1), Color(0.340357, 0.73457, 0.781389, 1), Color(0.93402, 0.752139, 0.76735, 1), Color(0.165633, 0.304087, 0.477962, 1), Color(0.165633, 0.304087, 0.477962, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WorldEnvironment:environment:sky:sky_material:shader_parameter/color_horizon")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 2.3, 18.3, 29.1, 30, 59.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.497943, 0.640141, 0.828098, 1), Color(0.453268, 0.809909, 0.868071, 1), Color(0.343739, 0.708864, 0.763596, 1), Color(0.870155, 0.619401, 0.525683, 1), Color(0.329932, 0.448012, 0.698539, 1), Color(0.214128, 0.310743, 0.519248, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("WorldEnvironment:environment:sky:sky_material:shader_parameter/color_bottom")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.2, 2.3, 18.3, 29.1, 30, 59.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.778114, 0.555192, 0.370227, 1), Color(0.462745, 0.721569, 0.815686, 1), Color(0.397543, 0.609268, 0.75176, 1), Color(0.498039, 0.639216, 0.827451, 1), Color(0.23382, 0.385876, 0.517585, 1), Color(0.145415, 0.255848, 0.351161, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("WorldEnvironment:environment:ambient_light_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.2, 2.3, 30, 59.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.72549, 0.729412, 0.741176, 1), Color(0.727072, 0.727726, 0.74108, 1), Color(0.489443, 0.559478, 0.835595, 1), Color(0.361506, 0.429911, 0.731114, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h7aen"]
+_data = {
+"DayNight": SubResource("Animation_rvvr1")
+}
+
+[node name="DayNightcycletest" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4liks")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.975916, 0.218146, 0, -0.218146, -0.975916, 0, 12, 5)
+light_color = Color(0.466678, 0.541039, 0.608408, 1)
+light_energy = 0.934375
+shadow_enabled = true
+shadow_bias = 0.5
+shadow_opacity = 0.7
+shadow_blur = 2.5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h7aen")
+}
+autoplay = "DayNight"
+
+[node name="Lightpost" parent="." instance=ExtResource("5_ycgy7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5865, 0.418501, 8.63301)
+
+[node name="GridMap" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.63665, -0.979646, -0.526429)
+mesh_library = ExtResource("5_cfg14")
+cell_size = Vector3(1, 0.1, 1)
+data = {
+"cells": PackedInt32Array(1, 0, 655374, 1, 1, 655374, 1, 2, 655375, 1, 3, 655374, 2, 1, 10, 2, 0, 8, 2, 65535, 14, 2, 65534, 14, 2, 65533, 1441802, 2, 65532, 14, 2, 65531, 14, 2, 65530, 14, 2, 65529, 14, 2, 65528, 14, 1, 65528, 655374, 1, 65529, 655374, 1, 65530, 655374, 1, 65531, 655374, 1, 65532, 655374, 1, 65533, 14, 1, 65534, 14, 1, 65535, 14, 2, 2, 10, 2, 3, 10, 17, 3, 655374, 17, 2, 655374, 16, 2, 655368, 15, 2, 1441802, 12, 2, 1048584, 6, 2, 14, 5, 65535, 14, 5, 0, 1441802, 7, 2, 655370, 4, 65535, 14, 4, 65534, 655374, 3, 65533, 1441802, 3, 65532, 655374, 3, 65531, 14, 3, 65530, 655374, 3, 65529, 655374, 3, 65528, 655374, 3, 65535, 14, 3, 65534, 655374, 4, 65533, 1441802, 5, 65533, 1441802, 7, 65533, 1048586, 8, 65533, 1048586, 9, 65533, 1048586, 10, 65533, 1048586, 12, 65533, 1048585, 13, 65533, 1048586, 14, 65533, 1048586, 11, 65533, 1048586, 15, 65533, 1048586, 15, 65534, 14, 15, 65535, 655374, 16, 65535, 10, 16, 0, 10, 16, 1, 10, 16, 65534, 10, 15, 1, 655374, 15, 3, 14, 16, 3, 655374, 14, 3, 14, 13, 3, 14, 9, 2, 655375, 8, 2, 655374, 10, 2, 655374, 11, 2, 655374, 10, 1, 655374, 8, 1, 655374, 7, 1, 655370, 6, 1, 655374, 9, 1, 14, 11, 1, 655374, 13, 1, 14, 15, 0, 14, 14, 0, 14, 13, 0, 14, 11, 0, 1441802, 10, 0, 1441802, 7, 0, 9, 9, 0, 1441802, 12, 1, 10, 14, 1, 14, 12, 0, 10, 14, 65535, 14, 12, 65535, 10, 13, 65535, 14, 14, 65534, 14, 13, 65534, 14, 12, 65534, 10, 11, 65534, 14, 9, 65534, 14, 8, 65534, 655374, 6, 65534, 655374, 5, 65534, 655374, 10, 65534, 14, 4, 65532, 655374, 4, 65531, 14, 5, 65532, 655374, 7, 65532, 14, 8, 65532, 14, 10, 65532, 14, 11, 65532, 655374, 13, 65532, 14, 14, 65532, 14, 15, 65532, 14, 16, 65532, 655370, 16, 65533, 655371, 6, 65532, 10, 9, 65532, 14, 15, 65531, 14, 14, 65531, 14, 13, 65531, 14, 12, 65531, 14, 10, 65531, 14, 7, 65531, 14, 5, 65531, 14, 9, 65531, 14, 12, 65532, 14, 11, 65531, 14, 8, 65531, 14, 6, 65531, 10, 5, 65530, 14, 4, 65530, 655374, 5, 65529, 14, 5, 65528, 655374, 4, 65528, 655374, 4, 65529, 655374, 6, 65529, 10, 6, 65530, 10, 7, 65530, 14, 7, 65529, 655374, 6, 65528, 14, 9, 65530, 14, 10, 65530, 655374, 8, 65530, 14, -566755328, 65049, 14, -278790144, 65304, 14, -215154688, 65362, 14, -178388992, 65398, 14, -163512320, 65414, 14, -161546240, 65418, 14, -164036608, 65418, 14, 7, 65534, 10, 6, 65535, 14, 6, 0, 1441802, 17, 1, 14, 17, 0, 14, 17, 65535, 14, 17, 65534, 14, 17, 65533, 14, 14, 2, 1441802, 13, 2, 1441802, 262157, 1, 39, 262158, 1, 39, 262157, 0, 41, 262159, 1, 41, 262159, 65535, 40, 262158, 65535, 40, 262157, 65535, 40, 262157, 65534, 655395, 262158, 65534, 655395, 262159, 65534, 655395, 262158, 0, 655399, 262159, 0, 655399, 12, 3, 655374, 12, 4, 655374, 11, 4, 655374, 10, 4, 655374, 9, 4, 655375, 9, 3, 655375, 10, 3, 655374, 11, 3, 655374, 262155, 2, 655399, 262155, 3, 655399, 262155, 4, 655399, 262154, 3, 655399, 262154, 2, 655399, 262154, 4, 655399, 8, 4, 655374, 8, 3, 655374, 7, 4, 655370, 7, 3, 655370, 262152, 4, 1441827, 262152, 3, 1441827, 262152, 2, 1441827, 262152, 1, 1441827, 262153, 1, 655395, 262154, 1, 655395, 262155, 1, 655395, 11, 65535, 655374, 10, 65535, 655374, 8, 65535, 655374, 7, 65535, 10, 262152, 65535, 655372, 262154, 65535, 655372, 262155, 65535, 655372, 262153, 65535, 655373, 262155, 65534, 1441805, 262153, 65534, 1441805, 262152, 65534, 1441805, 262154, 65534, 655372, 9, 65535, 655374, 8, 0, 1441802, 4, 0, 1441802, 3, 0, 1441802, 4, 1, 14, 3, 1, 14, 5, 1, 14, 3, 2, 655375, 262146, 4, 655395, 262145, 3, 1048611, 262145, 1, 1048611, 262147, 3, 1441827, 262147, 1, 1441827, 2, 4, 655374, 3, 3, 655374, 6, 3, 655374, 6, 4, 655374, 262146, 65535, 655372, 262147, 65535, 655372, 262148, 65535, 655372, 262149, 65535, 655373, 262150, 65535, 655373, 262150, 65534, 655373, 262149, 65534, 655373, 262146, 65534, 655372, 262147, 65534, 655372, 262148, 65534, 655372, 6, 65533, 1441802, -1966076, 65531, 1441802, -1900540, 65531, 1441802, -1835004, 65531, 1441802, -1835004, 65530, 1441802, -1835004, 65529, 1441802, -1900540, 65529, 1441802, -1900540, 65528, 1441802, -1835004, 65528, 1441802, 262148, 65532, 12, 262149, 65532, 12, 262147, 65532, 12, 262146, 65532, 12, 262149, 65531, 13, 262149, 65530, 13, 262149, 65529, 13, 262147, 65531, 40, 262147, 65530, 40, 262147, 65529, 40, 262148, 65531, 40, 262148, 65530, 40, 262148, 65529, 40, 262146, 65530, 40, 262146, 65531, 40, 262146, 65529, 41, 262151, 65532, 12, 262152, 65532, 12, 262153, 65532, 12, 262154, 65532, 12, 262155, 65532, 13, 262151, 65531, 13, 262152, 65531, 13, 262153, 65531, 13, 262154, 65531, 13, 262155, 65531, 13)
+}
+metadata/_editor_floor_ = Vector3(4, 4, 0)
+
+[node name="World" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6944, 0.529656, 0.123756)
+script = ExtResource("6_tixaw")
+
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(0.438371, -0.519375, 0.73354, 0, 0.816138, 0.577858, -0.898794, -0.253316, 0.357771, 9.91685, 4.55488, 6.45317)
+
+[node name="Car_Blue_Driving" parent="." instance=ExtResource("5_8lhmh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.727405, -1.13748)
+
+[node name="Car_Blue_Driving2" parent="." instance=ExtResource("5_8lhmh")]
+transform = Transform3D(0.0401492, 0, 0.999194, 0, 1, 0, -0.999194, 0, 0.0401492, 3.61719, -0.709881, 0.139459)
+
+[node name="Car_Green_Driving" parent="." instance=ExtResource("6_pdhvl")]
+transform = Transform3D(-0.0162483, 0, 0.999868, 0, 1, 0, -0.999868, 0, -0.0162483, 2.30694, -0.539548, 0.22731)
+
+[node name="Car_Green_Driving2" parent="." instance=ExtResource("6_pdhvl")]
+transform = Transform3D(0.991273, 0, 0.131824, 0, 1, 0, -0.131824, 0, 0.991273, 9.65619, -0.684047, 0.616005)

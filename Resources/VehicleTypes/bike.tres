@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SimVehicleType" load_steps=2 format=3 uid="uid://dcl1brecyb7x"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/SimVehicleType.cs" id="1_fdaua"]
+
+[resource]
+script = ExtResource("1_fdaua")
+name = "Bike"
+transportMode = 4
+emissionsPerYear = 0.0
+maxSpeed = 15.0
+agentCapacity = 1
+visualVehicle = ""
+ModelPath = "res://Models/Agent_Biker/agent_biker_1.tscn"

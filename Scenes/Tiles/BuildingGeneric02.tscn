@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://byjd6kcwaa7bc"]
+
+[ext_resource type="ArrayMesh" uid="uid://worpbixwiv1w" path="res://Resources/TileMeshes/BuildingGeneric02.tres" id="1_wq754"]
+
+[sub_resource type="Animation" id="Animation_qkg4c"]
+resource_name = "new_animation"
+length = 60.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mesh:surface_2/material:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 28, 30.2, 60),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_toxus"]
+_data = {
+"BuldingGeneric02Lights": SubResource("Animation_qkg4c")
+}
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ackxj"]
+points = PackedVector3Array(0.0207055, 1.14613, -0.211595, 0.408351, 0.003882, 0.392875, -0.39674, 0.0126144, -0.394758, 0.473043, 1.03863, -0.448258, 0.473042, 1.03863, 0.440235, 0.402075, 0.0126144, -0.394758, -0.413335, 0.0136203, 0.386028, -0.475084, 1.04601, 0.447203, -0.474327, 1.04525, -0.454511, -0.430246, 1.12256, -0.410975, -0.448657, 1.14613, -0.211595, 0.0207055, 1.14613, -0.428283, -0.412066, 0.015312, -0.271814, 0.192923, 0.187837, -0.410639, -0.200968, 0.0252624, 0.394703, 0.206154, 0.025424, 0.394584)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_wq754")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MeshInstance3D"]
+libraries = {
+"": SubResource("AnimationLibrary_toxus")
+}
+autoplay = "BuldingGeneric02Lights"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_ackxj")

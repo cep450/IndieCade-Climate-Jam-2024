@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=3 format=3 uid="uid://b00is14wwsbp7"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_7rb1n"]
+[ext_resource type="Texture2D" uid="uid://cdn0sgifthjsk" path="res://Assets/Gameplay/Menu/Build/Build Menu Icons (4).png" id="1_wtqc4"]
+
+[resource]
+script = ExtResource("1_7rb1n")
+Name = "Trees"
+type = 512
+visualInfra = null
+destinationType = 0
+transportModes = 0
+connectsCorners = false
+connectsBorders = false
+connectsCenter = false
+affectsAllVertices = true
+connectionsBlockedBy = 0
+capacity = 0
+canTransfer = 0
+maxSpeed = 0.0
+safety = 1.0
+costToBuild = 1
+costToDestroy = 1
+incompatibilityMask = 1567
+ModelPath = "res://Scenes/Tiles/MiscTrees"
+ModelVariantCount = 2
+ModelConnects = false
+ModelHasBase = false
+Icon = ExtResource("1_wtqc4")

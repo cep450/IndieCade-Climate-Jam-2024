@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://np5mfw37dy44"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_3a24o"]
+[ext_resource type="PackedScene" uid="uid://csswthorupplo" path="res://Scenes/UI/ui.tscn" id="1_70wsr"]
+[ext_resource type="PackedScene" uid="uid://ge1rdby4fhec" path="res://Scenes/simulation.tscn" id="2_6q545"]
+[ext_resource type="PackedScene" uid="uid://us6n2vt8kwhw" path="res://Scenes/View/view.tscn" id="3_hdemr"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_3a24o")
+
+[node name="Simulation" parent="." instance=ExtResource("2_6q545")]
+unique_name_in_owner = true
+
+[node name="UI" parent="." instance=ExtResource("1_70wsr")]
+unique_name_in_owner = true
+
+[node name="View" parent="." instance=ExtResource("3_hdemr")]
+unique_name_in_owner = true

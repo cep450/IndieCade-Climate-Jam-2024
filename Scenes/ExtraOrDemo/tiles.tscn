@@ -1,0 +1,107 @@
+[gd_scene load_steps=35 format=3 uid="uid://drxjt03qah5lp"]
+
+[ext_resource type="PackedScene" uid="uid://d2gvrb770nub" path="res://Models/Tile_Road2Curve.gltf" id="1_ulpor"]
+[ext_resource type="PackedScene" uid="uid://ot76rqh7dg5d" path="res://Models/Tile_Road2Intersection.gltf" id="2_h5ppf"]
+[ext_resource type="PackedScene" uid="uid://d116q1s4r0ngc" path="res://Models/Tile_Road1Curve.gltf" id="3_hxyvw"]
+[ext_resource type="PackedScene" uid="uid://coerrd5nlh6d8" path="res://Models/Tile_Road1Intersection.gltf" id="4_s8v3w"]
+[ext_resource type="PackedScene" uid="uid://c0kktjcg8jjfg" path="res://Models/Tile_Road1Straight.gltf" id="5_5ay7g"]
+[ext_resource type="PackedScene" uid="uid://shcji6mkcat1" path="res://Models/Tile_Road1Tjunction.gltf" id="6_njy40"]
+[ext_resource type="PackedScene" uid="uid://ifj00b3x7tvf" path="res://Models/Tile_Road2Straight.gltf" id="7_jvrvy"]
+[ext_resource type="PackedScene" uid="uid://tx6brx3f41r8" path="res://Models/Tile_Road2Tjunction.gltf" id="8_grexu"]
+[ext_resource type="PackedScene" uid="uid://cqued0a2imuqg" path="res://Models/Tile_Building_Generic01.gltf" id="9_j2q1k"]
+[ext_resource type="PackedScene" uid="uid://bqbepmhqy6wdu" path="res://Models/Tile_Building_Generic02.gltf" id="10_ccxl6"]
+[ext_resource type="PackedScene" uid="uid://cug1sydw1as6a" path="res://Models/Tile_Base_Concrete.gltf" id="11_2yote"]
+[ext_resource type="PackedScene" uid="uid://bxacd2i7bf178" path="res://Models/Tile_Base_Grass.gltf" id="12_exmom"]
+[ext_resource type="PackedScene" uid="uid://c7xsqmmisiqs0" path="res://Models/Tile_Road_1to2Straight.gltf" id="13_pkp1y"]
+[ext_resource type="PackedScene" uid="uid://um878a44gkuy" path="res://Models/Tile_Road1_StraightCrosswalk.gltf" id="14_7r2kj"]
+[ext_resource type="PackedScene" uid="uid://c30iskk0wno0f" path="res://Models/Tile_Road1_StraightDoubleCrosswalk.gltf" id="15_q7kl5"]
+[ext_resource type="PackedScene" uid="uid://jwoow7aq26vu" path="res://Models/Tile_Road2_StraightCrosswalk.gltf" id="16_hm6ng"]
+[ext_resource type="PackedScene" uid="uid://026ctdwgaops" path="res://Models/Tile_Road2_StraightDoubleCrosswalk.gltf" id="17_w3wgn"]
+[ext_resource type="PackedScene" uid="uid://b3erdc1t5f3bn" path="res://Models/Tile_Road_1to2StraightCrosswalk.gltf" id="18_2du5g"]
+[ext_resource type="PackedScene" uid="uid://cfjyxhg5wbauo" path="res://Models/Tile_Road_1to2StraightDoubleCrosswalk.gltf" id="19_3nmds"]
+[ext_resource type="PackedScene" uid="uid://bdnlcgpi04b2i" path="res://Models/Tile_Road_1to2StraightCrosswalk2.gltf" id="20_bv5dg"]
+[ext_resource type="PackedScene" uid="uid://cv65mn382y56a" path="res://Models/Tile_Sidewalk_Curve.gltf" id="21_bi625"]
+[ext_resource type="PackedScene" uid="uid://8tf3cwcunknk" path="res://Models/Tile_Sidewalk_Intersection.gltf" id="22_80hn2"]
+[ext_resource type="PackedScene" uid="uid://c5mmhjny6r51h" path="res://Models/Tile_Sidewalk_Straight.gltf" id="23_mp7kx"]
+[ext_resource type="PackedScene" uid="uid://dauuad8s82o02" path="res://Models/Tile_Sidewalk_Tjunction.gltf" id="24_ym7gq"]
+[ext_resource type="PackedScene" uid="uid://3dgw1c368okg" path="res://Models/Tile_Lightpost_Large.gltf" id="25_wgr15"]
+[ext_resource type="PackedScene" uid="uid://w5cs4iwv872a" path="res://Models/Tile_Lightpost_Larger.gltf" id="26_6pm5v"]
+[ext_resource type="PackedScene" uid="uid://cfg6rn06dn5rs" path="res://Models/Tile_Lightpost_Small.gltf" id="27_mlg55"]
+[ext_resource type="PackedScene" uid="uid://brwlhgmy6q1vw" path="res://Models/Tile_Bikelane_Curve.gltf" id="28_ao0m7"]
+[ext_resource type="PackedScene" uid="uid://bk53tfke7865b" path="res://Models/Tile_Bikelane_Intersection.gltf" id="29_16pap"]
+[ext_resource type="PackedScene" uid="uid://cbwg1bmio5bdq" path="res://Models/Tile_Bikelane_Straight.gltf" id="30_xufi1"]
+[ext_resource type="PackedScene" uid="uid://dwbj41acogml5" path="res://Models/Tile_Bikelane_Tjunction.gltf" id="31_t58lj"]
+[ext_resource type="PackedScene" uid="uid://ck62ha52k48i4" path="res://Models/Tile_Building_House01.gltf" id="32_iiieq"]
+[ext_resource type="PackedScene" uid="uid://dnpl8ietrjwjq" path="res://Models/Tile_Misc_ParkingLot.gltf" id="33_1rm76"]
+[ext_resource type="PackedScene" uid="uid://chwm0jtcatkg" path="res://Models/Tile_Misc_ParkingLotEmpty.gltf" id="34_ee5ej"]
+
+[node name="Tiles" type="Node3D"]
+
+[node name="Tile_Road2Curve" parent="." instance=ExtResource("1_ulpor")]
+
+[node name="Tile_Road2Intersection" parent="." instance=ExtResource("2_h5ppf")]
+
+[node name="Tile_Road1Curve" parent="." instance=ExtResource("3_hxyvw")]
+
+[node name="Tile_Road1Intersection" parent="." instance=ExtResource("4_s8v3w")]
+
+[node name="Tile_Road1Straight" parent="." instance=ExtResource("5_5ay7g")]
+
+[node name="Tile_Road1Tjunction" parent="." instance=ExtResource("6_njy40")]
+
+[node name="Tile_Road2Straight" parent="." instance=ExtResource("7_jvrvy")]
+
+[node name="Tile_Road2Tjunction" parent="." instance=ExtResource("8_grexu")]
+
+[node name="Tile_Building_Generic01" parent="." instance=ExtResource("9_j2q1k")]
+
+[node name="Tile_Building_Generic02" parent="." instance=ExtResource("10_ccxl6")]
+
+[node name="Tile_Base_Concrete" parent="." instance=ExtResource("11_2yote")]
+
+[node name="Tile_Base_Grass" parent="." instance=ExtResource("12_exmom")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00497749, 0, 0)
+
+[node name="Tile_Road_1to2Straight" parent="." instance=ExtResource("13_pkp1y")]
+
+[node name="Tile_Road1_StraightCrosswalk" parent="." instance=ExtResource("14_7r2kj")]
+
+[node name="Tile_Road1_StraightDoubleCrosswalk" parent="." instance=ExtResource("15_q7kl5")]
+
+[node name="Tile_Road2_StraightCrosswalk" parent="." instance=ExtResource("16_hm6ng")]
+
+[node name="Tile_Road2_StraightDoubleCrosswalk" parent="." instance=ExtResource("17_w3wgn")]
+
+[node name="Tile_Road_1to2StraightCrosswalk" parent="." instance=ExtResource("18_2du5g")]
+
+[node name="Tile_Road_1to2StraightDoubleCrosswalk" parent="." instance=ExtResource("19_3nmds")]
+
+[node name="Tile_Road_1to2StraightCrosswalk2" parent="." instance=ExtResource("20_bv5dg")]
+
+[node name="Tile_Sidewalk_Curve" parent="." instance=ExtResource("21_bi625")]
+
+[node name="Tile_Sidewalk_Intersection" parent="." instance=ExtResource("22_80hn2")]
+
+[node name="Tile_Sidewalk_Straight" parent="." instance=ExtResource("23_mp7kx")]
+
+[node name="Tile_Sidewalk_Tjunction" parent="." instance=ExtResource("24_ym7gq")]
+
+[node name="Tile_Lightpost_Large" parent="." instance=ExtResource("25_wgr15")]
+
+[node name="Tile_Lightpost_Larger" parent="." instance=ExtResource("26_6pm5v")]
+
+[node name="Tile_Lightpost_Small" parent="." instance=ExtResource("27_mlg55")]
+
+[node name="Tile_Bikelane_Curve" parent="." instance=ExtResource("28_ao0m7")]
+
+[node name="Tile_Bikelane_Intersection" parent="." instance=ExtResource("29_16pap")]
+
+[node name="Tile_Bikelane_Straight" parent="." instance=ExtResource("30_xufi1")]
+
+[node name="Tile_Bikelane_Tjunction" parent="." instance=ExtResource("31_t58lj")]
+
+[node name="Tile_Building_House01" parent="." instance=ExtResource("32_iiieq")]
+
+[node name="Tile_Misc_ParkingLot" parent="." instance=ExtResource("33_1rm76")]
+
+[node name="Tile_Misc_ParkingLotEmpty" parent="." instance=ExtResource("34_ee5ej")]
