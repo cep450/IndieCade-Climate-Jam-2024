@@ -25,6 +25,7 @@ public partial class SimGrid : Node
 	//TODO for choosing destinations maybe we do all the pathfinding during that choice, where we aren't pathfinding to a particular tile but instead pathfinding until we find a particular type
 	//public SimInfraType.DestinationType destinationGrid; // parallel grid just storing destination types for pathfinding 
 
+	// int versions 
 	public float GridToWorldPos(int sizeAxis, int coord) {
 		float pos = coord + 0.5f;
 		pos -= (sizeAxis / 2);
@@ -37,6 +38,16 @@ public partial class SimGrid : Node
 		} else {
 			return GridToWorldPos(height, coord);
 		}
+	}
+
+	// float versions 
+	public float GridToWorldPos(int sizeAxis, float coord) {
+		float pos = coord + 0.5f;
+		pos -= (sizeAxis / 2);
+		return pos;
+	}
+	public Vector2 GridToWorldPos(float x, float y) {
+		return new Vector2(GridToWorldPos(width, x), GridToWorldPos(height, y));
 	}
 
 	public void LoadGridFromResource(StartData resourceToLoad)

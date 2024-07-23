@@ -99,39 +99,20 @@ public partial class SimAgent : Node
 		//GD.Print(" sim " + (Sim.Instance == null) + " get tile " + (Sim.Instance.GetTile(currentTileCoords.X, currentTileCoords.Y) == null));
 		destinationType = Sim.Instance.GetTile(currentTileCoords.X, currentTileCoords.Y).DestinationType;
 		pathfinder.Init();
+		CreateVisualVersion();
 	}
 	
 	public void CreateVisualVersion()
 	{
+		GD.Print("visual version called");
 		world = GetNode("../../View/World");
 		visualAgent = (GodotObject)world.Call("init_agent");
-		//visualAgent.Call("Set_Visible",true);
-		Vector3 vec = new Vector3(1,1,1);
-		//visualAgent.Call("Set_Pos",vec);
 	}
 
 	public override void _Ready()
 	{
 		base._Ready();
 		simGrid = GetNode<SimGrid>("..//SimGrid");
-
-		if(DEBUG) {
-		//DEBUG & TESTING:
-		SimPath simPath = new SimPath();
-		simPath.vertices = new List<PathVertex>(); 
-
-		simPath.vertices.Add(new PathVertex(new Vector2I(0,0), new Vector2(4,4), null));
-		simPath.vertices.Add(new PathVertex(new Vector2I(0,0), new Vector2(7,7), null));
-		simPath.vertices.Add(new PathVertex(new Vector2I(0,0), new Vector2(9,9), null));
-		simPath.vertices.Add(new PathVertex(new Vector2I(0,0), new Vector2(4,9), null));
-		simPath.vertices.Add(new PathVertex(new Vector2I(0,0), new Vector2(7,9), null));
-		simPath.vertices.Add(new PathVertex(new Vector2I(0,0), new Vector2(2,9), null));
-		simPath.pathVehicleType = (SimVehicleType)ResourceLoader.Load("res://Resources/VehicleTypes/car.tres");
-		targetPosition = new Vector2(2,9);
-
-		currentPath = simPath;
-		}
-		
 	}
 
 	// every game tick. update position smoothly
@@ -161,7 +142,8 @@ public partial class SimAgent : Node
 				}
 				Vehicle = new SimVehicle(currentPath.pathVehicleType); //TODO CHANGE THIS THIS IS VERY BAD
 				Vehicle.IsInUse = true;
-				visualAgent.Call("Set_Vehicle", "res://Models/Car/Car_Yellow_Driving.tscn"); //change visual model
+				//visualAgent.Call("Set_Vehicle", "res://Models/Car/Car_Yellow_Driving.tscn"); //change visual model
+				visualAgent.Call("Set_Vehicle", currentPath.pathVehicleType.Index);
 				timer = 0;
 				state = State.TRAVELLING;
 				visualAgent.Call("Set_Visible", true);
@@ -232,24 +214,6 @@ public partial class SimAgent : Node
 
 		destinationType = (SimInfraType.DestinationType)newTypeInt;
 	}
-
-/*
-	// choose the destination of the chosen destination type to pathfind to 
-	// Find the least weighted path to a tile of the destination type. (Mini Metro style.)
-	// TODO: if we use a different algorithm, this can: Constitutes both finding a path and determining which tile to travel to next. 
-	public void FindNearestDestination(SimInfraType.DestinationType type) {
-
-		//TODO search for the nearest tile with infrastructure with chosen destination type 
-
-		for(int dist = 1; dist < Mathf.Min(Sim.Instance.grid.Width, Sim.Instance.grid.Height); dist++) {
-			for(int i = 0; i < dist; i++) {
-				//TODO 
-			}
-		}
-		// nothing found 
-		//TODO ChooseNewDestinationType different type 
-
-	}*/
 
 	// Move to the next vertex on the path, returns true if successful
 	bool MoveToNextVertex(PathVertex currentVertex, PathVertex nextVertex) {

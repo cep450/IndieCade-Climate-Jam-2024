@@ -71,6 +71,14 @@ public partial class SimVehicleType : Resource
 		return arr;
 	}
 
+	private int _index = -1;
+	public int Index { get {
+		if(_index == -1) {
+			_index = ModeIndex(transportMode);
+		}
+		return _index;
+	}}
+
 	[Export] public string name; // used by the game ui
 	[Export] private TransportMode transportMode;
 	[Export] private float emissionsPerYear;

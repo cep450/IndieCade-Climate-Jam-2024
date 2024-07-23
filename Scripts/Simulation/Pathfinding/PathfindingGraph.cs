@@ -9,6 +9,8 @@ using System.Collections.Generic;
 // which sucks a bit, and if we revisit this project we should probably put bike lanes and pedestrian stuff on tiles adjacent to roads instead of on the road tiles 
 // but this is what we'll do for the end of the jam. 
 
+//TODO we probably want to make this a sparse graph 
+
 public class PathfindingGraph {
 
 	/*
@@ -50,7 +52,7 @@ public class PathfindingGraph {
 		vertexGrid = new PathVertex[sizeX, sizeY];
 		for(int vx = 0; vx < sizeX; vx++) {
 			for(int vy = 0; vy < sizeY; vy++) {
-				vertexGrid[vx,vy] = new PathVertex(new Vector2I(vx, vy), new Vector2(SimGrid.TILE_WORLD_SCALE / 2 * vx, SimGrid.TILE_WORLD_SCALE / 2 * vy), this);
+				vertexGrid[vx,vy] = new PathVertex(new Vector2I(vx, vy), VertexToWorldCoord(vx, vy), this);
 			}
 		}
 
@@ -117,6 +119,12 @@ public class PathfindingGraph {
 
 	public static float VertexToTileCoord(int vertexCoord) {
 		return (((float)vertexCoord + 1f) / 2f) - 1f;
+	}
+
+	public static Vector2 VertexToWorldCoord(int vertexX, int vertexY) {
+		float gridx = VertexToTileCoord(vertexX);
+		float gridy = VertexToTileCoord(vertexY);
+		return Sim.Instance.grid.GridToWorldPos(gridx, gridy);
 	}
 
 	// coordsWithinTile: 0,0 means tile center, -1,-1 means bottom left corner, 1,1 means top right corner, ect 
