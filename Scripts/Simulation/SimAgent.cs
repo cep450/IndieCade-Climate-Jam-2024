@@ -113,6 +113,9 @@ public partial class SimAgent : Node
 	{
 		base._Ready();
 		simGrid = GetNode<SimGrid>("..//SimGrid");
+		if(Sim.Instance.gameState == Sim.GameState.GAMEPLAY) {
+			InitAfterMapLoad();
+		} // otherwise we hold off until the map is fully loaded, if the game has not begun yet and we're loading the map. this is for agents spawned during gameplay e.g. when a house is placed 
 	}
 
 	// every game tick. update position smoothly

@@ -2246,8 +2246,8 @@ gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 
 [resource]
 script = ExtResource("3_i7ksb")
-emissionsCap = 1000
-emissionsTarget = 0
+emissionsCap = 100000
+emissionsTarget = 10
 initialSupport = 100
 startingYear = 2025
 yearsUntilGameOver = 2030
