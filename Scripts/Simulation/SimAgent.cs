@@ -10,7 +10,7 @@ public partial class SimAgent : Node
 
 	bool DEBUG = false;
 
-	float agentVerticalPos = 0.4f;
+	float agentVerticalPos = 0.3f;
 
 		// TODO generate these properly later
 	float suppFactorSafety = 1f;
@@ -70,7 +70,10 @@ public partial class SimAgent : Node
 	
 	private GodotObject visualAgent;
 	private GodotObject world;
-	private int timer = 0, ticksToWait = 1; //Timer for ticks
+	private int timer = 0; //Timer for ticks
+	private int waitMin = 5;
+	private int waitMax = 15;
+	private int ticksToWait;
 	private int pointInList = 0;
 	private SimGrid simGrid;
 	Pathfinding pathfinder;
@@ -104,9 +107,10 @@ public partial class SimAgent : Node
 	
 	public void CreateVisualVersion()
 	{
-		GD.Print("visual version called");
+		//GD.Print("visual version called");
 		world = GetNode("../../View/World");
 		visualAgent = (GodotObject)world.Call("init_agent");
+		visualAgent.Set("simAgent", this);
 	}
 
 	public override void _Ready()
@@ -118,73 +122,59 @@ public partial class SimAgent : Node
 		} // otherwise we hold off until the map is fully loaded, if the game has not begun yet and we're loading the map. this is for agents spawned during gameplay e.g. when a house is placed 
 	}
 
-	// every game tick. update position smoothly
 	public override void _Process(double delta)
 	{
-		//Vehicle._Process(GetProcessDeltaTime());
+		
 	}
 
 	// every simulation tick.
 	public void Tick() {
 
 		if(state == State.AT_DESTINATION) {
-			//GD.Print($"Timer: {timer}");
 			if (timer > ticksToWait) 
 			{
-				GD.Print("Timer Completed!");
+				//GD.Print("Timer Completed!");
 				PathVertex currentV = Sim.Instance.PathGraph.GetVertex(currentVertexCoords);
 				ChooseNewDestinationType();
-				GD.Print("dest type " + destinationType.ToString() + " currentv " + currentV.PathGraphCoordinates.ToString());
+				//GD.Print("dest type " + destinationType.ToString() + " currentv " + currentV.PathGraphCoordinates.ToString());
 				currentPath = pathfinder.FindPath(currentV, destinationType, this); 
 				if(currentPath == null) {
 					//if no path that way, 
 					//TODO go somewhere else (when we have more than 1 destination type)
-					//for now just wait 10 ticks 
+					//for now just wait
+					timer = ChooseWaitTime();
 					timer = 0;
 					return;
 				}
 				Vehicle = new SimVehicle(currentPath.pathVehicleType); //TODO CHANGE THIS THIS IS VERY BAD
 				Vehicle.IsInUse = true;
-				//visualAgent.Call("Set_Vehicle", "res://Models/Car/Car_Yellow_Driving.tscn"); //change visual model
 				visualAgent.Call("Set_Vehicle", currentPath.pathVehicleType.Index);
-				timer = 0;
+				timer = ChooseWaitTime();
 				state = State.TRAVELLING;
 				visualAgent.Call("Set_Visible", true);
 				pointInList = 0;
+				MoveNext();
 			} else 
 			{
 				timer++;
-				//visualAgent.Call("Set_Visible", false);
 			}
 
 		} else if(state == State.TRAVELLING) {
-
-			//TODO factor in travel time, but for now, just 1 tick per tile 
-
-			if (pointInList >= currentPath.vertices.Count - 1)
-			{
-				Arrived();
-			} else {
-				PathVertex currentStartVertex = currentPath.vertices[pointInList];
-				PathVertex currentDestVertex = currentPath.vertices[pointInList + 1];
-				if (MoveToNextVertex(currentStartVertex,currentDestVertex))
-				{
-					pointInList++; //remove vertex already visited, then next vertex will be the start
-				}
-				Vehicle?.Tick(); //add emissions
-
-				//TODO do this if successful 
-				currentVertexCoords = currentStartVertex.PathGraphCoordinates;
-				currentTileCoords = new Vector2I((int)PathfindingGraph.VertexToTileCoord(currentStartVertex.PathGraphCoordinates.X), (int)PathfindingGraph.VertexToTileCoord(currentStartVertex.PathGraphCoordinates.Y));
-			}
+			Vehicle?.Tick(); //add emissions
 		}
+	}
+
+	int ChooseWaitTime() {
+		return GD.RandRange(waitMin, waitMax);
 	}
 
 	private void Arrived() {
 
-		GD.Print("ARRIVED!");
+		//GD.Print("ARRIVED!");
+
 		state = State.AT_DESTINATION;
 		Vehicle.IsInUse = false;
+		visualAgent.Call("Arrived");
 
 		PathVertex lastVert = null;
 		if(currentPath.vertices.Count > 1) {
@@ -221,8 +211,13 @@ public partial class SimAgent : Node
 	// Move to the next vertex on the path, returns true if successful
 	bool MoveToNextVertex(PathVertex currentVertex, PathVertex nextVertex) {
 
-		visualAgent.Call("Set_Pos", new Vector3(nextVertex.WorldPosition.X, agentVerticalPos, nextVertex.WorldPosition.Y));
-		GD.Print($"Moving from: {currentVertex.WorldPosition} to: {nextVertex.WorldPosition}");
+		Vector3 from = new Vector3(currentVertex.WorldPosition.X, agentVerticalPos, currentVertex.WorldPosition.Y);
+		Vector3 to = new Vector3(nextVertex.WorldPosition.X, agentVerticalPos, nextVertex.WorldPosition.Y);
+
+		visualAgent.Call("Move", from, to, Vehicle.VehicleType.maxSpeed, Vehicle.VehicleType.acceleration, Vehicle.VehicleType.decceleration);
+
+		//visualAgent.Call("Set_Pos", new Vector3(nextVertex.WorldPosition.X, agentVerticalPos, nextVertex.WorldPosition.Y));
+		//GD.Print($"Moving from: {currentVertex.WorldPosition} to: {nextVertex.WorldPosition}");
 		return true;
 
 		// not worrying about occupancy for now 
@@ -240,6 +235,27 @@ public partial class SimAgent : Node
 			return false;
 		}*/
 		  
+	}
+
+	// visual_vehicle calls this once it reaches the vert it was told to go to 
+	void MoveNext() {
+		//GD.Print("called movenext");
+
+		if (pointInList >= currentPath.vertices.Count - 1) {
+			Arrived();
+			return;
+		}
+
+		PathVertex currentStartVertex = currentPath.vertices[pointInList];
+		PathVertex currentDestVertex = currentPath.vertices[pointInList + 1];
+		if (MoveToNextVertex(currentStartVertex,currentDestVertex))
+		{
+			pointInList++; //remove vertex already visited, then next vertex will be the start
+		}
+	
+		//TODO do this if successful 
+		currentVertexCoords = currentStartVertex.PathGraphCoordinates;
+		currentTileCoords = new Vector2I((int)PathfindingGraph.VertexToTileCoord(currentStartVertex.PathGraphCoordinates.X), (int)PathfindingGraph.VertexToTileCoord(currentStartVertex.PathGraphCoordinates.Y));	
 	}
 
 	// how much support this agent calculates from this edge 

@@ -39,11 +39,11 @@ func _on_pressed():
 		if type == trees_res:
 			clear_infra()
 			# Try to add tree
-			if sim.GetTile(x,y).AddInfra(trees_res,bypass_restrictions, true, true) == "":
+			if sim.GetTile(x,y).AddInfra(trees_res, bypass_restrictions, false, true, true) == "":
 				# If you can add the grass tile as well
-				sim.GetTile(x,y).AddInfra(grass_res,true, true, true)
+				sim.GetTile(x,y).AddInfra(grass_res, true, true, true, true)
 		else: 
-			var error = sim.GetTile(x,y).AddInfra(type,bypass_restrictions, true, true)
+			var error = sim.GetTile(x,y).AddInfra(type, bypass_restrictions, false, true, true)
 			if error != "":
 				entered.emit(error)
 	else:

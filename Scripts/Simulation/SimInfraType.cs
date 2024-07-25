@@ -42,7 +42,7 @@ public partial class SimInfraType : Resource
 		NOT_DESTINATION,
 		HOME, 
 		WORKPLACE,
-		//COMMERCIAL,
+		COMMERCIAL,
 		//THIRDSPACE
 	}
 
