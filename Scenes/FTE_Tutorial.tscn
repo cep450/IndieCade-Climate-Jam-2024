@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://daienj3h5qbvw"]
+[gd_scene load_steps=16 format=3 uid="uid://c2motk6ne77pn"]
 
 [ext_resource type="Script" path="res://Scripts/UI/FTE_Tutorial.gd" id="1_llqxp"]
 [ext_resource type="Texture2D" uid="uid://clss3p647dkb6" path="res://Assets/Tutorial/gameplay5.png" id="2_wrph4"]
@@ -77,7 +77,8 @@ texture = ExtResource("6_rgifv")
 metadata/_edit_use_anchors_ = true
 
 [node name="TextureRect" type="TextureRect" parent="pop_up4"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = -0.584559
 anchor_top = 0.308411
 anchor_right = -0.444853

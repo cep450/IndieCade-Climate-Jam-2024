@@ -31,10 +31,13 @@ public partial class Sim : Node
 	public SimSupportPool SupportPool { get; private set; }
 	private List<SimAgent> agents;
 	public SimClock Clock { get; private set; }
+	private PackedScene _gameOverLoss;
+	private PackedScene _gameOverWin;
 
 	public GameState gameState = GameState.TUTORIAL;
 
 	GDScript mainScript = GD.Load<GDScript>("res://Scripts/main.gd");
+	
 	GodotObject mainObject;
 
 	GodotObject godotGlobal;
@@ -79,6 +82,8 @@ public partial class Sim : Node
 		LoadMap();
 		//TODO we might want a button to call this function instead.
 		BeginGame();
+		_gameOverLoss = (PackedScene)ResourceLoader.Load("res://Scenes/UI/game_over_scene.tscn");
+		_gameOverWin = (PackedScene)ResourceLoader.Load("res://Scenes/UI/game_win_scene.tscn");
 	}
 
 	// load level data from save
@@ -145,12 +150,14 @@ public partial class Sim : Node
 		// endings 
 		public void GameOverEmissions() {
 			GameOver();
+			GetTree().ChangeSceneToPacked(_gameOverLoss);
 			GD.Print("Game Over: Emissions cap reached!");
 			gameState = GameState.END_LOSS;
 		}
 
 		public void GameOverSupport() {
 			GameOver();
+			GetTree().ChangeSceneToPacked(_gameOverLoss);
 			GD.Print("Game Over: Support lost, you were removed from office!");
 			gameState = GameState.END_LOSS;
 		}
@@ -158,12 +165,14 @@ public partial class Sim : Node
 		// 
 		public void GameOverTime() {
 			GameOver();
+			GetTree().ChangeSceneToPacked(_gameOverLoss);
 			GD.Print("Game Over: The target year to reduce emissions by has passed! You broke your campaign promise and you were removed from office!");
 			gameState = GameState.END_LOSS;
 		}
 
 		public void GameOverSuccess() {
 			GameOver();
+			GetTree().ChangeSceneToPacked(_gameOverWin);
 			GD.Print("Game Over: You Win!");
 			gameState = GameState.END_WIN;
 		}

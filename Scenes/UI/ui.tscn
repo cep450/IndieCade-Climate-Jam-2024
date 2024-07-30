@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://csswthorupplo"]
+[gd_scene load_steps=17 format=3 uid="uid://csswthorupplo"]
 
 [ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="1_meoay"]
 [ext_resource type="Texture2D" uid="uid://umsji8qst4u6" path="res://Assets/Gameplay/Meters/Emissions/EMeter_Blank2_200x200.png" id="2_asuck"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://dbsfo3w8jlcbu" path="res://Assets/Gameplay/Popup/Error/Hover_Rates_136x36.png" id="11_qaxsh"]
 [ext_resource type="Texture2D" uid="uid://bqxamlsop5u51" path="res://Assets/Gameplay/Icons/Icon_Clock_92x92.png" id="11_yl1gm"]
 [ext_resource type="Texture2D" uid="uid://dsm1k473ys5rl" path="res://Assets/Gameplay/Meters/Happiness/HMeter_1S_76 x 76.png" id="12_ip4wc"]
-[ext_resource type="Texture2D" uid="uid://b3n1ib8vjom8g" path="res://Assets/Gameplay/Icons/music_icon.png" id="13_yty77"]
 [ext_resource type="Texture2D" uid="uid://b041etpehhf40" path="res://Assets/Gameplay/Menu/TimeControl/Time Control Menu - 200x64.png" id="15_d1g87"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x4o6g"]
@@ -185,18 +184,11 @@ layout_mode = 2
 texture = ExtResource("3_86vti")
 
 [node name="SaveButton" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -143.0
-offset_top = -76.0
-offset_right = -20.0
-offset_bottom = -22.0
-grow_horizontal = 0
-grow_vertical = 0
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 139.0
+offset_bottom = 70.0
 theme_override_fonts/font = ExtResource("4_16ne3")
 theme_override_font_sizes/font_size = 24
 text = "Save
@@ -250,27 +242,6 @@ theme_override_fonts/font = ExtResource("4_16ne3")
 theme_override_font_sizes/font_size = 20
 text = "21:00"
 horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 36.0
-offset_bottom = 36.0
-scale = Vector2(1.32, 1.32)
-texture = ExtResource("13_yty77")
-expand_mode = 1
-
-[node name="SongName" type="Label" parent="."]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 16.0
-offset_right = 556.0
-offset_bottom = 40.0
-theme_override_fonts/font = ExtResource("4_16ne3")
-theme_override_font_sizes/font_size = 16
-text = "Songname - Composer Name"
-vertical_alignment = 1
 
 [connection signal="mouse_entered" from="EmissionsMeter" to="." method="_on_emissions_meter_mouse_entered"]
 [connection signal="mouse_exited" from="EmissionsMeter" to="." method="_on_emissions_meter_mouse_exited"]

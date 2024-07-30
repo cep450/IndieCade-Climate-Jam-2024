@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpj7ntmoispqo"]
+[gd_scene load_steps=8 format=3 uid="uid://dpj7ntmoispqo"]
 
 [ext_resource type="Script" path="res://Scripts/Simulation/Main_Menu.gd" id="1_a00rb"]
-[ext_resource type="Texture2D" uid="uid://cytqd0chm8yf3" path="res://Assets/Title Screen/Title_BLANK.png" id="2_xj718"]
+[ext_resource type="Texture2D" uid="uid://c2r3d4dq5t6aw" path="res://Assets/Title Screen/final.png" id="2_bd485"]
 [ext_resource type="Texture2D" uid="uid://cshls0oe2hjp6" path="res://Assets/Title Screen/Menu_1_Start.png" id="3_rn7bo"]
 [ext_resource type="Texture2D" uid="uid://bb2q2vyv3na46" path="res://Assets/Title Screen/Menu_2_Tutorial.png" id="5_m6lxy"]
 [ext_resource type="Texture2D" uid="uid://dgdwa88tipqlc" path="res://Assets/Title Screen/Menu_3_QuitGame.png" id="5_wjd27"]
 [ext_resource type="Texture2D" uid="uid://kxd5myn2jj42" path="res://Assets/Title Screen/Temp_Img.png" id="6_180k2"]
+[ext_resource type="Texture2D" uid="uid://c5d38vq3m8os4" path="res://Assets/Title Screen/Final_Logo-White.png" id="6_rryrb"]
 
 [node name="Control" type="Control"]
 layout_direction = 1
@@ -41,23 +42,47 @@ offset_bottom = 0.00109863
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.597076, 0.597076)
-texture = ExtResource("2_xj718")
+texture = ExtResource("2_bd485")
 metadata/_edit_use_anchors_ = true
 
 [node name="mock_image" type="TextureRect" parent="Main_Menu"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.263889
-anchor_top = 0.123457
-anchor_right = 1.3559
-anchor_bottom = 1.42593
+anchor_left = 0.126736
+anchor_top = 0.191358
+anchor_right = 1.12674
+anchor_bottom = 1.19135
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.673269, 0.673269)
-texture = ExtResource("6_180k2")
+scale = Vector2(0.227803, 0.574696)
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main_Menu"]
+[node name="Seperator2" type="Control" parent="Main_Menu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Start_Game_Button" type="TextureRect" parent="Main_Menu/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_rn7bo")
+script = SubResource("GDScript_aqttt")
+metadata/_edit_use_anchors_ = true
+
+[node name="Seperator3" type="Control" parent="Main_Menu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Seperator4" type="Control" parent="Main_Menu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Quit_Game_Button" type="TextureRect" parent="Main_Menu/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_wjd27")
+script = SubResource("GDScript_aqttt")
+metadata/_edit_use_anchors_ = true
+
+[node name="mock_image" type="TextureRect" parent="Main_Menu"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.130208
@@ -74,21 +99,38 @@ metadata/_edit_use_anchors_ = true
 
 [node name="StartButton" type="Button" parent="Main_Menu/VBoxContainer"]
 layout_mode = 2
-shortcut_feedback = false
-shortcut_in_tooltip = false
+anchor_left = 0.126736
+anchor_top = 0.350309
+anchor_right = 0.364647
+anchor_bottom = 0.453559
+offset_top = -1.52588e-05
+offset_right = 188.927
+offset_bottom = 42.0936
+scale = Vector2(0.591951, 0.61382)
 icon = ExtResource("3_rn7bo")
 flat = true
 
-[node name="TutorialButton" type="Button" parent="Main_Menu/VBoxContainer"]
-layout_mode = 2
-shortcut_feedback = false
-shortcut_in_tooltip = false
-icon = ExtResource("5_m6lxy")
-flat = true
+[node name="QuitButton" type="Button" parent="Main_Menu"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.122396
+anchor_top = 0.529321
+anchor_right = 0.364984
+anchor_bottom = 0.630418
+offset_right = -271.461
+offset_bottom = -57.5106
+scale = Vector2(34.9326, 8.18877)
+metadata/_edit_use_anchors_ = true
 
-[node name="QuitButton" type="Button" parent="Main_Menu/VBoxContainer"]
-layout_mode = 2
-shortcut_feedback = false
-shortcut_in_tooltip = false
-icon = ExtResource("5_wjd27")
-flat = true
+[node name="TextureRect" type="TextureRect" parent="Main_Menu"]
+layout_mode = 0
+anchor_left = 0.121528
+anchor_top = 0.0802469
+anchor_right = 0.663024
+anchor_bottom = 0.228348
+offset_right = 923.196
+offset_bottom = 142.03
+scale = Vector2(0.403234, 0.403234)
+texture = ExtResource("6_rryrb")
+metadata/_edit_use_anchors_ = true

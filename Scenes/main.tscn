@@ -18,3 +18,5 @@ unique_name_in_owner = true
 
 [node name="View" parent="." instance=ExtResource("3_hdemr")]
 unique_name_in_owner = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

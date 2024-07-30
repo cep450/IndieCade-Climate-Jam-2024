@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://diylqwva8ftke"]
+
+[ext_resource type="Script" path="res://Scripts/UI/game_over_scene.gd" id="1_i27eo"]
+[ext_resource type="Texture2D" uid="uid://bhyk7a2xuix15" path="res://Assets/Game Over + Win/GameOver_Em.png" id="1_ujq5r"]
+
+[node name="GameOver_Scene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i27eo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.000868056
+anchor_top = -0.0015433
+anchor_right = 0.997698
+anchor_bottom = 0.995286
+offset_right = 771.652
+offset_bottom = 434.055
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.598098, 0.598098)
+texture = ExtResource("1_ujq5r")
+metadata/_edit_use_anchors_ = true
+
+[node name="Restart_Button" type="Button" parent="TextureRect"]
+layout_mode = 0
+anchor_left = 0.129752
+anchor_top = 0.786444
+anchor_right = 0.326948
+anchor_bottom = 0.913375
+offset_right = -370.617
+offset_bottom = -129.085
+scale = Vector2(47.3272, 17.1357)
+metadata/_edit_use_anchors_ = true
+
+[node name="Exit_Button" type="Button" parent="TextureRect"]
+layout_mode = 0
+anchor_left = 0.357906
+anchor_top = 0.786444
+anchor_right = 0.628197
+anchor_bottom = 0.919888
+offset_right = -510.959
+offset_bottom = -136.119
+scale = Vector2(64.8699, 18.0149)
+metadata/_edit_use_anchors_ = true
