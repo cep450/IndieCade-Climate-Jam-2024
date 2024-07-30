@@ -1,13 +1,14 @@
 extends Node
 
-var sim: Node
-var ui: Control
 @export var inDevMode: bool = false
 @export var audio_files: Array[Audio]
 	
+# Public
 var current_tile: Vector2 = Vector2(-1, -1)
+var sim: Node
+var ui: Control
 
-#Private audio stuff
+# Private
 var audio_dict = {}
 var stream_player = preload("res://Scenes/stream_player.tscn")
 var music_tracks: Array[String]

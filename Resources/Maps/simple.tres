@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="StartData" load_steps=8 format=3 uid="uid://mqoh2da1xp8a"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/StartData.cs" id="1_h5sy4"]
+[ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/SimInfraTypeRow.cs" id="1_n70g0"]
+
+[sub_resource type="Resource" id="Resource_7auhq"]
+script = ExtResource("1_n70g0")
+gridData = Array[int]([0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_s45b4"]
+script = ExtResource("1_n70g0")
+gridData = Array[int]([0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_2x5uv"]
+script = ExtResource("1_n70g0")
+gridData = Array[int]([0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_i7goa"]
+script = ExtResource("1_n70g0")
+gridData = Array[int]([0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_247t1"]
+script = ExtResource("1_n70g0")
+gridData = Array[int]([0, 0, 0, 0, 0])
+
+[resource]
+script = ExtResource("1_h5sy4")
+emissionsCap = 10000
+emissionsTarget = 100
+initialSupport = 25
+startingYear = 2025
+yearsUntilGameOver = 15
+nonDriverProbability = 0.3
+gridData = Array[Object]([SubResource("Resource_7auhq"), SubResource("Resource_s45b4"), SubResource("Resource_2x5uv"), SubResource("Resource_i7goa"), SubResource("Resource_247t1")])

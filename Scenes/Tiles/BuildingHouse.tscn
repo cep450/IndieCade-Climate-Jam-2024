@@ -2,6 +2,21 @@
 
 [ext_resource type="ArrayMesh" uid="uid://dfsv8jcslwwdu" path="res://Resources/TileMeshes/BuildingHouse.tres" id="1_rwv03"]
 
+[sub_resource type="Animation" id="Animation_ybq2k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:mesh:surface_1/material:emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_jfhfu"]
 resource_name = "house_lights"
 length = 60.0
@@ -17,21 +32,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0, 1.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_ybq2k"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshInstance3D:mesh:surface_1/material:emission_energy_multiplier")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7en4g"]

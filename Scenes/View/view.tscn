@@ -245,7 +245,7 @@ script = ExtResource("3_rja75")
 PAN_SPEED = 10.0
 ZOOM_SPEED = 20.0
 ROTATION_SPEED = 10.0
-MIN_CAM_Y_POS = 1.0
+MIN_CAM_Y_POS = 2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_t3rqa")

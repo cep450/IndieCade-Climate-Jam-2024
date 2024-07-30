@@ -42,22 +42,22 @@ func _on_pressed():
 			if sim.GetTile(x,y).AddInfra(trees_res,bypass_restrictions, true, true) == "":
 				# If you can add the grass tile as well
 				sim.GetTile(x,y).AddInfra(grass_res,true, true, true)
-			
-		var error = sim.GetTile(x,y).AddInfra(type,bypass_restrictions, true, true)
-		if error != "":
-			entered.emit(error)
+		else: 
+			var error = sim.GetTile(x,y).AddInfra(type,bypass_restrictions, true, true)
+			if error != "":
+				entered.emit(error)
 	else:
 		clear_infra()
 		
 func _on_mouse_entered():
 	var return_val
 	if is_build:
-		return_val = type.Name + " - " + str(type.costToBuild)
+		return_val = type.Name + " - " + str(type.costToBuild) + " Support"
 	else:
 		var total_cost = 0
 		for t in sim.GetInfra(x,y):
 			total_cost += t.costToDestroy
-		return_val = "Destroy All - " + str(total_cost)
+		return_val = "Destroy All - " + str(total_cost) + " Support"
 	entered.emit(return_val)
 
 # Helper functions

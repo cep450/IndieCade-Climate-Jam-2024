@@ -129,7 +129,7 @@ public class PathVertex {
 				} else {
 					if(type == Type.CENTER && infra.Type.connectsCenter) {
 						AddInfra(infra.Type);
-					} else if(type == Type.BORDER && infra.Type.connectsBorders || infra.Type.connectsCorners) {
+					} else if(type == Type.BORDER && (infra.Type.connectsBorders || infra.Type.connectsCorners)) {
 						AddInfra(infra.Type);
 					} else if(type == Type.CORNER && infra.Type.connectsCorners) {
 						AddInfra(infra.Type);

@@ -4,6 +4,7 @@ using System;
 [GlobalClass]
 public partial class StartData : Resource
 {
+	//[Export] public bool EditorMode = false;
 	[Export] public int emissionsCap = 10000;
 	[Export] public int emissionsTarget = 100;
 	[Export] public int initialSupport = 25;

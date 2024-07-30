@@ -11,6 +11,8 @@ public partial class Sim : Node
 
 	bool DEBUG = false;
 
+	[Export] bool EditorMode = false;
+
 	// game state 
 	public enum GameState {
 		TUTORIAL,	// the game has not begun yet
@@ -35,6 +37,8 @@ public partial class Sim : Node
 	GDScript mainScript = GD.Load<GDScript>("res://Scripts/main.gd");
 	GodotObject mainObject;
 
+	GodotObject godotGlobal;
+
 	// shortcuts 
 	//TODO it might make more sense for these to be in SimGrid
 	public SimTile GetTile(int x, int y) {
@@ -55,11 +59,17 @@ public partial class Sim : Node
 
 	public override void _Ready()
 	{
+
+		//TODO throw up a loading screen here 
+
+		GD.Print("sim ready");
 		Instance = this;
-		Instance.startData = (StartData)ResourceLoader.Load("res://Scripts/Simulation/CustomResources/SavedData.tres");
+		if(startData == null) {
+			Instance.startData = (StartData)ResourceLoader.Load("res://Scripts/Simulation/CustomResources/SavedData.tres");
+		}
 		//Give Global access to this node
-		GodotObject autoload = GetNode("/root/Global");
-		autoload.Call("set_sim",Instance);
+		godotGlobal = GetNode("/root/Global");
+		godotGlobal.Call("set_sim",Instance);
 		grid = GetNode<SimGrid>("SimGrid");
 		EmissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
 		SupportPool = GetNode<SimSupportPool>("SimSupportPool");
@@ -74,6 +84,12 @@ public partial class Sim : Node
 	// load level data from save
 	public void LoadMap() { /*TODO maybe have this take in a startData resource, 
 		but for now, it's just the one given to the sim instance*/
+
+		//loadingscreen.SetText("Loading map...");
+
+		//godotGlobal.Set("inDevMode", startData.EditorMode);
+		godotGlobal.Set("inDevMode", EditorMode);
+
 		EmissionsMeter.InitializeEmissionsInfo(startData);
 		SupportPool.Init(startData);
 		Clock.InitializeClockInfo(startData);
@@ -87,17 +103,28 @@ public partial class Sim : Node
 	// Start the simulation for the first time. 
 	public void BeginGame() {
 
+		//loadingscreen.SetText("Loading citizens...");
+
+		foreach(SimAgent agent in agents) {
+			agent.InitAfterMapLoad();
+		}
+
 		gameState = GameState.GAMEPLAY;
 		Clock.UnPause();
+
+		//TODO close the loading screen here 
 	}
 
 	// Simulation logic tick. 
 	// Enforce execution order. 
 	// The clock calls this when the game is running. 
 	public void SimulationTick() {
-		if(DEBUG) GD.Print("Sim Tick!");
-		foreach (var agent in agents)
+
+		//GD.Print("sim tick");
+
+		foreach (SimAgent agent in agents)
 		{
+			//GD.Print("agent tick");
 			agent.Tick();
 		}
 
@@ -156,13 +183,12 @@ public partial class Sim : Node
 			SimAgent agent = new SimAgent(startData.nonDriverProbability, position); //TODO get chance to not have a car from level data 
 			agents.Add(agent);
 			AddChild(agent);
-			agent.CreateVisualVersion();
 		}
 	}
 
 	//TODO right now for simplicity this just removes arbitrary agents since they're considered identical, but in the future, we could pick out specific ones to remove like having a Home save the agents attached to it and remove those specific agents if removed
 	//TODO does not work right now
 	public void RemoveAgents(int number) {
-		//agents.RemoveRange(agents.Count - number + 1, agents.Count - 1);
+		agents.RemoveRange(agents.Count - number + 1, agents.Count - 1);
 	}
 }
