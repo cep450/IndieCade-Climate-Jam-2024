@@ -177,18 +177,21 @@ public partial class Sim : Node
 
 	//TODO we probably want agent stuff in its own script like an AgentManger-- we can refactor this after the jam since we're tight on time 
 
-	public void AddAgents(int number, Vector2I position) {
+	public SimAgent[] AddAgents(int number, Vector2I position) {
 
+		SimAgent [] newAgents = new SimAgent[number];
 		for(int i = 0; i < number; i++) {
 			SimAgent agent = new SimAgent(startData.nonDriverProbability, position); //TODO get chance to not have a car from level data 
 			agents.Add(agent);
 			AddChild(agent);
+			newAgents[i] = agent;
 		}
+		return newAgents;
 	}
 
-	//TODO right now for simplicity this just removes arbitrary agents since they're considered identical, but in the future, we could pick out specific ones to remove like having a Home save the agents attached to it and remove those specific agents if removed
-	//TODO does not work right now
-	public void RemoveAgents(int number) {
-		agents.RemoveRange(agents.Count - number + 1, agents.Count - 1);
+	//TODO see if we can optimize this 
+	public void RemoveAgent(SimAgent agent) {
+		agents.Remove(agent);
+		//TODO we should be able to delete visual agents here to free up memory from the loaded models 
 	}
 }

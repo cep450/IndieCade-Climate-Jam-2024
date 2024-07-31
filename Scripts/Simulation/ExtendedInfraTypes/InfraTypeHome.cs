@@ -16,13 +16,22 @@ public partial class InfraTypeHome : SimInfraType {
 
 		AgentsLivingHere = GD.RandRange(minAgentsToAdd, maxAgentsToAdd);
 
-		Sim.Instance.AddAgents(AgentsLivingHere, tile.Coordinates);
+		SimAgent[] agents = Sim.Instance.AddAgents(AgentsLivingHere, tile.Coordinates);
+
+		foreach(SimAgent agent in agents) {
+			agent.SetHome(tile);
+		}
 	}
 
 	public override void RemovedFromTile(SimTile tile)
 	{
 		base.RemovedFromTile(tile);
 
-		Sim.Instance.RemoveAgents(AgentsLivingHere);
+		foreach(SimAgent agent in tile.Agents) {
+			agent.SetHome(null);
+			//TODO if we want agents moving around homes, housing supply to be a mechanic we can implement this here or in agent.SetHome- instead of RemoveAgent
+			Sim.Instance.RemoveAgent(agent);
+		}
+
 	}
 }

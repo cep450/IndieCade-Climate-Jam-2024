@@ -26,6 +26,8 @@ public partial class SimTile : Node
 	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/view_tile.gd");
 	public GodotObject VisualTile { get; private set; }
 
+	public List<SimAgent> Agents; //agents that belong to this tile due to a home or workplace 
+
 	public SimTile(Vector2I coordinates, Vector2 worldPosition, GodotObject newVisualTile)
 	{
 		Coordinates = coordinates;
@@ -34,6 +36,7 @@ public partial class SimTile : Node
 		InfraTypesMask = default(SimInfraType.InfraType);
 		VisualTile = newVisualTile;
 		Infra = new List<SimInfra>();
+		Agents = new List<SimAgent>();
 	}
 
 	// load infrastructure on a tile based on a type mask

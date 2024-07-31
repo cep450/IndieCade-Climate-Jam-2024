@@ -8,11 +8,19 @@ using System.Net;
 public partial class SimAgent : Node
 {
 
+	/*
+		A single person who travels from destination to destination.
+	*/
+
+	//TODO if we want to make the pathfinding process non-blocking to avoid lag, we could have them pathfind while they're chilling at their location
+
 	bool DEBUG = false;
 
+	// Y axis position in the world
 	float agentVerticalPos = 0.3f;
 
-		// TODO generate these properly later
+
+	// TODO generate these properly later
 	float suppFactorSafety = 1f;
 	float suppFactorDistance = -0.1f;
 	float suppFactorEmissions = -0.1f;
@@ -38,14 +46,10 @@ public partial class SimAgent : Node
 	}
 	public State state {get; private set; }
 
-	//TODO if we want to make the pathfinding process non-blocking to avoid lag, we could have them pathfind while they're chilling at their location
-
-
-	//TODO make agents weight different factors differently 
 
 	bool canDrive;
 
-	private float happiness; //would every agent have a happiness value?
+	//private float happiness; //would every agent have a happiness value?
 	public SimVehicle Vehicle { get; private set; }
 	public bool VehicleIsInUse { get {
 		if(Vehicle != null) {
@@ -65,16 +69,20 @@ public partial class SimAgent : Node
 	public Vector2I targetCoordinates;
 
 	private SimPath currentPath;
-
 	private SimInfraType.DestinationType destinationType;
+
+	public SimTile HomeTile { get; private set; } // the tile this agent's home is placed on 
+	public Vector2I HomePosition { get; private set; } // Pathfinding coordinate of home infrastructure 
 	
-	private GodotObject visualAgent;
-	private GodotObject world;
 	private int timer = 0; //Timer for ticks
 	private int waitMin = 5;
 	private int waitMax = 15;
 	private int ticksToWait;
 	private int pointInList = 0;
+
+	private GodotObject visualAgent;
+
+	private GodotObject world;
 	private SimGrid simGrid;
 	Pathfinding pathfinder;
 
@@ -122,40 +130,41 @@ public partial class SimAgent : Node
 		} // otherwise we hold off until the map is fully loaded, if the game has not begun yet and we're loading the map. this is for agents spawned during gameplay e.g. when a house is placed 
 	}
 
-	public override void _Process(double delta)
-	{
-		
-	}
-
 	// every simulation tick.
 	public void Tick() {
 
 		if(state == State.AT_DESTINATION) {
-			if (timer > ticksToWait) 
-			{
-				//GD.Print("Timer Completed!");
+			if (timer > ticksToWait) {
 				PathVertex currentV = Sim.Instance.PathGraph.GetVertex(currentVertexCoords);
 				ChooseNewDestinationType();
 				//GD.Print("dest type " + destinationType.ToString() + " currentv " + currentV.PathGraphCoordinates.ToString());
-				currentPath = pathfinder.FindPath(currentV, destinationType, this); 
-				if(currentPath == null) {
+				if(destinationType == SimInfraType.DestinationType.HOME) {
+					// go home 
+					currentPath = pathfinder.FindPath(currentV, destinationType, this, HomePosition); 
+				} else {
+					// go elsewhere 
+					currentPath = pathfinder.FindPath(currentV, destinationType, this); 
+				}
+				if(currentPath == null || currentPath.vertices.Count <= 1) {
+					//GD.Print("length was " + currentPath?.vertices.Count);
 					//if no path that way, 
 					//TODO go somewhere else (when we have more than 1 destination type)
 					//for now just wait
-					timer = ChooseWaitTime();
+					ticksToWait = ChooseWaitTime();
 					timer = 0;
 					return;
 				}
 				Vehicle = new SimVehicle(currentPath.pathVehicleType); //TODO CHANGE THIS THIS IS VERY BAD
 				Vehicle.IsInUse = true;
 				visualAgent.Call("Set_Vehicle", currentPath.pathVehicleType.Index);
-				timer = ChooseWaitTime();
+				currentPath.vertices[0].TryRemoveOccupancy(SimVehicleType.TransportMode.PEDESTRIAN);
+				ticksToWait = ChooseWaitTime();
+				timer = 0;
 				state = State.TRAVELLING;
 				visualAgent.Call("Set_Visible", true);
 				pointInList = 0;
 				MoveNext();
-			} else 
-			{
+			} else {
 				timer++;
 			}
 
@@ -169,8 +178,6 @@ public partial class SimAgent : Node
 	}
 
 	private void Arrived() {
-
-		//GD.Print("ARRIVED!");
 
 		state = State.AT_DESTINATION;
 		Vehicle.IsInUse = false;
@@ -216,11 +223,11 @@ public partial class SimAgent : Node
 
 		visualAgent.Call("Move", from, to, Vehicle.VehicleType.maxSpeed, Vehicle.VehicleType.acceleration, Vehicle.VehicleType.decceleration);
 
-		//visualAgent.Call("Set_Pos", new Vector3(nextVertex.WorldPosition.X, agentVerticalPos, nextVertex.WorldPosition.Y));
 		//GD.Print($"Moving from: {currentVertex.WorldPosition} to: {nextVertex.WorldPosition}");
 		return true;
 
 		// not worrying about occupancy for now 
+		//TODO we can re-implement occupancy after the jam 
 		/*
 		if (!nextVertex.TryAddOccupancy(currentPath.pathVehicleType.Mode))
 		{
@@ -257,6 +264,28 @@ public partial class SimAgent : Node
 		currentVertexCoords = currentStartVertex.PathGraphCoordinates;
 		currentTileCoords = new Vector2I((int)PathfindingGraph.VertexToTileCoord(currentStartVertex.PathGraphCoordinates.X), (int)PathfindingGraph.VertexToTileCoord(currentStartVertex.PathGraphCoordinates.Y));	
 	}
+
+	// set this Agent's Home 
+	public void SetHome(SimTile tile) {
+
+		// remove agent from a previous home, if any 
+		if(HomeTile != null) {
+			HomeTile.Agents.Remove(this);
+		}
+
+		// if we're setting the new home to null, to represent removing a home 
+		//TODO will the agent look for a new home here? or elsewhere?
+		if(tile == null) {
+			HomeTile = null;
+			HomePosition = Vector2I.MinValue;
+			//TODO try to find a new home, otherwise, free this agent 
+		}
+
+		tile.Agents.Add(this);
+		HomeTile = tile;
+		HomePosition = new Vector2I(PathfindingGraph.TileToVertexCoord(tile.Coordinates.X), PathfindingGraph.TileToVertexCoord(tile.Coordinates.Y));
+	}
+
 
 	// how much support this agent calculates from this edge 
 	public float SupportGainedConnection(PathEdge edge, SimVehicleType.TransportMode mode) {

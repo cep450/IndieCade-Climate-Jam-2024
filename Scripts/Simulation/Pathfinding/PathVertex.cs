@@ -84,20 +84,9 @@ public class PathVertex {
 				AddTileIfNotNull(Mathf.CeilToInt(x), Mathf.CeilToInt(y));
 			} else if(type == Type.BORDER){
 				// it's a border
-				// have to calculate if it's a border on the x or y 
-				// or just use floor anyway since it'll always go to the same number if it's an int?
+				// just use floor since it'll always go to the same number if it's an int
 				AddTileIfNotNull(Mathf.FloorToInt(x), Mathf.FloorToInt(y));
 				AddTileIfNotNull(Mathf.CeilToInt(x), Mathf.CeilToInt(y));
-				/* 
-				if(remainderx == 0f) {
-					Tiles.Add(Sim.Instance.GetTile((int)x, Mathf.FloorToInt(y)));
-					Tiles.Add(Sim.Instance.GetTile((int)x, Mathf.CeilToInt(y)));
-					GD.Print("x zero");
-				} else if(remaindery == 0f) {
-					Tiles.Add(Sim.Instance.GetTile(Mathf.FloorToInt(x), (int)y));
-					Tiles.Add(Sim.Instance.GetTile(Mathf.CeilToInt(x), (int)y));
-					GD.Print("y zero ");
-				} */
 			}
 		}
 	}
