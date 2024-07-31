@@ -3,22 +3,26 @@
 [ext_resource type="PackedScene" uid="uid://buq56caxv0em6" path="res://Models/Agent_Biker/Agent_Biker_1.gltf" id="1_3rfb6"]
 
 [node name="Agent_Biker_1" instance=ExtResource("1_3rfb6")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Skeleton3D" parent="BikeRig" index="0"]
-bones/1/position = Vector3(2.01604e-08, 0.261429, -0.0857119)
-bones/2/rotation = Quaternion(0.808392, 0.153008, 0.160658, 0.545235)
-bones/3/rotation = Quaternion(0.705738, 0.705738, 0.0439834, -0.0439829)
-bones/4/rotation = Quaternion(-0.4987, -3.14774e-07, -1.8777e-07, 0.866775)
-bones/8/position = Vector3(-0.000450251, 0.0568937, -0.125538)
-bones/8/rotation = Quaternion(-0.150819, 0.000526599, -0.000684664, 0.988561)
-bones/9/position = Vector3(-2.17444e-11, 0.0969196, -6.32139e-05)
-bones/9/rotation = Quaternion(0.0880984, 6.40669e-12, 6.57518e-11, 0.996112)
-bones/10/position = Vector3(1.35508e-07, 0.106467, -0.000164293)
-bones/10/rotation = Quaternion(-0.143621, 1.10215e-05, 1.09931e-05, 0.989633)
-bones/11/position = Vector3(0.0431801, -0.00672186, 0.0133512)
-bones/11/rotation = Quaternion(0.0029294, 0.551591, 0.829836, -0.0843295)
-bones/12/position = Vector3(-0.0450751, -0.0114095, 0.025992)
-bones/12/rotation = Quaternion(-0.0149765, 0.427117, 0.900249, 0.0830552)
+bones/0/rotation = Quaternion(-8.56873e-09, 1.22104e-07, -0.0106987, 0.999943)
+bones/2/rotation = Quaternion(0.834069, -0.00242508, -0.00366603, 0.551643)
+bones/3/rotation = Quaternion(0.234421, 0.234421, -0.667118, 0.667118)
+bones/4/rotation = Quaternion(-0.943171, -1.16232e-07, -3.47433e-07, 0.332307)
+bones/5/rotation = Quaternion(0.693135, 0.678594, -0.170195, 0.173519)
+bones/6/rotation = Quaternion(0.678594, -0.693135, 0.173519, 0.170195)
+bones/7/rotation = Quaternion(-0.685746, -0.685746, 0.17249, -0.17249)
+bones/8/position = Vector3(-0.000452687, 0.0562883, -0.127394)
+bones/8/rotation = Quaternion(-0.157031, 0.000522285, -0.000687965, 0.987593)
+bones/9/position = Vector3(-2.77896e-06, 0.0983461, 0.00120057)
+bones/9/rotation = Quaternion(0.198648, -0.000634333, 0.00313959, 0.980066)
+bones/10/position = Vector3(0.00240718, 0.0906229, 0.0199348)
+bones/10/rotation = Quaternion(-0.401214, 0.00181552, -0.00898369, 0.915939)
+bones/11/position = Vector3(0.0432227, -0.00351468, 0.018344)
+bones/11/rotation = Quaternion(0.0171041, 0.396236, 0.914262, -0.0826428)
+bones/12/position = Vector3(-0.0425351, 0.00010437, 0.0164835)
+bones/12/rotation = Quaternion(-0.00605225, 0.51339, 0.853996, 0.0841703)
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Biker_BikeIdle"
