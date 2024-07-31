@@ -26,7 +26,7 @@ public partial class Sim : Node
 	[Export] public StartData startData;
 
 	public SimGrid grid;
-	public PathfindingGraph PathGraph;
+	public PathGraph PathGraph;
 	public SimEmissionsMeter EmissionsMeter { get; private set; }
 	public SimSupportPool SupportPool { get; private set; }
 	private List<SimAgent> agents;
@@ -38,6 +38,7 @@ public partial class Sim : Node
 	GodotObject mainObject;
 
 	GodotObject godotGlobal;
+	GodotObject loadingScreen;
 
 	// shortcuts 
 	//TODO it might make more sense for these to be in SimGrid
@@ -61,6 +62,7 @@ public partial class Sim : Node
 	{
 
 		//TODO throw up a loading screen here 
+		//loadingScreen = GetNode("/root/Main_Menu/LoadingScreen/LoadingText");
 
 		GD.Print("sim ready");
 		Instance = this;
@@ -96,7 +98,7 @@ public partial class Sim : Node
 
 		//generate a grid based on map data 
 		grid.LoadGridFromResource(startData);
-		PathGraph = new PathfindingGraph(startData.GridWidth, startData.GridHeight);
+		PathGraph = new PathGraph(startData.GridWidth, startData.GridHeight);
 
 	}
 

@@ -95,5 +95,4 @@ icon = ExtResource("5_wjd27")
 flat = true
 
 [node name="LoadingScreen" parent="Main_Menu" instance=ExtResource("7_m3mk6")]
-visible = false
 layout_mode = 1

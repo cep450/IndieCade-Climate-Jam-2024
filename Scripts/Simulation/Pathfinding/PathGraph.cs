@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 //TODO we probably want to make this a sparse graph 
 
-public class PathfindingGraph {
+public class PathGraph {
 
 	/*
 		x = xertex 
@@ -46,7 +46,7 @@ public class PathfindingGraph {
 	public int Height { get => sizeY; }
 
 
-	public PathfindingGraph(int gridSizeX, int gridSizeY) {
+	public PathGraph(int gridSizeX, int gridSizeY) {
 		sizeX = TileToVertexCoord(gridSizeX) + 1;
 		sizeY = TileToVertexCoord(gridSizeY) + 1;
 		vertexGrid = new PathVertex[sizeX, sizeY];

@@ -37,9 +37,9 @@ public class PathVertex {
 	int[] capacity;
 	int[] occupancy;
 
-	PathfindingGraph pathGraph;
+	PathGraph pathGraph;
 
-	public PathVertex(Vector2I pathGraphCoordinates, Vector2 worldPosition, PathfindingGraph graph) {
+	public PathVertex(Vector2I pathGraphCoordinates, Vector2 worldPosition, PathGraph graph) {
 		PathGraphCoordinates = pathGraphCoordinates;
 		WorldPosition = worldPosition;
 		CalculateType();
@@ -71,8 +71,8 @@ public class PathVertex {
 		Tiles = new List<SimTile>();
 
 		// vertex coordinates to tile coordinates 
-		float x = PathfindingGraph.VertexToTileCoord(PathGraphCoordinates.X);
-		float y = PathfindingGraph.VertexToTileCoord(PathGraphCoordinates.Y);
+		float x = PathGraph.VertexToTileCoord(PathGraphCoordinates.X);
+		float y = PathGraph.VertexToTileCoord(PathGraphCoordinates.Y);
 
 		if(type == Type.CENTER) {
 			AddTileIfNotNull((int)x, (int)y);

@@ -98,7 +98,7 @@ public partial class SimAgent : Node
 
 		// tile coords to vertex coords 
 		currentTileCoords = coordinates;
-		currentVertexCoords = new Vector2I(PathfindingGraph.TileToVertexCoord(coordinates.X), PathfindingGraph.TileToVertexCoord(coordinates.Y));
+		currentVertexCoords = new Vector2I(PathGraph.TileToVertexCoord(coordinates.X), PathGraph.TileToVertexCoord(coordinates.Y));
 		GD.Print(" tile " + currentTileCoords.ToString() + " vert " + currentVertexCoords.ToString());
 
 		state = State.AT_DESTINATION;
@@ -192,7 +192,7 @@ public partial class SimAgent : Node
 		
 		if(lastVert != null ){
 			currentVertexCoords = lastVert.PathGraphCoordinates;
-			currentTileCoords = new Vector2I((int)PathfindingGraph.VertexToTileCoord(lastVert.PathGraphCoordinates.X), (int)PathfindingGraph.VertexToTileCoord(lastVert.PathGraphCoordinates.Y));
+			currentTileCoords = new Vector2I((int)PathGraph.VertexToTileCoord(lastVert.PathGraphCoordinates.X), (int)PathGraph.VertexToTileCoord(lastVert.PathGraphCoordinates.Y));
 		}
 		
 		//generate support based on the route 
@@ -262,7 +262,7 @@ public partial class SimAgent : Node
 	
 		//TODO do this if successful 
 		currentVertexCoords = currentStartVertex.PathGraphCoordinates;
-		currentTileCoords = new Vector2I((int)PathfindingGraph.VertexToTileCoord(currentStartVertex.PathGraphCoordinates.X), (int)PathfindingGraph.VertexToTileCoord(currentStartVertex.PathGraphCoordinates.Y));	
+		currentTileCoords = new Vector2I((int)PathGraph.VertexToTileCoord(currentStartVertex.PathGraphCoordinates.X), (int)PathGraph.VertexToTileCoord(currentStartVertex.PathGraphCoordinates.Y));	
 	}
 
 	// set this Agent's Home 
@@ -283,7 +283,7 @@ public partial class SimAgent : Node
 
 		tile.Agents.Add(this);
 		HomeTile = tile;
-		HomePosition = new Vector2I(PathfindingGraph.TileToVertexCoord(tile.Coordinates.X), PathfindingGraph.TileToVertexCoord(tile.Coordinates.Y));
+		HomePosition = new Vector2I(PathGraph.TileToVertexCoord(tile.Coordinates.X), PathGraph.TileToVertexCoord(tile.Coordinates.Y));
 	}
 
 
