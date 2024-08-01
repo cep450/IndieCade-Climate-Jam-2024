@@ -6,7 +6,7 @@
 script = ExtResource("1_rrgad")
 name = "Car"
 transportMode = 2
-emissionsPerYear = 3.5
+emissionsPerYear = 3.0
 maxSpeed = 55.0
 acceleration = 10.0
 decceleration = 5.0

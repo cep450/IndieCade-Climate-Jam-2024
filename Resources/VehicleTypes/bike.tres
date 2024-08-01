@@ -10,5 +10,5 @@ emissionsPerYear = 0.0
 maxSpeed = 15.0
 acceleration = 8.0
 decceleration = 0.0
-agentCapacity = 1
+agentCapacity = 2
 ModelPath = "res://Models/Agent_Biker/agent_biker_1.tscn"
