@@ -85,9 +85,9 @@ gridData = [0, 0, 0, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192,
 
 [resource]
 script = ExtResource("3_tae6k")
-emissionsCap = 10000000
+emissionsCap = 50
 emissionsTarget = 10
-initialSupport = 100
+initialSupport = 50
 startingYear = 2025
 yearsUntilGameOver = 2030
 nonDriverProbability = 0.3

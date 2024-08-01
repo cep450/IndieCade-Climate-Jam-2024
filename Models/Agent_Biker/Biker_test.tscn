@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6chmdloo6upe"]
-
-[ext_resource type="PackedScene" uid="uid://buq56caxv0em6" path="res://Models/Agent_Biker/Agent_Biker_1.gltf" id="1_yqfja"]
-
-[node name="BikerTest" type="Node3D"]
-
-[node name="Agent_Biker_1" parent="." instance=ExtResource("1_yqfja")]

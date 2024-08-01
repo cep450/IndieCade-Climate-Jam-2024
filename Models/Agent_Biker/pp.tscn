@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dddar2iko2mvf"]
-
-[ext_resource type="PackedScene" uid="uid://buq56caxv0em6" path="res://Models/Agent_Biker/Agent_Biker_1.gltf" id="1_1yb3v"]
-
-[node name="Pp" type="Node3D"]
-visible = false
-
-[node name="Agent_Biker_1" parent="." instance=ExtResource("1_1yb3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.623938)
