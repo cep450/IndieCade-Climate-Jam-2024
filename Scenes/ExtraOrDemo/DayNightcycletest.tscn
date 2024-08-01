@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://Shaders/Gradientsky.gdshader" id="2_jemf5"]
 [ext_resource type="PackedScene" uid="uid://fnt2oy5v4lp8" path="res://Models/Car/Car_Blue_Driving.tscn" id="5_8lhmh"]
-[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://Resources/updatedtiles.tres" id="5_cfg14"]
+[ext_resource type="MeshLibrary" uid="uid://b2mn2p18f8rsj" path="res://tiles.tres" id="5_cfg14"]
 [ext_resource type="PackedScene" uid="uid://bbwli37pmewjn" path="res://Scenes/Tiles/Lightpost.tscn" id="5_ycgy7"]
 [ext_resource type="PackedScene" uid="uid://bhnkhle85umyj" path="res://Models/Car/Car_Green_Driving.tscn" id="6_pdhvl"]
 [ext_resource type="Script" path="res://Scripts/View/world.gd" id="6_tixaw"]
