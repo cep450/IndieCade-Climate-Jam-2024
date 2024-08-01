@@ -6,27 +6,35 @@ extends Camera3D
 ## Used to prevent camera from getting to close to scene.
 @export var MIN_CAM_Y_POS: float
 
-func _unhandled_input(event):
+func _process(delta):
 	# WASD to Pan
-	if event is InputEventKey:
-		if event.pressed:
-			# Vector2 used to denote X,Z change vec.x = z, vec.y = x
-			var move_vector = Vector2(0,0)
-			match event.keycode:
-				KEY_W:
-					move_vector += Vector2(1,0)
-				KEY_S:
-					move_vector += Vector2(-1,0)
-				KEY_A:
-					move_vector += Vector2(0,1)
-				KEY_D:
-					move_vector += Vector2(0,-1)
-					
-			position.x -= move_vector.y * PAN_SPEED * get_process_delta_time()
-			position.z -= move_vector.x * ZOOM_SPEED * get_process_delta_time()
+	var move_vector = Vector2.ZERO
+		
+	# Vector2 used to denote X,Z change vec.x = z, vec.y = x
+			
+	if Input.is_action_pressed("MoveViewUp"):
+		move_vector += Vector2.RIGHT
+	if Input.is_action_pressed("MoveViewDown"):
+		move_vector += Vector2.LEFT
+	if Input.is_action_pressed("MoveViewLeft"):
+		move_vector += Vector2.DOWN
+	if Input.is_action_pressed("MoveViewRight"):
+		move_vector += Vector2.UP
+
+	if(move_vector != Vector2.ZERO):	
+		position.x -= (move_vector.rotated(rotation.y).y * PAN_SPEED * delta)
+		position.z -= (move_vector.rotated(rotation.y).x * PAN_SPEED * delta)
+
 	
+
+func _unhandled_input(event):
+
 	if event is InputEventMouseMotion && Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
-		$"../World".rotate_y(event.relative.x * ROTATION_SPEED * get_process_delta_time() / 10.0)
+
+		# rotate the camera relative to itself, not the world 
+		rotate_y(event.relative.x * ROTATION_SPEED * get_process_delta_time() / 10.0)
+
+		#$"../World".rotate_y(event.relative.x * ROTATION_SPEED * get_process_delta_time() / 10.0)
 		# Code for panning vai mouse move
 		#position.x -= event.relative.x * PAN_SPEED * get_process_delta_time()
 		#position.z -= event.relative.y * PAN_SPEED * get_process_delta_time()

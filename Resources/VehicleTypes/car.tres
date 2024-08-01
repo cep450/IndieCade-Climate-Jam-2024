@@ -6,8 +6,9 @@
 script = ExtResource("1_rrgad")
 name = "Car"
 transportMode = 2
-emissionsPerYear = 100.0
-maxSpeed = 1.0
+emissionsPerYear = 4.6
+maxSpeed = 55.0
+acceleration = 10.0
+decceleration = 5.0
 agentCapacity = 4
-visualVehicle = "res://Models/Car/Car_Yellow_Driving.tscn"
 ModelPath = "res://Models/Car/Car_Yellow_Driving.tscn"

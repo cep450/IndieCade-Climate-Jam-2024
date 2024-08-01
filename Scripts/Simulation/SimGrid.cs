@@ -135,7 +135,7 @@ public partial class SimGrid : Node
 		return neighbours;
 	}
 	
-	public void SaveGridAsResource() 
+	public void SaveGridAsResource(string saveFileName = "SavedData") 
 	{
 		var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/SavedData.tres");
 		startData.gridData = new SimInfraTypeRow[width];
@@ -149,8 +149,8 @@ public partial class SimGrid : Node
 			}
 			startData.gridData[x] = currentInfraRow;
 		}
-		ResourceSaver.Save(startData, "res://Scripts/Simulation/CustomResources/SavedData.tres");
-		GD.Print("Data Saved");
+		ResourceSaver.Save(startData, "res://Scripts/Simulation/CustomResources/" + saveFileName + ".tres");
+		GD.Print("Data Saved to file " + saveFileName + ".tres");
 	}
 	
 	public PathVersion GetVersion(Vector2I currentTile, SimInfraType targetType)

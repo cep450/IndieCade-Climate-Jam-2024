@@ -120,7 +120,7 @@ func _on_mouse_entered_build(text: String):
 
 func _on_mouse_exited_build():
 	$BuildInfo.visible = false
-	
+
 func _on_save_button_pressed():
 	sim.get_node("SimGrid").SaveGridAsResource()
 

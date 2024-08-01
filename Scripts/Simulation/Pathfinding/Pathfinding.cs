@@ -32,12 +32,18 @@ public partial class Pathfinding : Node
 		initialized = true;
 	}
 
-	//TODO rework this when we get agent vehicle transfer 
-	// because this SUCKS!
 	public SimPath FindPath(PathVertex startVert, SimInfraType.DestinationType destinationType, SimAgent agent) {
+		return FindPath(startVert, destinationType, agent, Vector2I.MinValue);
+	}
+
+	//TODO rework this when we get agent vehicle transfer working
+	// because this SUCKS!
+	public SimPath FindPath(PathVertex startVert, SimInfraType.DestinationType destinationType, SimAgent agent, Vector2I coordinates) {
+		
 		SimPath path = null; 
+		
 		foreach(SimVehicleType.TransportMode mode in Enum.GetValues<SimVehicleType.TransportMode>()) {
-			SimPath newPath = FindPath(startVert, destinationType, agent, mode);
+			SimPath newPath = FindPath(startVert, destinationType, agent, coordinates, mode);
 			if(newPath == null) continue;
 			if(path == null || newPath.totalWeight < path.totalWeight) {
 				path = newPath;
@@ -49,7 +55,8 @@ public partial class Pathfinding : Node
 
 
 	//TODO rework this so agents don't use a single type of infrastructure to find a path- let them transfer between them
-	SimPath FindPath(PathVertex startVert, SimInfraType.DestinationType destinationType, SimAgent agent, SimVehicleType.TransportMode mode)
+	//TODO this looks for the first vert that meets the requirements, which is good for a generic search for the closest vertex of a type. But we'll want to do a slightly different impementation for pathfinding to homes with known coordinates, we can probably use A* or something similar
+	SimPath FindPath(PathVertex startVert, SimInfraType.DestinationType destinationType, SimAgent agent, Vector2I coordinates, SimVehicleType.TransportMode mode)
 	{
 		if(!initialized) Init();
 
@@ -92,8 +99,22 @@ public partial class Pathfinding : Node
 			visited[v.PathGraphCoordinates.X, v.PathGraphCoordinates.Y] = true;
 
 			if(v.DestinationType == destinationType) {
-				foundDestination = true;
-				return RetracePath(startVert, v, agent, mode);
+
+				// when we're looking for specific coordinates, like travelling back home 
+				if(coordinates != Vector2I.MinValue) {
+					if(coordinates == v.PathGraphCoordinates) {
+						foundDestination = true; 
+						return RetracePath(startVert, v, agent, mode);
+					}
+				}
+
+				// when we're just trying to find the first available destination of a type 
+				if(v.TryAddOccupancy(SimVehicleType.TransportMode.PEDESTRIAN)) {
+					foundDestination = true;
+					return RetracePath(startVert, v, agent, mode);
+				} else {
+					continue;
+				}
 			}
 
 			// add the connected neighbors to the open set 

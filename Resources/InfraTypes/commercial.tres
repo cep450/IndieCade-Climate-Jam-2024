@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="SimInfraType" load_steps=2 format=3 uid="uid://cwqcek7qmdfl2"]
+[gd_resource type="Resource" script_class="SimInfraType" load_steps=3 format=3 uid="uid://cwqcek7qmdfl2"]
 
+[ext_resource type="Texture2D" uid="uid://cskv76nndt23h" path="res://Assets/Buttons + Elements/Menu_Build/Icons_Individual/Build Menu Icons (9).png" id="1_814dw"]
 [ext_resource type="Script" path="res://Scripts/Simulation/SimInfraType.cs" id="1_rtxf6"]
 
 [resource]
@@ -8,20 +9,21 @@ Name = "Comercial Building"
 type = 4
 visualInfra = null
 destinationType = 3
-transportModes = 1
+transportModes = 7
 connectsCorners = false
 connectsBorders = false
-connectsCenter = false
+connectsCenter = true
 affectsAllVertices = false
 connectionsBlockedBy = 0
-capacity = 20
+capacity = 5
 canTransfer = 0
 maxSpeed = 0.0
 safety = 0.0
-costToBuild = 10
+costToBuild = 15
 costToDestroy = 15
-incompatibilityMask = 1055
+incompatibilityMask = 1631
 ModelPath = ""
 ModelVariantCount = 1
 ModelConnects = false
 ModelHasBase = false
+Icon = ExtResource("1_814dw")

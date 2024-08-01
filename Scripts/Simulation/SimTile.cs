@@ -26,6 +26,8 @@ public partial class SimTile : Node
 	GDScript visualTileScript = GD.Load<GDScript>("res://Scripts/View/view_tile.gd");
 	public GodotObject VisualTile { get; private set; }
 
+	public List<SimAgent> Agents; //agents that belong to this tile due to a home or workplace 
+
 	public SimTile(Vector2I coordinates, Vector2 worldPosition, GodotObject newVisualTile)
 	{
 		Coordinates = coordinates;
@@ -34,34 +36,37 @@ public partial class SimTile : Node
 		InfraTypesMask = default(SimInfraType.InfraType);
 		VisualTile = newVisualTile;
 		Infra = new List<SimInfra>();
+		Agents = new List<SimAgent>();
 	}
 
 	// load infrastructure on a tile based on a type mask
-	public void AddInfraFromMask(SimInfraType.InfraType mask, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
+	public void AddInfraFromMask(SimInfraType.InfraType mask, bool bypassCost = false, bool bypassCompatibility = false, bool updateVisuals = true, bool recalculateEdges = true) {
 
 		for(int i = 0; i < SimInfraType.NumTypes; i++) {
 			SimInfraType.InfraType bit = (SimInfraType.InfraType)Math.Pow(2, i);
 			if((mask & bit) != 0) {
-				AddInfra(SimInfraType.TypeFromEnum(bit), bypassValidation, updateVisuals, recalculateEdges);
+				AddInfra(SimInfraType.TypeFromEnum(bit), bypassCost, bypassCompatibility, updateVisuals, recalculateEdges);
 			}
 		}
 	}
 
 	// Add infrastructure to the tile. Returns false if the infrastructure could not be added.
-	public string AddInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
+	public string AddInfra(SimInfraType type, bool bypassCost = false, bool bypassCompatibility = false, bool updateVisuals = true, bool recalculateEdges = true) {
 
 		if(DEBUG) GD.Print("called SimTile.AddInfra to add type " + type.Name);
 
 		//validate if the infrastructure can be added here, and if the player has enough currency
-		if(!bypassValidation) {
-			if(!CanAffordToAddInfra(type)){
-				return "Can't Afford";
-			} 
+		if(!bypassCompatibility) {
 			if(!CanAddInfraType(type)){
 				return "Not Valid Space to Add";
 			}
 
-			if(DEBUG) GD.Print("Validated, adding tile, spending " + type.costToBuild);
+		}
+		if(!bypassCost) {
+
+			if(!CanAffordToAddInfra(type)){
+				return "Can't Afford";
+			} 
 
 			// pay the cost 
 			Sim.Instance.SupportPool.SpendSupport(type.costToBuild);
@@ -99,13 +104,14 @@ public partial class SimTile : Node
 	}
 
 	//TODO what do we want to pass in here? an index in the list? a type? an instance? maybe overrides for all of these. one that takes a mask could even add/remove multiple at once.
-	public bool RemoveInfra(SimInfraType type, bool bypassValidation = false, bool updateVisuals = true, bool recalculateEdges = true) {
-		if(!bypassValidation) {
-			//check if this tile has this infrastrcture 
-			if(!HasInfraType(type.type)) {
-				//tile does not have the infrastructure 
-				return false;
-			}
+	public bool RemoveInfra(SimInfraType type, bool bypassCost = false, bool updateVisuals = true, bool recalculateEdges = true) {
+		//check if this tile has this infrastrcture 
+		if(!HasInfraType(type.type)) {
+			//tile does not have the infrastructure 
+			return false;
+		}
+		
+		if(!bypassCost) { 
 
 			//validate that we can afford to remove this 
 			if(!CanAffordToDestroyInfra(type)) {
