@@ -85,10 +85,10 @@ gridData = [0, 0, 0, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192,
 
 [resource]
 script = ExtResource("3_tae6k")
-emissionsCap = 50
+emissionsCap = 1000000
 emissionsTarget = 10
-initialSupport = 50
+initialSupport = 25
 startingYear = 2025
-yearsUntilGameOver = 2030
-nonDriverProbability = 0.3
+yearsUntilGameOver = 30
+nonDriverProbability = 0.7
 gridData = [SubResource("Resource_aj7y2"), SubResource("Resource_f034i"), SubResource("Resource_jwcum"), SubResource("Resource_6k8t6"), SubResource("Resource_u8lxe"), SubResource("Resource_bfad3"), SubResource("Resource_8spu2"), SubResource("Resource_4px7b"), SubResource("Resource_k5ifh"), SubResource("Resource_ttpgd"), SubResource("Resource_cbxkt"), SubResource("Resource_8u2jr"), SubResource("Resource_nt3tj"), SubResource("Resource_yiip6"), SubResource("Resource_nwurx"), SubResource("Resource_gchue"), SubResource("Resource_wtwvh"), SubResource("Resource_bdacj"), SubResource("Resource_kpssu"), SubResource("Resource_ssnwn")]
