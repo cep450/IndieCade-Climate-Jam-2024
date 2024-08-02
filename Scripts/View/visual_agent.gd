@@ -58,7 +58,7 @@ func _process(delta):
 			moving = false
 			simAgent.MoveNext()
 			return
-		if(position != posTo):
+		if(position != posTo && percentTravelled < 0.9):
 			look_at(posTo)
 	else:
 		speed = max(0, speed - (speedDecayRate * delta))	

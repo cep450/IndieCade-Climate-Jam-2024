@@ -85,7 +85,7 @@ gridData = [0, 0, 0, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192,
 
 [resource]
 script = ExtResource("3_tae6k")
-emissionsCap = 50
+emissionsCap = 1000000
 emissionsTarget = 10
 initialSupport = 50
 startingYear = 2025

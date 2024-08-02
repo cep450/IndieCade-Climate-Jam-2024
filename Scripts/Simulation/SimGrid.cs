@@ -137,7 +137,7 @@ public partial class SimGrid : Node
 	
 	public void SaveGridAsResource(string saveFileName = "SavedData") 
 	{
-		var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/SavedData.tres");
+		var startData = GD.Load<StartData>("res://Resources/Maps/SavedData.tres");
 		startData.gridData = new SimInfraTypeRow[width];
 		for (int x = 0; x < width; x++)
 		{
@@ -149,7 +149,7 @@ public partial class SimGrid : Node
 			}
 			startData.gridData[x] = currentInfraRow;
 		}
-		ResourceSaver.Save(startData, "res://Scripts/Simulation/CustomResources/" + saveFileName + ".tres");
+		ResourceSaver.Save(startData, "res://Resources/Maps/" + saveFileName + ".tres");
 		GD.Print("Data Saved to file " + saveFileName + ".tres");
 	}
 	

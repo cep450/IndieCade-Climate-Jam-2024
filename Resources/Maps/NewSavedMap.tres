@@ -1,0 +1,94 @@
+[gd_resource type="Resource" script_class="StartData" load_steps=23 format=3 uid="uid://dxxej1cvebtut"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/SimInfraTypeRow.cs" id="1_q27hq"]
+[ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/StartData.cs" id="2_3nuha"]
+
+[sub_resource type="Resource" id="Resource_311fr"]
+script = ExtResource("1_q27hq")
+gridData = [4096, 4096, 1, 4096, 4608, 4608, 4096, 1, 4096, 1, 4096, 4096, 4096, 4096, 1, 4096, 1, 4096, 4608, 4608]
+
+[sub_resource type="Resource" id="Resource_mrf0q"]
+script = ExtResource("1_q27hq")
+gridData = [1, 16, 16, 4096, 4608, 4608, 4096, 16, 16, 16, 16, 1, 4096, 16, 16, 16, 16, 4096, 4608, 4096]
+
+[sub_resource type="Resource" id="Resource_bfxek"]
+script = ExtResource("1_q27hq")
+gridData = [4096, 16, 1, 4096, 4096, 4096, 4096, 1, 4096, 1, 16, 4096, 1, 16, 1, 4096, 1, 4096, 4096, 4608]
+
+[sub_resource type="Resource" id="Resource_1tswd"]
+script = ExtResource("1_q27hq")
+gridData = [1, 16, 4096, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 16, 8192, 8192, 16, 8192, 1, 4096, 1, 4096, 4096]
+
+[sub_resource type="Resource" id="Resource_wyb3q"]
+script = ExtResource("1_q27hq")
+gridData = [4096, 16, 1, 8192, 16, 16, 16, 16, 16, 16, 16, 4096, 4096, 16, 16, 16, 16, 16, 1, 4096]
+
+[sub_resource type="Resource" id="Resource_apbii"]
+script = ExtResource("1_q27hq")
+gridData = [1, 16, 16, 16, 16, 1024, 2, 1024, 1024, 2, 16, 1024, 2, 16, 8192, 1, 4096, 1, 4096, 4096]
+
+[sub_resource type="Resource" id="Resource_gibrl"]
+script = ExtResource("1_q27hq")
+gridData = [4096, 16, 4096, 8192, 16, 1024, 1024, 1024, 1024, 2, 16, 1024, 2, 16, 8192, 4096, 4096, 4096, 4096, 4608]
+
+[sub_resource type="Resource" id="Resource_jl1p3"]
+script = ExtResource("1_q27hq")
+gridData = [1, 16, 1, 8192, 16, 1024, 1024, 1024, 1024, 2, 16, 1024, 2, 16, 8192, 4096, 4096, 4096, 4096, 4608]
+
+[sub_resource type="Resource" id="Resource_1n154"]
+script = ExtResource("1_q27hq")
+gridData = [8192, 8192, 8192, 8192, 16, 2, 2, 2, 2, 2, 16, 2, 2, 16, 8192, 8192, 8192, 8192, 8192, 8192]
+
+[sub_resource type="Resource" id="Resource_lkj6y"]
+script = ExtResource("1_q27hq")
+gridData = [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16]
+
+[sub_resource type="Resource" id="Resource_7gbko"]
+script = ExtResource("1_q27hq")
+gridData = [1024, 1024, 1024, 1024, 16, 1, 1, 16, 1, 1, 16, 2, 2, 16, 2, 2, 16, 1, 1, 1]
+
+[sub_resource type="Resource" id="Resource_usdqq"]
+script = ExtResource("1_q27hq")
+gridData = [1024, 1024, 1024, 1024, 16, 1, 1024, 16, 1024, 1, 16, 2, 1024, 16, 1024, 2, 16, 1, 4096, 4096]
+
+[sub_resource type="Resource" id="Resource_sc0nh"]
+script = ExtResource("1_q27hq")
+gridData = [1024, 1024, 1024, 1024, 16, 1, 1024, 16, 1024, 1, 16, 2, 1024, 16, 1024, 2, 16, 1, 1024, 1024]
+
+[sub_resource type="Resource" id="Resource_kfqgg"]
+script = ExtResource("1_q27hq")
+gridData = [1024, 1024, 1024, 1024, 16, 1, 1, 16, 1, 1, 16, 2, 2, 16, 2, 2, 16, 1, 1024, 1024]
+
+[sub_resource type="Resource" id="Resource_abmfn"]
+script = ExtResource("1_q27hq")
+gridData = [16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 8192]
+
+[sub_resource type="Resource" id="Resource_8mp6n"]
+script = ExtResource("1_q27hq")
+gridData = [1, 16, 8192, 8192, 16, 2, 2, 2, 1024, 1, 16, 1, 1, 16, 2, 1024, 1024, 1024, 16, 8192]
+
+[sub_resource type="Resource" id="Resource_yjein"]
+script = ExtResource("1_q27hq")
+gridData = [4096, 16, 0, 8192, 16, 2, 4608, 4608, 4608, 1, 16, 1024, 1024, 16, 2, 1024, 1024, 2, 16, 8192]
+
+[sub_resource type="Resource" id="Resource_d7vpa"]
+script = ExtResource("1_q27hq")
+gridData = [1, 16, 4096, 8192, 16, 2, 2, 2, 1024, 1, 16, 1, 1, 16, 2, 1024, 1024, 2, 16, 8192]
+
+[sub_resource type="Resource" id="Resource_35g3b"]
+script = ExtResource("1_q27hq")
+gridData = [4096, 4096, 4096, 8192, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 8192]
+
+[sub_resource type="Resource" id="Resource_yhfb5"]
+script = ExtResource("1_q27hq")
+gridData = [4608, 4608, 4608, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192, 8192]
+
+[resource]
+script = ExtResource("2_3nuha")
+emissionsCap = 1000000
+emissionsTarget = 10
+initialSupport = 50
+startingYear = 2025
+yearsUntilGameOver = 2030
+nonDriverProbability = 0.3
+gridData = [SubResource("Resource_311fr"), SubResource("Resource_mrf0q"), SubResource("Resource_bfxek"), SubResource("Resource_1tswd"), SubResource("Resource_wyb3q"), SubResource("Resource_apbii"), SubResource("Resource_gibrl"), SubResource("Resource_jl1p3"), SubResource("Resource_1n154"), SubResource("Resource_lkj6y"), SubResource("Resource_7gbko"), SubResource("Resource_usdqq"), SubResource("Resource_sc0nh"), SubResource("Resource_kfqgg"), SubResource("Resource_abmfn"), SubResource("Resource_8mp6n"), SubResource("Resource_yjein"), SubResource("Resource_d7vpa"), SubResource("Resource_35g3b"), SubResource("Resource_yhfb5")]

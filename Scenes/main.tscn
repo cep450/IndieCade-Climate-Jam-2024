@@ -3,15 +3,15 @@
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_3a24o"]
 [ext_resource type="PackedScene" uid="uid://csswthorupplo" path="res://Scenes/UI/ui.tscn" id="1_70wsr"]
 [ext_resource type="PackedScene" uid="uid://ge1rdby4fhec" path="res://Scenes/simulation.tscn" id="2_6q545"]
-[ext_resource type="Resource" uid="uid://b65yg31igo8cy" path="res://Resources/Maps/SavedData.tres" id="3_c3bhy"]
 [ext_resource type="PackedScene" uid="uid://us6n2vt8kwhw" path="res://Scenes/View/view.tscn" id="3_hdemr"]
+[ext_resource type="Resource" uid="uid://dxxej1cvebtut" path="res://Resources/Maps/NewSavedMap.tres" id="3_i1afh"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_3a24o")
 
 [node name="Simulation" parent="." instance=ExtResource("2_6q545")]
 unique_name_in_owner = true
-startData = ExtResource("3_c3bhy")
+startData = ExtResource("3_i1afh")
 
 [node name="UI" parent="." instance=ExtResource("1_70wsr")]
 unique_name_in_owner = true
