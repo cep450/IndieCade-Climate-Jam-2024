@@ -292,6 +292,7 @@ _data = {
 }
 
 [node name="Agent_Person_2" type="Node3D"]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
 [node name="PersonRig" type="Node3D" parent="."]
 
@@ -300,50 +301,50 @@ bones/0/name = "Body0"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 2.38419e-07, 0, 1, 0, -2.38419e-07, 0, 1, 0, 0.127554, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(-1.09241e-10, 0.127183, 0.000104134)
-bones/0/rotation = Quaternion(-0.000124068, 1.19211e-07, -4.1642e-10, 1)
+bones/0/position = Vector3(0, 0.103935, 0)
+bones/0/rotation = Quaternion(0, 0.0955315, 0, 0.995426)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Body1"
 bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0972743, 0)
 bones/1/enabled = true
-bones/1/position = Vector3(1.68569e-12, 0.0973062, -4.63979e-07)
-bones/1/rotation = Quaternion(0.00095994, 4.76725e-11, 3.08997e-09, 1)
+bones/1/position = Vector3(0, 0.0934331, 0)
+bones/1/rotation = Quaternion(0, -0.154982, 0, 0.987917)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Arm.L"
 bones/2/parent = 1
 bones/2/rest = Transform3D(-0.95384, 0.30032, 1.92668e-06, -0.300321, -0.953838, 3.99628e-07, 1.95777e-06, -1.97442e-07, 1, 0.0833934, 0.0508092, 9.55628e-09)
 bones/2/enabled = true
-bones/2/position = Vector3(0.0834627, 0.0504702, 2.26985e-07)
-bones/2/rotation = Quaternion(-2.33158e-05, 3.78478e-06, 0.988546, -0.150923)
+bones/2/position = Vector3(0.0833934, 0.0508092, 9.55628e-09)
+bones/2/rotation = Quaternion(-0.037858, 0.246305, 0.957211, -0.147131)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Head"
 bones/3/parent = 1
 bones/3/rest = Transform3D(1, 0, -1.42109e-14, 0, 1, 0, 1.42109e-14, 0, 1, 0, 0.106468, 0)
 bones/3/enabled = true
-bones/3/position = Vector3(-6.30223e-17, 0.106141, 2.64334e-11)
-bones/3/rotation = Quaternion(-0.00101581, -5.04509e-11, -3.26982e-09, 1)
+bones/3/position = Vector3(0, 0.0940095, 0)
+bones/3/rotation = Quaternion(0, -7.10543e-15, 0, 1)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Arm.R"
 bones/4/parent = 1
 bones/4/rest = Transform3D(-0.95384, -0.30032, -2.40352e-06, 0.300321, -0.953838, 3.99628e-07, -2.41259e-06, -3.40646e-07, 1, -0.0833934, 0.0508092, -3.02088e-08)
 bones/4/enabled = true
-bones/4/position = Vector3(-0.0834627, 0.0504702, 1.87182e-07)
-bones/4/rotation = Quaternion(2.308e-05, 3.7488e-06, 0.988546, 0.150923)
+bones/4/position = Vector3(-0.0833934, 0.0508092, -3.02088e-08)
+bones/4/rotation = Quaternion(-0.0378602, -0.246305, 0.957211, 0.14713)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "Leg.L"
 bones/5/parent = 0
 bones/5/rest = Transform3D(-0.997074, -0.0765523, 2.33809e-06, 0.0765529, -0.997066, -4.73139e-07, 2.36747e-06, -2.92764e-07, 1, 0.0446924, 0.0305352, -1.54644e-08)
 bones/5/enabled = true
-bones/5/position = Vector3(0.0446924, 0.0307863, 1.05031e-07)
-bones/5/rotation = Quaternion(1.19444e-05, -0.000281084, 0.999266, 0.0383042)
+bones/5/position = Vector3(0.0446924, 0.0305352, -1.54644e-08)
+bones/5/rotation = Quaternion(0.0095464, -0.249015, 0.967742, 0.0370955)
 bones/5/scale = Vector3(1.00001, 1, 1)
 bones/6/name = "Leg.R"
 bones/6/parent = 0
 bones/6/rest = Transform3D(-0.997074, 0.0765523, -2.81493e-06, -0.0765529, -0.997066, -4.73139e-07, -2.84291e-06, -2.56261e-07, 1, -0.0446924, 0.0305352, -3.67754e-08)
 bones/6/enabled = true
-bones/6/position = Vector3(-0.0446924, 0.0307863, 8.37236e-08)
-bones/6/rotation = Quaternion(-1.21827e-05, -0.000281075, 0.999266, -0.0383042)
+bones/6/position = Vector3(-0.0446924, 0.0305352, -3.67754e-08)
+bones/6/rotation = Quaternion(0.00954389, 0.249014, 0.967742, -0.0370961)
 bones/6/scale = Vector3(1.00001, 1, 1)
 
 [node name="Person" type="MeshInstance3D" parent="PersonRig/Skeleton3D"]

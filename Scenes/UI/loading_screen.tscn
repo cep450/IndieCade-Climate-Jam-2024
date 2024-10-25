@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://delqb0cm0h1o3"]
+
+[ext_resource type="Texture2D" uid="uid://bwo4c53ccnmhb" path="res://Assets/Game Over + Win/BG_90_.png" id="1_q26te"]
+[ext_resource type="Script" path="res://Scripts/UI/loading_screen.gd" id="1_y05u5"]
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadingText" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -36.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 52
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("1_y05u5")
+
+[node name="Background" type="Sprite2D" parent="LoadingText"]
+visible = false
+show_behind_parent = true
+position = Vector2(563, 52)
+scale = Vector2(0.626757, 0.184089)
+texture = ExtResource("1_q26te")

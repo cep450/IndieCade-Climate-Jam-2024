@@ -13,6 +13,7 @@ extends Control
 @onready var timer = $Timer
 
 @onready var world: Node3D = $"../View/World"
+
 #Public Variables
 var support_state: SupportState
 var speed: SpeedState
@@ -120,9 +121,9 @@ func _on_mouse_entered_build(text: String):
 
 func _on_mouse_exited_build():
 	$BuildInfo.visible = false
-	
+
 func _on_save_button_pressed():
-	sim.get_node("SimGrid").SaveGridAsResource()
+	sim.get_node("SimGrid").SaveGridAsResource("NewSavedMap")
 
 
 

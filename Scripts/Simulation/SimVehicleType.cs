@@ -71,13 +71,22 @@ public partial class SimVehicleType : Resource
 		return arr;
 	}
 
+	private int _index = -1;
+	public int Index { get {
+		if(_index == -1) {
+			_index = ModeIndex(transportMode);
+		}
+		return _index;
+	}}
+
 	[Export] public string name; // used by the game ui
 	[Export] private TransportMode transportMode;
 	[Export] private float emissionsPerYear;
 	//private float emissionsPerTick; // derived from per year based on time scale in Sim
-	[Export] private float maxSpeed;	// in miles per hour for familiarity and being able to look up data. In the future we can display this in different units by converting the number the UI displays, even if the internal number is the same.
+	[Export] public float maxSpeed;	// in miles per hour for familiarity and being able to look up data. In the future we can display this in different units by converting the number the UI displays, even if the internal number is the same.
+	[Export] public float acceleration;
+	[Export] public float decceleration;
 	[Export] private int agentCapacity = 1; // how many agents can travel in it at a time
-	[Export] public string visualVehicle;
 
 	[Export] public string ModelPath;
 

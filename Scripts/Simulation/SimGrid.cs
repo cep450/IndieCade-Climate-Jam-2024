@@ -25,6 +25,7 @@ public partial class SimGrid : Node
 	//TODO for choosing destinations maybe we do all the pathfinding during that choice, where we aren't pathfinding to a particular tile but instead pathfinding until we find a particular type
 	//public SimInfraType.DestinationType destinationGrid; // parallel grid just storing destination types for pathfinding 
 
+	// int versions 
 	public float GridToWorldPos(int sizeAxis, int coord) {
 		float pos = coord + 0.5f;
 		pos -= (sizeAxis / 2);
@@ -37,6 +38,16 @@ public partial class SimGrid : Node
 		} else {
 			return GridToWorldPos(height, coord);
 		}
+	}
+
+	// float versions 
+	public float GridToWorldPos(int sizeAxis, float coord) {
+		float pos = coord + 0.5f;
+		pos -= (sizeAxis / 2);
+		return pos;
+	}
+	public Vector2 GridToWorldPos(float x, float y) {
+		return new Vector2(GridToWorldPos(width, x), GridToWorldPos(height, y));
 	}
 
 	public void LoadGridFromResource(StartData resourceToLoad)
@@ -124,9 +135,9 @@ public partial class SimGrid : Node
 		return neighbours;
 	}
 	
-	public void SaveGridAsResource() 
+	public void SaveGridAsResource(string saveFileName = "SavedData") 
 	{
-		var startData = GD.Load<StartData>("res://Scripts/Simulation/CustomResources/SavedData.tres");
+		var startData = GD.Load<StartData>("res://Resources/Maps/SavedData.tres");
 		startData.gridData = new SimInfraTypeRow[width];
 		for (int x = 0; x < width; x++)
 		{
@@ -138,8 +149,8 @@ public partial class SimGrid : Node
 			}
 			startData.gridData[x] = currentInfraRow;
 		}
-		ResourceSaver.Save(startData, "res://Scripts/Simulation/CustomResources/SavedData.tres");
-		GD.Print("Data Saved");
+		ResourceSaver.Save(startData, "res://Resources/Maps/" + saveFileName + ".tres");
+		GD.Print("Data Saved to file " + saveFileName + ".tres");
 	}
 	
 	public PathVersion GetVersion(Vector2I currentTile, SimInfraType targetType)

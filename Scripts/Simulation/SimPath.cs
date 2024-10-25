@@ -12,6 +12,7 @@ public partial class SimPath : Node
 	// these lists are parallel
 	public List<PathVertex> vertices;
 	public List<PathEdge> edges; 
+	public List<SimVehicleType.TransportMode> modes; //TODO we can use this once we get transit mode transfer in
 
 	// running totals of weights 
 	public float totalWeight;

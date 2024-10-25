@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://wm2libkqbe3f"]
+
+[node name="SaveMapName" type="Control"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -97.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+placeholder_text = "NewMap01"
+max_length = 32
+expand_to_text_length = true
+caret_blink = true

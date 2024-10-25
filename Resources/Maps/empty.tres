@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="StartData" load_steps=13 format=3 uid="uid://3rm7emcbklbs"]
+
+[ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/StartData.cs" id="1_hq0y2"]
+[ext_resource type="Script" path="res://Scripts/Simulation/CustomResources/SimInfraTypeRow.cs" id="1_ywhev"]
+
+[sub_resource type="Resource" id="Resource_bs48y"]
+script = ExtResource("1_ywhev")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_uhkf4"]
+script = ExtResource("1_ywhev")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_i70io"]
+script = ExtResource("1_ywhev")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_sl054"]
+script = ExtResource("1_ywhev")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_baskb"]
+script = ExtResource("1_ywhev")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_wl01t"]
+script = ExtResource("1_ywhev")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_tytdi"]
+script = ExtResource("1_ywhev")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_c6nc1"]
+script = ExtResource("1_ywhev")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_vlxhm"]
+script = ExtResource("1_ywhev")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[sub_resource type="Resource" id="Resource_cox1f"]
+script = ExtResource("1_ywhev")
+gridData = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+
+[resource]
+script = ExtResource("1_hq0y2")
+emissionsCap = 100000
+emissionsTarget = 100
+initialSupport = 9999999999
+startingYear = 2025
+yearsUntilGameOver = 15
+nonDriverProbability = 0.3
+gridData = Array[Object]([SubResource("Resource_bs48y"), SubResource("Resource_uhkf4"), SubResource("Resource_i70io"), SubResource("Resource_sl054"), SubResource("Resource_baskb"), SubResource("Resource_wl01t"), SubResource("Resource_tytdi"), SubResource("Resource_c6nc1"), SubResource("Resource_vlxhm"), SubResource("Resource_cox1f")])

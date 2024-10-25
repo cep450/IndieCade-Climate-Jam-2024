@@ -3,22 +3,18 @@
 [ext_resource type="PackedScene" uid="uid://hfjb86j4k50c" path="res://Models/Agent_Person/Agent_Person_1.gltf" id="1_twb6x"]
 
 [node name="Agent_Person_1" instance=ExtResource("1_twb6x")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
 
 [node name="Skeleton3D" parent="PersonRig" index="0"]
-bones/0/position = Vector3(1.4164e-10, 0.130524, 0.000594082)
-bones/0/rotation = Quaternion(0.0045365, 1.19208e-07, 1.19232e-09, 0.99999)
-bones/1/position = Vector3(2.67261e-11, 0.102672, -7.84842e-05)
-bones/1/rotation = Quaternion(0.00534937, -4.84296e-15, -1.09256e-09, 0.999986)
-bones/2/position = Vector3(0.0835035, 0.050271, 3.54569e-07)
-bones/2/rotation = Quaternion(-0.00181749, 0.000279472, 0.997062, -0.0765823)
-bones/3/position = Vector3(-4.78645e-17, 0.105208, -1.96871e-10)
-bones/3/rotation = Quaternion(-0.00905563, -9.40281e-15, -1.08755e-16, 0.999959)
-bones/4/position = Vector3(-0.0835035, 0.050271, 3.14759e-07)
-bones/4/rotation = Quaternion(0.00181725, 0.000279454, 0.997062, 0.0765823)
-bones/5/position = Vector3(0.0446924, 0.0252117, 0.000109345)
-bones/5/rotation = Quaternion(-6.37416e-05, 0.00169339, 0.999265, 0.0383042)
-bones/6/position = Vector3(-0.0446924, 0.0252117, 0.000109324)
-bones/6/rotation = Quaternion(6.35033e-05, 0.0016934, 0.999265, -0.0383042)
+bones/0/position = Vector3(0, 0.105695, 0)
+bones/0/rotation = Quaternion(0, 0.0903987, 0, 0.995906)
+bones/1/position = Vector3(0, 0.0934686, 0)
+bones/1/rotation = Quaternion(0, -0.14478, 0, 0.989464)
+bones/2/rotation = Quaternion(-0.0354474, 0.230621, 0.96111, -0.14773)
+bones/3/position = Vector3(0, 0.0952586, 0)
+bones/4/rotation = Quaternion(-0.0354495, -0.230621, 0.96111, 0.14773)
+bones/5/rotation = Quaternion(0.00893861, -0.233158, 0.971684, 0.0372466)
+bones/6/rotation = Quaternion(0.00893609, 0.233158, 0.971684, -0.0372472)
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "Person_Idle"

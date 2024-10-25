@@ -11,6 +11,8 @@ public partial class Sim : Node
 
 	bool DEBUG = false;
 
+	[Export] bool EditorMode = false;
+
 	// game state 
 	public enum GameState {
 		TUTORIAL,	// the game has not begun yet
@@ -24,7 +26,7 @@ public partial class Sim : Node
 	[Export] public StartData startData;
 
 	public SimGrid grid;
-	public PathfindingGraph PathGraph;
+	public PathGraph PathGraph;
 	public SimEmissionsMeter EmissionsMeter { get; private set; }
 	public SimSupportPool SupportPool { get; private set; }
 	private List<SimAgent> agents;
@@ -34,6 +36,9 @@ public partial class Sim : Node
 
 	GDScript mainScript = GD.Load<GDScript>("res://Scripts/main.gd");
 	GodotObject mainObject;
+
+	GodotObject godotGlobal;
+	GodotObject loadingScreen;
 
 	// shortcuts 
 	//TODO it might make more sense for these to be in SimGrid
@@ -55,12 +60,18 @@ public partial class Sim : Node
 
 	public override void _Ready()
 	{
+
+		//TODO throw up a loading screen here 
+		//loadingScreen = GetNode("/root/Main_Menu/LoadingScreen/LoadingText");
+
 		GD.Print("sim ready");
 		Instance = this;
-		Instance.startData = (StartData)ResourceLoader.Load("res://Scripts/Simulation/CustomResources/SavedData.tres");
+		if(startData == null) {
+			Instance.startData = (StartData)ResourceLoader.Load("res://Scripts/Simulation/CustomResources/SavedData.tres");
+		}
 		//Give Global access to this node
-		GodotObject autoload = GetNode("/root/Global");
-		autoload.Call("set_sim",Instance);
+		godotGlobal = GetNode("/root/Global");
+		godotGlobal.Call("set_sim",Instance);
 		grid = GetNode<SimGrid>("SimGrid");
 		EmissionsMeter = GetNode<SimEmissionsMeter>("SimEmissionsMeter");
 		SupportPool = GetNode<SimSupportPool>("SimSupportPool");
@@ -75,18 +86,26 @@ public partial class Sim : Node
 	// load level data from save
 	public void LoadMap() { /*TODO maybe have this take in a startData resource, 
 		but for now, it's just the one given to the sim instance*/
+
+		//loadingscreen.SetText("Loading map...");
+
+		//godotGlobal.Set("inDevMode", startData.EditorMode);
+		godotGlobal.Set("inDevMode", EditorMode);
+
 		EmissionsMeter.InitializeEmissionsInfo(startData);
 		SupportPool.Init(startData);
 		Clock.InitializeClockInfo(startData);
 
 		//generate a grid based on map data 
 		grid.LoadGridFromResource(startData);
-		PathGraph = new PathfindingGraph(startData.GridWidth, startData.GridHeight);
+		PathGraph = new PathGraph(startData.GridWidth, startData.GridHeight);
 
 	}
 
 	// Start the simulation for the first time. 
 	public void BeginGame() {
+
+		//loadingscreen.SetText("Loading citizens...");
 
 		foreach(SimAgent agent in agents) {
 			agent.InitAfterMapLoad();
@@ -94,6 +113,8 @@ public partial class Sim : Node
 
 		gameState = GameState.GAMEPLAY;
 		Clock.UnPause();
+
+		//TODO close the loading screen here 
 	}
 
 	// Simulation logic tick. 
@@ -158,19 +179,21 @@ public partial class Sim : Node
 
 	//TODO we probably want agent stuff in its own script like an AgentManger-- we can refactor this after the jam since we're tight on time 
 
-	public void AddAgents(int number, Vector2I position) {
+	public SimAgent[] AddAgents(int number, Vector2I position) {
 
-		//for(int i = 0; i < number; i++) {
-			//SimAgent agent = new SimAgent(startData.nonDriverProbability, position); //TODO get chance to not have a car from level data 
-			//agents.Add(agent);
-			//AddChild(agent);
-			//agent.CreateVisualVersion();
-		//}
+		SimAgent [] newAgents = new SimAgent[number];
+		for(int i = 0; i < number; i++) {
+			SimAgent agent = new SimAgent(startData.nonDriverProbability, position); //TODO get chance to not have a car from level data 
+			agents.Add(agent);
+			AddChild(agent);
+			newAgents[i] = agent;
+		}
+		return newAgents;
 	}
 
-	//TODO right now for simplicity this just removes arbitrary agents since they're considered identical, but in the future, we could pick out specific ones to remove like having a Home save the agents attached to it and remove those specific agents if removed
-	//TODO does not work right now
-	public void RemoveAgents(int number) {
-		//agents.RemoveRange(agents.Count - number + 1, agents.Count - 1);
+	//TODO see if we can optimize this 
+	public void RemoveAgent(SimAgent agent) {
+		agents.Remove(agent);
+		//TODO we should be able to delete visual agents here to free up memory from the loaded models 
 	}
 }
