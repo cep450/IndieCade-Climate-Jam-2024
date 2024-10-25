@@ -1,0 +1,8 @@
+
+- Implement map file saving (map creation)
+	- Generate the PathGraph and OptimizedPathGraph when a map file is saved (creating the map, not while playing the map), so it doesn't generate when the map is loaded. 
+- Implement game save loading 
+	- Save the current state of the PathGraph and OptimizedPathGraph when a map file is being saved as part of gameplay 
+
+
+

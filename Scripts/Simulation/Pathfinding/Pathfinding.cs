@@ -36,8 +36,7 @@ public partial class Pathfinding : Node
 		return FindPath(startVert, destinationType, agent, Vector2I.MinValue);
 	}
 
-	//TODO rework this when we get agent vehicle transfer working
-	// because this SUCKS!
+	//TODO rework this when we get agent vehicle transfer working- instead of pathfinding for each transit type, agents can switch transit methods during their route 
 	public SimPath FindPath(PathVertex startVert, SimInfraType.DestinationType destinationType, SimAgent agent, Vector2I coordinates) {
 		
 		SimPath path = null; 
